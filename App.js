@@ -11,7 +11,7 @@ import {
   ScrollView
 } from "react-native";
 import axios from "axios";
-import { StackNavigator } from "react-navigation";
+import { TabNavigator } from "react-navigation";
 
 class HomeScreen extends Component {
   constructor() {
@@ -32,6 +32,9 @@ class HomeScreen extends Component {
       });
     });
   }
+  static navigationOptions = {
+    title: "¡CHEESE!"
+  };
   render() {
     const pic = {
       uri:
@@ -41,7 +44,12 @@ class HomeScreen extends Component {
       <View style={styles.container}>
         <Button
           title="DETAILS"
-          onPress={() => this.props.navigation.navigate("Details")}
+          onPress={() =>
+            this.props.navigation.navigate("Details", {
+              pic: pic,
+              words: "ham and cheese"
+            })
+          }
         />
         <Text>!Hello Werld¡</Text>
         <Text>🍕</Text>
@@ -65,9 +73,14 @@ class HomeScreen extends Component {
 }
 class DetailsScreen extends React.Component {
   render() {
+    const { params } = this.props.navigation.state;
+    const pic = params ? params.pic : null;
+    const words = params ? params.words : null;
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Text>Details Screen</Text>
+        <Image source={pic} style={{ width: 250, height: 150 }} />
+        <Text>{words}!!!!!</Text>
         <Button
           title="HOME"
           onPress={() => this.props.navigation.navigate("Home")}
@@ -76,7 +89,7 @@ class DetailsScreen extends React.Component {
     );
   }
 }
-const RootStack = StackNavigator(
+const RootStack = TabNavigator(
   {
     Home: {
       screen: HomeScreen
@@ -86,7 +99,10 @@ const RootStack = StackNavigator(
     }
   },
   {
-    initialRouteName: "Details"
+    initialRouteName: "Home",
+    tabBarPosition: "bottom",
+    swipeEnabled: true,
+    animationEnabled: true
   }
 );
 

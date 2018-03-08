@@ -48,7 +48,7 @@ class HomeScreen extends Component {
         <Image source={pic} style={{ width: 250, height: 150 }} />
         <Button onPress={this.pressButton} title="star wars api...Luke" />
         <ScrollView>
-          <Text style={{ fontSize: 96 }}>Scroll me plz: 🍕</Text>
+          <Text style={{ fontSize: 96 }}>Scroll me plz:🚔 🍕</Text>
           <Text style={{ fontSize: 80 }}>React Native: 🍕</Text>
           <Text style={{ fontSize: 96 }}>Scroll me plz: 🍕</Text>
           <Text style={{ fontSize: 80 }}>React Native: 🍕</Text>

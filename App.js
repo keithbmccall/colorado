@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import axios from "axios";
 import { TabNavigator } from "react-navigation";
+import { ImageColorPicker } from "react-native-image-color-picker";
 
 class HomeScreen extends Component {
   constructor() {
@@ -89,6 +90,15 @@ class DetailsScreen extends React.Component {
     );
   }
 }
+class ColorScreen extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>color page</Text>
+      </View>
+    );
+  }
+}
 const RootStack = TabNavigator(
   {
     Home: {
@@ -96,13 +106,31 @@ const RootStack = TabNavigator(
     },
     Details: {
       screen: DetailsScreen
+    },
+    Color: {
+      screen: ColorScreen
     }
   },
   {
     initialRouteName: "Home",
     tabBarPosition: "bottom",
     swipeEnabled: true,
-    animationEnabled: true
+    animationEnabled: true,
+    tabBarOptions: {
+      activeTintColor: "green",
+      activeBackgroundColor: "black",
+      inactiveBackgroundColor: "pink",
+      inactiveTintColor: "yellow",
+      style: {
+        borderColor: "black"
+      },
+      labelStyle: {
+        fontSize: 20
+      },
+      tabStyle: {
+        borderColor: "black"
+      }
+    }
   }
 );
 

@@ -11,12 +11,21 @@ export default StyleSheet.create({
   homeScreen: {
     flex: 1
   },
-  nav: {
+  navContainer: {
     backgroundColor: "pink",
+    flex: 1
+  },
+  navItemContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  navRow: {
     flex: 1,
     flexDirection: "row"
   },
-  navItemContainer: {
-    flex: 1
+  navStatus: {
+    backgroundColor: "rgba(0,0,0,0)",
+    height: 20
   }
 });

@@ -8,7 +8,8 @@ import {
 	Image,
 	ScrollView,
 	CameraRoll,
-	TouchableHighlight
+	TouchableHighlight,
+	StatusBar
 } from "react-native";
 import { getAllSwatches } from "react-native-palette";
 import ImagePicker from "react-native-image-picker";
@@ -41,6 +42,7 @@ export default class PhotosPage extends Component {
 	// componentDidMount() {
 	// 	this.readImage();
 	// }
+
 	constructor() {
 		super();
 		this.state = {
@@ -66,6 +68,7 @@ export default class PhotosPage extends Component {
 	render() {
 		return (
 			<View>
+				<StatusBar backgroundColor="blue" barStyle="dark-content" />
 				<Text>some text</Text>
 				<Button title="click this" onPress={this.getImages} />
 			</View>

@@ -10,7 +10,8 @@ import {
 	CameraRoll,
 	TouchableHighlight,
 	StatusBar,
-	Dimensions
+	Dimensions,
+	Modal
 } from "react-native";
 import { getAllSwatches } from "react-native-palette";
 import ImagePicker from "react-native-image-picker";
@@ -23,41 +24,59 @@ import HomeNav from "./HomeNav";
 
 const { width, height } = Dimensions.get("window");
 export default class PhotosPage extends Component {
-	// readImage() {
-	// 	ImagePicker.launchImageLibrary({}, response => {
-	// 		console.log("response", response);
-	// 		var path = response.origURL;
-	// 		getAllSwatches({}, path, (error, swatches) => {
-	// 			if (error) {
-	// 				console.log(error);
-	// 			} else {
-	// 				swatches.sort((a, b) => {
-	// 					return b.population - a.population;
-	// 				});
-	// 				swatches.forEach(swatch => {
-	// 					console.log("color", swatch.color);
-	// 					console.log("color-all", swatch);
-	// 				});
-	// 			}
-	// 		});
-	// 	});
-	// }
-	// componentDidMount() {
-	// 	this.readImage();
-	// }
+	componentDidMount() {
+		this.readImage();
+	}
 
 	constructor() {
 		super();
 		this.state = {
 			images: [],
-			imagesLoaded: false
+			imagesLoaded: false,
+			modalOpen: false,
+			currentSwatches: null
 		};
 		this.getImages = this.getImages.bind(this);
 		this.renderImages = this.renderImages.bind(this);
-		this.pressHandler = this.pressHandler.bind(this);
+		this.getSwatches = this.getSwatches.bind(this);
+		this.toggleModal = this.toggleModal.bind(this);
+		this.resetSwatchState = this.resetSwatchState.bind(this);
 	}
-	pressHandler(image, key) {
-		console.log("pressHandler", image);
+	resetSwatchState() {
+		this.setState({
+			currentSwatches: null,
+			modalOpen: false
+		});
+	}
+	toggleModal() {
+		this.setState({
+			modalOpen: !this.state.modalOpen
+		});
+	}
+
+	getSwatches(image, key) {
+		console.log("getSwatches", image);
+		const path = image.node.image.uri;
+		getAllSwatches({ quality: "high" }, path, (error, swatches) => {
+			if (error) {
+				console.log("error in PhotosPage.getSwatches", error);
+			} else {
+				swatches.sort((a, b) => {
+					return b.population - a.population;
+				});
+				// swatches.forEach(swatch => {
+				// 	console.log("color", swatch.color);
+				// 	console.log("color-all", swatch);
+				// });
+				console.log("swatches.length", swatches.length);
+			}
+			if (swatches) {
+				this.setState({
+					currentSwatches: swatches
+				});
+			}
+		});
+		this.toggleModal();
 	}
 	getImages() {
 		CameraRoll.getPhotos({
@@ -78,7 +97,7 @@ export default class PhotosPage extends Component {
 			<TouchableHighlight
 				key={key}
 				underlayColor="transparent"
-				onPress={() => this.pressHandler(image, key)}
+				onPress={() => this.getSwatches(image, key)}
 			>
 				<Image
 					style={{
@@ -92,15 +111,67 @@ export default class PhotosPage extends Component {
 			</TouchableHighlight>
 		);
 	}
+	renderSwatches(swatch, key) {
+		console.log("renderSwatches", swatch);
+		return (
+			<TouchableHighlight
+				style={{ flex: 1 }}
+				key={key}
+				underlayColor="transparent"
+			>
+				<Image
+					style={{
+						flex: 1,
+						backgroundColor: swatch.color
+					}}
+				/>
+			</TouchableHighlight>
+		);
+	}
 	componentDidMount() {
 		this.getImages();
 	}
 	render() {
+		let swatches;
 		if (this.state.imagesLoaded) {
+			//LOADING FOR SWATCHES MODAL START
+			if (this.state.currentSwatches) {
+				swatches = this.state.currentSwatches
+					.slice(0, 6)
+					.map(this.renderSwatches);
+			} else {
+				swatches = <Text>SWATCHES LOADING</Text>;
+			}
+			//LOADING FOR SWATCHES MODAL END
 			const images = this.state.images.map(this.renderImages);
+
 			return (
 				<View style={styles.homeScreen}>
 					<HomeNav />
+					<Modal
+						animationType={"slide"}
+						transparent={false}
+						visible={this.state.modalOpen}
+					>
+						<View style={styles.photosModal}>
+							<Button
+								title="Cancel"
+								onPress={this.resetSwatchState}
+							/>
+							<View
+								style={{
+									flex: 12,
+									backgroundColor: "green",
+									flexWrap: "wrap",
+									flexDirection: "column"
+								}}
+							>
+								{swatches}
+							</View>
+							<View style={{ flex: 1, backgroundColor: "red" }} />
+						</View>
+					</Modal>
+
 					<View style={{ flex: 9, backgroundColor: "#ddd" }}>
 						<ScrollView contentContainerStyle={styles.cameraRoll}>
 							{images}

@@ -28,8 +28,13 @@ export default StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0)",
     height: 20
   },
+  //photosPages
   cameraRoll: {
     flexWrap: "wrap",
     flexDirection: "row"
+  },
+  photosModal: {
+    paddingTop: 20,
+    flex: 1
   }
 });

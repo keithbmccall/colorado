@@ -27,5 +27,9 @@ export default StyleSheet.create({
   navStatus: {
     backgroundColor: "rgba(0,0,0,0)",
     height: 20
+  },
+  cameraRoll: {
+    flexWrap: "wrap",
+    flexDirection: "row"
   }
 });

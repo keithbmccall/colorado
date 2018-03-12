@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-	Platform,
 	StyleSheet,
 	Text,
 	View,
@@ -11,7 +10,10 @@ import {
 	TouchableHighlight,
 	StatusBar,
 	Dimensions,
-	Modal
+	Modal,
+	TextInput,
+	KeyboardAvoidingView,
+	Keyboard
 } from "react-native";
 import { getAllSwatches } from "react-native-palette";
 import ImagePicker from "react-native-image-picker";
@@ -21,21 +23,20 @@ import ColorHelper from "color-to-name";
 import styles from "../../Styles";
 //
 import HomeNav from "./HomeNav";
+import SwatchesModal from "./SwatchesModal";
+import SavePaletteModal from "./SavePaletteModal";
 //some snips  taken from :
 //https://medium.com/react-native-training/mastering-the-camera-roll-in-react-native-13b3b1963a2d
 
 const { width, height } = Dimensions.get("window");
 export default class PhotosPage extends Component {
-	componentDidMount() {
-		this.readImage();
-	}
-
 	constructor() {
 		super();
 		this.state = {
 			images: [],
 			imagesLoaded: false,
 			modalOpen: false,
+			saveModalOpen: false,
 			currentSwatches: null,
 			currentImage: ""
 		};
@@ -43,18 +44,27 @@ export default class PhotosPage extends Component {
 		this.renderImages = this.renderImages.bind(this);
 		this.getSwatches = this.getSwatches.bind(this);
 		this.toggleModal = this.toggleModal.bind(this);
+		this.saveModalToggle = this.saveModalToggle.bind(this);
+		this.saveModalClose = this.saveModalClose.bind(this);
 		this.resetSwatchState = this.resetSwatchState.bind(this);
-		this.savePaletteHandler = this.savePaletteHandler.bind(this);
 	}
-	savePaletteHandler(e) {
-		e.preventDefault();
-		this.props.screenProps.savePalette(this.state);
-	}
+
 	resetSwatchState() {
 		this.setState({
 			currentSwatches: null,
 			modalOpen: false,
 			currentImage: ""
+		});
+	}
+	saveModalClose() {
+		this.setState({
+			saveModalOpen: !this.state.saveModalOpen
+		});
+	}
+	saveModalToggle() {
+		this.setState({
+			saveModalOpen: !this.state.saveModalOpen,
+			modalOpen: !this.state.modalOpen
 		});
 	}
 	toggleModal() {
@@ -121,128 +131,47 @@ export default class PhotosPage extends Component {
 			</TouchableHighlight>
 		);
 	}
-	renderSwatches(swatch, key) {
-		console.log("renderSwatches", swatch);
-		return (
-			<TouchableHighlight
-				style={{ flex: 1 }}
-				key={key}
-				underlayColor="transparent"
-			>
-				<View
-					style={{
-						width: "100%",
-						height: "100%",
-						backgroundColor: swatch.color,
-						paddingLeft: 20,
-						justifyContent: "center"
-					}}
-				>
-					<Text
-						style={{ color: swatch.titleTextColor, fontSize: 11 }}
-					>
-						HEX: {"#" + rgbHex(swatch.color).substring(0, 6)}
-					</Text>
-					<Text
-						style={{ color: swatch.titleTextColor, fontSize: 11 }}
-					>
-						RGB:{" "}
-						{ColorHelper.hexToRGB(
-							"#" + rgbHex(swatch.color).substring(0, 6)
-						).r + " "}
-						{ColorHelper.hexToRGB(
-							"#" + rgbHex(swatch.color).substring(0, 6)
-						).g + " "}
-						{
-							ColorHelper.hexToRGB(
-								"#" + rgbHex(swatch.color).substring(0, 6)
-							).b
-						}
-					</Text>
-				</View>
-			</TouchableHighlight>
-		);
-	}
+
 	componentDidMount() {
 		this.getImages();
 	}
 	render() {
 		let swatches;
 		if (this.state.imagesLoaded) {
-			//LOADING FOR SWATCHES MODAL START
-			if (this.state.currentSwatches) {
-				swatches = this.state.currentSwatches
-					.slice(0, 6)
-					.map(this.renderSwatches);
-			} else {
-				swatches = <Text>SWATCHES LOADING</Text>;
-			}
-			//LOADING FOR SWATCHES MODAL END
 			const images = this.state.images.map(this.renderImages);
 
 			return (
 				<View style={styles.homeScreen}>
 					<HomeNav />
 					<Modal
-						animationType={"slide"}
+						animationType="slide"
+						transparent={false}
+						visible={this.state.saveModalOpen}
+						presentationStyle="overFullScreen"
+					>
+						<SavePaletteModal
+							saveModalToggle={this.saveModalToggle}
+							currentSwatches={this.state.currentSwatches}
+							navigate={this.props.screenProps.navigate}
+							savePalette={
+								this.props.screenProps.savePalette.savePalette
+							}
+							saveModalClose={this.saveModalClose}
+						/>
+					</Modal>
+					<Modal
+						animationType="slide"
 						transparent={false}
 						visible={this.state.modalOpen}
 					>
-						<View style={styles.photosModal}>
-							<Button
-								title="Cancel"
-								onPress={this.resetSwatchState}
-							/>
-							<View
-								style={{
-									flex: 6,
-									backgroundColor: "green",
-									flexWrap: "wrap",
-									flexDirection: "column"
-								}}
-							>
-								{swatches}
-							</View>
-							<View
-								style={{
-									flex: 6,
-									backgroundColor: "#bbb"
-								}}
-							>
-								<Image
-									style={{
-										flex: 1,
-										resizeMode: "contain"
-									}}
-									source={{ uri: this.state.currentImage }}
-								/>
-							</View>
-							<View style={{ flex: 1, backgroundColor: "#eee" }}>
-								<View style={styles.navRow}>
-									<TouchableHighlight
-										style={styles.navItemContainer}
-										underlayColor="transparent"
-										onPress={() => console.log("pressed")}
-									>
-										<Text>???</Text>
-									</TouchableHighlight>
-									<TouchableHighlight
-										style={styles.navItemContainer}
-									>
-										<Text>Logo</Text>
-									</TouchableHighlight>
-									<TouchableHighlight
-										style={styles.navItemContainer}
-										onPress={this.savePaletteHandler}
-									>
-										<Text>Save Pallet</Text>
-									</TouchableHighlight>
-								</View>
-							</View>
-						</View>
+						<SwatchesModal
+							currentSwatches={this.state.currentSwatches}
+							currentImage={this.state.currentImage}
+							saveModalToggle={this.saveModalToggle}
+						/>
 					</Modal>
 
-					<View style={{ flex: 9, backgroundColor: "#ddd" }}>
+					<View style={styles.cameraRollContainer}>
 						<ScrollView contentContainerStyle={styles.cameraRoll}>
 							{images}
 						</ScrollView>

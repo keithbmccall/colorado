@@ -16,7 +16,11 @@ import { HomeRouter } from "./HomeRouter";
 
 export default class HomeScreen extends Component {
 	render() {
+		const screenProps = {
+			savePalette: this.props.screenProps,
+			navigate: this.props.navigation.navigate
+		};
 		console.log();
-		return <HomeRouter screenProps={this.props.screenProps} />;
+		return <HomeRouter screenProps={screenProps} />;
 	}
 }

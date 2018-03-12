@@ -29,6 +29,11 @@ export default StyleSheet.create({
     height: 20
   },
   //photosPages
+  cameraRollContainer: {
+    flex: 9,
+    backgroundColor: "#ddd",
+    paddingTop: 2
+  },
   cameraRoll: {
     flexWrap: "wrap",
     flexDirection: "row"
@@ -36,5 +41,17 @@ export default StyleSheet.create({
   photosModal: {
     paddingTop: 20,
     flex: 1
+  },
+  //
+  swatchContainer: {
+    flex: 6,
+    backgroundColor: "purple",
+    flexWrap: "wrap",
+    flexDirection: "column"
+  },
+  savePaletteModal: {
+    paddingTop: 20,
+    flex: 1,
+    backgroundColor: "#ddd"
   }
 });

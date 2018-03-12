@@ -9,6 +9,8 @@ import {
 	ScrollView,
 	CameraRoll
 } from "react-native";
+import { TabNavigator } from "react-navigation";
+import Router from "../../Router";
 import styles from "../../Styles";
 
 import HomeNav from "./HomeNav";

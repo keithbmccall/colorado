@@ -21,12 +21,16 @@ export default class App extends Component {
   }
   savePalette(data) {
     axios({
-      url: "http://localhost:3000/api/colorado",
+      url: "http://localhost:8080/api/colorado",
       method: "post",
       data: data
-    }).then(res => {
-      console.log("savePalette", res);
-    });
+    })
+      .then(res => {
+        console.log("savePalette", res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   render() {
     const screenProps = {

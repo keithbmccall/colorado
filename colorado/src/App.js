@@ -9,12 +9,29 @@ import {
   ScrollView,
   CameraRoll
 } from "react-native";
+import axios from "axios";
 
 //
 import { Router } from "./Router";
 
 export default class App extends Component {
+  constructor() {
+    super();
+    this.savePalette = this.savePalette.bind(this);
+  }
+  savePalette(data) {
+    axios({
+      url: "http://localhost:3000/api/colorado",
+      method: "post",
+      data: data
+    }).then(res => {
+      console.log("savePalette", res);
+    });
+  }
   render() {
-    return <Router />;
+    const screenProps = {
+      savePalette: this.savePalette
+    };
+    return <Router screenProps={screenProps} />;
   }
 }

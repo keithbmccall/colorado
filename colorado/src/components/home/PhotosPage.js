@@ -16,6 +16,8 @@ import {
 import { getAllSwatches } from "react-native-palette";
 import ImagePicker from "react-native-image-picker";
 import RNFetchBlob from "react-native-fetch-blob";
+import rgbHex from "rgb-hex";
+import ColorHelper from "color-to-name";
 import styles from "../../Styles";
 //
 import HomeNav from "./HomeNav";
@@ -34,18 +36,25 @@ export default class PhotosPage extends Component {
 			images: [],
 			imagesLoaded: false,
 			modalOpen: false,
-			currentSwatches: null
+			currentSwatches: null,
+			currentImage: ""
 		};
 		this.getImages = this.getImages.bind(this);
 		this.renderImages = this.renderImages.bind(this);
 		this.getSwatches = this.getSwatches.bind(this);
 		this.toggleModal = this.toggleModal.bind(this);
 		this.resetSwatchState = this.resetSwatchState.bind(this);
+		this.savePaletteHandler = this.savePaletteHandler.bind(this);
+	}
+	savePaletteHandler(e) {
+		e.preventDefault();
+		this.props.screenProps.savePalette(this.state);
 	}
 	resetSwatchState() {
 		this.setState({
 			currentSwatches: null,
-			modalOpen: false
+			modalOpen: false,
+			currentImage: ""
 		});
 	}
 	toggleModal() {
@@ -68,11 +77,12 @@ export default class PhotosPage extends Component {
 				// 	console.log("color", swatch.color);
 				// 	console.log("color-all", swatch);
 				// });
-				console.log("swatches.length", swatches.length);
+				console.log("swatches", swatches);
 			}
 			if (swatches) {
 				this.setState({
-					currentSwatches: swatches
+					currentSwatches: swatches,
+					currentImage: path
 				});
 			}
 		});
@@ -119,12 +129,37 @@ export default class PhotosPage extends Component {
 				key={key}
 				underlayColor="transparent"
 			>
-				<Image
+				<View
 					style={{
-						flex: 1,
-						backgroundColor: swatch.color
+						width: "100%",
+						height: "100%",
+						backgroundColor: swatch.color,
+						paddingLeft: 20,
+						justifyContent: "center"
 					}}
-				/>
+				>
+					<Text
+						style={{ color: swatch.titleTextColor, fontSize: 11 }}
+					>
+						HEX: {"#" + rgbHex(swatch.color).substring(0, 6)}
+					</Text>
+					<Text
+						style={{ color: swatch.titleTextColor, fontSize: 11 }}
+					>
+						RGB:{" "}
+						{ColorHelper.hexToRGB(
+							"#" + rgbHex(swatch.color).substring(0, 6)
+						).r + " "}
+						{ColorHelper.hexToRGB(
+							"#" + rgbHex(swatch.color).substring(0, 6)
+						).g + " "}
+						{
+							ColorHelper.hexToRGB(
+								"#" + rgbHex(swatch.color).substring(0, 6)
+							).b
+						}
+					</Text>
+				</View>
 			</TouchableHighlight>
 		);
 	}
@@ -160,7 +195,7 @@ export default class PhotosPage extends Component {
 							/>
 							<View
 								style={{
-									flex: 12,
+									flex: 6,
 									backgroundColor: "green",
 									flexWrap: "wrap",
 									flexDirection: "column"
@@ -168,7 +203,42 @@ export default class PhotosPage extends Component {
 							>
 								{swatches}
 							</View>
-							<View style={{ flex: 1, backgroundColor: "red" }} />
+							<View
+								style={{
+									flex: 6,
+									backgroundColor: "#bbb"
+								}}
+							>
+								<Image
+									style={{
+										flex: 1,
+										resizeMode: "contain"
+									}}
+									source={{ uri: this.state.currentImage }}
+								/>
+							</View>
+							<View style={{ flex: 1, backgroundColor: "#eee" }}>
+								<View style={styles.navRow}>
+									<TouchableHighlight
+										style={styles.navItemContainer}
+										underlayColor="transparent"
+										onPress={() => console.log("pressed")}
+									>
+										<Text>???</Text>
+									</TouchableHighlight>
+									<TouchableHighlight
+										style={styles.navItemContainer}
+									>
+										<Text>Logo</Text>
+									</TouchableHighlight>
+									<TouchableHighlight
+										style={styles.navItemContainer}
+										onPress={this.savePaletteHandler}
+									>
+										<Text>Save Pallet</Text>
+									</TouchableHighlight>
+								</View>
+							</View>
 						</View>
 					</Modal>
 

@@ -14,7 +14,7 @@ import axios from "axios";
 //
 import { Router } from "./Router";
 
-const SLASH_REQUESTS = "https://428c319d.ngrok.io/api/colorado";
+const SLASH_REQUESTS = "https://7daa4500.ngrok.io/api/colorado";
 // const SLASH_REQUESTS = "http://localhost:8080/api/colorado";
 export default class App extends Component {
   constructor() {

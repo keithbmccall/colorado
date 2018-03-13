@@ -38,7 +38,8 @@ export default class PhotosPage extends Component {
 			modalOpen: false,
 			saveModalOpen: false,
 			currentSwatches: null,
-			currentImage: ""
+			currentImage: "",
+			swatchesLoaded: false
 		};
 		this.getImages = this.getImages.bind(this);
 		this.renderImages = this.renderImages.bind(this);
@@ -47,8 +48,13 @@ export default class PhotosPage extends Component {
 		this.saveModalToggle = this.saveModalToggle.bind(this);
 		this.saveModalClose = this.saveModalClose.bind(this);
 		this.resetSwatchState = this.resetSwatchState.bind(this);
+		this.resetSwatchModal = this.resetSwatchModal.bind(this);
 	}
-
+	resetSwatchModal() {
+		this.setState({
+			swatchesLoaded: false
+		});
+	}
 	resetSwatchState() {
 		this.setState({
 			currentSwatches: null,
@@ -83,16 +89,13 @@ export default class PhotosPage extends Component {
 				swatches.sort((a, b) => {
 					return b.population - a.population;
 				});
-				// swatches.forEach(swatch => {
-				// 	console.log("color", swatch.color);
-				// 	console.log("color-all", swatch);
-				// });
 				console.log("swatches", swatches);
 			}
 			if (swatches) {
 				this.setState({
 					currentSwatches: swatches,
-					currentImage: path
+					currentImage: path,
+					swatchesLoaded: true
 				});
 			}
 		});
@@ -135,6 +138,7 @@ export default class PhotosPage extends Component {
 	componentDidMount() {
 		this.getImages();
 	}
+
 	render() {
 		let swatches;
 		if (this.state.imagesLoaded) {
@@ -153,10 +157,9 @@ export default class PhotosPage extends Component {
 							saveModalToggle={this.saveModalToggle}
 							currentSwatches={this.state.currentSwatches}
 							navigate={this.props.screenProps.navigate}
-							savePalette={
-								this.props.screenProps.savePalette.savePalette
-							}
+							savePalette={this.props.screenProps.savePalette}
 							saveModalClose={this.saveModalClose}
+							resetSwatchModal={this.resetSwatchModal}
 						/>
 					</Modal>
 					<Modal
@@ -168,6 +171,8 @@ export default class PhotosPage extends Component {
 							currentSwatches={this.state.currentSwatches}
 							currentImage={this.state.currentImage}
 							saveModalToggle={this.saveModalToggle}
+							resetSwatchState={this.resetSwatchState}
+							swatchesLoaded={this.state.swatchesLoaded}
 						/>
 					</Modal>
 

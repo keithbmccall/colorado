@@ -3,22 +3,46 @@ const db = require("../db/index.js"),
 
 colorado.newPalette = (req, res, next) => {
 	console.log("OOKKK", req.body);
-	// db
-	// 	.one(
-	// 		"INSERT INTO itinerary(name, city, date_departing, date_returning, budget,user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id",
-	// 		[
-	// 			req.body.name,
-	// 			req.body.city,
-	// 			req.body.date_departing,
-	// 			req.body.date_returning,
-	// 			req.body.budget,
-	// 			req.body.user_id
-	// 		]
-	// 	)
-	// 	.then(id => {
-	// 		res.locals.itineraryId = id;
-	// 		next();
-	// 	});
+	db
+		.one(
+			"INSERT INTO colorado(name, first,second,third,fourth,fifth,sixth) VALUES ($1, $2, $3, $4, $5, $6,$7) RETURNING *",
+			[
+				req.body.paletteName,
+				req.body.currentSwatches[0].color,
+				req.body.currentSwatches[1].color,
+				req.body.currentSwatches[2].color,
+				req.body.currentSwatches[3].color,
+				req.body.currentSwatches[4].color,
+				req.body.currentSwatches[5].color
+			]
+		)
+		.then(palette => {
+			res.locals.palette = palette;
+			next();
+		})
+		.catch(error => {
+			console.log(
+				"error encountered in colorado.newPalette. Error",
+				error
+			);
+			next(error);
+		});
 };
 
+colorado.getPalettes = (req, res, next) => {
+	db
+		.manyOrNone(`SELECT * FROM colorado;`)
+		.then(palettes => {
+			console.log("GOT!", palettes);
+			res.locals.palettes = palettes;
+			next();
+		})
+		.catch(error => {
+			console.log(
+				"error encountered in colorado.getPalettes. Error",
+				error
+			);
+			next(error);
+		});
+};
 module.exports = colorado;

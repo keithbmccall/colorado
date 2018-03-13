@@ -39,45 +39,70 @@ export default class SavePaletteModal extends Component {
 			<View
 				key={key}
 				style={{
-					width: width / 3,
-					height: width / 3,
+					width: width / 9,
+					height: width / 9,
 					backgroundColor: swatch.color
 				}}
 			/>
 		);
 	}
-	resetSwatchState() {
-		this.setState({
-			currentSwatches: null,
-			modalOpen: false,
-			currentImage: ""
-		});
-	}
+
 	savePaletteHandler(e) {
 		e.preventDefault();
-		this.props.savePalette(this.state);
+		this.props.savePalette.savePalette(this.state);
 		this.props.navigate("Library");
+		this.props.savePalette.getPalettes();
 		this.props.saveModalClose();
+		this.props.resetSwatchModal();
 		Keyboard.dismiss;
 	}
 	componentDidMount() {
 		this.setState({
-			currentSwatches: this.props.currentSwatches
+			currentSwatches: this.props.currentSwatches.slice(0, 6)
 		});
 	}
 	render() {
-		const swatches = this.props.currentSwatches.map(this.placeSwatches);
+		const swatches = this.props.currentSwatches
+			.slice(0, 6)
+			.map(this.placeSwatches);
 		return (
 			<View style={styles.savePaletteModal}>
 				<Button title="Cancel" onPress={this.props.saveModalToggle} />
+
 				<View
 					style={{
 						flex: 1,
 						justifyContent: "center",
 						alignItems: "center",
-						flexWrap: "wrap"
+						flexWrap: "wrap",
+						flexDirection: "row"
 					}}
 				>
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
+					{swatches}
 					{swatches}
 					<View
 						style={{
@@ -97,9 +122,13 @@ export default class SavePaletteModal extends Component {
 								borderWidth: 1,
 								paddingLeft: 5,
 								marginTop: 20,
-								backgroundColor: "white"
+								backgroundColor: "white",
+								textAlign: "center"
 							}}
 							keyboardType="default"
+							keyboardAppearance="dark"
+							returnKeyType="done"
+							autoCorrect="false"
 							onChangeText={paletteName =>
 								this.setState({ paletteName })
 							}

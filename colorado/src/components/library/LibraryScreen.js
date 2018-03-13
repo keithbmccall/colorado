@@ -10,38 +10,62 @@ import {
 	CameraRoll,
 	TextInput,
 	KeyboardAvoidingView,
-	Keyboard
+	Keyboard,
+	Modal
 } from "react-native";
+import LibraryItems from "./LibraryItems";
+import LibraryModal from "./LibraryModal";
 import styles from "../../Styles";
 
 export default class LibraryScreen extends Component {
 	constructor() {
 		super();
 		this.state = {
-			name: ""
+			libraryModalOpen: false,
+			palette: {}
 		};
+		this.renderLibrary = this.renderLibrary.bind(this);
+		this.libraryModalToggle = this.libraryModalToggle.bind(this);
 	}
 
-	render() {
+	libraryModalToggle(palette) {
+		this.setState({
+			libraryModalOpen: !this.state.libraryModalOpen,
+			palette: palette
+		});
+	}
+	renderLibrary(palette, key) {
 		return (
-			<View style={styles.container}>
-				<Text>LibraryScreen</Text>
-				<KeyboardAvoidingView>
-					<TextInput
-						placeholder="name"
-						style={{
-							height: 40,
-							width: 200,
-							borderColor: "gray",
-							borderWidth: 1,
-							paddingLeft: 5
-						}}
-						keyboardType="default"
-						onChangeText={name => this.setState({ name })}
-						value={this.state.name}
-						onSubmitEditing={Keyboard.dismiss}
+			<LibraryItems
+				palette={palette}
+				key={key}
+				libraryModalToggle={this.libraryModalToggle}
+			/>
+		);
+	}
+	render() {
+		const palettes = this.props.screenProps.palettes.palettes.map(
+			this.renderLibrary
+		);
+
+		return (
+			<View style={{ flex: 1, alignItems: "center" }}>
+				<Modal
+					animationType="slide"
+					transparent={false}
+					visible={this.state.libraryModalOpen}
+					presentationStyle="overFullScreen"
+				>
+					<LibraryModal
+						palette={this.state.palette}
+						libraryModalToggle={this.libraryModalToggle}
 					/>
-				</KeyboardAvoidingView>
+				</Modal>
+				<View style={styles.navStatus} />
+				<ScrollView showsVerticalScrollIndicator={false}>
+					<Text>LibraryScreen</Text>
+					<View style={{ flex: 1 }}>{palettes}</View>
+				</ScrollView>
 			</View>
 		);
 	}

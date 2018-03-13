@@ -10,5 +10,8 @@ router.post("/", colorado.newPalette, (req, res) => {
 	const { palette } = res.locals;
 	res.json({ palette });
 });
-
+router.get("/", colorado.getPalettes, (req, res) => {
+	const { palettes } = res.locals;
+	res.json({ palettes });
+});
 module.exports = router;

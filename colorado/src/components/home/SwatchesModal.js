@@ -22,13 +22,21 @@ import rgbHex from "rgb-hex";
 import ColorHelper from "color-to-name";
 import styles from "../../Styles";
 
+let hex = "#777";
 export default class SwatchesModal extends Component {
 	constructor() {
 		super();
+		this.state = {
+			bigSwatch: hex
+		};
 		this.renderSwatches = this.renderSwatches.bind(this);
 	}
+
 	renderSwatches(swatch, key) {
 		console.log("renderSwatches", swatch);
+		if (key === 0) {
+			hex = "#" + rgbHex(swatch.color).substring(0, 6);
+		}
 		return (
 			<TouchableHighlight
 				style={{ flex: 1 }}
@@ -52,7 +60,7 @@ export default class SwatchesModal extends Component {
 					<Text
 						style={{ color: swatch.titleTextColor, fontSize: 11 }}
 					>
-						RGB:{" "}
+						RGB:
 						{ColorHelper.hexToRGB(
 							"#" + rgbHex(swatch.color).substring(0, 6)
 						).r + " "}
@@ -72,18 +80,21 @@ export default class SwatchesModal extends Component {
 	render() {
 		let swatches;
 		//LOADING FOR SWATCHES MODAL START
-		if (this.props.currentSwatches) {
+		if (this.props.swatchesLoaded) {
 			swatches = this.props.currentSwatches
 				.slice(0, 6)
 				.map(this.renderSwatches);
 			return (
 				<View style={styles.photosModal}>
-					<Button title="Cancel" onPress={this.resetSwatchState} />
+					<Button
+						title="Cancel"
+						onPress={this.props.resetSwatchState}
+					/>
 					<View style={styles.swatchContainer}>{swatches}</View>
 					<View
 						style={{
 							flex: 6,
-							backgroundColor: "#bbb"
+							backgroundColor: hex
 						}}
 					>
 						<Image

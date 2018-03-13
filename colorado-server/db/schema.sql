@@ -5,11 +5,11 @@ DROP TABLE IF EXISTS colorado;
 CREATE TABLE colorado(
 	id SERIAL PRIMARY KEY,
 	name VARCHAR(255),
-	hex1 VARCHAR(20),
-	hex2 VARCHAR(20),
-	hex3 VARCHAR(20),
-	hex4 VARCHAR(20),
-	hex5 VARCHAR(20),
-	hex6 VARCHAR(20),
+	first VARCHAR(40),
+	second VARCHAR(40),
+	third VARCHAR(40),
+	fourth VARCHAR(40),
+	fifth VARCHAR(40),
+	sixth VARCHAR(40),
 	created_at TIMESTAMP
 );

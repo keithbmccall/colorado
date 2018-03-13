@@ -8,7 +8,8 @@ import {
 	Image,
 	ScrollView,
 	TouchableOpacity,
-	CameraRoll
+	CameraRoll,
+	Slider
 } from "react-native";
 import { RNCamera } from "react-native-camera";
 import styles from "../../Styles";
@@ -21,14 +22,22 @@ export default class CameraScreen extends Component {
 		this.state = {
 			cameraType: RNCamera.Constants.Type.back,
 			flashMode: RNCamera.Constants.FlashMode.off,
-			whiteBalance: RNCamera.Constants.WhiteBalance.auto
+			whiteBalance: RNCamera.Constants.WhiteBalance.auto,
+			zoom: 0
 		};
+		this.takePicture = this.takePicture.bind(this);
 	}
 	takePicture = async function() {
 		if (this.camera) {
-			const options = { quality: 0.5, base64: true };
+			const options = {
+				quality: 1,
+				base64: true,
+				forceUpOrientation: true
+			};
 			const data = await this.camera.takePictureAsync(options);
 			console.log("cameradata", data);
+			CameraRoll.saveToCameraRoll(data.uri);
+			this.props.screenProps.getImages();
 		}
 	};
 	render() {
@@ -40,33 +49,33 @@ export default class CameraScreen extends Component {
 					backgroundColor: "black"
 				}}
 			>
-				<RNCamera
-					ref={ref => {
-						this.camera = ref;
-					}}
-					style={styles.preview}
-					type={this.state.cameraType}
-					flashMode={this.state.flashMode}
-					whiteBalance={this.state.whiteBalance}
-					permissionDialogTitle={"Permission to use camera"}
-					permissionDialogMessage={
-						"We need your permission to use your camera phone"
-					}
-				/>
-				<View
-					style={{
-						flex: 0,
-						flexDirection: "row",
-						justifyContent: "center"
-					}}
-				>
+				<View style={{ flex: 8 }}>
 					<TouchableOpacity
+						style={{ flex: 1 }}
 						onPress={this.takePicture.bind(this)}
-						style={styles.capture}
 					>
-						<Text style={{ fontSize: 14 }}> SNAP </Text>
+						<RNCamera
+							ref={ref => {
+								this.camera = ref;
+							}}
+							style={styles.preview}
+							type={this.state.cameraType}
+							flashMode={this.state.flashMode}
+							whiteBalance={this.state.whiteBalance}
+							zoom={this.state.zoom}
+							permissionDialogTitle={"Permission to use camera"}
+							permissionDialogMessage={
+								"We need your permission to use your camera phone"
+							}
+						/>
 					</TouchableOpacity>
 				</View>
+				<View
+					style={{
+						flex: 1,
+						flexDirection: "row"
+					}}
+				/>
 			</View>
 		);
 	}

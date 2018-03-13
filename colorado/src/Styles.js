@@ -53,5 +53,20 @@ export default StyleSheet.create({
     paddingTop: 20,
     flex: 1,
     backgroundColor: "#ddd"
+  },
+  //camera
+  capture: {
+    flex: 0,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    padding: 15,
+    paddingHorizontal: 20,
+    alignSelf: "center",
+    margin: 20
+  },
+  preview: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center"
   }
 });

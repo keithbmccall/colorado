@@ -83,7 +83,7 @@ export default class PhotosPage extends Component {
 	getSwatches(image, key) {
 		console.log("getSwatches", image);
 		const path = image.node.image.uri;
-		getAllSwatches({ quality: "medium" }, path, (error, swatches) => {
+		getAllSwatches({ quality: "high" }, path, (error, swatches) => {
 			if (error) {
 				console.log("error in PhotosPage.getSwatches", error);
 			} else {

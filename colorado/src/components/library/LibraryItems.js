@@ -38,7 +38,13 @@ export default class LibraryItems extends Component {
 				underlayColor="transparent"
 				onPress={this.librarySwatchHandler}
 			>
-				<View style={{ marginBottom: 25, marginTop: 25 }}>
+				<View
+					style={{
+						marginBottom: 25,
+						marginTop: 25,
+						borderRadius: 10
+					}}
+				>
 					<Text>{palette.name}</Text>
 					<View
 						style={{

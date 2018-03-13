@@ -3,6 +3,34 @@ package com.colorado;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import org.reactnative.camera.RNCameraPackage;
+import org.reactnative.camera.RNCameraPackage;
+import org.reactnative.camera.RNCameraPackage;
+import org.reactnative.camera.RNCameraPackage;
+import io.palette.RNPalettePackage;
+import com.imagepicker.ImagePickerPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import org.reactnative.camera.RNCameraPackage;
+import io.palette.RNPalettePackage;
+import com.imagepicker.ImagePickerPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import org.reactnative.camera.RNCameraPackage;
+import org.reactnative.camera.RNCameraPackage;
+import io.palette.RNPalettePackage;
+import com.imagepicker.ImagePickerPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import org.reactnative.camera.RNCameraPackage;
+import org.reactnative.camera.RNCameraPackage;
+import io.palette.RNPalettePackage;
+import com.imagepicker.ImagePickerPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import org.reactnative.camera.RNCameraPackage;
+import org.reactnative.camera.RNCameraPackage;
+import io.palette.RNPalettePackage;
+import com.imagepicker.ImagePickerPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import org.reactnative.camera.RNCameraPackage;
+import org.reactnative.camera.RNCameraPackage;
 import io.palette.RNPalettePackage;
 import com.imagepicker.ImagePickerPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
@@ -35,6 +63,34 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNCameraPackage(),
+            new RNCameraPackage(),
+            new RNCameraPackage(),
+            new RNCameraPackage(),
+            new RNPalettePackage(),
+            new ImagePickerPackage(),
+            new RNFetchBlobPackage(),
+            new RNCameraPackage(),
+            new RNPalettePackage(),
+            new ImagePickerPackage(),
+            new RNFetchBlobPackage(),
+            new RNCameraPackage(),
+            new RNCameraPackage(),
+            new RNPalettePackage(),
+            new ImagePickerPackage(),
+            new RNFetchBlobPackage(),
+            new RNCameraPackage(),
+            new RNCameraPackage(),
+            new RNPalettePackage(),
+            new ImagePickerPackage(),
+            new RNFetchBlobPackage(),
+            new RNCameraPackage(),
+            new RNCameraPackage(),
+            new RNPalettePackage(),
+            new ImagePickerPackage(),
+            new RNFetchBlobPackage(),
+            new RNCameraPackage(),
+            new RNCameraPackage(),
             new RNPalettePackage(),
             new ImagePickerPackage(),
             new RNFetchBlobPackage(),

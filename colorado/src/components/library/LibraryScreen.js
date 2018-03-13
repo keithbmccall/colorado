@@ -44,7 +44,7 @@ export default class LibraryScreen extends Component {
 		);
 	}
 	render() {
-		const palettes = this.props.screenProps.palettes.palettes.map(
+		const palettes = this.props.screenProps.palettes.map(
 			this.renderLibrary
 		);
 

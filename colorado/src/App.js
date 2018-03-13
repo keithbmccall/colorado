@@ -14,40 +14,54 @@ import axios from "axios";
 //
 import { Router } from "./Router";
 
+const SLASH_REQUESTS = "https://58557185.ngrok.io/api/colorado";
+// const SLASH_REQUESTS = "http://localhost:8080/api/colorado";
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      palettes: []
+      palettes: [],
+      palettesLoaded: false
     };
     this.savePalette = this.savePalette.bind(this);
     this.getPalettes = this.getPalettes.bind(this);
   }
   savePalette(data) {
     axios({
-      url: "http://localhost:8080/api/colorado",
+      url: SLASH_REQUESTS,
       method: "post",
       data: data
     })
       .then(res => {
         console.log("saved palettes", res);
+        this.getPalettes();
       })
       .catch(err => {
         console.log(err);
       });
   }
   getPalettes() {
-    console.log("called");
+    console.log("called", SLASH_REQUESTS);
     axios({
-      url: "http://localhost:8080/api/colorado",
+      url: SLASH_REQUESTS,
       method: "get"
-    }).then(res => {
-      console.log("GET", res);
-      this.setState({
-        palettes: res.data
+    })
+      .then(res => {
+        console.log("GET", res);
+        const palettesResponse = res.data.palettes.sort((a, b) => {
+          return b.id - a.id;
+        });
+
+        this.setState({
+          palettes: palettesResponse,
+          palettesLoaded: true
+        });
+      })
+      .catch(err => {
+        console.log("getPalettes", err);
       });
-    });
   }
+
   componentDidMount() {
     this.getPalettes();
   }

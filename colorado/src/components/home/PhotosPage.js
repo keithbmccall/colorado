@@ -59,7 +59,8 @@ export default class PhotosPage extends Component {
 		this.setState({
 			currentSwatches: null,
 			modalOpen: false,
-			currentImage: ""
+			currentImage: "",
+			swatchesLoaded: false
 		});
 	}
 	saveModalClose() {
@@ -82,7 +83,7 @@ export default class PhotosPage extends Component {
 	getSwatches(image, key) {
 		console.log("getSwatches", image);
 		const path = image.node.image.uri;
-		getAllSwatches({ quality: "high" }, path, (error, swatches) => {
+		getAllSwatches({ quality: "medium" }, path, (error, swatches) => {
 			if (error) {
 				console.log("error in PhotosPage.getSwatches", error);
 			} else {
@@ -103,7 +104,7 @@ export default class PhotosPage extends Component {
 	}
 	getImages() {
 		CameraRoll.getPhotos({
-			first: 99,
+			first: 200,
 			assetType: "All"
 		})
 			.then(r => {

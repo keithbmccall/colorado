@@ -49,12 +49,11 @@ export default class SavePaletteModal extends Component {
 
 	savePaletteHandler(e) {
 		e.preventDefault();
+		Keyboard.dismiss;
 		this.props.savePalette.savePalette(this.state);
 		this.props.navigate("Library");
-		this.props.savePalette.getPalettes();
 		this.props.saveModalClose();
 		this.props.resetSwatchModal();
-		Keyboard.dismiss;
 	}
 	componentDidMount() {
 		this.setState({

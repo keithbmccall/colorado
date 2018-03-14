@@ -52,7 +52,10 @@ export default class PhotosPage extends Component {
 			</TouchableHighlight>
 		);
 	}
-
+	componentDidMount() {
+		console.log("photos mounted");
+		this.props.screenProps.getImages();
+	}
 	render() {
 		let swatches;
 		if (this.props.screenProps.imagesLoaded) {

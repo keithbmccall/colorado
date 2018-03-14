@@ -98,12 +98,27 @@ export default class App extends Component {
         });
         console.log("swatches", swatches);
       }
+
       if (swatches) {
-        this.setState({
-          currentSwatches: swatches,
-          currentImage: path,
-          swatchesLoaded: true
-        });
+        console.log("swatches length", swatches.length);
+        if (swatches.length > 6) {
+          console.log("not pushing");
+          this.setState({
+            currentSwatches: swatches,
+            currentImage: path,
+            swatchesLoaded: true
+          });
+        } else {
+          for (let i = 0; i < 6; i++) {
+            swatches.push(swatches[0]);
+            console.log("pushing");
+          }
+          this.setState({
+            currentSwatches: swatches,
+            currentImage: path,
+            swatchesLoaded: true
+          });
+        }
       }
     });
     this.openPreviewModal();

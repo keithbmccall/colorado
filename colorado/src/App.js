@@ -7,7 +7,8 @@ import {
   Button,
   Image,
   ScrollView,
-  CameraRoll
+  CameraRoll,
+  Modal
 } from "react-native";
 import axios from "axios";
 import { getAllSwatches } from "react-native-palette";
@@ -19,7 +20,7 @@ import ColorHelper from "color-to-name";
 //
 import { Router } from "./Router";
 
-const SLASH_REQUESTS = "https://7daa4500.ngrok.io/api/colorado";
+const SLASH_REQUESTS = "https://7fac8b20.ngrok.io/api/colorado";
 // const SLASH_REQUESTS = "http://localhost:8080/api/colorado";
 export default class App extends Component {
   constructor() {
@@ -148,8 +149,10 @@ export default class App extends Component {
       previewModalOpen: !this.state.previewModalOpen
     });
   }
+  //camerascreen
 
   componentDidMount() {
+    console.log("app mounted");
     this.getPalettes();
     this.getImages();
   }

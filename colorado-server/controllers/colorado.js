@@ -14,4 +14,7 @@ router.get("/", colorado.getPalettes, (req, res) => {
 	const { palettes } = res.locals;
 	res.json({ palettes });
 });
+router.delete("/", colorado.deletePalette, (req, res) => {
+	res.json(res.locals.palette);
+});
 module.exports = router;

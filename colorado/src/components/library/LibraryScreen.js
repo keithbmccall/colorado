@@ -40,6 +40,7 @@ export default class LibraryScreen extends Component {
 				palette={palette}
 				key={key}
 				libraryModalToggle={this.libraryModalToggle}
+				deletePalette={this.props.screenProps.deletePalette}
 			/>
 		);
 	}

@@ -45,4 +45,21 @@ colorado.getPalettes = (req, res, next) => {
 			next(error);
 		});
 };
+colorado.deletePalette = (req, res, next) => {
+	db
+		.manyOrNone(
+			`DELETE FROM colorado WHERE id = ${req.body.palette.id} RETURNING *`
+		)
+		.then(palette => {
+			res.locals.palette = palette;
+			next();
+		})
+		.catch(error => {
+			console.log(
+				"error encountered in colorado.deletePalette. Error",
+				error
+			);
+			next(error);
+		});
+};
 module.exports = colorado;

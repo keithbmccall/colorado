@@ -77,7 +77,7 @@ export default class PhotosPage extends Component {
 							currentSwatches={
 								this.props.screenProps.currentSwatches
 							}
-							navigate={this.props.screenProps.navigate}
+							navigate={this.props.navigation.navigate}
 							savePalette={this.props.screenProps.savePalette}
 							saveModalClose={
 								this.props.screenProps.saveModalClose

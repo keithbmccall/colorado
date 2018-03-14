@@ -20,7 +20,7 @@ import ColorHelper from "color-to-name";
 //
 import { Router } from "./Router";
 
-const SLASH_REQUESTS = "https://dda334c9.ngrok.io/api/colorado";
+const SLASH_REQUESTS = "https://db0910d1.ngrok.io/api/colorado";
 // const SLASH_REQUESTS = "http://localhost:8080/api/colorado";
 export default class App extends Component {
   constructor() {
@@ -38,19 +38,25 @@ export default class App extends Component {
       swatchesLoaded: false
       //
     };
-    this.savePalette = this.savePalette.bind(this);
-    this.getPalettes = this.getPalettes.bind(this);
-    //
-    this.getImages = this.getImages.bind(this);
-    this.getSwatches = this.getSwatches.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
-    this.saveModalToggle = this.saveModalToggle.bind(this);
-    this.saveModalClose = this.saveModalClose.bind(this);
-    this.resetSwatchState = this.resetSwatchState.bind(this);
-    this.resetSwatchModal = this.resetSwatchModal.bind(this);
-    this.openPreviewModal = this.openPreviewModal.bind(this);
   }
-  savePalette(data) {
+
+  deletePalette = data => {
+    console.log("deleting", data);
+    axios({
+      url: SLASH_REQUESTS,
+      method: "delete",
+      data: data
+    })
+      .then(res => {
+        console.log("deleted!", res);
+        this.getPalettes();
+      })
+      .catch(err => {
+        console.log("error in delete palette", err);
+      });
+  };
+
+  savePalette = data => {
     axios({
       url: SLASH_REQUESTS,
       method: "post",
@@ -61,10 +67,11 @@ export default class App extends Component {
         this.getPalettes();
       })
       .catch(err => {
-        console.log(err);
+        console.log("error in savePalette", err);
       });
-  }
-  getPalettes() {
+  };
+
+  getPalettes = () => {
     console.log("called", SLASH_REQUESTS);
     axios({
       url: SLASH_REQUESTS,
@@ -82,11 +89,12 @@ export default class App extends Component {
         });
       })
       .catch(err => {
-        console.log("getPalettes", err);
+        console.log("error in getPalettes", err);
       });
-  }
+  };
+
   //from photos page
-  getSwatches(image) {
+  getSwatches = image => {
     console.log("getSwatches", image);
     const path = image.node.image.uri;
     getAllSwatches({ quality: "high" }, path, (error, swatches) => {
@@ -122,13 +130,15 @@ export default class App extends Component {
       }
     });
     this.openPreviewModal();
-  }
-  openPreviewModal() {
+  };
+
+  openPreviewModal = () => {
     this.setState({
       previewModalOpen: true
     });
-  }
-  getCameraImage() {
+  };
+
+  getCameraImage = () => {
     CameraRoll.getPhotos({
       first: 1,
       assetType: "All"
@@ -140,8 +150,9 @@ export default class App extends Component {
       .catch(err => {
         console.log("error in getCameraImage", err);
       });
-  }
-  getImages() {
+  };
+
+  getImages = () => {
     CameraRoll.getPhotos({
       first: 200,
       assetType: "All"
@@ -153,36 +164,40 @@ export default class App extends Component {
       .catch(err => {
         console.log("error in getImages", err);
       });
-  }
-  toggleModal() {
+  };
+
+  toggleModal = () => {
     this.setState({
       previewModalOpen: !this.state.previewModalOpen
     });
-  }
-  resetSwatchModal() {
+  };
+
+  resetSwatchModal = () => {
     this.setState({
       swatchesLoaded: false
     });
-  }
-  resetSwatchState() {
+  };
+
+  resetSwatchState = () => {
     this.setState({
       currentSwatches: null,
       previewModalOpen: false,
       currentImage: "",
       swatchesLoaded: false
     });
-  }
-  saveModalClose() {
+  };
+
+  saveModalClose = () => {
     this.setState({
       saveModalOpen: !this.state.saveModalOpen
     });
-  }
-  saveModalToggle() {
+  };
+  saveModalToggle = () => {
     this.setState({
       saveModalOpen: !this.state.saveModalOpen,
       previewModalOpen: !this.state.previewModalOpen
     });
-  }
+  };
   //camerascreen
 
   componentDidMount() {
@@ -192,8 +207,11 @@ export default class App extends Component {
   }
   render() {
     const screenProps = {
+      //axios calls
       savePalette: this.savePalette,
       getPalettes: this.getPalettes,
+      deletePalette: this.deletePalette,
+      //
       palettes: this.state.palettes,
       palettesLoaded: this.state.palettesLoaded,
       getSwatches: this.getSwatches,

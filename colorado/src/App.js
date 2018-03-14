@@ -20,7 +20,7 @@ import ColorHelper from "color-to-name";
 //
 import { Router } from "./Router";
 
-const SLASH_REQUESTS = "https://7fac8b20.ngrok.io/api/colorado";
+const SLASH_REQUESTS = "https://dda334c9.ngrok.io/api/colorado";
 // const SLASH_REQUESTS = "http://localhost:8080/api/colorado";
 export default class App extends Component {
   constructor() {
@@ -48,6 +48,7 @@ export default class App extends Component {
     this.saveModalClose = this.saveModalClose.bind(this);
     this.resetSwatchState = this.resetSwatchState.bind(this);
     this.resetSwatchModal = this.resetSwatchModal.bind(this);
+    this.openPreviewModal = this.openPreviewModal.bind(this);
   }
   savePalette(data) {
     axios({
@@ -105,7 +106,25 @@ export default class App extends Component {
         });
       }
     });
-    this.toggleModal();
+    this.openPreviewModal();
+  }
+  openPreviewModal() {
+    this.setState({
+      previewModalOpen: true
+    });
+  }
+  getCameraImage() {
+    CameraRoll.getPhotos({
+      first: 1,
+      assetType: "All"
+    })
+      .then(r => {
+        console.log("1 IMAGE", r.edges);
+        this.getSwatches(r.edges[0], 1);
+      })
+      .catch(err => {
+        console.log("error in getCameraImage", err);
+      });
   }
   getImages() {
     CameraRoll.getPhotos({
@@ -117,7 +136,7 @@ export default class App extends Component {
         this.setState({ images: r.edges, imagesLoaded: true });
       })
       .catch(err => {
-        console.log(err);
+        console.log("error in getImages", err);
       });
   }
   toggleModal() {
@@ -174,7 +193,9 @@ export default class App extends Component {
       resetSwatchModal: this.resetSwatchModal,
       saveModalClose: this.saveModalClose,
       saveModalToggle: this.saveModalToggle,
-      toggleModal: this.toggleModal
+      toggleModal: this.toggleModal,
+      getCameraImage: this.getCameraImage,
+      openPreviewModal: this.openPreviewModal
     };
     return <Router screenProps={screenProps} />;
   }

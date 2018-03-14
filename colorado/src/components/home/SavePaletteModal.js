@@ -31,10 +31,11 @@ export default class SavePaletteModal extends Component {
 			paletteName: "",
 			currentSwatches: ""
 		};
+
 		this.placeSwatches = this.placeSwatches.bind(this);
 		this.savePaletteHandler = this.savePaletteHandler.bind(this);
 	}
-	placeSwatches(swatch, key) {
+	placeSwatches = (swatch, key) => {
 		return (
 			<View
 				key={key}
@@ -45,16 +46,16 @@ export default class SavePaletteModal extends Component {
 				}}
 			/>
 		);
-	}
+	};
 
-	savePaletteHandler(e) {
+	savePaletteHandler = e => {
 		e.preventDefault();
 		Keyboard.dismiss;
 		this.props.savePalette(this.state);
 		this.props.navigate("Library");
 		this.props.saveModalClose();
 		this.props.resetSwatchModal();
-	}
+	};
 	componentDidMount() {
 		this.setState({
 			currentSwatches: this.props.currentSwatches.slice(0, 6)

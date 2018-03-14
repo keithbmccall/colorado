@@ -195,6 +195,7 @@ export default class App extends Component {
       savePalette: this.savePalette,
       getPalettes: this.getPalettes,
       palettes: this.state.palettes,
+      palettesLoaded: this.state.palettesLoaded,
       getSwatches: this.getSwatches,
       images: this.state.images,
       imagesLoaded: this.state.imagesLoaded,

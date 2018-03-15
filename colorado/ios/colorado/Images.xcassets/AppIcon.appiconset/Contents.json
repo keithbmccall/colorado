@@ -3,55 +3,55 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "Colorado-8.png",
+      "filename" : "Colorado_icon.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "Colorado-7.png",
+      "filename" : "Colorado_icon-1.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Colorado.png",
+      "filename" : "Colorado_icon-2.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Colorado-1.png",
+      "filename" : "Colorado_icon-3.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Colorado-6.png",
+      "filename" : "Colorado_icon-4.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Colorado-5.png",
+      "filename" : "Colorado_icon-5.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Colorado-3.png",
+      "filename" : "Colorado_icon-6.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Colorado-2.png",
+      "filename" : "Colorado_icon-7.png",
       "scale" : "3x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "Colorado-4.png",
+      "filename" : "Colorado_icon-8.png",
       "scale" : "1x"
     }
   ],

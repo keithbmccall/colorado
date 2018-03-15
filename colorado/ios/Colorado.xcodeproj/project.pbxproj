@@ -37,7 +37,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		9621370E2054FE5300BFE2B5 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9621370D2054FE3700BFE2B5 /* libRCTCameraRoll.a */; };
-		96261D5E205A157D00D12164 /* colorado.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96261D5D205A157D00D12164 /* colorado.storyboard */; };
+		96261D5E205A157D00D12164 /* Colorado.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96261D5D205A157D00D12164 /* Colorado.storyboard */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B93669B2C4E54BFFBF1D2FFF /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C34212EECC4F3186E80A52 /* libRNImagePicker.a */; };
 		FC326278EAE242488E9D6C00 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8EDF51489A4D388EB173D0 /* libRNCamera.a */; };
@@ -386,7 +386,7 @@
 		8B0D3F0404294A2DBBC2A53D /* RNCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
 		8BBE51091C48459EAB156582 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		962137082054FE3600BFE2B5 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
-		96261D5D205A157D00D12164 /* colorado.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = colorado.storyboard; sourceTree = "<group>"; };
+		96261D5D205A157D00D12164 /* Colorado.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Colorado.storyboard; sourceTree = "<group>"; };
 		9A8EDF51489A4D388EB173D0 /* libRNCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCamera.a; sourceTree = "<group>"; };
 		A64C1422442F42E48F66AC0A /* libRNPalette.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNPalette.a; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
@@ -534,7 +534,7 @@
 		13B07FAE1A68108700A75B9A /* colorado */ = {
 			isa = PBXGroup;
 			children = (
-				96261D5D205A157D00D12164 /* colorado.storyboard */,
+				96261D5D205A157D00D12164 /* Colorado.storyboard */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -1220,7 +1220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				96261D5E205A157D00D12164 /* colorado.storyboard in Resources */,
+				96261D5E205A157D00D12164 /* Colorado.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1394,7 +1394,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1438,7 +1437,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

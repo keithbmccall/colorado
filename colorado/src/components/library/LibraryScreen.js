@@ -24,17 +24,15 @@ export default class LibraryScreen extends Component {
 			libraryModalOpen: false,
 			palette: {}
 		};
-		this.renderLibrary = this.renderLibrary.bind(this);
-		this.libraryModalToggle = this.libraryModalToggle.bind(this);
 	}
 
-	libraryModalToggle(palette) {
+	libraryModalToggle = palette => {
 		this.setState({
 			libraryModalOpen: !this.state.libraryModalOpen,
 			palette: palette
 		});
-	}
-	renderLibrary(palette, key) {
+	};
+	renderLibrary = (palette, key) => {
 		return (
 			<LibraryItems
 				palette={palette}
@@ -43,7 +41,7 @@ export default class LibraryScreen extends Component {
 				deletePalette={this.props.screenProps.deletePalette}
 			/>
 		);
-	}
+	};
 	render() {
 		const palettes = this.props.screenProps.palettes.map(
 			this.renderLibrary

@@ -62,9 +62,12 @@ export default class SavePaletteModal extends Component {
 		});
 	}
 	render() {
-		const swatches = this.props.currentSwatches
-			.slice(0, 6)
-			.map(this.placeSwatches);
+		const swatches = [];
+		for (let i = 0; i < 26; i++) {
+			swatches.push(
+				this.props.currentSwatches.slice(0, 6).map(this.placeSwatches)
+			);
+		}
 		return (
 			<View style={styles.savePaletteModal}>
 				<Button title="Cancel" onPress={this.props.saveModalToggle} />
@@ -79,31 +82,7 @@ export default class SavePaletteModal extends Component {
 					}}
 				>
 					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
-					{swatches}
+
 					<View
 						style={{
 							position: "absolute",

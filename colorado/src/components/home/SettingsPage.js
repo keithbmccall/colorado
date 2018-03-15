@@ -65,7 +65,7 @@ export default class SettingsPage extends Component {
 										{ color: "white" }
 									]}
 								>
-									Compare
+									Viewport
 								</Text>
 
 								<Text style={[styles.text, { color: "white" }]}>

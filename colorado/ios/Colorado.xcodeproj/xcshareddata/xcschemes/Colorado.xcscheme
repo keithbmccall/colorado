@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "colorado.app"
-               BlueprintName = "colorado"
-               ReferencedContainer = "container:colorado.xcodeproj">
+               BuildableName = "Colorado.temp_caseinsensitive_rename.app"
+               BlueprintName = "Colorado"
+               ReferencedContainer = "container:Colorado.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
                BuildableName = "coloradoTests.xctest"
                BlueprintName = "coloradoTests"
-               ReferencedContainer = "container:colorado.xcodeproj">
+               ReferencedContainer = "container:Colorado.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -54,6 +54,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -63,7 +64,7 @@
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
                BuildableName = "coloradoTests.xctest"
                BlueprintName = "coloradoTests"
-               ReferencedContainer = "container:colorado.xcodeproj">
+               ReferencedContainer = "container:Colorado.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "colorado.app"
-            BlueprintName = "colorado"
-            ReferencedContainer = "container:colorado.xcodeproj">
+            BuildableName = "Colorado.temp_caseinsensitive_rename.app"
+            BlueprintName = "Colorado"
+            ReferencedContainer = "container:Colorado.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,6 +84,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -94,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "colorado.app"
-            BlueprintName = "colorado"
-            ReferencedContainer = "container:colorado.xcodeproj">
+            BuildableName = "Colorado.temp_caseinsensitive_rename.app"
+            BlueprintName = "Colorado"
+            ReferencedContainer = "container:Colorado.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +115,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "colorado.app"
-            BlueprintName = "colorado"
-            ReferencedContainer = "container:colorado.xcodeproj">
+            BuildableName = "Colorado.temp_caseinsensitive_rename.app"
+            BlueprintName = "Colorado"
+            ReferencedContainer = "container:Colorado.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

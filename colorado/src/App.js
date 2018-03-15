@@ -35,7 +35,9 @@ export default class App extends Component {
       saveModalOpen: false,
       currentSwatches: null,
       currentImage: "",
-      swatchesLoaded: false
+      swatchesLoaded: false,
+      bigColor: "#aaa",
+      colorText: "#aaa"
       //
     };
   }
@@ -165,7 +167,12 @@ export default class App extends Component {
         console.log("error in getImages", err);
       });
   };
-
+  bigColorState = (color, text) => {
+    this.setState({
+      bigColor: color,
+      colorText: text
+    });
+  };
   toggleModal = () => {
     this.setState({
       previewModalOpen: !this.state.previewModalOpen
@@ -229,7 +236,10 @@ export default class App extends Component {
       saveModalToggle: this.saveModalToggle,
       toggleModal: this.toggleModal,
       getCameraImage: this.getCameraImage,
-      openPreviewModal: this.openPreviewModal
+      openPreviewModal: this.openPreviewModal,
+      bigColorState: this.bigColorState,
+      bigColor: this.state.bigColor,
+      colorText: this.state.colorText
     };
     return <Router screenProps={screenProps} />;
   }

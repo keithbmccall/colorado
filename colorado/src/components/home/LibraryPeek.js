@@ -35,7 +35,7 @@ export default class LibraryPeek extends Component {
 					justifyContent: "center"
 				}}
 			>
-				<Text>{palette.name}</Text>
+				<Text style={styles.text}>{palette.name}</Text>
 				<View
 					style={{
 						flex: 1,
@@ -44,48 +44,48 @@ export default class LibraryPeek extends Component {
 				>
 					<View
 						style={{
-							width: width / 7.5,
-							height: width / 7.5,
+							width: width / 6.9,
+							height: width / 6.9,
 							backgroundColor:
 								"#" + rgbHex(palette.first).substring(0, 6)
 						}}
 					/>
 					<View
 						style={{
-							width: width / 7.5,
-							height: width / 7.5,
+							width: width / 6.9,
+							height: width / 6.9,
 							backgroundColor:
 								"#" + rgbHex(palette.second).substring(0, 6)
 						}}
 					/>
 					<View
 						style={{
-							width: width / 7.5,
-							height: width / 7.5,
+							width: width / 6.9,
+							height: width / 6.9,
 							backgroundColor:
 								"#" + rgbHex(palette.third).substring(0, 6)
 						}}
 					/>
 					<View
 						style={{
-							width: width / 7.5,
-							height: width / 7.5,
+							width: width / 6.9,
+							height: width / 6.9,
 							backgroundColor:
 								"#" + rgbHex(palette.fourth).substring(0, 6)
 						}}
 					/>
 					<View
 						style={{
-							width: width / 7.5,
-							height: width / 7.5,
+							width: width / 6.9,
+							height: width / 6.9,
 							backgroundColor:
 								"#" + rgbHex(palette.fifth).substring(0, 6)
 						}}
 					/>
 					<View
 						style={{
-							width: width / 7.5,
-							height: width / 7.5,
+							width: width / 6.9,
+							height: width / 6.9,
 							backgroundColor:
 								"#" + rgbHex(palette.sixth).substring(0, 6)
 						}}

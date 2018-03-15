@@ -62,7 +62,9 @@ export default class LibraryScreen extends Component {
 				</Modal>
 				<View style={styles.navStatus} />
 				<ScrollView showsVerticalScrollIndicator={false}>
-					<Text>LibraryScreen</Text>
+					<Text style={[styles.textHeader, { marginTop: 30 }]}>
+						Palettes
+					</Text>
 					<View style={{ flex: 1 }}>{palettes}</View>
 				</ScrollView>
 			</View>

@@ -31,9 +31,6 @@ export default class SavePaletteModal extends Component {
 			paletteName: "",
 			currentSwatches: ""
 		};
-
-		this.placeSwatches = this.placeSwatches.bind(this);
-		this.savePaletteHandler = this.savePaletteHandler.bind(this);
 	}
 	placeSwatches = (swatch, key) => {
 		return (
@@ -102,7 +99,8 @@ export default class SavePaletteModal extends Component {
 								paddingLeft: 5,
 								marginTop: 20,
 								backgroundColor: "white",
-								textAlign: "center"
+								textAlign: "center",
+								borderRadius: 10
 							}}
 							keyboardType="default"
 							keyboardAppearance="dark"

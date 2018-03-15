@@ -32,14 +32,17 @@ export default class LibraryPreview extends Component {
 					underlayColor="white"
 					onPress={() => this.props.navigate("Library")}
 					style={{
-						width: "86%",
+						width: "85%",
 						height: 300,
 						backgroundColor: "white",
 						borderRadius: 10
 					}}
 				>
 					<View style={{ flex: 1 }}>
-						<Text>Your Recent Palettes</Text>
+						<Text style={styles.textHeader}>
+							Your Recent Palettes
+						</Text>
+
 						{libraryPeek}
 					</View>
 				</TouchableHighlight>

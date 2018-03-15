@@ -20,6 +20,7 @@ import styles from "../../Styles";
 
 export default class LibraryPreview extends Component {
 	renderLibraryPeek(palette, key) {
+		console.log("palettetest", palette);
 		return <LibraryPeek palette={palette} key={key} />;
 	}
 	render() {

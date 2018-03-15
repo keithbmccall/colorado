@@ -20,7 +20,7 @@ import ColorHelper from "color-to-name";
 //
 import { Router } from "./Router";
 
-const SLASH_REQUESTS = "https://db0910d1.ngrok.io/api/colorado";
+const SLASH_REQUESTS = "https://dbcbae90.ngrok.io/api/colorado";
 // const SLASH_REQUESTS = "http://localhost:8080/api/colorado";
 export default class App extends Component {
   constructor() {

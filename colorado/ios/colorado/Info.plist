@@ -44,9 +44,9 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Requesting camera roll access</string>
 	<key>UILaunchStoryboardName</key>
-	<string>colorado</string>
+	<string>Colorado</string>
 	<key>UIMainStoryboardFile</key>
-	<string>colorado</string>
+	<string>Colorado</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

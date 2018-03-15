@@ -67,7 +67,9 @@ export default class LibraryItems extends Component {
 					borderRadius: 10
 				}}
 			>
-				<Text>{palette.name}</Text>
+				<View style={{ alignItems: "center" }}>
+					<Text style={styles.text}>{palette.name}</Text>
+				</View>
 				<Swipeout
 					right={this.swipeoutBtns}
 					style={{ backgroundColor: "white" }}

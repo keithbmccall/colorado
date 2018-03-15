@@ -12,8 +12,10 @@ export default StyleSheet.create({
     flex: 1
   },
   navContainer: {
-    backgroundColor: "pink",
-    flex: 1
+    backgroundColor: "white",
+    flex: 1,
+    borderBottomWidth: 0.5,
+    borderBottomColor: "lightgrey"
   },
   navItemContainer: {
     flex: 1,
@@ -68,5 +70,15 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center"
+  },
+  //general
+  text: {
+    fontFamily: "HelveticaNeue-Medium",
+    fontSize: 16,
+    marginBottom: 8
+  },
+  textHeader: {
+    fontSize: 22,
+    fontFamily: "Helvetica-Bold"
   }
 });

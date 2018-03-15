@@ -18,7 +18,7 @@ import { RNCamera } from "react-native-camera";
 import SwatchesModal from "../home/SwatchesModal";
 import SavePaletteModal from "../home/SavePaletteModal";
 import Camera from "./Camera";
-import CameraBar from "./CameraBar";
+
 import styles from "../../Styles";
 
 // const cameraToPhotos = NavigationActions.navigate({
@@ -54,11 +54,6 @@ export default class CameraScreen extends Component {
 					takePicture={this.takePicture}
 					getCameraImages={this.getCameraImages}
 					openPreviewModal={this.props.screenProps.openPreviewModal}
-				/>
-				<CameraBar
-					images={this.props.screenProps.images}
-					imagesLoaded={this.props.screenProps.imagesLoaded}
-					getSwatches={this.props.screenProps.getSwatches}
 				/>
 
 				<Modal

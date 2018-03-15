@@ -39,12 +39,18 @@ export default class RegularPage extends Component {
 		b = Math.floor(Math.random() * 255);
 		randomColor = `rgb(${r},${g},${b})`;
 		rgbHex(randomColor);
-		this.setState({
-			bigColor: randomColor,
-			bigColorLoaded: true,
-			bigBackgroundColor: `rgb(${r / 2},${g / 2},${b / 2})`,
-			bigColorHex: `#${rgbHex(randomColor)}`
-		});
+		this.setState(
+			{
+				bigColor: randomColor,
+				bigColorLoaded: true,
+				bigBackgroundColor: `rgb(${r / 2},${g / 2},${b / 2})`,
+				bigColorHex: `#${rgbHex(randomColor)}`
+			},
+			this.props.screenProps.bigColorState(
+				randomColor,
+				`#${rgbHex(randomColor)}`
+			)
+		);
 	}
 	componentDidMount() {
 		this.generateBigColor();
@@ -54,6 +60,7 @@ export default class RegularPage extends Component {
 			return (
 				<View style={styles.homeScreen}>
 					<HomeNav />
+
 					<View
 						style={{
 							flex: 9,
@@ -64,19 +71,32 @@ export default class RegularPage extends Component {
 							showsVerticalScrollIndicator={false}
 							style={{
 								flex: 1,
-								backgroundColor: this.state.bigColor,
+								backgroundColor: "white",
 								width: "100%"
 							}}
 						>
-							<View style={{ flex: 1, alignItems: "center" }}>
-								<Text>{this.state.bigColorHex}</Text>
+							<View
+								style={{
+									flex: 1,
+									alignItems: "center",
+									marginTop: 30
+								}}
+							>
+								<View style={{ width: "85%" }}>
+									<Text style={styles.textHeader}>
+										Explore
+									</Text>
+								</View>
+								<Text style={styles.text}>
+									{this.state.bigColorHex.toUpperCase()}
+								</Text>
 								<View
 									style={{
 										width: "86%",
 										height: 300,
+										marginTop: 10,
 										marginBottom: 50,
-										backgroundColor: this.state
-											.bigBackgroundColor,
+										backgroundColor: this.state.bigColor,
 										borderRadius: 10
 									}}
 								/>

@@ -7,7 +7,8 @@ import {
 	Button,
 	Image,
 	ScrollView,
-	CameraRoll
+	CameraRoll,
+	RefreshControl
 } from "react-native";
 import { TabNavigator } from "react-navigation";
 import LibraryPreview from "./LibraryPreview";
@@ -29,12 +30,18 @@ export default class RegularPage extends Component {
 			bigColor: "#aaa",
 			bigColorLoaded: false,
 			bigBackgroundColor: "#aaa",
-			bigColorHex: "#aaa"
+			bigColorHex: "#aaa",
+			refreshing: false
 		};
-		this.generateBigColor = this.generateBigColor.bind(this);
 	}
+	onRefresh = () => {
+		this.setState({ refreshing: true }, this.generateBigColor());
+		this.setState({
+			refreshing: false
+		});
+	};
 
-	generateBigColor() {
+	generateBigColor = () => {
 		console.log("big color!");
 		let r, g, b, randomColor;
 		r = Math.floor(Math.random() * 255);
@@ -54,7 +61,7 @@ export default class RegularPage extends Component {
 				`#${rgbHex(randomColor)}`
 			)
 		);
-	}
+	};
 	componentDidMount() {
 		this.generateBigColor();
 	}
@@ -77,6 +84,12 @@ export default class RegularPage extends Component {
 								backgroundColor: "white",
 								width: "100%"
 							}}
+							refreshControl={
+								<RefreshControl
+									refreshing={this.state.refreshing}
+									onRefresh={this.onRefresh}
+								/>
+							}
 						>
 							<View
 								style={{

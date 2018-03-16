@@ -21,6 +21,8 @@ import styles from "../../Styles";
 import HomeNav from "./HomeNav";
 import SwatchesModal from "./SwatchesModal";
 import SavePaletteModal from "./SavePaletteModal";
+import Spinner from "react-native-spinkit";
+
 //some snips  taken from :
 //https://medium.com/react-native-training/mastering-the-camera-roll-in-react-native-13b3b1963a2d
 
@@ -118,6 +120,21 @@ export default class PhotosPage extends Component {
 			);
 		}
 
-		return <View>LOADING</View>;
+		return (
+			<View
+				style={{
+					flex: 1,
+					justifyContent: "center",
+					alignItems: "center"
+				}}
+			>
+				<Spinner
+					isVisible={true}
+					color="#91268d"
+					size={100}
+					type="9CubeGrid"
+				/>
+			</View>
+		);
 	}
 }

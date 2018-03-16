@@ -54,7 +54,7 @@ export default StyleSheet.create({
   savePaletteModal: {
     paddingTop: 20,
     flex: 1,
-    backgroundColor: "#ddd"
+    backgroundColor: "#fff"
   },
   //camera
   capture: {

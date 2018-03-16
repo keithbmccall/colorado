@@ -17,6 +17,7 @@ import {
 } from "react-native";
 import rgbHex from "rgb-hex";
 import ColorHelper from "color-to-name";
+import Icon from "react-native-vector-icons/Entypo";
 
 import styles from "../../Styles";
 
@@ -35,8 +36,20 @@ export default class LibraryModal extends Component {
 		return (
 			<View style={{ flex: 1 }}>
 				<View style={styles.navStatus} />
+				<View
+					style={{
+						flexDirection: "row"
+					}}
+				>
+					<Icon.Button
+						size={25}
+						name="circle-with-cross"
+						backgroundColor="transparent"
+						color="#91268d"
+						onPress={this.props.libraryModalClose}
+					/>
+				</View>
 
-				<Button title="Exit" onPress={this.props.libraryModalClose} />
 				<View style={{ flex: 1, flexDirection: "row" }}>
 					<TouchableHighlight
 						underlayColor={palette.first}

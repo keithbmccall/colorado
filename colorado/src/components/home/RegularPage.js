@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { TabNavigator } from "react-navigation";
 import LibraryPreview from "./LibraryPreview";
+import Spinner from "react-native-spinkit";
 
 //
 
@@ -118,8 +119,19 @@ export default class RegularPage extends Component {
 			);
 		}
 		return (
-			<View>
-				<Text>LOADING</Text>
+			<View
+				style={{
+					flex: 1,
+					justifyContent: "center",
+					alignItems: "center"
+				}}
+			>
+				<Spinner
+					isVisible={true}
+					color={this.state.bigColor}
+					size={100}
+					type="9CubeGrid"
+				/>
 			</View>
 		);
 	}

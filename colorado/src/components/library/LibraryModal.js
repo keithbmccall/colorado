@@ -17,7 +17,6 @@ import {
 } from "react-native";
 import rgbHex from "rgb-hex";
 import ColorHelper from "color-to-name";
-import InspectModal from "./InspectModal";
 
 import styles from "../../Styles";
 
@@ -26,46 +25,18 @@ const { width, height } = Dimensions.get("window");
 export default class LibraryModal extends Component {
 	constructor() {
 		super();
-		this.state = {
-			inspectModalOpen: false,
-			inspectingColor: "white",
-			inspectingText: "white"
-		};
-		this.inspectModalToggle = this.inspectModalToggle.bind(this);
-		this.inspectHandler = this.inspectHandler.bind(this);
 	}
-	inspectHandler(color, text) {
-		this.setState(
-			{
-				inspectingColor: color,
-				inspectingText: text
-			},
-			this.inspectModalToggle()
-		);
-	}
-	inspectModalToggle() {
-		this.setState({
-			inspectModalOpen: !this.state.inspectModalOpen
-		});
-	}
+	inspectHandler = (color, text) => {
+		this.props.inspectModalToggle(color, text);
+	};
+
 	render() {
 		const palette = this.props.palette;
 		return (
 			<View style={{ flex: 1 }}>
 				<View style={styles.navStatus} />
-				<Modal
-					animationType="fade"
-					transparent={false}
-					visible={this.state.inspectModalOpen}
-					presentationStyle="overFullScreen"
-				>
-					<InspectModal
-						inspectModalToggle={this.inspectModalToggle}
-						color={this.state.inspectingColor}
-						text={this.state.inspectingText}
-					/>
-				</Modal>
-				<Button title="Exit" onPress={this.props.libraryModalToggle} />
+
+				<Button title="Exit" onPress={this.props.libraryModalClose} />
 				<View style={{ flex: 1, flexDirection: "row" }}>
 					<TouchableHighlight
 						underlayColor={palette.first}

@@ -63,7 +63,7 @@ export default class PhotosPage extends Component {
 
 			return (
 				<View style={styles.homeScreen}>
-					<HomeNav />
+					<HomeNav navigate={this.props.navigation.navigate} />
 					<Modal
 						animationType="slide"
 						transparent={false}

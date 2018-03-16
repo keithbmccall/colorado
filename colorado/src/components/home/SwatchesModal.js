@@ -15,6 +15,8 @@ import {
 	KeyboardAvoidingView,
 	Keyboard
 } from "react-native";
+import Icon from "react-native-vector-icons/Entypo";
+
 import { getAllSwatches } from "react-native-palette";
 import ImagePicker from "react-native-image-picker";
 import RNFetchBlob from "react-native-fetch-blob";
@@ -107,23 +109,19 @@ export default class SwatchesModal extends Component {
 					</View>
 					<View style={{ flex: 1, backgroundColor: "#eee" }}>
 						<View style={styles.navRow}>
-							<TouchableHighlight
-								style={styles.navItemContainer}
-								underlayColor="transparent"
-								onPress={() => console.log("pressed")}
+							<View
+								style={{
+									position: "absolute",
+									right: "1%"
+								}}
 							>
-								<Text>???</Text>
-							</TouchableHighlight>
-							<TouchableHighlight style={styles.navItemContainer}>
-								<Text>Logo</Text>
-							</TouchableHighlight>
-							<TouchableHighlight
-								underlayColor="transparent"
-								style={styles.navItemContainer}
-								onPress={this.props.saveModalToggle}
-							>
-								<Text>Save Pallet</Text>
-							</TouchableHighlight>
+								<Icon.Button
+									name="save"
+									backgroundColor="transparent"
+									color="#91268d"
+									onPress={this.props.saveModalToggle}
+								/>
+							</View>
 						</View>
 					</View>
 				</View>

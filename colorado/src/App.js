@@ -20,7 +20,7 @@ import ColorHelper from "color-to-name";
 //
 import { Router } from "./Router";
 
-const SLASH_REQUESTS = "https://dbcbae90.ngrok.io/api/colorado";
+const SLASH_REQUESTS = "https://58537996.ngrok.io/api/colorado";
 // const SLASH_REQUESTS = "http://localhost:8080/api/colorado";
 export default class App extends Component {
   constructor() {
@@ -29,6 +29,7 @@ export default class App extends Component {
       palettes: [],
       palettesLoaded: false,
       // from photospage
+      savesOnCurrentSession: 0,
       images: [],
       imagesLoaded: false,
       previewModalOpen: false,
@@ -66,7 +67,12 @@ export default class App extends Component {
     })
       .then(res => {
         console.log("saved palettes", res);
-        this.getPalettes();
+        this.setState(
+          {
+            savesOnCurrentSession: this.state.savesOnCurrentSession + 1
+          },
+          this.getPalettes()
+        );
       })
       .catch(err => {
         console.log("error in savePalette", err);
@@ -94,7 +100,13 @@ export default class App extends Component {
         console.log("error in getPalettes", err);
       });
   };
-
+  injectColorComparison = color => {
+    console.log("inject", color);
+    this.setState({
+      bigColor: color,
+      colorText: color
+    });
+  };
   //from photos page
   getSwatches = image => {
     console.log("getSwatches", image);
@@ -239,7 +251,8 @@ export default class App extends Component {
       openPreviewModal: this.openPreviewModal,
       bigColorState: this.bigColorState,
       bigColor: this.state.bigColor,
-      colorText: this.state.colorText
+      colorText: this.state.colorText,
+      injectColorComparison: this.injectColorComparison
     };
     return <Router screenProps={screenProps} />;
   }

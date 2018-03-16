@@ -88,9 +88,11 @@ export default class SavePaletteModal extends Component {
 							alignItems: "center"
 						}}
 					>
-						<Text>Save Palette</Text>
+						<Text style={[styles.textHeader, { color: "white" }]}>
+							Save Palette
+						</Text>
 						<TextInput
-							placeholder="name"
+							placeholder="Name your palette..."
 							style={{
 								height: 40,
 								width: 200,
@@ -105,7 +107,7 @@ export default class SavePaletteModal extends Component {
 							keyboardType="default"
 							keyboardAppearance="dark"
 							returnKeyType="done"
-							autoCorrect="false"
+							autoCorrect={false}
 							onChangeText={paletteName =>
 								this.setState({ paletteName })
 							}

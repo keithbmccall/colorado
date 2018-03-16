@@ -26,7 +26,7 @@ export default class SettingsPage extends Component {
 	render() {
 		return (
 			<View style={styles.homeScreen}>
-				<HomeNav />
+				<HomeNav navigate={this.props.navigation.navigate} />
 				<RNCamera
 					ref={ref => {
 						this.camera = ref;

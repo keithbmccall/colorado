@@ -12,6 +12,8 @@ import {
 import { TabNavigator } from "react-navigation";
 import LibraryPreview from "./LibraryPreview";
 
+//
+
 import styles from "../../Styles";
 import rgbHex from "rgb-hex";
 import Hero from "react-native-hero";
@@ -59,7 +61,7 @@ export default class RegularPage extends Component {
 		if (this.state.bigColorLoaded) {
 			return (
 				<View style={styles.homeScreen}>
-					<HomeNav />
+					<HomeNav navigate={this.props.navigation.navigate} />
 
 					<View
 						style={{

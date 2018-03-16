@@ -31,15 +31,9 @@ import styles from "../../Styles";
 //taken from RNCamera documentation
 
 export default class CameraScreen extends Component {
-	constructor() {
-		super();
-
-		this.getCameraImages = this.getCameraImages.bind(this);
-	}
-
-	getCameraImages() {
+	getCameraImages = () => {
 		this.props.screenProps.getCameraImage();
-	}
+	};
 
 	render() {
 		return (
@@ -54,6 +48,7 @@ export default class CameraScreen extends Component {
 					takePicture={this.takePicture}
 					getCameraImages={this.getCameraImages}
 					openPreviewModal={this.props.screenProps.openPreviewModal}
+					getSwatches={this.props.screenProps.getSwatches}
 				/>
 
 				<Modal

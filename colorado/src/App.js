@@ -124,7 +124,6 @@ export default class App extends Component {
       if (swatches) {
         console.log("swatches length", swatches.length);
         if (swatches.length > 6) {
-          console.log("not pushing");
           this.setState({
             currentSwatches: swatches,
             currentImage: path,

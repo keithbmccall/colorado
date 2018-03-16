@@ -19,7 +19,7 @@ import ColorHelper from "color-to-name";
 
 //
 import { Router } from "./Router";
-console.ignoredYellowBox = ["Warning: Each", "Warning: Failed"];
+console.disableYellowBox = true;
 const SLASH_REQUESTS = "https://3e0e94b9.ngrok.io/api/colorado";
 // const SLASH_REQUESTS = "http://localhost:8080/api/colorado";
 export default class App extends Component {

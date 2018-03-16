@@ -11,7 +11,8 @@ import {
 	TextInput,
 	KeyboardAvoidingView,
 	Keyboard,
-	Modal
+	Modal,
+	RefreshControl
 } from "react-native";
 import LibraryItems from "./LibraryItems";
 import LibraryModal from "./LibraryModal";
@@ -26,9 +27,19 @@ export default class LibraryScreen extends Component {
 			inspectModalOpen: false,
 			inspectingColor: "white",
 			inspectingText: "white",
-			palette: {}
+			palette: {},
+			refreshing: false
 		};
 	}
+	onRefresh = () => {
+		this.setState(
+			{ refreshing: true },
+			this.props.screenProps.getPalettes()
+		);
+		this.setState({
+			refreshing: false
+		});
+	};
 	inspectModalClose = () => {
 		this.setState({
 			inspectModalOpen: false
@@ -104,7 +115,15 @@ export default class LibraryScreen extends Component {
 				</Modal>
 
 				<View style={styles.navStatus} />
-				<ScrollView showsVerticalScrollIndicator={false}>
+				<ScrollView
+					showsVerticalScrollIndicator={false}
+					refreshControl={
+						<RefreshControl
+							refreshing={this.state.refreshing}
+							onRefresh={this.onRefresh}
+						/>
+					}
+				>
 					<Text style={[styles.textHeader, { marginTop: 30 }]}>
 						Palette Library
 					</Text>

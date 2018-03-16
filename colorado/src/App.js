@@ -113,6 +113,7 @@ export default class App extends Component {
     const path = image.node.image.uri;
     getAllSwatches({ quality: "high" }, path, (error, swatches) => {
       if (error) {
+        this.setState;
         console.log("error in PhotosPage.getSwatches", error);
       } else {
         swatches.sort((a, b) => {
@@ -167,7 +168,7 @@ export default class App extends Component {
 
   getImages = () => {
     CameraRoll.getPhotos({
-      first: 200,
+      first: 18,
       assetType: "All"
     })
       .then(r => {

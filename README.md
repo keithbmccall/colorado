@@ -1,4 +1,4 @@
-[Colorado]('https://drive.google.com/file/d/1LzbfPiAAFlU2xWsS8wbu2Vkp8-1S-kS1/view?usp=sharing')
+[Colorado]('https://photos.app.goo.gl/Wzkglc9BmajiTNaB2')
 
 # Colorado
 

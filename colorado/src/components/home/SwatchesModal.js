@@ -38,7 +38,7 @@ export default class SwatchesModal extends Component {
 	//
 
 	renderSwatches(swatch, key) {
-		console.log("renderSwatches", swatch);
+		console.log("renderSwatches", swatch.color);
 		if (key === 0) {
 			hex = "#" + rgbHex(swatch.color).substring(0, 6);
 		}

@@ -16,6 +16,7 @@ import {
 } from "react-native";
 import rgbHex from "rgb-hex";
 import styles from "../../Styles";
+import Icon from "react-native-vector-icons/Entypo";
 
 export default class InspectModal extends Component {
 	constructor() {
@@ -41,15 +42,42 @@ export default class InspectModal extends Component {
 		return (
 			<View style={{ flex: 1 }}>
 				<View style={styles.navStatus} />
-				<Button title="Exit" onPress={this.props.inspectModalToggle} />
-				<TouchableHighlight
-					style={{ flex: 1 }}
-					onPress={this.jumpToComparison}
-				>
+				<View style={styles.navRow}>
+					<View>
+						<Icon.Button
+							size={25}
+							name="circle-with-cross"
+							backgroundColor="transparent"
+							color="#91268d"
+							onPress={this.props.inspectModalToggle}
+						/>
+					</View>
 					<View
-						style={{ flex: 1, backgroundColor: this.props.color }}
-					/>
-				</TouchableHighlight>
+						style={{
+							flex: 1,
+							justifyContent: "center",
+							alignItems: "center"
+						}}
+					>
+						<Image
+							style={{
+								height: "50%",
+								width: "45%"
+							}}
+							source={require("../../images/colorado_logo.png")}
+						/>
+					</View>
+					<View style={{ marginRight: "2%" }}>
+						<Icon.Button
+							size={25}
+							name="eye"
+							backgroundColor="transparent"
+							color="#91268d"
+							onPress={this.jumpToComparison}
+						/>
+					</View>
+				</View>
+				<View style={{ flex: 12, backgroundColor: this.props.color }} />
 			</View>
 		);
 	}

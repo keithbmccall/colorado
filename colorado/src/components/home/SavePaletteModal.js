@@ -21,6 +21,7 @@ import RNFetchBlob from "react-native-fetch-blob";
 import rgbHex from "rgb-hex";
 import ColorHelper from "color-to-name";
 import styles from "../../Styles";
+import Icon from "react-native-vector-icons/Entypo";
 
 const { width, height } = Dimensions.get("window");
 
@@ -67,7 +68,19 @@ export default class SavePaletteModal extends Component {
 		}
 		return (
 			<View style={styles.savePaletteModal}>
-				<Button title="Cancel" onPress={this.props.saveModalToggle} />
+				<View
+					style={{
+						flexDirection: "row"
+					}}
+				>
+					<Icon.Button
+						size={25}
+						name="circle-with-cross"
+						backgroundColor="transparent"
+						color="#91268d"
+						onPress={this.props.saveModalToggle}
+					/>
+				</View>
 
 				<View
 					style={{

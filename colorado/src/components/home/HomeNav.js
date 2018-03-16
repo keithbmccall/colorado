@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
 import styles from "../../Styles";
+import Logo from "../../images/logo_wordmark.png";
 
 export default class HomeNav extends Component {
 	render() {
@@ -26,8 +27,20 @@ export default class HomeNav extends Component {
 							onPress={() => this.props.navigate("Camera")}
 						/>
 					</View>
-					<View style={styles.navItemContainer}>
-						<Text>Logo</Text>
+					<View
+						style={{
+							flex: 1,
+							justifyContent: "center",
+							alignItems: "center"
+						}}
+					>
+						<Image
+							style={{
+								height: "50%",
+								width: "45%"
+							}}
+							source={require("../../images/colorado_logo.png")}
+						/>
 					</View>
 					<View style={{ marginRight: "1%" }}>
 						<Icon.Button

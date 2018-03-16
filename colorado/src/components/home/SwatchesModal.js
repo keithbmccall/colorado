@@ -22,6 +22,8 @@ import ImagePicker from "react-native-image-picker";
 import RNFetchBlob from "react-native-fetch-blob";
 import rgbHex from "rgb-hex";
 import ColorHelper from "color-to-name";
+import Spinner from "react-native-spinkit";
+
 import styles from "../../Styles";
 
 let hex = "#777";
@@ -33,6 +35,7 @@ export default class SwatchesModal extends Component {
 		};
 		this.renderSwatches = this.renderSwatches.bind(this);
 	}
+	//
 
 	renderSwatches(swatch, key) {
 		console.log("renderSwatches", swatch);
@@ -88,10 +91,19 @@ export default class SwatchesModal extends Component {
 				.map(this.renderSwatches);
 			return (
 				<View style={styles.photosModal}>
-					<Button
-						title="Cancel"
-						onPress={this.props.resetSwatchState}
-					/>
+					<View
+						style={{
+							flexDirection: "row"
+						}}
+					>
+						<Icon.Button
+							size={25}
+							name="circle-with-cross"
+							backgroundColor="transparent"
+							color="#91268d"
+							onPress={this.props.resetSwatchState}
+						/>
+					</View>
 					<View style={styles.swatchContainer}>{swatches}</View>
 					<View
 						style={{
@@ -131,8 +143,19 @@ export default class SwatchesModal extends Component {
 		}
 		//LOADING FOR SWATCHES MODAL END
 		return (
-			<View>
-				<Text>laodign</Text>
+			<View
+				style={{
+					flex: 1,
+					justifyContent: "center",
+					alignItems: "center"
+				}}
+			>
+				<Spinner
+					isVisible={true}
+					color="#91268d"
+					size={100}
+					type="9CubeGrid"
+				/>
 			</View>
 		);
 	}

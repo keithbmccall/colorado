@@ -13,6 +13,7 @@ import {
 	Dimensions,
 	Modal
 } from "react-native";
+import Spinner from "react-native-spinkit";
 
 import styles from "../../Styles";
 
@@ -63,8 +64,19 @@ export default class CameraBar extends Component {
 		// 	);
 		// }
 		return (
-			<View>
-				<Text>bar</Text>
+			<View
+				style={{
+					flex: 1,
+					justifyContent: "center",
+					alignItems: "center"
+				}}
+			>
+				<Spinner
+					isVisible={true}
+					color="#91268d"
+					size={100}
+					type="9CubeGrid"
+				/>
 			</View>
 		);
 	}

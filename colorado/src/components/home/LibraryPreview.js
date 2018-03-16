@@ -15,6 +15,7 @@ import {
 	TouchableHighlight
 } from "react-native";
 import LibraryPeek from "./LibraryPeek";
+import Spinner from "react-native-spinkit";
 
 import styles from "../../Styles";
 
@@ -50,8 +51,19 @@ export default class LibraryPreview extends Component {
 			);
 		}
 		return (
-			<View>
-				<Text>its quiet</Text>
+			<View
+				style={{
+					flex: 1,
+					justifyContent: "center",
+					alignItems: "center"
+				}}
+			>
+				<Spinner
+					isVisible={true}
+					color="#91268d"
+					size={100}
+					type="9CubeGrid"
+				/>
 			</View>
 		);
 	}

@@ -104,7 +104,13 @@ export default class RegularPage extends Component {
 									}}
 								/>
 							</View>
-							<View style={{ flex: 1, alignItems: "center" }}>
+							<View
+								style={{
+									flex: 1,
+									alignItems: "center",
+									marginBottom: 80
+								}}
+							>
 								<LibraryPreview
 									palettesLoaded={
 										this.props.screenProps.palettesLoaded

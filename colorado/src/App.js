@@ -16,11 +16,13 @@ import ImagePicker from "react-native-image-picker";
 import RNFetchBlob from "react-native-fetch-blob";
 import rgbHex from "rgb-hex";
 import ColorHelper from "color-to-name";
+import { getPixelRGBA } from "react-native-get-pixel";
+import PixelColor from "react-native-pixel-color";
 
 //
 import { Router } from "./Router";
 console.disableYellowBox = true;
-const SLASH_REQUESTS = "https://e2901d8b.ngrok.ioapi/colorado";
+const SLASH_REQUESTS = "https://b3df3280.ngrok.io/api/colorado";
 // const SLASH_REQUESTS = "http://localhost:8080/api/colorado";
 export default class App extends Component {
   constructor() {
@@ -38,8 +40,9 @@ export default class App extends Component {
       currentImage: "",
       swatchesLoaded: false,
       bigColor: "#aaa",
-      colorText: "#aaa"
+      colorText: "#aaa",
       //
+      selectedSwatches: []
     };
   }
 
@@ -107,8 +110,45 @@ export default class App extends Component {
       colorText: color
     });
   };
+  selectSwatch = (e, image) => {
+    console.log("touch", e.nativeEvent.locationX, e.nativeEvent.locationY);
+    let x = e.nativeEvent.locationX;
+    let y = e.nativeEvent.locationY;
+    PixelColor.getHex(image, { x, y })
+      .then(color => {
+        console.log("here we go", color);
+        // this.setState({
+        //   selectedSwatches: [...this.state.selectedSwatches, color]
+        // });
+      })
+      .catch(err => {
+        console.log("error in selectSwatch", err);
+      });
+  };
   //from photos page
-  getSwatches = image => {
+  getSwatches = (e, image) => {
+    //
+    console.log(getPixelRGBA);
+    getPixelRGBA(
+      image.node.image.uri,
+      e.nativeEvent.locationX,
+      e.nativeEvent.locationY
+    )
+      .then(color => console.log("QQQQQWWW", color)) // [243, 123, 0]
+      .catch(err => {});
+    //
+    let x = e.nativeEvent.locationX;
+    let y = e.nativeEvent.locationY;
+    PixelColor.getHex(image.node.image.uri, { x, y })
+      .then(colorrr => {
+        // #000000
+        console.log("here we go", colorrr);
+      })
+      .catch(err => {
+        // Oops, something went wrong. Check that the filename is correct and
+        // inspect err to get more details.
+      });
+    //
     console.log("getSwatches", image);
     const path = image.node.image.uri;
     getAllSwatches({ quality: "high" }, path, (error, swatches) => {
@@ -252,7 +292,9 @@ export default class App extends Component {
       bigColorState: this.bigColorState,
       bigColor: this.state.bigColor,
       colorText: this.state.colorText,
-      injectColorComparison: this.injectColorComparison
+      injectColorComparison: this.injectColorComparison,
+      selectSwatch: this.selectSwatch,
+      selectedSwatches: this.state.selectedSwatches
     };
     return <Router screenProps={screenProps} />;
   }

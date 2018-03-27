@@ -40,7 +40,7 @@ export default class PhotosPage extends Component {
 			<TouchableHighlight
 				key={key}
 				underlayColor="transparent"
-				onPress={() => this.props.screenProps.getSwatches(image, key)}
+				onPress={e => this.props.screenProps.getSwatches(e, image)}
 			>
 				<Image
 					style={{
@@ -95,6 +95,10 @@ export default class PhotosPage extends Component {
 						visible={this.props.screenProps.previewModalOpen}
 					>
 						<SwatchesModal
+							selectedSwatches={
+								this.props.screenProps.selectedSwatches
+							}
+							selectSwatch={this.props.screenProps.selectSwatch}
 							currentSwatches={
 								this.props.screenProps.currentSwatches
 							}

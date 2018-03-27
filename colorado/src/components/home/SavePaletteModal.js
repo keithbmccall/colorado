@@ -38,8 +38,8 @@ export default class SavePaletteModal extends Component {
 			<View
 				key={key}
 				style={{
-					width: width / 9,
-					height: width / 9,
+					width: width / 3,
+					height: width / 3,
 					backgroundColor: swatch.color
 				}}
 			/>
@@ -61,7 +61,7 @@ export default class SavePaletteModal extends Component {
 	}
 	render() {
 		const swatches = [];
-		for (let i = 0; i < 26; i++) {
+		for (let i = 0; i < 27; i++) {
 			swatches.push(
 				this.props.currentSwatches.slice(0, 6).map(this.placeSwatches)
 			);

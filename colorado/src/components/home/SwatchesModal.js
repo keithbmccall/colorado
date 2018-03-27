@@ -13,9 +13,11 @@ import {
 	Modal,
 	TextInput,
 	KeyboardAvoidingView,
-	Keyboard
+	Keyboard,
+	TouchableOpacity
 } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
+import SwatchesModalSwatches from "./SwatchesModalSwatches";
 
 import { getAllSwatches } from "react-native-palette";
 import ImagePicker from "react-native-image-picker";
@@ -42,45 +44,7 @@ export default class SwatchesModal extends Component {
 		if (key === 0) {
 			hex = "#" + rgbHex(swatch.color).substring(0, 6);
 		}
-		return (
-			<TouchableHighlight
-				style={{ flex: 1 }}
-				key={key}
-				underlayColor="transparent"
-			>
-				<View
-					style={{
-						width: "100%",
-						height: "100%",
-						backgroundColor: swatch.color,
-						paddingLeft: 20,
-						justifyContent: "center"
-					}}
-				>
-					<Text
-						style={{ color: swatch.titleTextColor, fontSize: 11 }}
-					>
-						HEX: {"#" + rgbHex(swatch.color).substring(0, 6)}
-					</Text>
-					<Text
-						style={{ color: swatch.titleTextColor, fontSize: 11 }}
-					>
-						RGB:
-						{ColorHelper.hexToRGB(
-							"#" + rgbHex(swatch.color).substring(0, 6)
-						).r + " "}
-						{ColorHelper.hexToRGB(
-							"#" + rgbHex(swatch.color).substring(0, 6)
-						).g + " "}
-						{
-							ColorHelper.hexToRGB(
-								"#" + rgbHex(swatch.color).substring(0, 6)
-							).b
-						}
-					</Text>
-				</View>
-			</TouchableHighlight>
-		);
+		return <SwatchesModalSwatches key={key} swatch={swatch} />;
 	}
 	render() {
 		let swatches;
@@ -105,7 +69,11 @@ export default class SwatchesModal extends Component {
 						/>
 					</View>
 					<View style={styles.swatchContainer}>{swatches}</View>
-					<View
+					<TouchableOpacity
+						activeOpacity={1}
+						onPressIn={e =>
+							this.props.selectSwatch(e, this.props.currentImage)
+						}
 						style={{
 							flex: 6,
 							backgroundColor: hex
@@ -118,7 +86,8 @@ export default class SwatchesModal extends Component {
 							}}
 							source={{ uri: this.props.currentImage }}
 						/>
-					</View>
+					</TouchableOpacity>
+
 					<View style={{ flex: 1, backgroundColor: "#eee" }}>
 						<View style={styles.navRow}>
 							<View

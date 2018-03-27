@@ -46,7 +46,7 @@ export default StyleSheet.create({
   },
   //
   swatchContainer: {
-    flex: 6,
+    flex: 5,
     backgroundColor: "purple",
     flexWrap: "wrap",
     flexDirection: "column"

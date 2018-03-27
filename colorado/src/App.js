@@ -16,12 +16,11 @@ import ImagePicker from "react-native-image-picker";
 import RNFetchBlob from "react-native-fetch-blob";
 import rgbHex from "rgb-hex";
 import ColorHelper from "color-to-name";
-
 //
 import { Router } from "./Router";
 console.disableYellowBox = true;
-const SLASH_REQUESTS = "https://e2901d8b.ngrok.ioapi/colorado";
-// const SLASH_REQUESTS = "http://localhost:8080/api/colorado";
+// const SLASH_REQUESTS = "https://e2901d8b.ngrok.ioapi/colorado";
+const SLASH_REQUESTS = "https://colorado-server.herokuapp.com/api/colorado";
 export default class App extends Component {
   constructor() {
     super();

@@ -52,6 +52,7 @@
 		96F19FB1205AF908003C316A /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96F19FA6205AF908003C316A /* SimpleLineIcons.ttf */; };
 		96F19FB2205AF908003C316A /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96F19FA7205AF908003C316A /* MaterialIcons.ttf */; };
 		96F19FB9205AF989003C316A /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F19FB8205AF96C003C316A /* libRNVectorIcons.a */; };
+		96FFDD4D2067B32200436990 /* libRNPixelColor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FFDD472067B31600436990 /* libRNPixelColor.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B93669B2C4E54BFFBF1D2FFF /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C34212EECC4F3186E80A52 /* libRNImagePicker.a */; };
 		FC326278EAE242488E9D6C00 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8EDF51489A4D388EB173D0 /* libRNCamera.a */; };
@@ -381,6 +382,20 @@
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
 		};
+		96FFDD462067B31600436990 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96FFDD1A2067B31600436990 /* RNGetPixel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D72D2E81C16249000E22EC1;
+			remoteInfo = RNPixelColor;
+		};
+		96FFDD522067B46C00436990 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96FFDD4E2067B46C00436990 /* RNPixelColor.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D72D2E81C16249000E22EC1;
+			remoteInfo = RNPixelColor;
+		};
 		ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -435,6 +450,8 @@
 		96F19FA6205AF908003C316A /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		96F19FA7205AF908003C316A /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		96F19FB3205AF96B003C316A /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
+		96FFDD1A2067B31600436990 /* RNGetPixel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGetPixel.xcodeproj; path = "../node_modules/react-native-get-pixel/ios/RNGetPixel.xcodeproj"; sourceTree = "<group>"; };
+		96FFDD4E2067B46C00436990 /* RNPixelColor.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNPixelColor.xcodeproj; path = "../node_modules/react-native-pixel-color/ios/RNPixelColor.xcodeproj"; sourceTree = "<group>"; };
 		9A8EDF51489A4D388EB173D0 /* libRNCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCamera.a; sourceTree = "<group>"; };
 		A64C1422442F42E48F66AC0A /* libRNPalette.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNPalette.a; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
@@ -454,6 +471,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96FFDD4D2067B32200436990 /* libRNPixelColor.a in Frameworks */,
 				96375DDC205BFB8C008E684B /* libRNSpinkit.a in Frameworks */,
 				96375DDD205BFB8C008E684B /* libRNSpinkit.a in Frameworks */,
 				96F19FB9205AF989003C316A /* libRNVectorIcons.a in Frameworks */,
@@ -649,6 +667,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				96FFDD4E2067B46C00436990 /* RNPixelColor.xcodeproj */,
+				96FFDD1A2067B31600436990 /* RNGetPixel.xcodeproj */,
 				96375DA8205BFB66008E684B /* RNSpinkit.xcodeproj */,
 				96F19FB3205AF96B003C316A /* RNVectorIcons.xcodeproj */,
 				962137082054FE3600BFE2B5 /* RCTCameraRoll.xcodeproj */,
@@ -790,6 +810,22 @@
 			isa = PBXGroup;
 			children = (
 				96F19FB8205AF96C003C316A /* libRNVectorIcons.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		96FFDD1B2067B31600436990 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96FFDD472067B31600436990 /* libRNPixelColor.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		96FFDD4F2067B46C00436990 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96FFDD532067B46C00436990 /* libRNPixelColor.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -982,12 +1018,20 @@
 					ProjectRef = E59FA1E84C784B32A79096C7 /* RNFetchBlob.xcodeproj */;
 				},
 				{
+					ProductGroup = 96FFDD1B2067B31600436990 /* Products */;
+					ProjectRef = 96FFDD1A2067B31600436990 /* RNGetPixel.xcodeproj */;
+				},
+				{
 					ProductGroup = 962136FD2054AE5200BFE2B5 /* Products */;
 					ProjectRef = 8BBE51091C48459EAB156582 /* RNImagePicker.xcodeproj */;
 				},
 				{
 					ProductGroup = 962136FB2054AE5200BFE2B5 /* Products */;
 					ProjectRef = 4FDCB1BBFE1B4FCC9EA7C657 /* RNPalette.xcodeproj */;
+				},
+				{
+					ProductGroup = 96FFDD4F2067B46C00436990 /* Products */;
+					ProjectRef = 96FFDD4E2067B46C00436990 /* RNPixelColor.xcodeproj */;
 				},
 				{
 					ProductGroup = 96375DA9205BFB66008E684B /* Products */;
@@ -1315,6 +1359,20 @@
 			fileType = archive.ar;
 			path = libRNVectorIcons.a;
 			remoteRef = 96F19FB7205AF96C003C316A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		96FFDD472067B31600436990 /* libRNPixelColor.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNPixelColor.a;
+			remoteRef = 96FFDD462067B31600436990 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		96FFDD532067B46C00436990 /* libRNPixelColor.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNPixelColor.a;
+			remoteRef = 96FFDD522067B46C00436990 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */ = {

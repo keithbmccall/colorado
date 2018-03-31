@@ -29,7 +29,7 @@ const HomeRouter = TabNavigator(
       })
     },
     Regular: {
-      screen: RegularPage,
+      screen: HomePage,
       navigationOptions: ({ navigation }) => ({
         title: "Browser",
         tabBarIcon: ({ tintColor }) => (

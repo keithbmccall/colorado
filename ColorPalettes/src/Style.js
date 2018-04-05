@@ -9,7 +9,12 @@ let statusHeight;
 height === 812 ? (statusHeight = 40) : (statusHeight = 20);
 //
 export default StyleSheet.create({
-  statusPadding: {
-    height: statusHeight
-  }
+	statusPadding: {
+		height: statusHeight
+	},
+	preview: {
+		flex: 1,
+		justifyContent: "flex-end",
+		alignItems: "center"
+	}
 });

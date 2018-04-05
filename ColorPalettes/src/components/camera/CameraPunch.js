@@ -13,7 +13,6 @@ import {
 	Dimensions,
 	Modal
 } from "react-native";
-import { RNCamera } from "react-native-camera";
 import Icon from "react-native-vector-icons/Ionicons";
 
 export default class CameraPunch extends Component {
@@ -25,7 +24,7 @@ export default class CameraPunch extends Component {
 					justifyContent: "space-evenly",
 					alignItems: "center",
 					flexDirection: "row",
-					backgroundColor: "transparent"
+					backgroundColor: "rgba(255,255,255,0)"
 				}}
 			>
 				<View underlayColor="transparent">

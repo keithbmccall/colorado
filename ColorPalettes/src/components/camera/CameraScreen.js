@@ -11,12 +11,12 @@ import {
 	CameraRoll,
 	TouchableHighlight,
 	Dimensions,
-	Modal
+	Modal,
+	StatusBar
 } from "react-native";
 import { NavigationActions } from "react-navigation";
 import { RNCamera } from "react-native-camera";
 //
-import Camera from "./Camera";
 import CameraPunch from "./CameraPunch";
 import CameraOptions from "./CameraOptions";
 //
@@ -92,6 +92,8 @@ export default class CameraScreen extends Component {
 			CameraRoll.saveToCameraRoll(data.uri).then(res =>
 				console.log("saved", res)
 			);
+		} else {
+			throw new Error("Camera has failed!");
 		}
 	};
 	render() {
@@ -99,9 +101,11 @@ export default class CameraScreen extends Component {
 			<View
 				style={{
 					flex: 1,
-					flexDirection: "column"
+					flexDirection: "column",
+					backgroundColor: "black"
 				}}
 			>
+				<StatusBar hidden={true} />
 				<View style={style.statusPadding} />
 				<CameraOptions
 					toggleCameraType={this.toggleCameraType}
@@ -111,12 +115,22 @@ export default class CameraScreen extends Component {
 					iconCameraType={this.state.iconCameraType}
 					iconFlashMode={this.state.iconFlashMode}
 				/>
-				<Camera
-					whiteBalance={this.state.whiteBalance}
-					flashMode={this.state.flashMode}
-					cameraType={this.state.cameraType}
-				/>
-				<CameraPunch fire={this.takePicture} />
+				<View style={{ flex: 8 }}>
+					<RNCamera
+						ref={ref => {
+							this.camera = ref;
+						}}
+						style={style.preview}
+						type={this.cameraType}
+						flashMode={this.flashMode}
+						whiteBalance={this.whiteBalance}
+						permissionDialogTitle={"Permission to use camera"}
+						permissionDialogMessage={
+							"We need your permission to use your camera phone"
+						}
+					/>
+				</View>
+				<CameraPunch takePicture={this.takePicture} />
 			</View>
 		);
 	}

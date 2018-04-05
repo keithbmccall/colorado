@@ -14,7 +14,7 @@ import {
 	Modal
 } from "react-native";
 import { RNCamera } from "react-native-camera";
-import Icon from "react-native-vector-icons/Entypo";
+import Icon from "react-native-vector-icons/Ionicons";
 
 export default class CameraPunch extends Component {
 	render() {
@@ -31,7 +31,7 @@ export default class CameraPunch extends Component {
 				<View underlayColor="transparent">
 					<Icon.Button
 						size={40}
-						name="images"
+						name="md-images"
 						backgroundColor="transparent"
 						color="#91268d"
 						onPress={() => console.log("Images")}
@@ -50,7 +50,7 @@ export default class CameraPunch extends Component {
 				<View underlayColor="transparent">
 					<Icon.Button
 						size={40}
-						name="palette"
+						name="md-color-palette"
 						backgroundColor="transparent"
 						color="#91268d"
 						onPress={() => console.log("palette")}

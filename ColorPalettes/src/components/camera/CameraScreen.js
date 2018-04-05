@@ -17,8 +17,9 @@ import {
 import { NavigationActions } from "react-navigation";
 import { RNCamera } from "react-native-camera";
 //
-import CameraPunch from "./CameraPunch";
-import CameraOptions from "./CameraOptions";
+import CameraPunch from "./camera/CameraPunch";
+import CameraOptions from "./camera/CameraOptions";
+import CameraRollModal from "./cameraroll/CameraRollModal";
 //
 import style from "../../Style";
 const { Type, FlashMode, WhiteBalance } = RNCamera.Constants;
@@ -121,16 +122,36 @@ export default class CameraScreen extends Component {
 							this.camera = ref;
 						}}
 						style={style.preview}
-						type={this.cameraType}
-						flashMode={this.flashMode}
-						whiteBalance={this.whiteBalance}
+						type={this.state.cameraType}
+						flashMode={this.state.flashMode}
+						whiteBalance={this.state.whiteBalance}
 						permissionDialogTitle={"Permission to use camera"}
 						permissionDialogMessage={
 							"We need your permission to use your camera phone"
 						}
 					/>
 				</View>
-				<CameraPunch takePicture={this.takePicture} />
+				<CameraPunch
+					takePicture={this.takePicture}
+					getCameraRoll={this.props.screenProps.getCameraRoll}
+				/>
+				<Modal
+					animationType="slide"
+					transparent={false}
+					visible={this.props.screenProps.cameraRollModalOpen}
+				>
+					<CameraRollModal
+						toggleCameraRollModal={
+							this.props.screenProps.toggleCameraRollModal
+						}
+						cameraRollImages={
+							this.props.screenProps.cameraRollImages
+						}
+						cameraRollLoaded={
+							this.props.screenProps.cameraRollLoaded
+						}
+					/>
+				</Modal>
 			</View>
 		);
 	}

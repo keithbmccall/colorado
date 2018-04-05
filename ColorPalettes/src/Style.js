@@ -16,5 +16,17 @@ export default StyleSheet.create({
 		flex: 1,
 		justifyContent: "flex-end",
 		alignItems: "center"
+	},
+	flex1: {
+		flex: 1
+	},
+	cameraRollContainer: {
+		flex: 9,
+		backgroundColor: "#ddd",
+		paddingTop: 2
+	},
+	cameraRoll: {
+		flexWrap: "wrap",
+		flexDirection: "row"
 	}
 });

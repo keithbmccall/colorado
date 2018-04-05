@@ -33,7 +33,7 @@ export default class CameraPunch extends Component {
 						name="md-images"
 						backgroundColor="transparent"
 						color="#91268d"
-						onPress={() => console.log("Images")}
+						onPress={this.props.getCameraRoll}
 					/>
 				</View>
 				<TouchableOpacity

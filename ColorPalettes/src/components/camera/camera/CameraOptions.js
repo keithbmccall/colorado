@@ -15,10 +15,10 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
-import style from "../../Style";
+import style from "../../../Style";
 const { width, height } = Dimensions.get("window");
 
-export default class CameraPunch extends Component {
+export default class CameraOptions extends Component {
 	flashHandler = e => {
 		this.props.toggleFlashMode();
 	};

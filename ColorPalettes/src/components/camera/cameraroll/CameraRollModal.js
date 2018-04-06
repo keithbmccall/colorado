@@ -16,8 +16,8 @@ import {
 } from "react-native";
 import style from "../../../Style";
 import Icon from "react-native-vector-icons/Ionicons";
-import Spinner from "react-native-spinkit";
 //
+import Loading from "../../../Loading";
 import CameraRollImages from "./CameraRollImages";
 
 const { width, height } = Dimensions.get("window");
@@ -31,7 +31,6 @@ export default class CameraRollModal extends Component {
 				navigate={this.props.navigate}
 				setCurrentImage={this.props.setCurrentImage}
 				toggleCameraRollModal={this.props.toggleCameraRollModal}
-				toggleInspectModal={this.props.toggleInspectModal}
 			/>
 		);
 	};
@@ -67,22 +66,7 @@ export default class CameraRollModal extends Component {
 				</View>
 			);
 		} else {
-			return (
-				<View
-					style={{
-						flex: 1,
-						justifyContent: "center",
-						alignItems: "center"
-					}}
-				>
-					<Spinner
-						isVisible={true}
-						color="#91268d"
-						size={75}
-						type="9CubeGrid"
-					/>
-				</View>
-			);
+			return <Loading />;
 		}
 	}
 }

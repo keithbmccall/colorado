@@ -12,6 +12,8 @@ import {
 } from "react-native";
 import { Router } from "./Router";
 //
+import { getAllSwatches } from "react-native-palette";
+//
 console.disableYellowBox = true;
 
 export default class App extends Component<Props> {
@@ -48,9 +50,9 @@ export default class App extends Component<Props> {
       cameraRollModalOpen: !this.state.cameraRollModalOpen
     });
   };
-  setCurrentImage = image => {
+  setCurrentImage = uri => {
     this.setState({
-      currentImage: image.node.image.uri,
+      currentImage: uri,
       currentImageMounted: true
     });
   };

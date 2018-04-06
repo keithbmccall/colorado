@@ -28,9 +28,9 @@ export default class CameraRollModal extends Component {
 			<CameraRollImages
 				key={key}
 				image={image}
-				navigate={this.props.navigate}
 				setCurrentImage={this.props.setCurrentImage}
 				toggleCameraRollModal={this.props.toggleCameraRollModal}
+				toggleInspectModal={this.props.toggleInspectModal}
 			/>
 		);
 	};

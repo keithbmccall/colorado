@@ -72,7 +72,7 @@ export default class InspectImage extends Component {
 						resizeMode: "contain"
 					}}
 					source={{
-						uri: this.props.currentImage
+						uri: this.props.currentImage.uri
 					}}
 				/>
 			</View>

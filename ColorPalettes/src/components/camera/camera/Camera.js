@@ -92,7 +92,7 @@ export default class Camera extends Component {
 			const data = await this.camera.takePictureAsync(options);
 			console.log("cameradata", data);
 			this.props.toggleInspectModal();
-			this.props.setCurrentImage(data.uri);
+			this.props.setCurrentImage(data);
 			CameraRoll.saveToCameraRoll(data.uri).then(res =>
 				console.log("saved", res)
 			);

@@ -21,6 +21,8 @@ import CameraPunch from "./camera/CameraPunch";
 import CameraOptions from "./camera/CameraOptions";
 import CameraRollModal from "./cameraroll/CameraRollModal";
 //
+import InspectImage from "./inspect/InspectImage";
+//
 import style from "../../Style";
 const { Type, FlashMode, WhiteBalance } = RNCamera.Constants;
 export default class CameraScreen extends Component {
@@ -106,7 +108,7 @@ export default class CameraScreen extends Component {
 					backgroundColor: "black"
 				}}
 			>
-				<StatusBar hidden={true} />
+				<StatusBar hidden={false} barStyle="light-content" />
 				<View style={style.statusPadding} />
 				<CameraOptions
 					toggleCameraType={this.toggleCameraType}
@@ -141,6 +143,10 @@ export default class CameraScreen extends Component {
 					visible={this.props.screenProps.cameraRollModalOpen}
 				>
 					<CameraRollModal
+						toggleInspectModal={
+							this.props.screenProps.toggleInspectModal
+						}
+						setCurrentImage={this.props.screenProps.setCurrentImage}
 						toggleCameraRollModal={
 							this.props.screenProps.toggleCameraRollModal
 						}
@@ -149,6 +155,21 @@ export default class CameraScreen extends Component {
 						}
 						cameraRollLoaded={
 							this.props.screenProps.cameraRollLoaded
+						}
+					/>
+				</Modal>
+				<Modal
+					animationType="slide"
+					transparent={false}
+					visible={this.props.screenProps.inspectModalOpen}
+				>
+					<InspectImage
+						toggleInspectModal={
+							this.props.screenProps.toggleInspectModal
+						}
+						currentImage={this.props.screenProps.currentImage}
+						currentImageMounted={
+							this.props.screenProps.currentImageMounted
 						}
 					/>
 				</Modal>

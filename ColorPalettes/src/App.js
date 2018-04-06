@@ -50,9 +50,9 @@ export default class App extends Component<Props> {
       cameraRollModalOpen: !this.state.cameraRollModalOpen
     });
   };
-  setCurrentImage = uri => {
+  setCurrentImage = image => {
     this.setState({
-      currentImage: uri,
+      currentImage: image,
       currentImageMounted: true
     });
   };

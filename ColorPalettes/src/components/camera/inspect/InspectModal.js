@@ -15,16 +15,15 @@ import {
 	StatusBar
 } from "react-native";
 import PixelColor from "react-native-pixel-color";
-import { getPixelRGBA } from "react-native-get-pixel";
 //
 import Icon from "react-native-vector-icons/Ionicons";
-import style from "../../Style";
+import style from "../../../Style";
 //
-import Loading from "../../Loading";
-import InspectTools from "./inspect/InspectTools";
-import InspectImage from "./inspect/InspectImage";
+import Loading from "../../../Loading";
+import InspectTools from "./InspectTools";
+import InspectImage from "./InspectImage";
 
-export default class InspectModal extends Component {
+export default class inspectScreen extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -33,21 +32,25 @@ export default class InspectModal extends Component {
 	}
 	findColor = (e, image) => {
 		console.log("image", image);
-		getPixelRGBA(image, e.nativeEvent.locationX, e.nativeEvent.locationY)
-			.then(color => console.log("QQQQQWWW", color)) // [243, 123, 0]
-			.catch(err => {
-				console.log("errorinsepect screen", err);
-			});
-
-		// let x = e.nativeEvent.locationX;
-		// let y = e.nativeEvent.locationY;
-		// PixelColor.getHex(image, { x, y })
-		// 	.then(color => {
-		// 		this.setColor(color);
-		// 	})
+		// getPixelRGBA(
+		// 	image.uri,
+		// 	e.nativeEvent.locationX,
+		// 	e.nativeEvent.locationY
+		// )
+		// 	.then(color => console.log("QQQQQWWW", color)) // [243, 123, 0]
 		// 	.catch(err => {
-		// 		console.log("error in inspectscreen.findcolor", err);
+		// 		console.log("errorinsepect screen", err);
 		// 	});
+
+		let x = e.nativeEvent.locationX;
+		let y = e.nativeEvent.locationY;
+		PixelColor.getHex(image.uri, { x, y })
+			.then(color => {
+				this.setColor(color);
+			})
+			.catch(err => {
+				console.log("error in inspectscreen.findcolor", err);
+			});
 	};
 	setColor = color => {
 		this.setState({
@@ -55,18 +58,15 @@ export default class InspectModal extends Component {
 		});
 	};
 	render() {
-		if (this.props.screenProps.currentImageMounted) {
+		if (this.props.currentImageMounted) {
 			return (
 				<View style={{ flex: 1, backgroundColor: "black" }}>
 					<StatusBar barStyle="light-content" hidden={false} />
 					<View style={style.statusPadding} />
 					<View style={{ flex: 8, backgroundColor: "#333" }}>
 						<InspectImage
-							navigate={this.props.navigation.navigate}
-							currentImage={this.props.screenProps.currentImage}
-							toggleInspectModal={
-								this.props.screenProps.toggleInspectModal
-							}
+							currentImage={this.props.currentImage}
+							toggleInspectModal={this.props.toggleInspectModal}
 							findColor={this.findColor}
 						/>
 					</View>

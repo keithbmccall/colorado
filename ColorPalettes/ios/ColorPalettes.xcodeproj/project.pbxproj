@@ -45,6 +45,7 @@
 		7BBDF7FCC7624E9B99B2B161 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DC8519A65847D8A8277267 /* MaterialIcons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		870D1322DD494E849FEE1CA3 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8000E48E6CDE4191BB073426 /* Entypo.ttf */; };
+		96645BC62077EFEC006F4D9E /* libRNPixelColor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96645BC22077EA9E006F4D9E /* libRNPixelColor.a */; };
 		96930DC72075CDAE00F62489 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96930DC62075CD9900F62489 /* libRCTCameraRoll.a */; };
 		97AB47F3A38540CD8A17F605 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 100CB18AF6DE4D4183D02AB2 /* MaterialCommunityIcons.ttf */; };
 		9C6471D13604408EA87EFF37 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A86653969E4713B7C1B3E4 /* libRNFetchBlob.a */; };
@@ -52,8 +53,6 @@
 		AB5BBF985420488985F231B0 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABC921EFBA654334A54B08AA /* SimpleLineIcons.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		BF79DAB63E2043988B29521A /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D46C464C583A40A19FEB8015 /* EvilIcons.ttf */; };
-		C4B7F2C6A83F4FA0850A7697 /* libRNPalette.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2167E10920904FDEBCF19CEA /* libRNPalette.a */; };
-		CAA2E220C69940AAB67144CB /* libRNPixelColor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD4C22B04AE413285AD9E1D /* libRNPixelColor.a */; };
 		DFB6CE8EBE5542EDBF00F51C /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC030A696C69467392F79E7D /* libRNCamera.a */; };
 /* End PBXBuildFile section */
 
@@ -268,16 +267,16 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
-		96930DA52075AF6200F62489 /* PBXContainerItemProxy */ = {
+		96645BC12077EA9E006F4D9E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C1F2F499462844BA958BBEB2 /* RNGetPixel.xcodeproj */;
+			containerPortal = ADB16AF5181443BEA5EC1308 /* RNPixelColor.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 5D72D2E81C16249000E22EC1;
 			remoteInfo = RNPixelColor;
 		};
-		96930DAA2075AF6200F62489 /* PBXContainerItemProxy */ = {
+		96645C042077F06B006F4D9E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 8CA85EB7B160438BAFF76708 /* RNPalette.xcodeproj */;
+			containerPortal = ADD5AC3203504D66A980A180 /* RNPalette.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNPalette;
@@ -427,12 +426,12 @@
 		8000E48E6CDE4191BB073426 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		82C2C587166840678A381715 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		8CA85EB7B160438BAFF76708 /* RNPalette.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNPalette.xcodeproj; path = "../node_modules/react-native-palette/ios/RNPalette.xcodeproj"; sourceTree = "<group>"; };
 		96930DC12075CD9900F62489 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		9FD7A210399848E08DF9CDE3 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
 		ABC921EFBA654334A54B08AA /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		ADB16AF5181443BEA5EC1308 /* RNPixelColor.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNPixelColor.xcodeproj; path = "../node_modules/react-native-pixel-color/ios/RNPixelColor.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
-		C1F2F499462844BA958BBEB2 /* RNGetPixel.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGetPixel.xcodeproj; path = "../node_modules/react-native-get-pixel/ios/RNGetPixel.xcodeproj"; sourceTree = "<group>"; };
+		ADD5AC3203504D66A980A180 /* RNPalette.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNPalette.xcodeproj; path = "../node_modules/react-native-palette/ios/RNPalette.xcodeproj"; sourceTree = "<group>"; };
 		C5A86653969E4713B7C1B3E4 /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
 		CB087490320E4F32A22210F3 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		CC030A696C69467392F79E7D /* libRNCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCamera.a; sourceTree = "<group>"; };
@@ -455,6 +454,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96645BC62077EFEC006F4D9E /* libRNPixelColor.a in Frameworks */,
 				96930DC72075CDAE00F62489 /* libRCTCameraRoll.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -473,8 +473,6 @@
 				A660269E507248DE92C53C3E /* libRNVectorIcons.a in Frameworks */,
 				9C6471D13604408EA87EFF37 /* libRNFetchBlob.a in Frameworks */,
 				35F8F0F05F604A459B2283AE /* libRNSpinkit.a in Frameworks */,
-				CAA2E220C69940AAB67144CB /* libRNPixelColor.a in Frameworks */,
-				C4B7F2C6A83F4FA0850A7697 /* libRNPalette.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,8 +663,8 @@
 				25D4D451EE8A478DA2303AD3 /* RNVectorIcons.xcodeproj */,
 				CB087490320E4F32A22210F3 /* RNFetchBlob.xcodeproj */,
 				F12027F08ACC435A96591525 /* RNSpinkit.xcodeproj */,
-				C1F2F499462844BA958BBEB2 /* RNGetPixel.xcodeproj */,
-				8CA85EB7B160438BAFF76708 /* RNPalette.xcodeproj */,
+				ADB16AF5181443BEA5EC1308 /* RNPixelColor.xcodeproj */,
+				ADD5AC3203504D66A980A180 /* RNPalette.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -707,18 +705,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		96930DA22075AF6200F62489 /* Products */ = {
+		96645B962077EA9E006F4D9E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				96930DA62075AF6200F62489 /* libRNPixelColor.a */,
+				96645BC22077EA9E006F4D9E /* libRNPixelColor.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		96930DA72075AF6200F62489 /* Products */ = {
+		96645BD92077F06B006F4D9E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				96930DAB2075AF6200F62489 /* libRNPalette.a */,
+				96645C052077F06B006F4D9E /* libRNPalette.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -980,12 +978,12 @@
 					ProjectRef = CB087490320E4F32A22210F3 /* RNFetchBlob.xcodeproj */;
 				},
 				{
-					ProductGroup = 96930DA22075AF6200F62489 /* Products */;
-					ProjectRef = C1F2F499462844BA958BBEB2 /* RNGetPixel.xcodeproj */;
+					ProductGroup = 96645BD92077F06B006F4D9E /* Products */;
+					ProjectRef = ADD5AC3203504D66A980A180 /* RNPalette.xcodeproj */;
 				},
 				{
-					ProductGroup = 96930DA72075AF6200F62489 /* Products */;
-					ProjectRef = 8CA85EB7B160438BAFF76708 /* RNPalette.xcodeproj */;
+					ProductGroup = 96645B962077EA9E006F4D9E /* Products */;
+					ProjectRef = ADB16AF5181443BEA5EC1308 /* RNPixelColor.xcodeproj */;
 				},
 				{
 					ProductGroup = 96A8C1DA207295F6006DCFCA /* Products */;
@@ -1203,18 +1201,18 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		96930DA62075AF6200F62489 /* libRNPixelColor.a */ = {
+		96645BC22077EA9E006F4D9E /* libRNPixelColor.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNPixelColor.a;
-			remoteRef = 96930DA52075AF6200F62489 /* PBXContainerItemProxy */;
+			remoteRef = 96645BC12077EA9E006F4D9E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		96930DAB2075AF6200F62489 /* libRNPalette.a */ = {
+		96645C052077F06B006F4D9E /* libRNPalette.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNPalette.a;
-			remoteRef = 96930DAA2075AF6200F62489 /* PBXContainerItemProxy */;
+			remoteRef = 96645C042077F06B006F4D9E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		96930DC62075CD9900F62489 /* libRCTCameraRoll.a */ = {
@@ -1480,6 +1478,8 @@
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-get-pixel/ios/PNGetPixel",
 					"$(SRCROOT)/../node_modules/react-native-palette/ios",
+					"$(SRCROOT)/../node_modules/react-native-pixel-color/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-palette/ios",
 				);
 				INFOPLIST_FILE = ColorPalettesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1515,6 +1515,8 @@
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-get-pixel/ios/PNGetPixel",
+					"$(SRCROOT)/../node_modules/react-native-palette/ios",
+					"$(SRCROOT)/../node_modules/react-native-pixel-color/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-palette/ios",
 				);
 				INFOPLIST_FILE = ColorPalettesTests/Info.plist;
@@ -1553,6 +1555,8 @@
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-get-pixel/ios/PNGetPixel",
 					"$(SRCROOT)/../node_modules/react-native-palette/ios",
+					"$(SRCROOT)/../node_modules/react-native-pixel-color/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-palette/ios",
 				);
 				INFOPLIST_FILE = ColorPalettes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1579,6 +1583,8 @@
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-get-pixel/ios/PNGetPixel",
+					"$(SRCROOT)/../node_modules/react-native-palette/ios",
+					"$(SRCROOT)/../node_modules/react-native-pixel-color/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-palette/ios",
 				);
 				INFOPLIST_FILE = ColorPalettes/Info.plist;
@@ -1612,6 +1618,8 @@
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-get-pixel/ios/PNGetPixel",
+					"$(SRCROOT)/../node_modules/react-native-palette/ios",
+					"$(SRCROOT)/../node_modules/react-native-pixel-color/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-palette/ios",
 				);
 				INFOPLIST_FILE = "ColorPalettes-tvOS/Info.plist";
@@ -1656,6 +1664,8 @@
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-get-pixel/ios/PNGetPixel",
+					"$(SRCROOT)/../node_modules/react-native-palette/ios",
+					"$(SRCROOT)/../node_modules/react-native-pixel-color/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-palette/ios",
 				);
 				INFOPLIST_FILE = "ColorPalettes-tvOS/Info.plist";

@@ -137,6 +137,8 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-palette')
+    compile project(':react-native-pixel-color')
     compile project(':react-native-vector-icons')
     compile project(':react-native-spinkit')
     compile project(':react-native-palette')

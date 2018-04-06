@@ -3,6 +3,8 @@ package com.colorpalettes;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.palette.RNPalettePackage;
+import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
 import io.palette.RNPalettePackage;
@@ -33,6 +35,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNPalettePackage(),
+            new ImageResizerPackage(),
             new VectorIconsPackage(),
             new RNSpinkitPackage(),
             new RNPalettePackage(),

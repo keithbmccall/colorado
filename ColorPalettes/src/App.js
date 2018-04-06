@@ -20,7 +20,11 @@ export default class App extends Component<Props> {
     this.state = {
       cameraRollImages: [],
       cameraRollLoaded: false,
-      cameraRollModalOpen: false
+      cameraRollModalOpen: false,
+      //
+      currentImage: "",
+      currentImageMounted: false,
+      inspectModalOpen: false
     };
   }
   getCameraRoll = () => {
@@ -44,6 +48,17 @@ export default class App extends Component<Props> {
       cameraRollModalOpen: !this.state.cameraRollModalOpen
     });
   };
+  setCurrentImage = image => {
+    this.setState({
+      currentImage: image.node.image.uri,
+      currentImageMounted: true
+    });
+  };
+  toggleInspectModal = () => {
+    this.setState({
+      inspectModalOpen: !this.state.inspectModalOpen
+    });
+  };
   render() {
     const screenProps = {
       getCameraRoll: this.getCameraRoll,
@@ -51,8 +66,13 @@ export default class App extends Component<Props> {
       cameraRollLoaded: this.state.cameraRollLoaded,
       //camera roll modal functionality
       cameraRollModalOpen: this.state.cameraRollModalOpen,
-      toggleCameraRollModal: this.toggleCameraRollModal
-      //
+      toggleCameraRollModal: this.toggleCameraRollModal,
+      // inspect image
+      setCurrentImage: this.setCurrentImage,
+      currentImage: this.state.currentImage,
+      currentImageMounted: this.state.currentImageMounted,
+      inspectModalOpen: this.state.inspectModalOpen,
+      toggleInspectModal: this.toggleInspectModal
     };
     return <Router screenProps={screenProps} />;
   }

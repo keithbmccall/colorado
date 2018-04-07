@@ -20,7 +20,7 @@ export default class CameraPunch extends Component {
 		return (
 			<View
 				style={{
-					flex: 3,
+					flex: 5,
 					justifyContent: "space-evenly",
 					alignItems: "center",
 					flexDirection: "row",

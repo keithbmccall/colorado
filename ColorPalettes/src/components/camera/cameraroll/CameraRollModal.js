@@ -31,6 +31,7 @@ export default class CameraRollModal extends Component {
 				setCurrentImage={this.props.setCurrentImage}
 				toggleCameraRollModal={this.props.toggleCameraRollModal}
 				toggleInspectModal={this.props.toggleInspectModal}
+				getDominantSwatches={this.props.getDominantSwatches}
 			/>
 		);
 	};

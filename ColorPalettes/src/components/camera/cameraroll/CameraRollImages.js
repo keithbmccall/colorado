@@ -26,6 +26,7 @@ export default class CameraRollImages extends Component {
 		};
 	}
 	activateInspect = e => {
+		this.props.getDominantSwatches(this.state.image.node.image);
 		this.props.toggleInspectModal();
 		this.props.toggleCameraRollModal();
 		this.props.setCurrentImage(this.state.image.node.image);

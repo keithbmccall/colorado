@@ -56,7 +56,7 @@ export default class InspectImage extends Component {
 				source={{
 					uri: this.props.currentImage.uri
 				}}
-				onLayout={this.props.onLayout.bind(this)}
+				onLayout={this.props.onCurrentImageLayout.bind(this)}
 			/>
 		);
 	}

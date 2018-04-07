@@ -57,6 +57,9 @@ export default class CameraScreen extends Component {
 						cameraRollLoaded={
 							this.props.screenProps.cameraRollLoaded
 						}
+						getDominantSwatches={
+							this.props.screenProps.getDominantSwatches
+						}
 					/>
 				</Modal>
 				<Modal
@@ -65,6 +68,20 @@ export default class CameraScreen extends Component {
 					visible={this.props.screenProps.inspectModalOpen}
 				>
 					<InspectModal
+						color1={this.props.screenProps.color1}
+						color2={this.props.screenProps.color2}
+						color3={this.props.screenProps.color3}
+						color4={this.props.screenProps.color4}
+						color5={this.props.screenProps.color5}
+						color6={this.props.screenProps.color6}
+						//
+						resetSetColor={this.props.screenProps.resetSetColor}
+						findColor={this.props.screenProps.findColor}
+						resetColor={this.props.screenProps.resetColor}
+						onCurrentImageLayout={
+							this.props.screenProps.onCurrentImageLayout
+						}
+						resetSwatches={this.props.screenProps.resetSwatches}
 						currentImageMounted={
 							this.props.screenProps.currentImageMounted
 						}
@@ -72,6 +89,10 @@ export default class CameraScreen extends Component {
 						toggleInspectModal={
 							this.props.screenProps.toggleInspectModal
 						}
+						getDominantSwatches={
+							this.props.screenProps.getDominantSwatches
+						}
+						swatchesLoaded={this.props.screenProps.swatchesLoaded}
 					/>
 				</Modal>
 			</View>

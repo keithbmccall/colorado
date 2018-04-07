@@ -29,6 +29,7 @@ export default class InspectImage extends Component {
 			currentImage: this.props.currentImage
 		};
 	}
+
 	UNSAFE_componentWillMount() {
 		this.panResponder = PanResponder.create({
 			onStartShouldSetPanResponder: (e, gestureState) => true,
@@ -46,36 +47,17 @@ export default class InspectImage extends Component {
 	}
 	render() {
 		return (
-			<View style={style.flex1} {...this.panResponder.panHandlers}>
-				<View
-					style={{
-						height: height / 12,
-						backgroundColor: "black",
-						flexDirection: "row",
-						justifyContent: "flex-end"
-					}}
-				>
-					<View>
-						<Icon.Button
-							size={40}
-							name="ios-close-circle"
-							backgroundColor="transparent"
-							color="#91268d"
-							onPress={() => this.props.navigate("Camera")}
-							underlayColor="transparent"
-						/>
-					</View>
-				</View>
-				<Image
-					style={{
-						flex: 1,
-						resizeMode: "contain"
-					}}
-					source={{
-						uri: this.props.currentImage.uri
-					}}
-				/>
-			</View>
+			<Image
+				{...this.panResponder.panHandlers}
+				style={{
+					flex: 1,
+					resizeMode: "contain"
+				}}
+				source={{
+					uri: this.props.currentImage.uri
+				}}
+				onLayout={this.props.onLayout.bind(this)}
+			/>
 		);
 	}
 }

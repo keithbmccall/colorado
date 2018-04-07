@@ -36,7 +36,8 @@ export default class CameraOptions extends Component {
 					height: height / 12,
 					backgroundColor: "transparent",
 					flexDirection: "row",
-					justifyContent: "space-between"
+					justifyContent: "space-between",
+					backgroundColor: "#090909"
 				}}
 			>
 				<View>

@@ -16,7 +16,6 @@ import {
 } from "react-native";
 //
 import Camera from "./camera/Camera";
-import CameraRollModal from "./cameraroll/CameraRollModal";
 import InspectModal from "./inspect/InspectModal";
 
 //
@@ -36,32 +35,16 @@ export default class CameraScreen extends Component {
 				<Camera
 					getCameraRoll={this.props.screenProps.getCameraRoll}
 					setCurrentImage={this.props.screenProps.setCurrentImage}
+					toggleInspectModal={
+						this.props.screenProps.toggleInspectModal
+					}
+					toggleCameraRollModal={
+						this.props.screenProps.toggleCameraRollModal
+					}
+					getDominantSwatches={
+						this.props.screenProps.getDominantSwatches
+					}
 				/>
-
-				<Modal
-					animationType="slide"
-					transparent={false}
-					visible={this.props.screenProps.cameraRollModalOpen}
-				>
-					<CameraRollModal
-						toggleInspectModal={
-							this.props.screenProps.toggleInspectModal
-						}
-						setCurrentImage={this.props.screenProps.setCurrentImage}
-						toggleCameraRollModal={
-							this.props.screenProps.toggleCameraRollModal
-						}
-						cameraRollImages={
-							this.props.screenProps.cameraRollImages
-						}
-						cameraRollLoaded={
-							this.props.screenProps.cameraRollLoaded
-						}
-						getDominantSwatches={
-							this.props.screenProps.getDominantSwatches
-						}
-					/>
-				</Modal>
 				<Modal
 					animationType="slide"
 					transparent={false}

@@ -83,6 +83,7 @@ export default class Camera extends Component {
 	};
 	// camera options end
 	takePicture = async function() {
+		this.props.toggleInspectModal();
 		if (this.camera) {
 			const options = {
 				quality: 1,
@@ -91,11 +92,12 @@ export default class Camera extends Component {
 			};
 			const data = await this.camera.takePictureAsync(options);
 			console.log("cameradata", data);
-			this.props.toggleInspectModal();
 			this.props.setCurrentImage(data);
-			CameraRoll.saveToCameraRoll(data.uri).then(res =>
-				console.log("saved", res)
-			);
+			CameraRoll.saveToCameraRoll(data.uri).then(res => {
+				let dummy = {};
+				dummy.uri = res;
+				this.props.getDominantSwatches(dummy);
+			});
 		} else {
 			throw new Error("Camera has failed!");
 		}
@@ -127,6 +129,7 @@ export default class Camera extends Component {
 					/>
 				</View>
 				<CameraPunch
+					toggleCameraRollModal={this.props.toggleCameraRollModal}
 					takePicture={this.takePicture}
 					getCameraRoll={this.props.getCameraRoll}
 				/>

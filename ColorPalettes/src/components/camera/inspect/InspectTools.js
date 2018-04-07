@@ -15,13 +15,81 @@ import {
 	StatusBar
 } from "react-native";
 
+import style from "../../../Style";
+import Icon from "react-native-vector-icons/Entypo";
+
 const { width, height } = Dimensions.get("window");
-const standardBoxSize = width / 7;
+const standardBoxSize = width / 6;
 export default class InspectTools extends Component {
 	resetHandler = color => {
 		this.props.resetSetColor(color);
 	};
 	render() {
+		let instructions;
+		if (
+			this.props.color1.color === "transparent" ||
+			this.props.color2.color === "transparent" ||
+			this.props.color3.color === "transparent" ||
+			this.props.color4.color === "transparent" ||
+			this.props.color5.color === "transparent" ||
+			this.props.color6.color === "transparent"
+		) {
+			instructions = (
+				<View style={style.flex1}>
+					<View
+						style={{
+							justifyContent: "center",
+							flexDirection: "row"
+						}}
+					>
+						<Text
+							style={[
+								style.text,
+								{ color: "white", fontSize: 18 }
+							]}
+						>
+							"Tap the Photo to Build Your Palette!"
+						</Text>
+						<View />
+					</View>
+				</View>
+			);
+		} else {
+			instructions = (
+				<View style={style.flex1}>
+					<View
+						style={{
+							justifyContent: "center",
+							flexDirection: "row"
+						}}
+					>
+						<Text
+							style={[
+								style.text,
+								{ color: "white", fontSize: 18 }
+							]}
+						>
+							"Tap a Swatch to Edit Your Palette!"
+						</Text>
+						<View />
+					</View>
+					<View
+						style={{
+							alignSelf: "center"
+						}}
+					>
+						<Icon.Button
+							size={35}
+							name="save"
+							backgroundColor="transparent"
+							color="#91268d"
+							onPress={() => console.log("saved")}
+						/>
+					</View>
+				</View>
+			);
+		}
+
 		return (
 			<View
 				style={{
@@ -150,12 +218,7 @@ export default class InspectTools extends Component {
 						</Text>
 					</TouchableOpacity>
 				</View>
-				<View>
-					<Text style={{ color: "white", fontSize: 18 }}>
-						Tap Photo To Build Palette!
-					</Text>
-					<View />
-				</View>
+				{instructions}
 			</View>
 		);
 	}

@@ -8,7 +8,8 @@ import {
   Image,
   ScrollView,
   CameraRoll,
-  Modal
+  Modal,
+  ImagePickerIOS
 } from "react-native";
 import { getAllSwatches } from "react-native-palette";
 import rgbHex from "rgb-hex";
@@ -42,21 +43,31 @@ export default class App extends Component<Props> {
       imageWidth: ""
     };
   }
-  getCameraRoll = () => {
+  getCameraImage = () => {
     CameraRoll.getPhotos({
-      first: 18
+      first: 1
     })
       .then(r => {
-        console.log("GETIMAGES", r.edges);
-        this.setState({
-          cameraRollImages: r.edges,
-          cameraRollLoaded: true
-        });
-        this.toggleCameraRollModal();
+        console.log("1 IMAGE", r.edges);
+        this.getDominantSwatches(r.edges[0], 1);
       })
       .catch(err => {
-        console.log("error in getImages", err);
+        console.log("error in getCameraImage", err);
       });
+  };
+
+  getCameraRoll = () => {
+    ImagePickerIOS.openSelectDialog(
+      {},
+      imageUri => {
+        let dummy = {};
+        dummy.uri = imageUri;
+        this.toggleInspectModal();
+        this.setCurrentImage(dummy);
+        this.getDominantSwatches(dummy);
+      },
+      error => console.log(error)
+    );
   };
   toggleCameraRollModal = () => {
     this.setState({
@@ -94,14 +105,6 @@ export default class App extends Component<Props> {
         swatchesLoaded: true
       });
     }
-    // this.setState({
-    //   color1: { color: swatches[0] },
-    //   color2: { color: swatches[1] },
-    //   color3: { color: swatches[2] },
-    //   color4: { color: swatches[3] },
-    //   color5: { color: swatches[4] },
-    //   color6: { color: swatches[5] }
-    // });
   };
   setSwatches = swatches => {
     if (swatches) {
@@ -196,6 +199,7 @@ export default class App extends Component<Props> {
       console.log("color blocks are full!");
     }
   };
+
   render() {
     const screenProps = {
       getCameraRoll: this.getCameraRoll,

@@ -37,11 +37,11 @@ export default class inspectModal extends Component {
 				<View style={{ flex: 1, backgroundColor: "black" }}>
 					<StatusBar barStyle="light-content" hidden={false} />
 					<View style={style.statusPadding} />
-					<View style={{ flex: 8, backgroundColor: "#333" }}>
+					<View style={{ flex: 8, backgroundColor: "black" }}>
 						<View
 							style={{
 								height: height / 12,
-								backgroundColor: "black",
+								backgroundColor: "#090909",
 								flexDirection: "row",
 								justifyContent: "flex-end"
 							}}
@@ -49,7 +49,7 @@ export default class inspectModal extends Component {
 							<View>
 								<Icon.Button
 									size={40}
-									name="ios-close-circle"
+									name="md-close-circle"
 									backgroundColor="transparent"
 									color="#91268d"
 									onPress={this.resetSwatchHandler}
@@ -67,7 +67,7 @@ export default class inspectModal extends Component {
 					</View>
 					<View
 						style={{
-							flex: 5
+							flex: 3
 						}}
 					>
 						<InspectTools

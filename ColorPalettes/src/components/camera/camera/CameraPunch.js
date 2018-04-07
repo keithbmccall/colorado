@@ -20,14 +20,14 @@ export default class CameraPunch extends Component {
 		return (
 			<View
 				style={{
-					flex: 5,
+					flex: 3,
 					justifyContent: "space-evenly",
 					alignItems: "center",
 					flexDirection: "row",
-					backgroundColor: "rgba(255,255,255,0)"
+					backgroundColor: "#090909"
 				}}
 			>
-				<View underlayColor="transparent">
+				<View>
 					<Icon.Button
 						size={40}
 						name="md-images"
@@ -39,14 +39,15 @@ export default class CameraPunch extends Component {
 				<TouchableOpacity
 					underlayColor="transparent"
 					style={{
-						backgroundColor: "#91268d",
+						borderColor: "#91268d",
+						borderWidth: 8,
 						height: 80,
 						width: 80,
 						borderRadius: 80
 					}}
 					onPress={this.props.takePicture}
 				/>
-				<View underlayColor="transparent">
+				<View>
 					<Icon.Button
 						size={40}
 						name="md-color-palette"

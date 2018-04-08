@@ -33,11 +33,12 @@ export default class CameraOptions extends Component {
 		return (
 			<View
 				style={{
-					height: height / 12,
+					height: height / 10,
 					backgroundColor: "transparent",
 					flexDirection: "row",
 					justifyContent: "space-between",
-					backgroundColor: "#090909"
+					backgroundColor: "#ddd",
+					alignItems: "center"
 				}}
 			>
 				<View>

@@ -12,7 +12,9 @@ import {
 	TouchableHighlight,
 	Dimensions,
 	Modal,
-	StatusBar
+	StatusBar,
+	TextInput,
+	Keyboard
 } from "react-native";
 
 //
@@ -26,6 +28,19 @@ import InspectImage from "./InspectImage";
 const { width, height } = Dimensions.get("window");
 
 export default class inspectModal extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			paletteName: ""
+		};
+	}
+
+	savePaletteHandler = () => {
+		this.props.savePalette(this.state);
+		this.resetSwatchHandler();
+		this.props.navigate("Library");
+	};
+
 	resetSwatchHandler = () => {
 		this.props.toggleInspectModal();
 		this.props.resetSwatches();
@@ -40,12 +55,44 @@ export default class inspectModal extends Component {
 					<View style={{ flex: 8, backgroundColor: "black" }}>
 						<View
 							style={{
-								height: height / 12,
+								height: height / 10,
 								backgroundColor: "#090909",
 								flexDirection: "row",
-								justifyContent: "flex-end"
+								justifyContent: "flex-end",
+								alignItems: "center"
 							}}
 						>
+							<View
+								style={{
+									flex: 1,
+									alignItems: "flex-start",
+									flexDirection: "row",
+									justifyContent: "center"
+								}}
+							>
+								<TextInput
+									placeholder="Name your palette..."
+									style={{
+										height: 40,
+										width: 200,
+										borderColor: "gray",
+										borderWidth: 1,
+										paddingLeft: 5,
+										backgroundColor: "white",
+										textAlign: "center",
+										borderRadius: 40
+									}}
+									keyboardType="default"
+									keyboardAppearance="dark"
+									returnKeyType="done"
+									autoCorrect={false}
+									onChangeText={paletteName =>
+										this.setState({ paletteName })
+									}
+									value={this.state.name}
+									onSubmitEditing={Keyboard.dismiss}
+								/>
+							</View>
 							<View>
 								<Icon.Button
 									size={40}
@@ -71,6 +118,8 @@ export default class inspectModal extends Component {
 						}}
 					>
 						<InspectTools
+							savePaletteHandler={this.savePaletteHandler}
+							//
 							resetSetColor={this.props.resetSetColor}
 							color1={this.props.color1}
 							color2={this.props.color2}

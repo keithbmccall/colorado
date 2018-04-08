@@ -26,7 +26,7 @@ export default class Loading extends Component {
 					flex: 1,
 					justifyContent: "center",
 					alignItems: "center",
-					backgroundColor: "black"
+					backgroundColor: "#ddd"
 				}}
 			>
 				<Spinner

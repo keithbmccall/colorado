@@ -23,7 +23,7 @@ export const Router = TabNavigator(
     }
   },
   {
-    initialRouteName: "Camera",
+    initialRouteName: "Library",
     swipeEnabled: true,
     animationEnabled: true,
     navigationOptions: {

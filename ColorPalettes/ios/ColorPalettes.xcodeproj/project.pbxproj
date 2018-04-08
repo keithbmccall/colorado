@@ -1567,6 +1567,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = ColorPalettes;
 				PRODUCT_NAME = ColorPalettes;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1596,6 +1597,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = ColorPalettes;
 				PRODUCT_NAME = ColorPalettes;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

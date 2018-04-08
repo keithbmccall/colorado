@@ -32,11 +32,11 @@ export default StyleSheet.create({
 	// text
 	text: {
 		fontFamily: "HelveticaNeue-Medium",
-		fontSize: 16,
+		fontSize: 18,
 		marginBottom: 8
 	},
 	textHeader: {
-		fontSize: 22,
+		fontSize: 24,
 		fontFamily: "Helvetica-Bold"
 	}
 });

@@ -24,6 +24,7 @@ export default class InspectTools extends Component {
 	resetHandler = color => {
 		this.props.resetSetColor(color);
 	};
+
 	render() {
 		let instructions;
 		if (
@@ -48,7 +49,7 @@ export default class InspectTools extends Component {
 								{ color: "white", fontSize: 18 }
 							]}
 						>
-							"Tap the Photo to Build Your Palette!"
+							Tap the Photo to Build Your Palette!
 						</Text>
 						<View />
 					</View>
@@ -59,31 +60,26 @@ export default class InspectTools extends Component {
 				<View style={style.flex1}>
 					<View
 						style={{
-							justifyContent: "center",
-							flexDirection: "row"
+							justifyContent: "space-between",
+							flexDirection: "column",
+							alignItems: "center"
 						}}
 					>
 						<Text
 							style={[
 								style.text,
-								{ color: "white", fontSize: 18 }
+								{ color: "white", fontSize: 15, marginTop: 20 }
 							]}
 						>
-							"Tap a Swatch to Edit Your Palette!"
+							Tap a Swatch to Edit Your Palette!
 						</Text>
-						<View />
-					</View>
-					<View
-						style={{
-							alignSelf: "center"
-						}}
-					>
+
 						<Icon.Button
 							size={35}
 							name="save"
 							backgroundColor="transparent"
 							color="#91268d"
-							onPress={() => console.log("saved")}
+							onPress={this.props.savePaletteHandler}
 						/>
 					</View>
 				</View>

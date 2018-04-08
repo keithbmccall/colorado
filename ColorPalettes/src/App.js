@@ -9,7 +9,8 @@ import {
   ScrollView,
   CameraRoll,
   Modal,
-  ImagePickerIOS
+  ImagePickerIOS,
+  AsyncStorage
 } from "react-native";
 import { getAllSwatches } from "react-native-palette";
 import rgbHex from "rgb-hex";
@@ -40,9 +41,63 @@ export default class App extends Component<Props> {
       color5: { color: "transparent", border: "transparent" },
       color6: { color: "transparent", border: "transparent" },
       imageHeight: "",
-      imageWidth: ""
+      imageWidth: "",
+      //
+      palettes: [],
+      palettesLoaded: false,
+      libraryModalOpen: false,
+      currentPalette: {},
+      currentPaletteMounted: false
     };
   }
+
+  //palette library
+  resetCurrentPalette = () => {
+    this.setState({
+      currentPalette: {},
+      libraryModalOpen: !this.state.libraryModalOpen,
+      currentPaletteMounted: !this.state.currentPaletteMounted
+    });
+  };
+  toggleLibraryModal = palette => {
+    this.setState({
+      libraryModalOpen: !this.state.libraryModalOpen,
+      currentPalette: palette,
+      currentPaletteMounted: !this.state.currentPaletteMounted
+    });
+  };
+  getPalette = () => {
+    AsyncStorage.getAllKeys().then(res => {
+      console.log(res);
+      AsyncStorage.multiGet(res).then(response => {
+        const data = response.reduce((arr, index) => {
+          arr.push({ name: index[0], swatches: JSON.parse(index[1]) });
+          console.log("arr", arr);
+          return arr;
+        }, []);
+        this.setState({
+          palettes: data,
+          palettesLoaded: true
+        });
+      });
+    });
+  };
+  savePalette = data => {
+    console.log("save", data);
+    AsyncStorage.setItem(
+      data.paletteName,
+      JSON.stringify([
+        this.state.color1.color,
+        this.state.color2.color,
+        this.state.color3.color,
+        this.state.color4.color,
+        this.state.color5.color,
+        this.state.color6.color
+      ])
+    ).then(res => console.log("saved", res));
+  };
+  //
+  // camera roll
   getCameraImage = () => {
     CameraRoll.getPhotos({
       first: 1
@@ -199,7 +254,9 @@ export default class App extends Component<Props> {
       console.log("color blocks are full!");
     }
   };
-
+  componentDidMount() {
+    this.getPalette();
+  }
   render() {
     const screenProps = {
       getCameraRoll: this.getCameraRoll,
@@ -227,7 +284,16 @@ export default class App extends Component<Props> {
       color3: this.state.color3,
       color4: this.state.color4,
       color5: this.state.color5,
-      color6: this.state.color6
+      color6: this.state.color6,
+      // palettes / library
+      savePalette: this.savePalette,
+      palettesLoaded: this.state.palettesLoaded,
+      palettes: this.state.palettes,
+      libraryModalOpen: this.state.libraryModalOpen,
+      toggleLibraryModal: this.toggleLibraryModal,
+      currentPalette: this.state.currentPalette,
+      currentPaletteMounted: this.state.currentPaletteMounted,
+      resetCurrentPalette: this.resetCurrentPalette
     };
     return <Router screenProps={screenProps} />;
   }

@@ -24,7 +24,7 @@ export default class CameraPunch extends Component {
 					justifyContent: "space-evenly",
 					alignItems: "center",
 					flexDirection: "row",
-					backgroundColor: "#090909"
+					backgroundColor: "#ddd"
 				}}
 			>
 				<View>
@@ -34,6 +34,7 @@ export default class CameraPunch extends Component {
 						backgroundColor="transparent"
 						color="#91268d"
 						onPress={this.props.getCameraRoll}
+						underlayColor="transparent"
 					/>
 				</View>
 				<TouchableOpacity
@@ -54,6 +55,7 @@ export default class CameraPunch extends Component {
 						backgroundColor="transparent"
 						color="#91268d"
 						onPress={() => console.log("palette")}
+						underlayColor="white"
 					/>
 				</View>
 			</View>

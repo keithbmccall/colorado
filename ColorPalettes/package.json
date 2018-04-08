@@ -7,6 +7,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "color-to-name": "^1.0.15",
+    "invert-color": "^1.2.3",
+    "nearest-pantone": "^1.0.1",
     "react": "^16.3.0-alpha.1",
     "react-native": "0.54.0",
     "react-native-camera": "^1.0.2",

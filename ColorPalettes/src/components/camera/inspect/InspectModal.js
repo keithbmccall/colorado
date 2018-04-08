@@ -31,7 +31,8 @@ export default class inspectModal extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			paletteName: ""
+			paletteName: "Untitled",
+			placeholder: "Name your palette..."
 		};
 	}
 
@@ -49,17 +50,19 @@ export default class inspectModal extends Component {
 	render() {
 		if (this.props.currentImageMounted && this.props.swatchesLoaded) {
 			return (
-				<View style={{ flex: 1, backgroundColor: "black" }}>
+				<View style={{ flex: 1, backgroundColor: "#111" }}>
 					<StatusBar barStyle="light-content" hidden={false} />
 					<View style={style.statusPadding} />
-					<View style={{ flex: 8, backgroundColor: "black" }}>
+					<View style={{ flex: 8, backgroundColor: "#111" }}>
 						<View
 							style={{
 								height: height / 10,
-								backgroundColor: "#090909",
+								backgroundColor: "#111",
 								flexDirection: "row",
 								justifyContent: "flex-end",
-								alignItems: "center"
+								alignItems: "center",
+								borderBottomColor: "black",
+								borderBottomWidth: 1
 							}}
 						>
 							<View
@@ -71,7 +74,7 @@ export default class inspectModal extends Component {
 								}}
 							>
 								<TextInput
-									placeholder="Name your palette..."
+									placeholder={this.state.placeholder}
 									style={{
 										height: 40,
 										width: 200,

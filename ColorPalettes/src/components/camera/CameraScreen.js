@@ -27,12 +27,13 @@ export default class CameraScreen extends Component {
 				style={{
 					flex: 1,
 					flexDirection: "column",
-					backgroundColor: "#ddd"
+					backgroundColor: "#111"
 				}}
 			>
-				<StatusBar hidden={false} barStyle="dark-content" />
+				<StatusBar hidden={false} barStyle="light-content" />
 				<View style={style.statusPadding} />
 				<Camera
+					navigate={this.props.navigation.navigate}
 					getCameraRoll={this.props.screenProps.getCameraRoll}
 					setCurrentImage={this.props.screenProps.setCurrentImage}
 					toggleInspectModal={

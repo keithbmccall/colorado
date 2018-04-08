@@ -9,7 +9,7 @@ import Icon from "react-native-vector-icons/Entypo";
 // import PhotosPage from "./components/home/PhotosPage";
 //
 import CameraScreen from "./components/camera/CameraScreen";
-//
+import ViewScreen from "./components/viewport/ViewScreen";
 import LibraryScreen from "./components/library/LibraryScreen";
 //
 
@@ -20,10 +20,13 @@ export const Router = TabNavigator(
     },
     Library: {
       screen: LibraryScreen
+    },
+    Viewport: {
+      screen: ViewScreen
     }
   },
   {
-    initialRouteName: "Library",
+    initialRouteName: "Camera",
     swipeEnabled: true,
     animationEnabled: true,
     navigationOptions: {

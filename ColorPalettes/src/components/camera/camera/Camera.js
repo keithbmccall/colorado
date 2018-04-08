@@ -129,6 +129,7 @@ export default class Camera extends Component {
 					/>
 				</View>
 				<CameraPunch
+					navigate={this.props.navigate}
 					toggleCameraRollModal={this.props.toggleCameraRollModal}
 					takePicture={this.takePicture}
 					getCameraRoll={this.props.getCameraRoll}

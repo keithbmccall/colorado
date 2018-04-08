@@ -9,7 +9,7 @@ import {
 	ScrollView,
 	Modal,
 	Dimensions,
-	TouchableHighlight,
+	TouchableOpacity,
 	StatusBar
 } from "react-native";
 import ColorHelper from "color-to-name";
@@ -25,34 +25,46 @@ const { width, height } = Dimensions.get("window");
 export default class LibraryModal extends Component {
 	renderCurrentPalette = (swatch, key) => {
 		return (
-			<View
+			<TouchableOpacity
+				style={{ flex: 1 }}
 				key={key}
-				style={{
-					backgroundColor: swatch,
-					flex: 1,
-					justifyContent: "center",
-					paddingLeft: 20
+				underlayColor="transparent"
+				onLongPress={() => {
+					console.log("long press");
+					this.props.setViewportColor(swatch);
+					this.props.navigate("Viewport");
 				}}
 			>
-				<Text style={{ color: invert(swatch, true) }}>
-					{pant.getClosestColor(swatch)
-						? pant.getClosestColor(swatch).name.toUpperCase()
-						: "BLACK"}
-				</Text>
-				<Text style={{ color: invert(swatch, true) }}>
-					{swatch.toUpperCase()}
-				</Text>
-				<Text style={{ color: invert(swatch, true) }}>{`R: ${
-					ColorHelper.hexToRGB(swatch).r
-				} G: ${ColorHelper.hexToRGB(swatch).g} B: ${
-					ColorHelper.hexToRGB(swatch).b
-				}`}</Text>
-				<Text style={{ color: invert(swatch, true) }}>
-					{pant.getClosestColor(swatch)
-						? `PANTONE\xAE ${pant.getClosestColor(swatch).pantone}`
-						: "No Pantone"}
-				</Text>
-			</View>
+				<View
+					style={{
+						backgroundColor: swatch,
+						flex: 1,
+						justifyContent: "center",
+						paddingLeft: 20
+					}}
+				>
+					<Text style={{ color: invert(swatch, true) }}>
+						{pant.getClosestColor(swatch)
+							? pant.getClosestColor(swatch).name.toUpperCase()
+							: "BLACK"}
+					</Text>
+					<Text style={{ color: invert(swatch, true) }}>
+						{swatch.toUpperCase()}
+					</Text>
+					<Text style={{ color: invert(swatch, true) }}>{`R: ${
+						ColorHelper.hexToRGB(swatch).r
+					} G: ${ColorHelper.hexToRGB(swatch).g} B: ${
+						ColorHelper.hexToRGB(swatch).b
+					}`}</Text>
+					<Text style={{ color: invert(swatch, true) }}>
+						{pant.getClosestColor(swatch)
+							? `PANTONE\xAE ${
+									pant.getClosestColor(swatch).pantone
+							  }`
+							: "No Pantone"}
+					</Text>
+				</View>
+			</TouchableOpacity>
 		);
 	};
 	render() {
@@ -61,19 +73,36 @@ export default class LibraryModal extends Component {
 				this.renderCurrentPalette
 			);
 			return (
-				<View style={{ flex: 1, backgroundColor: "#ddd" }}>
-					<StatusBar barStyle="dark-content" hidden={false} />
+				<View style={{ flex: 1, backgroundColor: "#111" }}>
+					<StatusBar barStyle="light-content" hidden={false} />
 					<View style={style.statusPadding} />
 
 					<View
 						style={{
 							height: height / 10,
-							backgroundColor: "#ddd",
+							backgroundColor: "transparent",
 							flexDirection: "row",
-							justifyContent: "flex-end",
-							alignItems: "center"
+							justifyContent: "space-between",
+							backgroundColor: "#111",
+							alignItems: "center",
+							borderBottomColor: "black",
+							borderBottomWidth: 1
 						}}
 					>
+						<View>
+							<Icon.Button
+								size={40}
+								name="md-trash"
+								backgroundColor="transparent"
+								color="#b00"
+								onLongPress={() =>
+									this.props.deletePalette(
+										this.props.currentPalette.name
+									)
+								}
+								underlayColor="transparent"
+							/>
+						</View>
 						<View>
 							<Icon.Button
 								size={40}

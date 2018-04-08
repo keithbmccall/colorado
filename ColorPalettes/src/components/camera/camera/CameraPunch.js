@@ -24,7 +24,7 @@ export default class CameraPunch extends Component {
 					justifyContent: "space-evenly",
 					alignItems: "center",
 					flexDirection: "row",
-					backgroundColor: "#ddd"
+					backgroundColor: "#111"
 				}}
 			>
 				<View>
@@ -54,8 +54,8 @@ export default class CameraPunch extends Component {
 						name="md-color-palette"
 						backgroundColor="transparent"
 						color="#91268d"
-						onPress={() => console.log("palette")}
-						underlayColor="white"
+						onPress={() => this.props.navigate("Library")}
+						underlayColor="black"
 					/>
 				</View>
 			</View>

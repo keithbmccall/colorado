@@ -14,6 +14,8 @@ import {
 	StatusBar,
 	Dimensions
 } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
+
 //
 import LibraryItems from "./library/LibraryItems";
 import LibraryModal from "./library/LibraryModal";
@@ -44,10 +46,10 @@ export default class Library extends Component {
 					style={{
 						flex: 1,
 						flexDirection: "column",
-						backgroundColor: "#ddd"
+						backgroundColor: "#111"
 					}}
 				>
-					<StatusBar barStyle="dark-content" hidden={false} />
+					<StatusBar barStyle="light-content" hidden={false} />
 					<View style={style.statusPadding} />
 					<View
 						style={{
@@ -55,24 +57,70 @@ export default class Library extends Component {
 							backgroundColor: "transparent",
 							flexDirection: "row",
 							justifyContent: "space-between",
-							backgroundColor: "#ddd",
-							borderBottomColor: "#bbb",
+							backgroundColor: "#111",
+							alignItems: "center",
+							borderBottomColor: "black",
 							borderBottomWidth: 1
 						}}
-					/>
+					>
+						<View>
+							<Icon.Button
+								size={40}
+								name="ios-camera"
+								backgroundColor="transparent"
+								color="#91268d"
+								onPress={() =>
+									this.props.navigation.navigate("Camera")
+								}
+								underlayColor="transparent"
+							/>
+						</View>
+						<View>
+							<Icon.Button
+								size={40}
+								name={this.props.iconWhiteBalance}
+								backgroundColor="transparent"
+								color="#91268d"
+								onPress={this.balanceHandler}
+								underlayColor="transparent"
+							/>
+						</View>
+
+						<View>
+							<Icon.Button
+								size={40}
+								name="ios-eye"
+								backgroundColor="transparent"
+								color="#91268d"
+								onPress={() =>
+									this.props.navigation.navigate("Viewport")
+								}
+								underlayColor="transparent"
+							/>
+						</View>
+					</View>
 					<View
 						style={{
-							backgroundColor: "white"
+							backgroundColor: "#111"
 						}}
 					>
 						<ScrollView>
-							<Text style={[style.textHeader, { marginTop: 30 }]}>
+							<Text
+								style={[
+									style.textHeader,
+									{
+										marginTop: 30,
+										marginLeft: 10,
+										color: "white"
+									}
+								]}
+							>
 								Palette Library
 							</Text>
 							<View
 								style={{
 									flex: 8,
-									backgroundColor: "white"
+									backgroundColor: "#111"
 								}}
 							>
 								{palettes}
@@ -97,6 +145,11 @@ export default class Library extends Component {
 							resetCurrentPalette={
 								this.props.screenProps.resetCurrentPalette
 							}
+							navigate={this.props.navigation.navigate}
+							setViewportColor={
+								this.props.screenProps.setViewportColor
+							}
+							deletePalette={this.props.screenProps.deletePalette}
 						/>
 					</Modal>
 				</View>

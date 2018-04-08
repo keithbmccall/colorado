@@ -37,8 +37,10 @@ export default class CameraOptions extends Component {
 					backgroundColor: "transparent",
 					flexDirection: "row",
 					justifyContent: "space-between",
-					backgroundColor: "#ddd",
-					alignItems: "center"
+					backgroundColor: "#111",
+					alignItems: "center",
+					borderBottomColor: "black",
+					borderBottomWidth: 1
 				}}
 			>
 				<View>

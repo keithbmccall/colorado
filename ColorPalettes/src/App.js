@@ -47,10 +47,34 @@ export default class App extends Component<Props> {
       palettesLoaded: false,
       libraryModalOpen: false,
       currentPalette: {},
-      currentPaletteMounted: false
+      currentPaletteMounted: false,
+      //
+      viewportColor: "",
+      viewportLoaded: false
     };
   }
-
+  setViewportColor = color => {
+    this.setState(
+      {
+        viewportColor: color,
+        viewportLoaded: true
+      },
+      this.toggleLibraryModal()
+    );
+  };
+  generateViewportColor = () => {
+    console.log("big color!");
+    let r, g, b, randomColor;
+    r = Math.floor(Math.random() * 255);
+    g = Math.floor(Math.random() * 255);
+    b = Math.floor(Math.random() * 255);
+    randomColor = `rgb(${r},${g},${b})`;
+    rgbHex(randomColor);
+    this.setState({
+      viewportColor: `#${rgbHex(randomColor)}`,
+      viewportLoaded: true
+    });
+  };
   //palette library
   resetCurrentPalette = () => {
     this.setState({
@@ -66,7 +90,15 @@ export default class App extends Component<Props> {
       currentPaletteMounted: !this.state.currentPaletteMounted
     });
   };
-  getPalette = () => {
+  deletePalette = name => {
+    AsyncStorage.removeItem(name).then(res =>
+      this.setState({ palettesLoaded: false }, () => {
+        this.getPalettes();
+        this.toggleLibraryModal();
+      })
+    );
+  };
+  getPalettes = () => {
     AsyncStorage.getAllKeys().then(res => {
       console.log(res);
       AsyncStorage.multiGet(res).then(response => {
@@ -94,7 +126,7 @@ export default class App extends Component<Props> {
         this.state.color5.color,
         this.state.color6.color
       ])
-    ).then(res => console.log("saved", res));
+    ).then(res => this.setState({ palettesLoaded: false }, this.getPalettes()));
   };
   //
   // camera roll
@@ -255,7 +287,8 @@ export default class App extends Component<Props> {
     }
   };
   componentDidMount() {
-    this.getPalette();
+    this.getPalettes();
+    this.generateViewportColor();
   }
   render() {
     const screenProps = {
@@ -293,7 +326,13 @@ export default class App extends Component<Props> {
       toggleLibraryModal: this.toggleLibraryModal,
       currentPalette: this.state.currentPalette,
       currentPaletteMounted: this.state.currentPaletteMounted,
-      resetCurrentPalette: this.resetCurrentPalette
+      resetCurrentPalette: this.resetCurrentPalette,
+      deletePalette: this.deletePalette,
+      getPalettes: this.getPalettes,
+      //viewport
+      viewportColor: this.state.viewportColor,
+      viewportLoaded: this.state.viewportLoaded,
+      setViewportColor: this.setViewportColor
     };
     return <Router screenProps={screenProps} />;
   }

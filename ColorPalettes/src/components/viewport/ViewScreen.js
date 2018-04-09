@@ -22,7 +22,7 @@ export default class ViewScreen extends Component {
 			const { viewportColor } = this.props.screenProps;
 			return (
 				<View style={{ flex: 1 }}>
-					<StatusBar hidden={false} barStyle="light-content" />
+					<StatusBar hidden={false} />
 					<RNCamera
 						ref={ref => {
 							this.camera = ref;

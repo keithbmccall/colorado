@@ -73,8 +73,8 @@ export default class LibraryModal extends Component {
 				this.renderCurrentPalette
 			);
 			return (
-				<View style={{ flex: 1, backgroundColor: "#111" }}>
-					<StatusBar barStyle="light-content" hidden={false} />
+				<View style={{ flex: 1, backgroundColor: "#ddd" }}>
+					<StatusBar barStyle="dark-content" hidden={false} />
 					<View style={style.statusPadding} />
 
 					<View
@@ -83,7 +83,7 @@ export default class LibraryModal extends Component {
 							backgroundColor: "transparent",
 							flexDirection: "row",
 							justifyContent: "space-between",
-							backgroundColor: "#111",
+							backgroundColor: "#ddd",
 							alignItems: "center",
 							borderBottomColor: "black",
 							borderBottomWidth: 1

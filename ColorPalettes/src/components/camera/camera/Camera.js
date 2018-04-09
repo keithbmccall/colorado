@@ -102,6 +102,11 @@ export default class Camera extends Component {
 			throw new Error("Camera has failed!");
 		}
 	};
+	UNSAFE_componentWillMount() {
+		this.setState({
+			cameraFired: !this.state.cameraFired
+		});
+	}
 	render() {
 		return (
 			<View style={style.flex1}>

@@ -24,15 +24,15 @@ import style from "../../../Style";
 import Loading from "../../../Loading";
 import InspectTools from "./InspectTools";
 import InspectImage from "./InspectImage";
+import InspectSwatchModal from "./InspectSwatchModal";
 //
 const { width, height } = Dimensions.get("window");
 
-export default class inspectModal extends Component {
+export default class InspectModal extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			paletteName: "Untitled",
-			placeholder: "Name your palette..."
+			paletteName: "Untitled"
 		};
 	}
 
@@ -50,18 +50,18 @@ export default class inspectModal extends Component {
 	render() {
 		if (this.props.currentImageMounted && this.props.swatchesLoaded) {
 			return (
-				<View style={{ flex: 1, backgroundColor: "#111" }}>
-					<StatusBar barStyle="light-content" hidden={false} />
+				<View style={{ flex: 1, backgroundColor: "#ddd" }}>
+					<StatusBar barStyle="dark-content" hidden={false} />
 					<View style={style.statusPadding} />
-					<View style={{ flex: 8, backgroundColor: "#111" }}>
+					<View style={{ flex: 8, backgroundColor: "#fff" }}>
 						<View
 							style={{
 								height: height / 10,
-								backgroundColor: "#111",
+								backgroundColor: "#ddd",
 								flexDirection: "row",
 								justifyContent: "flex-end",
 								alignItems: "center",
-								borderBottomColor: "black",
+								borderBottomColor: "#ccc",
 								borderBottomWidth: 1
 							}}
 						>
@@ -74,10 +74,10 @@ export default class inspectModal extends Component {
 								}}
 							>
 								<TextInput
-									placeholder={this.state.placeholder}
+									placeholder="Name your palette..."
 									style={{
 										height: 40,
-										width: 200,
+										width: 240,
 										borderColor: "gray",
 										borderWidth: 1,
 										paddingLeft: 5,
@@ -117,10 +117,14 @@ export default class inspectModal extends Component {
 					</View>
 					<View
 						style={{
-							flex: 3
+							flex: 4
 						}}
 					>
 						<InspectTools
+							toggleSwatchInspectModal={
+								this.props.toggleSwatchInspectModal
+							}
+							//
 							savePaletteHandler={this.savePaletteHandler}
 							//
 							resetSetColor={this.props.resetSetColor}
@@ -132,6 +136,20 @@ export default class inspectModal extends Component {
 							color6={this.props.color6}
 						/>
 					</View>
+					<Modal
+						animationType="fade"
+						transparent={false}
+						visible={this.props.inspectSwatchModalOpen}
+					>
+						<InspectSwatchModal
+							currentInspectSwatch={
+								this.props.currentInspectSwatch
+							}
+							toggleSwatchInspectModal={
+								this.props.toggleSwatchInspectModal
+							}
+						/>
+					</Modal>
 				</View>
 			);
 		} else {

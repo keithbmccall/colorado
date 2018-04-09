@@ -53,7 +53,7 @@ export default class LibraryItems extends Component {
 				}}
 			>
 				<View style={{ alignItems: "center" }}>
-					<Text style={{ color: "white" }}>
+					<Text style={{ color: "black" }}>
 						{this.props.palette.name}
 					</Text>
 				</View>

@@ -46,20 +46,25 @@ export default class Library extends Component {
 					style={{
 						flex: 1,
 						flexDirection: "column",
-						backgroundColor: "#111"
+						backgroundColor: "#fff"
 					}}
 				>
-					<StatusBar barStyle="light-content" hidden={false} />
-					<View style={style.statusPadding} />
+					<StatusBar barStyle="dark-content" hidden={false} />
+					<View
+						style={[
+							style.statusPadding,
+							{ backgroundColor: "#ddd" }
+						]}
+					/>
 					<View
 						style={{
 							height: height / 10,
 							backgroundColor: "transparent",
 							flexDirection: "row",
 							justifyContent: "space-between",
-							backgroundColor: "#111",
+							backgroundColor: "#ddd",
 							alignItems: "center",
-							borderBottomColor: "black",
+							borderBottomColor: "#ccc",
 							borderBottomWidth: 1
 						}}
 					>
@@ -101,7 +106,7 @@ export default class Library extends Component {
 					</View>
 					<View
 						style={{
-							backgroundColor: "#111"
+							backgroundColor: "#fff"
 						}}
 					>
 						<ScrollView>
@@ -111,7 +116,7 @@ export default class Library extends Component {
 									{
 										marginTop: 30,
 										marginLeft: 10,
-										color: "white"
+										color: "black"
 									}
 								]}
 							>
@@ -120,7 +125,7 @@ export default class Library extends Component {
 							<View
 								style={{
 									flex: 8,
-									backgroundColor: "#111"
+									backgroundColor: "#fff"
 								}}
 							>
 								{palettes}

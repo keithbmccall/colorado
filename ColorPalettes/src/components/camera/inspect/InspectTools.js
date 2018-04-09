@@ -24,8 +24,41 @@ export default class InspectTools extends Component {
 	resetHandler = color => {
 		this.props.resetSetColor(color);
 	};
-
+	inspectSwatchHandler = color => {
+		this.props.toggleSwatchInspectModal(color);
+	};
+	renderMiniSwatches = (swatch, key) => {
+		return (
+			<TouchableOpacity
+				key={key}
+				style={{
+					width: standardBoxSize,
+					height: standardBoxSize,
+					backgroundColor: swatch.color,
+					borderWidth: 4,
+					borderStyle: "dashed",
+					borderColor: swatch.border,
+					justifyContent: "center",
+					alignItems: "center"
+				}}
+				onPress={() => this.inspectSwatchHandler(swatch.color)}
+				onLongPress={() => this.resetHandler(swatch.color)}
+			>
+				<Text style={{ color: swatch.border }}>{key + 1}</Text>
+			</TouchableOpacity>
+		);
+	};
 	render() {
+		const swatches = Object.entries(this.props)
+			.filter(swatch => {
+				return swatch;
+			})
+			.reduce((acc, curr) => {
+				curr[0][0] === "c" ? acc.push(curr[1]) : false;
+				return acc;
+			}, [])
+			.map(this.renderMiniSwatches);
+
 		let instructions;
 		if (
 			this.props.color1.color === "transparent" ||
@@ -46,7 +79,7 @@ export default class InspectTools extends Component {
 						<Text
 							style={[
 								style.text,
-								{ color: "white", fontSize: 18 }
+								{ color: "black", fontSize: 13, marginTop: 20 }
 							]}
 						>
 							Tap the Photo to Build Your Palette!
@@ -68,10 +101,18 @@ export default class InspectTools extends Component {
 						<Text
 							style={[
 								style.text,
-								{ color: "white", fontSize: 15, marginTop: 20 }
+								{ color: "black", fontSize: 13, marginTop: 20 }
 							]}
 						>
-							Tap a Swatch to Edit Your Palette!
+							Tap on a Swatch to Read Swatch Strip or
+						</Text>
+						<Text
+							style={[
+								style.text,
+								{ color: "black", fontSize: 13 }
+							]}
+						>
+							Press on a Swatch to Edit Your Palette!
 						</Text>
 
 						<Icon.Button
@@ -99,120 +140,7 @@ export default class InspectTools extends Component {
 						justifyContent: "center"
 					}}
 				>
-					<TouchableOpacity
-						style={{
-							width: standardBoxSize,
-							height: standardBoxSize,
-							backgroundColor: this.props.color1.color,
-							borderWidth: 2,
-							borderStyle: "dashed",
-							borderColor: this.props.color1.border,
-							justifyContent: "center",
-							alignItems: "center"
-						}}
-						onPress={() =>
-							this.resetHandler(this.props.color1.color)
-						}
-					>
-						<Text style={{ color: this.props.color1.border }}>
-							1
-						</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						style={{
-							width: standardBoxSize,
-							height: standardBoxSize,
-							backgroundColor: this.props.color2.color,
-							borderWidth: 2,
-							borderStyle: "dashed",
-							borderColor: this.props.color2.border,
-							justifyContent: "center",
-							alignItems: "center"
-						}}
-						onPress={() =>
-							this.resetHandler(this.props.color2.color)
-						}
-					>
-						<Text style={{ color: this.props.color2.border }}>
-							2
-						</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						style={{
-							width: standardBoxSize,
-							height: standardBoxSize,
-							backgroundColor: this.props.color3.color,
-							borderWidth: 2,
-							borderStyle: "dashed",
-							borderColor: this.props.color3.border,
-							justifyContent: "center",
-							alignItems: "center"
-						}}
-						onPress={() =>
-							this.resetHandler(this.props.color3.color)
-						}
-					>
-						<Text style={{ color: this.props.color3.border }}>
-							3
-						</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						style={{
-							width: standardBoxSize,
-							height: standardBoxSize,
-							backgroundColor: this.props.color4.color,
-							borderWidth: 2,
-							borderStyle: "dashed",
-							borderColor: this.props.color4.border,
-							justifyContent: "center",
-							alignItems: "center"
-						}}
-						onPress={() =>
-							this.resetHandler(this.props.color4.color)
-						}
-					>
-						<Text style={{ color: this.props.color4.border }}>
-							4
-						</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						style={{
-							width: standardBoxSize,
-							height: standardBoxSize,
-							backgroundColor: this.props.color5.color,
-							borderWidth: 2,
-							borderStyle: "dashed",
-							borderColor: this.props.color5.border,
-							justifyContent: "center",
-							alignItems: "center"
-						}}
-						onPress={() =>
-							this.resetHandler(this.props.color5.color)
-						}
-					>
-						<Text style={{ color: this.props.color5.border }}>
-							5
-						</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						style={{
-							width: standardBoxSize,
-							height: standardBoxSize,
-							backgroundColor: this.props.color6.color,
-							borderWidth: 2,
-							borderStyle: "dashed",
-							borderColor: this.props.color6.border,
-							justifyContent: "center",
-							alignItems: "center"
-						}}
-						onPress={() =>
-							this.resetHandler(this.props.color6.color)
-						}
-					>
-						<Text style={{ color: this.props.color6.border }}>
-							6
-						</Text>
-					</TouchableOpacity>
+					{swatches}
 				</View>
 				{instructions}
 			</View>

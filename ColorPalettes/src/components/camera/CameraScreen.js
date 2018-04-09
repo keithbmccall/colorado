@@ -27,10 +27,10 @@ export default class CameraScreen extends Component {
 				style={{
 					flex: 1,
 					flexDirection: "column",
-					backgroundColor: "#111"
+					backgroundColor: "#ddd"
 				}}
 			>
-				<StatusBar hidden={false} barStyle="light-content" />
+				<StatusBar hidden={false} barStyle="dark-content" />
 				<View style={style.statusPadding} />
 				<Camera
 					navigate={this.props.navigation.navigate}
@@ -80,6 +80,16 @@ export default class CameraScreen extends Component {
 							this.props.screenProps.getDominantSwatches
 						}
 						swatchesLoaded={this.props.screenProps.swatchesLoaded}
+						//
+						currentInspectSwatch={
+							this.props.screenProps.currentInspectSwatch
+						}
+						toggleSwatchInspectModal={
+							this.props.screenProps.toggleSwatchInspectModal
+						}
+						inspectSwatchModalOpen={
+							this.props.screenProps.inspectSwatchModalOpen
+						}
 					/>
 				</Modal>
 			</View>

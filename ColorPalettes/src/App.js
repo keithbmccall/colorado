@@ -31,6 +31,8 @@ export default class App extends Component<Props> {
       //
       swatchesLoaded: false,
       //inspect state
+      currentInspectSwatch: "#ffffff",
+      inspectSwatchModalOpen: false,
       currentImage: "",
       currentImageMounted: false,
       inspectModalOpen: false,
@@ -49,7 +51,7 @@ export default class App extends Component<Props> {
       currentPalette: {},
       currentPaletteMounted: false,
       //
-      viewportColor: "",
+      viewportColor: "#ffffff",
       viewportLoaded: false
     };
   }
@@ -115,18 +117,28 @@ export default class App extends Component<Props> {
     });
   };
   savePalette = data => {
-    console.log("save", data);
-    AsyncStorage.setItem(
-      data.paletteName,
-      JSON.stringify([
-        this.state.color1.color,
-        this.state.color2.color,
-        this.state.color3.color,
-        this.state.color4.color,
-        this.state.color5.color,
-        this.state.color6.color
-      ])
-    ).then(res => this.setState({ palettesLoaded: false }, this.getPalettes()));
+    console.log(data);
+    let name = data.paletteName;
+    AsyncStorage.getAllKeys().then(response => {
+      while (response.includes(name)) {
+        name = `${name} (1)`;
+        console.log(name);
+      }
+      console.log("wtf", name);
+      AsyncStorage.setItem(
+        name,
+        JSON.stringify([
+          this.state.color1.color,
+          this.state.color2.color,
+          this.state.color3.color,
+          this.state.color4.color,
+          this.state.color5.color,
+          this.state.color6.color
+        ])
+      ).then(res =>
+        this.setState({ palettesLoaded: false }, this.getPalettes())
+      );
+    });
   };
   //
   // camera roll
@@ -155,6 +167,12 @@ export default class App extends Component<Props> {
       },
       error => console.log(error)
     );
+  };
+  toggleSwatchInspectModal = color => {
+    this.setState({
+      currentInspectSwatch: color,
+      inspectSwatchModalOpen: !this.state.inspectSwatchModalOpen
+    });
   };
   toggleCameraRollModal = () => {
     this.setState({
@@ -235,7 +253,7 @@ export default class App extends Component<Props> {
       key => this.state[key].color === color
     );
     this.setState({
-      [colorToReset]: { color: "transparent", border: "white" }
+      [colorToReset]: { color: "transparent", border: "black" }
     });
   };
   findColor = (e, image) => {
@@ -318,6 +336,9 @@ export default class App extends Component<Props> {
       color4: this.state.color4,
       color5: this.state.color5,
       color6: this.state.color6,
+      currentInspectSwatch: this.state.currentInspectSwatch,
+      inspectSwatchModalOpen: this.state.inspectSwatchModalOpen,
+      toggleSwatchInspectModal: this.toggleSwatchInspectModal,
       // palettes / library
       savePalette: this.savePalette,
       palettesLoaded: this.state.palettesLoaded,

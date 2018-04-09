@@ -3,31 +3,31 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "Colorado_icon.png",
+      "filename" : "Colorado40.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "Colorado_icon-1.png",
+      "filename" : "Colorado60.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Colorado_icon-2.png",
+      "filename" : "Colorado58.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Colorado_icon-3.png",
+      "filename" : "Colorado87.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Colorado_icon-4.png",
+      "filename" : "Colorado80.png",
       "scale" : "2x"
     },
     {
@@ -45,13 +45,13 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Colorado_icon-7.png",
+      "filename" : "Colorado180.png",
       "scale" : "3x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "Colorado_icon-8.png",
+      "filename" : "Colorado1024.png",
       "scale" : "1x"
     }
   ],

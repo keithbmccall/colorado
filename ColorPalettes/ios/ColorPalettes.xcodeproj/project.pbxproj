@@ -47,6 +47,8 @@
 		870D1322DD494E849FEE1CA3 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8000E48E6CDE4191BB073426 /* Entypo.ttf */; };
 		96645BC62077EFEC006F4D9E /* libRNPixelColor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96645BC22077EA9E006F4D9E /* libRNPixelColor.a */; };
 		96645C1E207859B0006F4D9E /* libRNPalette.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96645C052077F06B006F4D9E /* libRNPalette.a */; };
+		96645D132079EC96006F4D9E /* Colorado.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96645D122079EC96006F4D9E /* Colorado.storyboard */; };
+		96645D142079EC96006F4D9E /* Colorado.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96645D122079EC96006F4D9E /* Colorado.storyboard */; };
 		96930DC72075CDAE00F62489 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96930DC62075CD9900F62489 /* libRCTCameraRoll.a */; };
 		97AB47F3A38540CD8A17F605 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 100CB18AF6DE4D4183D02AB2 /* MaterialCommunityIcons.ttf */; };
 		9C6471D13604408EA87EFF37 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A86653969E4713B7C1B3E4 /* libRNFetchBlob.a */; };
@@ -427,6 +429,7 @@
 		8000E48E6CDE4191BB073426 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		82C2C587166840678A381715 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		96645D122079EC96006F4D9E /* Colorado.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Colorado.storyboard; path = ColorPalettes/Images.xcassets/Colorado.storyboard; sourceTree = "<group>"; };
 		96930DC12075CD9900F62489 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		9FD7A210399848E08DF9CDE3 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
 		ABC921EFBA654334A54B08AA /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -585,6 +588,7 @@
 		13B07FAE1A68108700A75B9A /* ColorPalettes */ = {
 			isa = PBXGroup;
 			children = (
+				96645D122079EC96006F4D9E /* Colorado.storyboard */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -1329,6 +1333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96645D142079EC96006F4D9E /* Colorado.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1339,6 +1344,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				870D1322DD494E849FEE1CA3 /* Entypo.ttf in Resources */,
+				96645D132079EC96006F4D9E /* Colorado.storyboard in Resources */,
 				BF79DAB63E2043988B29521A /* EvilIcons.ttf in Resources */,
 				3FB2025BA263457A90B9F79F /* Feather.ttf in Resources */,
 				55A4654031F64DA18B159FA3 /* FontAwesome.ttf in Resources */,
@@ -1567,7 +1573,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ColorPalettes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colorado.id;
 				PRODUCT_NAME = ColorPalettes;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1597,7 +1603,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ColorPalettes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colorado.id;
 				PRODUCT_NAME = ColorPalettes;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

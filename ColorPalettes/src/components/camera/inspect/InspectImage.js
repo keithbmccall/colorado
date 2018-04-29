@@ -15,8 +15,8 @@ import {
 	StatusBar,
 	PanResponder
 } from "react-native";
-
 //
+
 import Icon from "react-native-vector-icons/Ionicons";
 import style from "../../../Style";
 
@@ -47,6 +47,7 @@ export default class InspectImage extends Component {
 	}
 	render() {
 		return (
+			<ScrollView contentContainerStyle={{flex:1}} pinchGestureEnabled={true} maximumZoomScale={2}>
 			<Image
 				{...this.panResponder.panHandlers}
 				style={{
@@ -57,7 +58,7 @@ export default class InspectImage extends Component {
 					uri: this.props.currentImage.uri
 				}}
 				onLayout={this.props.onCurrentImageLayout.bind(this)}
-			/>
+			/></ScrollView>
 		);
 	}
 }

@@ -21,7 +21,7 @@ import { Router } from "./Router";
 //
 console.disableYellowBox = true;
 
-export default class App extends Component<Props> {
+export default class App extends Component{
   constructor() {
     super();
     this.state = {
@@ -52,17 +52,40 @@ export default class App extends Component<Props> {
       currentPaletteMounted: false,
       //
       viewportColor: "#ffffff",
-      viewportLoaded: false
+      viewMode: false
     };
   }
-  setViewportColor = color => {
+  libraryToViewport = color => {
     this.setState(
       {
         viewportColor: color,
-        viewportLoaded: true
+        viewportLoaded: true,
+        currentInspectSwatch: color,
+        inspectSwatchModalOpen: false,
+        viewMode: true,
+        currentPaletteMounted: !this.state.currentPaletteMounted
       },
-      this.toggleLibraryModal()
+      () =>
+        setTimeout(
+          () =>
+            this.setState({
+              currentPalette: {},
+              libraryModalOpen: !this.state.libraryModalOpen
+            }),
+          0.1
+        )
     );
+  };
+  toggleViewport = () => {
+    this.setState({
+      viewMode: !this.state.viewMode
+    });
+  };
+  setViewportColor = color => {
+    this.setState({
+      viewportColor: color,
+      viewportLoaded: true
+    });
   };
   generateViewportColor = () => {
     console.log("big color!");
@@ -351,9 +374,11 @@ export default class App extends Component<Props> {
       deletePalette: this.deletePalette,
       getPalettes: this.getPalettes,
       //viewport
+      viewMode: this.state.viewMode,
       viewportColor: this.state.viewportColor,
-      viewportLoaded: this.state.viewportLoaded,
-      setViewportColor: this.setViewportColor
+      setViewportColor: this.setViewportColor,
+      toggleViewport: this.toggleViewport,
+      libraryToViewport: this.libraryToViewport
     };
     return <Router screenProps={screenProps} />;
   }

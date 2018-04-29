@@ -18,8 +18,10 @@ import { RNCamera } from "react-native-camera";
 
 import style from "../../../Style";
 //
+import Aux from "../../../Aux";
 import CameraPunch from "./CameraPunch";
 import CameraOptions from "./CameraOptions";
+import Viewport from "../viewport/Viewport";
 //
 const { Type, FlashMode, WhiteBalance } = RNCamera.Constants;
 
@@ -37,7 +39,6 @@ export default class Camera extends Component {
 			iconCameraType: "ios-reverse-camera",
 			iconWhiteBalance: "ios-aperture-outline"
 		};
-		this.takePicture = this.takePicture.bind(this);
 	}
 	// camera options
 	toggleFlashMode = () => {
@@ -63,26 +64,9 @@ export default class Camera extends Component {
 					iconCameraType: "ios-reverse-camera"
 			  });
 	};
-	toggleWhiteBalance = () => {
-		if (this.state.whiteBalance === WhiteBalance.auto) {
-			this.setState({
-				whiteBalance: WhiteBalance.sunny,
-				iconWhiteBalance: "ios-sunny"
-			});
-		} else if (this.state.whiteBalance === WhiteBalance.sunny) {
-			this.setState({
-				whiteBalance: WhiteBalance.cloudy,
-				iconWhiteBalance: "ios-cloudy"
-			});
-		} else {
-			this.setState({
-				whiteBalance: WhiteBalance.auto,
-				iconWhiteBalance: "ios-aperture-outline"
-			});
-		}
-	};
+
 	// camera options end
-	takePicture = async function() {
+	takePicture = async () => {
 		this.props.toggleInspectModal();
 		if (this.camera) {
 			const options = {
@@ -108,15 +92,20 @@ export default class Camera extends Component {
 		});
 	}
 	render() {
+		let viewPort;
+		if (this.props.viewMode) {
+			viewPort = <Viewport viewportColor={this.props.viewportColor} />;
+		}
 		return (
-			<View style={style.flex1}>
+			<Aux>
 				<CameraOptions
 					toggleCameraType={this.toggleCameraType}
 					toggleWhiteBalance={this.toggleWhiteBalance}
 					toggleFlashMode={this.toggleFlashMode}
-					iconWhiteBalance={this.state.iconWhiteBalance}
 					iconCameraType={this.state.iconCameraType}
 					iconFlashMode={this.state.iconFlashMode}
+					toggleViewport={this.props.toggleViewport}
+					viewMode={this.props.viewMode}
 				/>
 				<View style={{ flex: 8 }}>
 					<RNCamera
@@ -126,12 +115,13 @@ export default class Camera extends Component {
 						style={style.preview}
 						type={this.state.cameraType}
 						flashMode={this.state.flashMode}
-						whiteBalance={this.state.whiteBalance}
 						permissionDialogTitle={"Permission to use camera"}
 						permissionDialogMessage={
 							"We need your permission to use your camera phone"
 						}
-					/>
+					>
+						{viewPort}
+					</RNCamera>
 				</View>
 				<CameraPunch
 					navigate={this.props.navigate}
@@ -139,7 +129,7 @@ export default class Camera extends Component {
 					takePicture={this.takePicture}
 					getCameraRoll={this.props.getCameraRoll}
 				/>
-			</View>
+			</Aux>
 		);
 	}
 }

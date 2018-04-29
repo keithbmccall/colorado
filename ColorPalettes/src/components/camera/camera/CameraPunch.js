@@ -21,7 +21,7 @@ export default class CameraPunch extends Component {
 			<View
 				style={{
 					flex: 3,
-					justifyContent: "space-evenly",
+					justifyContent: "space-around",
 					alignItems: "center",
 					flexDirection: "row",
 					backgroundColor: "#ddd"
@@ -55,7 +55,7 @@ export default class CameraPunch extends Component {
 						backgroundColor="transparent"
 						color="#91268d"
 						onPress={() => this.props.navigate("Library")}
-						underlayColor="black"
+						underlayColor="transparent"
 					/>
 				</View>
 			</View>

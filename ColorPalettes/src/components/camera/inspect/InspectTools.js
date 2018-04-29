@@ -20,6 +20,7 @@ import Icon from "react-native-vector-icons/Entypo";
 
 const { width, height } = Dimensions.get("window");
 const standardBoxSize = width / 6;
+
 export default class InspectTools extends Component {
 	resetHandler = color => {
 		this.props.resetSetColor(color);
@@ -82,7 +83,7 @@ export default class InspectTools extends Component {
 								{ color: "black", fontSize: 13, marginTop: 20 }
 							]}
 						>
-							Tap the Photo to Build Your Palette!
+							TAP the Photo to Build Your Palette!
 						</Text>
 						<View />
 					</View>
@@ -104,7 +105,7 @@ export default class InspectTools extends Component {
 								{ color: "black", fontSize: 13, marginTop: 20 }
 							]}
 						>
-							Tap on a Swatch to Read Swatch Strip or
+							TAP on a swatch to read swatch strip or
 						</Text>
 						<Text
 							style={[
@@ -112,7 +113,7 @@ export default class InspectTools extends Component {
 								{ color: "black", fontSize: 13 }
 							]}
 						>
-							Press on a Swatch to Edit Your Palette!
+							PRESS on a swatch to edit your Palette!
 						</Text>
 
 						<Icon.Button
@@ -122,6 +123,7 @@ export default class InspectTools extends Component {
 							color="#91268d"
 							onPress={this.props.savePaletteHandler}
 						/>
+						
 					</View>
 				</View>
 			);

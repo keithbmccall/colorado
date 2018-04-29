@@ -24,7 +24,7 @@ import style from "../../../Style";
 import Loading from "../../../Loading";
 import InspectTools from "./InspectTools";
 import InspectImage from "./InspectImage";
-import InspectSwatchModal from "./InspectSwatchModal";
+import SwatchModal from '../../../utility/SwatchModal'
 //
 const { width, height } = Dimensions.get("window");
 
@@ -68,7 +68,6 @@ export default class InspectModal extends Component {
 							<View
 								style={{
 									flex: 1,
-									alignItems: "flex-start",
 									flexDirection: "row",
 									justifyContent: "center"
 								}}
@@ -76,14 +75,15 @@ export default class InspectModal extends Component {
 								<TextInput
 									placeholder="Name your palette..."
 									style={{
+										marginLeft:50,
 										height: 40,
-										width: 240,
+										width: 220,
 										borderColor: "gray",
 										borderWidth: 1,
 										paddingLeft: 5,
 										backgroundColor: "white",
 										textAlign: "center",
-										borderRadius: 40
+										borderRadius: 10
 									}}
 									keyboardType="default"
 									keyboardAppearance="dark"
@@ -107,6 +107,7 @@ export default class InspectModal extends Component {
 								/>
 							</View>
 						</View>
+
 						<InspectImage
 							currentImage={this.props.currentImage}
 							findColor={this.props.findColor}
@@ -141,8 +142,8 @@ export default class InspectModal extends Component {
 						transparent={false}
 						visible={this.props.inspectSwatchModalOpen}
 					>
-						<InspectSwatchModal
-							currentInspectSwatch={
+						<SwatchModal
+							swatch={
 								this.props.currentInspectSwatch
 							}
 							toggleSwatchInspectModal={

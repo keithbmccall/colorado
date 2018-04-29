@@ -45,6 +45,9 @@ export default class CameraScreen extends Component {
 					getDominantSwatches={
 						this.props.screenProps.getDominantSwatches
 					}
+					toggleViewport={this.props.screenProps.toggleViewport}
+					viewMode={this.props.screenProps.viewMode}
+					viewportColor={this.props.screenProps.viewportColor}
 				/>
 				<Modal
 					animationType="slide"

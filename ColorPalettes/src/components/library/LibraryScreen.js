@@ -52,14 +52,14 @@ export default class Library extends Component {
           }}
         >
           <StatusBar barStyle="dark-content" hidden={false} />
-          <View style={[style.statusPadding, { backgroundColor: "#ddd" }]} />
+          <View style={[style.statusPadding, { backgroundColor: "#eee" }]} />
           <View
             style={{
               height: height / 10,
               backgroundColor: "transparent",
               flexDirection: "row",
               justifyContent: "space-between",
-              backgroundColor: "#ddd",
+              backgroundColor: "#eee",
               alignItems: "center",
               borderBottomColor: "#ccc",
               borderBottomWidth: 1

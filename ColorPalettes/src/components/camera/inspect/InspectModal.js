@@ -50,14 +50,14 @@ export default class InspectModal extends Component {
 	render() {
 		if (this.props.currentImageMounted && this.props.swatchesLoaded) {
 			return (
-				<View style={{ flex: 1, backgroundColor: "#ddd" }}>
+				<View style={{ flex: 1, backgroundColor: "#eee" }}>
 					<StatusBar barStyle="dark-content" hidden={false} />
 					<View style={style.statusPadding} />
 					<View style={{ flex: 8, backgroundColor: "#fff" }}>
 						<View
 							style={{
 								height: height / 10,
-								backgroundColor: "#ddd",
+								backgroundColor: "#eee",
 								flexDirection: "row",
 								justifyContent: "flex-end",
 								alignItems: "center",

@@ -84,7 +84,7 @@ export default class LibraryModal extends Component {
           <View
             style={{
               height: height / 10,
-              backgroundColor: "#ddd",
+              backgroundColor: "#eee",
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",

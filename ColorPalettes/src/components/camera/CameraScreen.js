@@ -27,7 +27,7 @@ export default class CameraScreen extends Component {
 				style={{
 					flex: 1,
 					flexDirection: "column",
-					backgroundColor: "#ddd"
+					backgroundColor: "#eee"
 				}}
 			>
 				<StatusBar hidden={false} barStyle="dark-content" />

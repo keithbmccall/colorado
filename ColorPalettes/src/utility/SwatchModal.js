@@ -30,7 +30,7 @@ const SwatchModal = props => {
 		<View
 			style={{
 				height: height / 10,
-				backgroundColor: "#ddd",
+				backgroundColor: "#eee",
 				flexDirection: "row",
 				justifyContent: "flex-end",
 				alignItems: "center",
@@ -58,7 +58,7 @@ const SwatchModal = props => {
 					backgroundColor: "transparent",
 					flexDirection: "row",
 					justifyContent: "space-between",
-					backgroundColor: "#ddd",
+					backgroundColor: "#eee",
 					alignItems: "center",
 					borderBottomColor: "black",
 					borderBottomWidth: 1

@@ -11,7 +11,7 @@ height === 812 ? (statusHeight = 40) : (statusHeight = 20);
 export default StyleSheet.create({
 	statusPadding: {
 		height: statusHeight,
-		backgroundColor: "#ddd"
+		backgroundColor: "#eee"
 	},
 	preview: {
 		flex: 1,
@@ -23,7 +23,7 @@ export default StyleSheet.create({
 	},
 	cameraRollContainer: {
 		flex: 9,
-		backgroundColor: "#ddd",
+		backgroundColor: "#eee",
 		paddingTop: 2
 	},
 	cameraRoll: {

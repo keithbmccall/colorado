@@ -24,7 +24,7 @@ export default class CameraPunch extends Component {
 					justifyContent: "space-around",
 					alignItems: "center",
 					flexDirection: "row",
-					backgroundColor: "#ddd"
+					backgroundColor: "#eee"
 				}}
 			>
 				<View>

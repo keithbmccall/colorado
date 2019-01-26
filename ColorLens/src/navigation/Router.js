@@ -16,12 +16,16 @@ const RootStack = createMaterialTopTabNavigator(
     lazy: true,
     tabBarPosition: "bottom",
     tabBarOptions: {
+      tabStyle:{
+        height:120
+      },
       activeTintColor: "#e91e63",
+      inactiveTintColor: 'navy',
       labelStyle: {
-        fontSize: 17
+        fontSize: 17,
       },
       style: {
-        backgroundColor: "blue"
+        backgroundColor: "#ddd"
       }
     }
   }

@@ -1,33 +1,48 @@
-import {
-  createAppContainer,
-  createMaterialTopTabNavigator
-} from "react-navigation";
+import { createAppContainer, createMaterialTopTabNavigator, createStackNavigator } from "react-navigation";
+import PalettesScreen from "../screens/palettes/PaletteScreen";
+import CameraScreen from "../screens/camera/CameraScreen";
+import ModalScreen from "../screens/modal/ModalScreen";
 
-import PalettesScreen from "../screens/PaletteScreen";
-import CameraScreen from "../screens/CameraScreen";
-
-const RootStack = createMaterialTopTabNavigator(
+let view = "Camera";
+// let view = "Home";
+//
+const MainStack = createMaterialTopTabNavigator(
   {
-    Home: PalettesScreen,
-    Camera: CameraScreen
+    Camera: CameraScreen,
+    Home: PalettesScreen
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: view,
     lazy: true,
     tabBarPosition: "bottom",
     tabBarOptions: {
-      tabStyle:{
-        height:120
+      tabStyle: {
+        height: 120
       },
       activeTintColor: "#e91e63",
-      inactiveTintColor: 'navy',
+      inactiveTintColor: "navy",
       labelStyle: {
-        fontSize: 17,
+        fontSize: 17
       },
       style: {
-        backgroundColor: "#ddd"
+        backgroundColor: "#ddd",
+        display: "none"
       }
     }
+  }
+);
+const RootStack = createStackNavigator(
+  {
+    Main: {
+      screen: MainStack
+    },
+    Modal: {
+      screen: ModalScreen
+    }
+  },
+  {
+    mode: "card",
+    headerMode: "none"
   }
 );
 

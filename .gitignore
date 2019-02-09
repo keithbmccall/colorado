@@ -1,10 +1,11 @@
-/Colorado_images
+Colorado_images
 
-./ColorPalettes/
+ColorPalettes/
 
 ./.DS_Store
 
-./.vscode
-./.history
-./.vscode
+
+.history
+.vscode
 ./*/**/keys
+__src

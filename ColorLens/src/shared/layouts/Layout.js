@@ -6,10 +6,9 @@ const Layout = props => {
     <View
       style={{
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+        backgroundColor: "#fff",
         paddingTop: 40,
-        border: '1px solid green'
+        paddingBottom: 30
       }}
     >
       {props.children}

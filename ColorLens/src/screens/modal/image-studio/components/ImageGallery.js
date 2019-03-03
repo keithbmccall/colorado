@@ -1,40 +1,41 @@
-import React, { Component } from "react";
+import React from "react";
 import { View, TouchableOpacity } from "react-native";
-import { LoadingView } from "shared/containers";
+import { LoadingView, ColorStripContainer } from "shared/containers";
 import { ScrollableList, ResponsiveImage } from "shared/tools";
+import style from "../styles";
 
-export default class ImageGallery extends Component {
-  constructor() {
-    super();
-    this.state = {
-      galleryDetails: {
-        rowSize: 3,
-        rowHeight: 120
-      }
-    };
-  }
+const ImageGallery = props => {
   renderPhotos = () => {
-    const { rowSize, rowHeight } = this.state.galleryDetails;
+    const { rowSize, rowHeight } = props.galleryOptions;
     const cellSize = { width: `${100 / rowSize}%`, height: rowHeight };
-    const responsiveImageComponent = (image, key) => (
-      <TouchableOpacity
-        underlayColor="transparent"
-        style={cellSize}
-        onPress={() => console.log("image: ", image)}
-        key={key}
-      >
-        <ResponsiveImage src={image.node.image.uri} />
-      </TouchableOpacity>
-    );
+    //
+    const responsiveImageComponent = (image, key) => {
+      console.log("lol", image);
+      return (
+        <TouchableOpacity
+          underlayColor="transparent"
+          style={[cellSize, style.colorStripImageWrapper]}
+          onPress={() => console.log("image: ", image)}
+          key={key}
+        >
+          <ResponsiveImage src={image.uri} />
+          <ColorStripContainer image={image.uri} />
+        </TouchableOpacity>
+      );
+    };
 
-    return this.props.photos.length ? this.props.photos.map(responsiveImageComponent) : <LoadingView />;
+    return props.photos.length ? props.photos.map(responsiveImageComponent) : <LoadingView />;
   };
-  render() {
-    const cameraRollPhotos = this.renderPhotos();
-    return (
-      <View style={{ backgroundColor: "#ddd", height: "50%" }}>
-        <ScrollableList lazy={true}>{cameraRollPhotos}</ScrollableList>
-      </View>
-    );
-  }
-}
+
+  //
+  const cameraRollPhotos = renderPhotos();
+  return (
+    <View style={{ backgroundColor: "#ddd", height: "50%", width: "100%" }}>
+      <ScrollableList lazy={true} columns={props.galleryOptions.rowSize}>
+        {cameraRollPhotos}
+      </ScrollableList>
+    </View>
+  );
+};
+
+export default ImageGallery;

@@ -5,38 +5,52 @@ import ImageGallery from "./components/ImageGallery";
 import FocusedImage from "./components/FocusedImage";
 
 import style from "./styles";
-export default class ImageStudioContainer extends Component {
+export default class ImageStudioScreen extends Component {
   constructor() {
     super();
     this.state = {
       photos: [],
       focusedPhoto: { valid: false, photo: "", type: "" },
-      pageInfo: {}
+      pageInfo: {},
+      galleryOptions: {
+        rowSize: 2,
+        rowHeight: 220
+      }
     };
   }
-
+  buildPhotoObject = photo => {
+    photo.id = photo.node.timestamp;
+    photo.uri = photo.node.image.uri;
+    return photo;
+  };
   getPhotos = async () => {
     const photos = await CameraRoll.getPhotos({
       first: 20,
       assetType: "All"
     });
     this.setState({
-      photos: photos.edges,
-      focusedPhoto: { valid: true, photo: photos.edges[0], type: "camera-roll" },
+      photos: photos.edges.map(this.buildPhotoObject),
+      focusedPhoto: { valid: true, photo: this.buildPhotoObject(photos.edges[0]), type: "camera-roll" },
       pageInfo: photos.page_info
     });
   };
 
-  componentDidMount() {
-    this.getPhotos();
+  setSwatcbes=()=>{
+
+    this.setState({
+      
+    })
   }
 
   render() {
     return (
       <View style={style.imageStudioContainer}>
         <FocusedImage focusedPhoto={this.state.focusedPhoto} />
-        <ImageGallery photos={this.state.photos} />
+        <ImageGallery photos={this.state.photos} galleryOptions={this.state.galleryOptions} />
       </View>
     );
+  }
+  componentDidMount() {
+    this.getPhotos();
   }
 }

@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
-import { ScrollView, FlatList, StyleSheet, View } from "react-native";
+import { ScrollView, FlatList, StyleSheet } from "react-native";
 
 const ScrollableList = props => {
   if (props.lazy === true) {
     return (
       <FlatList
         data={props.children}
-        numColumns={3}
+        numColumns={props.columns}
         contentContainerStyle={style.flatListContainer}
         renderItem={({ item }) => <Fragment>{item}</Fragment>}
       />
@@ -17,7 +17,6 @@ const ScrollableList = props => {
 
 const style = StyleSheet.create({
   scrollViewContainer: {
-    flex: 1,
     borderWidth: 10,
     borderColor: "#000",
     borderStyle: "solid",
@@ -25,9 +24,10 @@ const style = StyleSheet.create({
     flexDirection: "row"
   },
   flatListContainer: {
-    flex: 1,
-    borderWidth: 10,
-    borderColor: "#000",
+    borderTopWidth: 2,
+    borderLeftWidth:2,
+    borderRightWidth:2,
+    borderColor: "#fff",
     borderStyle: "solid"
   }
 });

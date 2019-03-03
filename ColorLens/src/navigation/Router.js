@@ -1,7 +1,8 @@
 import { createAppContainer, createMaterialTopTabNavigator, createStackNavigator } from "react-navigation";
 import LibraryScreen from "../screens/main/library/LibraryScreen";
 import CameraScreen from "../screens/main/camera/CameraScreen";
-import ModalScreen from "../screens/modal/ModalScreen";
+import ModalScreen from "../screens/modal/ModalIndex";
+import ModalIndex from "../screens/modal/ModalIndex";
 
 let view = "Camera";
 // let view = "Home";
@@ -37,7 +38,7 @@ const RootStack = createStackNavigator(
       screen: MainStack
     },
     Modal: {
-      screen: ModalScreen
+      screen: ModalIndex
     }
   },
   {

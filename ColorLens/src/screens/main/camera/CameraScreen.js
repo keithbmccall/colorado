@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { RNCamera } from "react-native-camera";
-import CameraOptions from ".components/CameraOptions";
+import CameraOptions from "./components/CameraOptions";
 import style from "./styles";
-import Layout from "../../shared/layouts/Layout";
+import { Layout } from "shared/containers";
 //
 export default class CameraScreen extends Component {
   constructor() {
@@ -16,7 +16,7 @@ export default class CameraScreen extends Component {
     };
   }
   launchModal = () => this.props.navigation.navigate("Modal");
-  //  
+  //
   // takePicture = async function() {
   //   if (this.camera) {
   //     const options = { quality: 0.5, base64: true };
@@ -24,8 +24,8 @@ export default class CameraScreen extends Component {
   //     console.log(data.uri);
   //   }
   // };
-  takePicture = ()=>this.launchModal()
-  
+  takePicture = () => this.launchModal();
+
   render() {
     const { autoFocus, flashMode, whiteBalance, type, zoom } = this.state;
     return (

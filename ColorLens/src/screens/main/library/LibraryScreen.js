@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Text } from "react-native";
-import Layout from "../../shared/layouts/Layout";
+import { Layout } from "shared/containers";
 
-export default class PalettesScreen extends Component {
+export default class LibraryScreen extends Component {
   render() {
     return (
       <Layout>

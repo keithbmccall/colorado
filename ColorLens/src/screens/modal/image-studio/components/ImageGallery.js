@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { View } from "react-native";
-import LoadingView from "../../../shared/loading/LoadingView";
-import ScrollableList from "../../../shared/tools/lists/ScrollableList";
-import ResponsiveImage from "../../../shared/tools/images/ResponsiveImage";
+import { View, TouchableOpacity } from "react-native";
+import { LoadingView } from "shared/containers";
+import { ScrollableList, ResponsiveImage } from "shared/tools";
 
 export default class ImageGallery extends Component {
   constructor() {
@@ -18,8 +17,13 @@ export default class ImageGallery extends Component {
     const { rowSize, rowHeight } = this.state.galleryDetails;
     const cellSize = { width: `${100 / rowSize}%`, height: rowHeight };
     const responsiveImageComponent = (image, key) => (
-      <TouchableOpacity underlayColor="transparent" style={cellSize} onPress={() => console.log("image: ", image)}>
-        <ResponsiveImage key={key} src={image.node.image.uri} />
+      <TouchableOpacity
+        underlayColor="transparent"
+        style={cellSize}
+        onPress={() => console.log("image: ", image)}
+        key={key}
+      >
+        <ResponsiveImage src={image.node.image.uri} />
       </TouchableOpacity>
     );
 

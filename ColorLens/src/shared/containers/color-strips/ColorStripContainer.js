@@ -1,33 +1,55 @@
-import React, { Component, Fragment } from "react";
-import { View, Text } from "react-native";
-
+import React, { Component } from "react";
+import { View } from "react-native";
+import { getAllSwatches } from "react-native-palette";
+import { LoadingView } from "shared/containers";
+import { normalizeSwatches, equalizeSwatchLength, renderSwatches } from "./methods";
 
 export default class ColorStripContainer extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
-      image: props.imageUri,
+      options: { quality: "medium" },
       colors: {
+        loaded: false,
         swatches: []
       }
     };
   }
 
+  getDominantSwatches = image => {
+    getAllSwatches(this.state.options, image, (error, swatches) => {
+      if (error) {
+        console.log("error in PhotosPage.getSwatches", error);
+      } else {
+        this.setState({
+          colors: { loaded: true, swatches: normalizeSwatches(swatches) }
+        });
+      }
+    });
+  };
+  renderSwatches = (swatch, key) => {
+    return <View style={{ flex: 1, backgroundColor: swatch.color }} key={key} />;
+  };
+
   render() {
-    return (
+    return this.state.colors.loaded ? (
       <View
         style={{
           position: "absolute",
-          top: 0,
           left: 0,
-          right: 0,
           bottom: 0,
-          justifyContent: "center",
-          alignItems: "center"
+          height: '15%',
+          width: "100%",
+          flexDirection: "row"
         }}
       >
-        <Text style={{ color: "#fff" }}>CENTERE</Text>
+        {this.state.colors.swatches.map(this.renderSwatches)}
       </View>
+    ) : (
+      <LoadingView />
     );
+  }
+  componentDidMount() {
+    this.getDominantSwatches(this.props.image);
   }
 }

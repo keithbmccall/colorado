@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from "react";
 import { RNCamera } from "react-native-camera";
-import CameraOptions from "./components/CameraOptions";
+import CameraOptions from ".components/CameraOptions";
 import style from "./styles";
+import Layout from "../../shared/layouts/Layout";
 //
-export default class CameraContainer extends Component {
+export default class CameraScreen extends Component {
   constructor() {
     super();
     this.state = {
@@ -28,7 +29,7 @@ export default class CameraContainer extends Component {
   render() {
     const { autoFocus, flashMode, whiteBalance, type, zoom } = this.state;
     return (
-      <Fragment>
+      <Layout>
         <RNCamera
           ref={ref => {
             this.camera = ref;
@@ -42,7 +43,7 @@ export default class CameraContainer extends Component {
           captureAudio={false}
         />
         <CameraOptions takePicture={this.takePicture} />
-      </Fragment>
+      </Layout>
     );
   }
 }

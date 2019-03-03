@@ -1,6 +1,6 @@
 import { createAppContainer, createMaterialTopTabNavigator, createStackNavigator } from "react-navigation";
-import PalettesScreen from "../screens/palettes/PaletteScreen";
-import CameraScreen from "../screens/camera/CameraScreen";
+import LibraryScreen from "../screens/main/library/LibraryScreen";
+import CameraScreen from "../screens/main/camera/CameraScreen";
 import ModalScreen from "../screens/modal/ModalScreen";
 
 let view = "Camera";
@@ -9,7 +9,7 @@ let view = "Camera";
 const MainStack = createMaterialTopTabNavigator(
   {
     Camera: CameraScreen,
-    Home: PalettesScreen
+    Home: LibraryScreen
   },
   {
     initialRouteName: view,

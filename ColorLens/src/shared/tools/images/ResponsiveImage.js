@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Image } from "react-native";
-import LoadingView from "../../loading/LoadingView";
+import { LoadingView } from "shared/containers";
 class ResponsiveImage extends Component {
   constructor(props) {
     super(props);

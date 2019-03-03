@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { View } from "react-native";
-import ResponsiveImage from "../../../shared/tools/images/ResponsiveImage";
-import ColorStripContainer from "../../color-strips/ColorStripContainer";
-import style from "../styles"
-
+import { ColorStripContainer } from "shared/containers";
+import { ResponsiveImage } from "shared/tools";
+import style from "../styles";
 
 //
 export default class ImageStudioContainer extends Component {

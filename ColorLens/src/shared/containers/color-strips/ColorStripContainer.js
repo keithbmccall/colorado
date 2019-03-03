@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { View, Text } from "react-native";
-import LoadingView from "../../shared/loading/LoadingView";
+
 
 export default class ColorStripContainer extends Component {
   constructor(props) {

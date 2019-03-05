@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, TouchableOpacity } from "react-native";
-import { LoadingView, ColorStripContainer } from "shared/containers";
-import { ScrollableList, ResponsiveImage } from "shared/tools";
+import { LoadingView, ImageWithColorStrip } from "shared/containers";
+import { ScrollableList } from "shared/tools";
 import style from "../styles";
 
 const renderPhotos = props => {
@@ -13,21 +13,24 @@ const renderPhotos = props => {
       <TouchableOpacity
         underlayColor="transparent"
         style={[style.galleryImageWrapper, cellSize]}
-        onPress={() => console.log("image: ", image)}
+        onPress={() => props.setFocusedImage(image)}
         key={key}
       >
-        <ResponsiveImage src={image.uri} />
-        <ColorStripContainer image={image.uri} />
+        <ImageWithColorStrip src={image.uri} />
       </TouchableOpacity>
     );
   };
-  return props.photos.length ? props.photos.map(imageCard) : <LoadingView />;
+
+  return props.photos.map(imageCard);
 };
+
+const renderContent = props =>
+  props.photos.length ? renderPhotos(props) : <LoadingView />;
 
 const ImageGallery = props => (
   <View style={{ backgroundColor: "#ddd", height: "50%", width: "100%" }}>
     <ScrollableList lazy={true} columns={props.galleryOptions.rowSize}>
-      {renderPhotos(props)}
+      {renderContent(props)}
     </ScrollableList>
   </View>
 );
@@ -48,6 +51,8 @@ const rowSizeRange = (props, propName, componentName) => {
   );
 };
 ImageGallery.propTypes = {
+  photos: PropTypes.array.isRequired,
+  setFocusedImage: PropTypes.func.isRequired,
   galleryOptions: PropTypes.shape({
     rowSize: rowSizeRange,
     rowHeight: PropTypes.number.isRequired

@@ -30,12 +30,25 @@ export default class ImageStudioScreen extends Component {
     });
     this.setState({
       photos: photos.edges.map(this.buildPhotoObject),
-      focusedPhoto: { valid: true, photo: this.buildPhotoObject(photos.edges[0]), type: "camera-roll" },
+      focusedPhoto: {
+        valid: true,
+        photo: this.buildPhotoObject(photos.edges[0]),
+        type: "camera-roll"
+      },
       pageInfo: photos.page_info
     });
   };
-
-  setSwatcbes = () => {
+  setFocusedImage = image => {
+    console.log("setfocused", image);
+    this.setState({
+      focusedPhoto: {
+        photo: {
+          uri: image.uri
+        }
+      }
+    });
+  };
+  setSwatches = () => {
     this.setState({});
   };
 
@@ -43,7 +56,11 @@ export default class ImageStudioScreen extends Component {
     return (
       <View style={style.imageStudioContainer}>
         <FocusedImage focusedPhoto={this.state.focusedPhoto} />
-        <ImageGallery photos={this.state.photos} galleryOptions={this.state.galleryOptions} />
+        <ImageGallery
+          photos={this.state.photos}
+          galleryOptions={this.state.galleryOptions}
+          setFocusedImage={this.setFocusedImage}
+        />
       </View>
     );
   }

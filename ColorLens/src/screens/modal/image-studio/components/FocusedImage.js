@@ -1,16 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View } from "react-native";
-import { ColorStripContainer, LoadingView } from "shared/containers";
-import { ResponsiveImage } from "shared/tools";
+import { ImageWithColorStrip, LoadingView } from "shared/containers";
 import style from "../styles";
 
 //
 const FocusedImage = props =>
   props.focusedPhoto.valid ? (
     <View style={style.focusedImageWrapper}>
-      <ResponsiveImage height="100%" width={1} src={props.focusedPhoto.photo.uri} />
-      <ColorStripContainer image={props.focusedPhoto.photo.uri} />
+      <ImageWithColorStrip src={props.focusedPhoto.photo.uri} />
     </View>
   ) : (
     <LoadingView />
@@ -26,4 +24,3 @@ FocusedImage.propTypes = {
   })
 };
 export default FocusedImage;
-

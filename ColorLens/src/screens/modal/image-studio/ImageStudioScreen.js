@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { CameraRoll, View } from "react-native";
-
 import ImageGallery from "./components/ImageGallery";
 import FocusedImage from "./components/FocusedImage";
+import { LoadingView } from "shared/containers";
 
 import style from "./styles";
 export default class ImageStudioScreen extends Component {
@@ -10,7 +10,7 @@ export default class ImageStudioScreen extends Component {
     super();
     this.state = {
       photos: [],
-      focusedPhoto: { valid: false, photo: "", type: "" },
+      focusedPhoto: { valid: false, photo: { uri: "" }, type: "" },
       pageInfo: {},
       galleryOptions: {
         rowSize: 2,
@@ -35,12 +35,9 @@ export default class ImageStudioScreen extends Component {
     });
   };
 
-  setSwatcbes=()=>{
-
-    this.setState({
-      
-    })
-  }
+  setSwatcbes = () => {
+    this.setState({});
+  };
 
   render() {
     return (

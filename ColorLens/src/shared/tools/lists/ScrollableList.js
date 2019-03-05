@@ -1,34 +1,31 @@
 import React, { Fragment } from "react";
-import { ScrollView, FlatList, StyleSheet } from "react-native";
+import PropTypes from "prop-types";
+import { ScrollView, FlatList} from "react-native";
+import style from "./styles";
 
-const ScrollableList = props => {
-  if (props.lazy === true) {
-    return (
-      <FlatList
-        data={props.children}
-        numColumns={props.columns}
-        contentContainerStyle={style.flatListContainer}
-        renderItem={({ item }) => <Fragment>{item}</Fragment>}
-      />
-    );
-  }
-  return <ScrollView contentContainerStyle={style.scrollViewContainer}>{props.children}</ScrollView>;
+// FLATLIST
+const renderFlatList = props => (
+  <FlatList
+    data={props.children}
+    numColumns={props.columns}
+    contentContainerStyle={style.flatListContainer}
+    renderItem={({ item }) => <Fragment>{item}</Fragment>}
+  />
+);
+
+// SCROLLVIEW
+const renderScrollView = props => (
+  <ScrollView contentContainerStyle={style.scrollViewContainer}>{props.children}</ScrollView>
+);
+
+//
+const ScrollableList = props => (props.lazy === true ? renderFlatList(props) : renderScrollView(props));
+
+ScrollableList.defaultProps = { lazy: false };
+//PROPTYPES
+ScrollableList.propTypes = {
+  lazy: PropTypes.bool,
+  columns: PropTypes.number.isRequired,
+  children: PropTypes.node.isRequired
 };
-
-const style = StyleSheet.create({
-  scrollViewContainer: {
-    borderWidth: 10,
-    borderColor: "#000",
-    borderStyle: "solid",
-    flexWrap: "wrap",
-    flexDirection: "row"
-  },
-  flatListContainer: {
-    borderTopWidth: 2,
-    borderLeftWidth:2,
-    borderRightWidth:2,
-    borderColor: "#fff",
-    borderStyle: "solid"
-  }
-});
 export default ScrollableList;

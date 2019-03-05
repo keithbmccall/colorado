@@ -1,11 +1,14 @@
-import { StyleSheet,Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 //
-const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({
-  colorStripImageWrapper:{
+  galleryImageWrapper: {
     borderWidth: 1,
     borderColor: "#fff",
     borderStyle: "solid"
+  },
+  focusedImageWrapper: {
+    backgroundColor: "#aaa",
+    height: "50%"
   }
 });

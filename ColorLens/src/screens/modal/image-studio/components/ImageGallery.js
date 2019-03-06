@@ -1,25 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, TouchableOpacity } from "react-native";
 import { LoadingView, ImageWithColorStrip } from "shared/containers";
 import { ScrollableList } from "shared/tools";
 import style from "../styles";
 
-const imageCard = (cellSize, image, key) => (
-  <TouchableOpacity
-    underlayColor="transparent"
-    style={[style.galleryImageWrapper, cellSize]}
-    onPress={() => props.setFocusedImage(image)}
+const imageCard = (renderPhotoProps, image, key) => (
+  <ImageWithColorStrip
+    src={image.uri}
+    clickMethod={() => renderPhotoProps.setFocusedImage(image)}
+    style={[style.galleryImageWrapper, renderPhotoProps.cellSize]}
     key={key}
-  >
-    <ImageWithColorStrip src={image.uri} />
-  </TouchableOpacity>
+  />
 );
 
 const renderPhotos = props => {
+  const { setFocusedImage } = props;
   const { rowSize, rowHeight } = props.galleryOptions;
   const cellSize = { width: `${100 / rowSize}%`, height: rowHeight };
-  return props.photos.map(imageCard.bind(null, cellSize));
+  return props.photos.map(imageCard.bind(null, { cellSize, setFocusedImage }));
 };
 
 const renderContent = props =>

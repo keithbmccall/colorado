@@ -7,9 +7,10 @@ import style from "../styles";
 //
 const FocusedImage = props =>
   props.focusedPhoto.valid ? (
-    <View style={style.focusedImageWrapper}>
-      <ImageWithColorStrip src={props.focusedPhoto.photo.uri} />
-    </View>
+    <ImageWithColorStrip
+      src={props.focusedPhoto.photo.uri}
+      style={style.focusedImageWrapper}
+    />
   ) : (
     <LoadingView />
   );

@@ -5,23 +5,21 @@ import { LoadingView, ImageWithColorStrip } from "shared/containers";
 import { ScrollableList } from "shared/tools";
 import style from "../styles";
 
-const renderPhotos = props => {
-  const imageCard = (image, key) => {
-    const { rowSize, rowHeight } = props.galleryOptions;
-    const cellSize = { width: `${100 / rowSize}%`, height: rowHeight };
-    return (
-      <TouchableOpacity
-        underlayColor="transparent"
-        style={[style.galleryImageWrapper, cellSize]}
-        onPress={() => props.setFocusedImage(image)}
-        key={key}
-      >
-        <ImageWithColorStrip src={image.uri} />
-      </TouchableOpacity>
-    );
-  };
+const imageCard = (cellSize, image, key) => (
+  <TouchableOpacity
+    underlayColor="transparent"
+    style={[style.galleryImageWrapper, cellSize]}
+    onPress={() => props.setFocusedImage(image)}
+    key={key}
+  >
+    <ImageWithColorStrip src={image.uri} />
+  </TouchableOpacity>
+);
 
-  return props.photos.map(imageCard);
+const renderPhotos = props => {
+  const { rowSize, rowHeight } = props.galleryOptions;
+  const cellSize = { width: `${100 / rowSize}%`, height: rowHeight };
+  return props.photos.map(imageCard.bind(null, cellSize));
 };
 
 const renderContent = props =>

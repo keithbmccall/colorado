@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { View } from "react-native";
 import { LoadingView, ImageWithColorStrip } from "shared/containers";
 import { ScrollableList } from "shared/tools";
 import style from "../styles";
@@ -20,8 +21,7 @@ const renderPhotos = props => {
   return props.photos.map(imageCard.bind(null, { cellSize, setFocusedImage }));
 };
 
-const renderContent = props =>
-  props.photos.length ? renderPhotos(props) : <LoadingView />;
+const renderContent = props => (props.photos.length ? renderPhotos(props) : <LoadingView />);
 
 const ImageGallery = props => (
   <View style={{ backgroundColor: "#ddd", height: "50%", width: "100%" }}>

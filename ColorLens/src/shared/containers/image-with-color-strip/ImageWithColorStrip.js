@@ -17,7 +17,7 @@ const renderContent = props =>
   ) : (
     <View style={props.style}>
       <ResponsiveImage src={props.src} />
-      <ColorStripContainer src={props.src} />{" "}
+      <ColorStripContainer src={props.src} />
     </View>
   );
 

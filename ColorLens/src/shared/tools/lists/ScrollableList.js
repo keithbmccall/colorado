@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { ScrollView, FlatList} from "react-native";
+import { ScrollView, FlatList } from "react-native";
 import style from "./styles";
 
 // FLATLIST
@@ -15,16 +15,20 @@ const renderFlatList = props => (
 
 // SCROLLVIEW
 const renderScrollView = props => (
-  <ScrollView contentContainerStyle={style.scrollViewContainer}>{props.children}</ScrollView>
+  <ScrollView contentContainerStyle={style.scrollViewContainer}>
+    {props.children}
+  </ScrollView>
 );
 
 //
-const ScrollableList = props => (props.lazy === true ? renderFlatList(props) : renderScrollView(props));
+const ScrollableList = props =>
+  props.isLazy === true ? renderFlatList(props) : renderScrollView(props);
 
-ScrollableList.defaultProps = { lazy: false };
+ScrollableList.defaultProps = { isLazy: false };
+
 //PROPTYPES
 ScrollableList.propTypes = {
-  lazy: PropTypes.bool,
+  isLazy: PropTypes.bool,
   columns: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired
 };

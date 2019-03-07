@@ -15,17 +15,18 @@ const imageCard = (renderPhotoProps, image, key) => (
 );
 
 const renderPhotos = props => {
-  const { setFocusedImage } = props;
-  const { rowSize, rowHeight } = props.galleryOptions;
+  const { setFocusedImage, galleryOptions } = props;
+  const { rowSize, rowHeight } = galleryOptions;
   const cellSize = { width: `${100 / rowSize}%`, height: rowHeight };
   return props.photos.map(imageCard.bind(null, { cellSize, setFocusedImage }));
 };
 
-const renderContent = props => (props.photos.length ? renderPhotos(props) : <LoadingView />);
+const renderContent = props =>
+  props.photos.length ? renderPhotos(props) : <LoadingView />;
 
 const ImageGallery = props => (
-  <View style={{ backgroundColor: "#ddd", height: "50%", width: "100%" }}>
-    <ScrollableList lazy={true} columns={props.galleryOptions.rowSize}>
+  <View style={style.galleryImageWrapper}>
+    <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize}>
       {renderContent(props)}
     </ScrollableList>
   </View>

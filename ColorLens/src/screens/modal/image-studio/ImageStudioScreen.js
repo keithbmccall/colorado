@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { CameraRoll, View } from "react-native";
 import ImageGallery from "./components/ImageGallery";
 import FocusedImage from "./components/FocusedImage";
 import { LoadingView } from "shared/containers";
 import style from "./styles";
 
-export default class ImageStudioScreen extends Component {
+export default class ImageStudioScreen extends PureComponent {
   constructor() {
     super();
     this.state = {

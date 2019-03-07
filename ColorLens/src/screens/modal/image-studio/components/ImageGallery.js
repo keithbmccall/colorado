@@ -8,7 +8,7 @@ import style from "../styles";
 const imageCard = (renderPhotoProps, image, key) => (
   <ImageWithColorStrip
     src={image.uri}
-    clickMethod={() => renderPhotoProps.setFocusedImage(image)}
+    clickMethod={renderPhotoProps.setFocusedImage.bind(null, image)}
     style={[style.galleryImageWrapper, renderPhotoProps.cellSize]}
     key={key}
   />

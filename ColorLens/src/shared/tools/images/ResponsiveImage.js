@@ -7,12 +7,13 @@ class ResponsiveImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false
+      isLoaded: false
     };
   }
-  imageLoaded = () =>
+  
+  imageIsLoaded = () =>
     this.setState({
-      loaded: true
+      isLoaded: true
     });
 
   render() {
@@ -21,10 +22,10 @@ class ResponsiveImage extends Component {
         <Image
           source={{ uri: this.props.src }}
           style={{ width: "100%", height: "100%" }}
-          onLoad={this.imageLoaded}
+          onLoad={this.imageIsLoaded}
           resizeMode={this.props.resizeMode}
         />
-        {!this.state.loaded && (
+        {!this.state.isLoaded && (
           <LoadingView style={{ width: "100%", height: "100%" }} />
         )}
       </Fragment>

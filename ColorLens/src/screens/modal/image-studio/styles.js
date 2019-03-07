@@ -3,9 +3,9 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   galleryImageWrapper: {
-    borderWidth: 1,
-    borderColor: "#fff",
-    borderStyle: "solid"
+    backgroundColor: "#ddd",
+    height: "50%",
+    width: "100%"
   },
   focusedImageWrapper: {
     backgroundColor: "#aaa",

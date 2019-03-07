@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import FastImage from "react-native-fast-image";
+// import FastImage from "react-native-fast-image";
 import { Image } from "react-native";
 import { LoadingView } from "shared/containers";
 class ResponsiveImage extends Component {
@@ -18,11 +18,11 @@ class ResponsiveImage extends Component {
   render() {
     return (
       <Fragment>
-        <FastImage
+        <Image
           source={{ uri: this.props.src }}
           style={{ width: "100%", height: "100%" }}
           onLoad={this.imageLoaded}
-          resizeMode={FastImage.resizeMode[this.props.resizeMode]}
+          resizeMode={this.props.resizeMode}
         />
         {!this.state.loaded && (
           <LoadingView style={{ width: "100%", height: "100%" }} />
@@ -48,7 +48,7 @@ const isValidNumberOrPercentage = (props, propName, componentName) => {
   );
 };
 ResponsiveImage.defaultProps = {
-  resizeMode: "contain",
+  resizeMode: "cover",
   style: { width: "100%", height: "100%" }
 };
 ResponsiveImage.propTypes = {

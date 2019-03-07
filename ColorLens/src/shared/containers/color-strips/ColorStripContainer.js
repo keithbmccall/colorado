@@ -4,7 +4,6 @@ import { getAllSwatches } from "react-native-palette";
 import ColorStrip from './components/ColorStrip';
 import { LoadingView } from "shared/containers";
 import { normalizeSwatches } from "./methods";
-// import style from "./styles";
 
 export default class ColorStripContainer extends Component {
   constructor() {

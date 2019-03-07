@@ -1,18 +1,8 @@
 import React from "react";
 import { View } from "react-native";
-
+import style from "./styles";
+//
 const Layout = props => {
-  return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "#fff",
-        paddingTop: 40,
-        paddingBottom: 30
-      }}
-    >
-      {props.children}
-    </View>
-  );
+  return <View style={style.layoutWrapper}>{props.children}</View>;
 };
 export default Layout;

@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { RNCamera } from "react-native-camera";
 import CameraOptions from "./components/CameraOptions";
-import style from "./styles";
 import { Layout } from "shared/containers";
+import style from "./styles";
 //
 export default class CameraScreen extends Component {
   constructor() {

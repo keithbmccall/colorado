@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View } from "react-native";
 import { getAllSwatches } from "react-native-palette";
+import ColorStrip from './components/ColorStrip';
 import { LoadingView } from "shared/containers";
 import { normalizeSwatches } from "./methods";
+// import style from "./styles";
 
 export default class ColorStripContainer extends Component {
   constructor() {
@@ -28,35 +29,28 @@ export default class ColorStripContainer extends Component {
       }
     });
   };
-  renderSwatches = colors =>
-    colors.swatches.map((swatch, key) => (
-      <View style={{ flex: 1, backgroundColor: swatch.color }} key={key} />
-    ));
-
-  renderContent = colors => {
-    colors.loaded ? this.renderSwatches(colors) : <LoadingView />;
-  };
   render() {
-    return (
-      <View
-        style={{
-          position: "absolute",
-          left: 0,
-          bottom: 0,
-          height: "15%",
-          width: "100%",
-          flexDirection: "row"
-        }}
-      >
-        {this.renderContent(this.state.colors)}
-      </View>
-    );
+    return this.state.colors.loaded ? (
+      <ColorStrip 
+          containerStyle={this.props.containerStyle}
+          clickMethod={}
+          longPressMethod={}
+          swatches={this.state.colors.swatches}
+      />
+      ) : <LoadingView/>
   }
   componentDidMount() {
     this.getDominantSwatches(this.props.src);
   }
 }
 
+ColorStripContainer.defaultProps={
+  containerStyle: {
+    height:50,
+    width: '100%'
+  }
+}
 ColorStripContainer.propTypes = {
-  src: PropTypes.string.isRequired
+  src: PropTypes.string.isRequired,
+  containerStyle: PropTypes.object,
 };

@@ -11,7 +11,7 @@ export default class ColorStripContainer extends Component {
     this.state = {
       options: { quality: "medium" },
       colors: {
-        loaded: false,
+        isLoaded: false,
         swatches: []
       }
     };
@@ -23,13 +23,14 @@ export default class ColorStripContainer extends Component {
         console.log("error in PhotosPage.getSwatches", error);
       } else {
         this.setState({
-          colors: { loaded: true, swatches: normalizeSwatches(swatches) }
+          colors: { isLoaded: true, swatches: normalizeSwatches(swatches) }
         });
       }
     });
   };
+
   render() {
-    return this.state.colors.loaded ? (
+    return this.state.colors.isLoaded ? (
       <ColorStrip 
           containerStyle={this.props.containerStyle}
           clickMethod={}
@@ -38,6 +39,7 @@ export default class ColorStripContainer extends Component {
       />
       ) : <LoadingView/>
   }
+  
   componentDidMount() {
     this.getDominantSwatches(this.props.src);
   }

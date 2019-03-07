@@ -4,6 +4,13 @@ import { View, TouchableOpacity } from "react-native";
 import { LoadingView, ColorStripContainer } from "shared/containers";
 import { ResponsiveImage } from "shared/tools";
 
+const content = props => (
+  <Fragment>
+    <ResponsiveImage src={props.src} />
+    <ColorStripContainer src={props.src} />
+  </Fragment>
+);
+
 const renderContent = props =>
   props.button ? (
     <TouchableOpacity
@@ -11,20 +18,16 @@ const renderContent = props =>
       style={props.style}
       onPress={props.clickMethod}
     >
-      <ResponsiveImage src={props.src} />
-      <ColorStripContainer src={props.src} />
+      {content(props)}
     </TouchableOpacity>
   ) : (
-    <View style={props.style}>
-      <ResponsiveImage src={props.src} />
-      <ColorStripContainer src={props.src} />
-    </View>
+    <View style={props.style}>{content(props)}</View>
   );
 
 const ImageWithColorStrip = props => (
   <Fragment>{renderContent(props)}</Fragment>
 );
-
+//  PROPTYPES
 ImageWithColorStrip.defaultProps = { button: false };
 ImageWithColorStrip.propTypes = {
   src: PropTypes.string.isRequired,

@@ -23,11 +23,7 @@ export default class ImageStudioScreen extends PureComponent {
     photo.uri = photo.node.image.uri;
     return photo;
   };
-  getPhotos = async () => {
-    const photos = await CameraRoll.getPhotos({
-      first: 20,
-      assetType: "All"
-    });
+  setPhotos = photos =>
     this.setState({
       photos: photos.edges.map(this.buildPhotoObject),
       focusedPhoto: {
@@ -37,6 +33,12 @@ export default class ImageStudioScreen extends PureComponent {
       },
       pageInfo: photos.page_info
     });
+  getPhotos = async () => {
+    const photos = await CameraRoll.getPhotos({
+      first: 20,
+      assetType: "All"
+    });
+    this.setPhotos(photos);
   };
   setFocusedImage = image => {
     console.log("setfocused", image);

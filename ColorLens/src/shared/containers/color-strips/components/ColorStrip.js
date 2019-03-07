@@ -1,25 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, TouchableOpacity } from "react-native";
+import style from "./styles";
 
-// const swatchContent = =>
+const renderSwatchContent = (swatch, key) => (
+  <View
+    style={[style.flex1, { backgroundColor: swatch.color }]}
+    key={key ? key : null}
+  />
+);
 const renderSwatches = props => {
   if (props.clickMethod || props.longPressMethod) {
     return props.swatches.map((swatch, key) => (
       <TouchableOpacity
         underlayColor="transparent"
-        style={{ flex: 1 }}
+        style={style.flex1}
         onPress={props.clickMethod}
         onLongPress={props.longPressMethod}
         key={key}
       >
-        <View style={{ flex: 1, backgroundColor: swatch.color }} />
+        {renderSwatchContent(swatch)}
       </TouchableOpacity>
     ));
   }
-  return props.swatches.map((swatch, key) => (
-    <View style={{ flex: 1, backgroundColor: swatch.color }} key={key} />
-  ));
+  return props.swatches.map((swatch, key) => renderSwatchContent(swatch, key));
 };
 
 const ColorStrip = props => (
@@ -27,14 +31,7 @@ const ColorStrip = props => (
 );
 
 ColorStrip.defaultProps = {
-  containerStyle: {
-    position: "absolute",
-    left: 0,
-    bottom: 0,
-    height: "15%",
-    width: "100%",
-    flexDirection: "row"
-  }
+  containerStyle: style.colorStripWrapper
 };
 ColorStrip.propTypes = {
   containerStyle: PropTypes.object,

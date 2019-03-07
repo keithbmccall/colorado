@@ -10,7 +10,7 @@ class ResponsiveImage extends Component {
       isLoaded: false
     };
   }
-  
+
   imageIsLoaded = () =>
     this.setState({
       isLoaded: true

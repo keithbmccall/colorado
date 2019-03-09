@@ -32,9 +32,9 @@ export default class ColorStripContainer extends Component {
   render() {
     return this.state.colors.isLoaded ? (
       <ColorStrip 
-          containerStyle={this.props.containerStyle}
-          clickMethod={}
-          longPressMethod={}
+          // containerStyle={this.props.containerStyle}
+          // clickMethod={}
+          // longPressMethod={}
           swatches={this.state.colors.swatches}
       />
       ) : <LoadingView/>

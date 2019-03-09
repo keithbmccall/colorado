@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, TouchableOpacity } from "react-native";
-import style from "./styles";
+import style from "../styles";
 
 const renderSwatchContent = (swatch, key) => (
   <View

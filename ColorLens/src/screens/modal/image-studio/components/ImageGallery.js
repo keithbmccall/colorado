@@ -11,6 +11,7 @@ const imageCard = (renderPhotoProps, image, key) => (
     clickMethod={renderPhotoProps.setFocusedImage.bind(null, image)}
     style={[style.galleryImageWrapper, renderPhotoProps.cellSize]}
     key={key}
+    button={true}
   />
 );
 

@@ -1,11 +1,12 @@
-import { StyleSheet } from "react-native";
-//
-
+import { StyleSheet,Dimensions } from "react-native";
+const {height} = Dimensions.get('window')
 export default StyleSheet.create({
   galleryImageWrapper: {
     backgroundColor: "#ddd",
-    height: "50%",
-    width: "100%"
+    height: "100%",
+    width: "100%",
+    borderWidth:1,
+    borderColor:'#fff'
   },
   focusedImageWrapper: {
     backgroundColor: "#aaa",

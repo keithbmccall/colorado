@@ -1,8 +1,8 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, Fragment } from "react";
 import { CameraRoll, View } from "react-native";
 import ImageGallery from "./components/ImageGallery";
 import FocusedImage from "./components/FocusedImage";
-import { LoadingView } from "shared/containers";
+import { SliderView } from "shared/tools";
 import style from "./styles";
 
 export default class ImageStudioScreen extends PureComponent {
@@ -24,15 +24,13 @@ export default class ImageStudioScreen extends PureComponent {
     return photo;
   };
   setPhotos = photos =>
-    this.setState({
-      photos: photos.edges.map(this.buildPhotoObject),
-      focusedPhoto: {
-        valid: true,
-        photo: this.buildPhotoObject(photos.edges[0]),
-        type: "camera-roll"
+    this.setState(
+      {
+        photos: photos.edges.map(this.buildPhotoObject),
+        pageInfo: photos.page_info
       },
-      pageInfo: photos.page_info
-    });
+      this.setFocusedImage(this.buildPhotoObject(photos.edges[0]))
+    );
   getPhotos = async () => {
     const photos = await CameraRoll.getPhotos({
       first: 20,
@@ -41,10 +39,11 @@ export default class ImageStudioScreen extends PureComponent {
     this.setPhotos(photos);
   };
   setFocusedImage = image => {
-    console.log("setfocused", image);
     this.setState({
       focusedPhoto: {
+        valid: true,
         photo: {
+          id: image.id,
           uri: image.uri
         }
       }
@@ -56,12 +55,18 @@ export default class ImageStudioScreen extends PureComponent {
 
   render() {
     return (
-      <View style={style.imageStudioContainer}>
-        <FocusedImage focusedPhoto={this.state.focusedPhoto} />
-        <ImageGallery
-          photos={this.state.photos}
-          galleryOptions={this.state.galleryOptions}
-          setFocusedImage={this.setFocusedImage}
+      <View style={{ flex: 1 }}>
+        <SliderView
+          contentTop={() => (
+          
+              <FocusedImage focusedPhoto={this.state.focusedPhoto} />
+              
+          )}
+          contentBottom={()=><ImageGallery
+            photos={this.state.photos}
+            galleryOptions={this.state.galleryOptions}
+            setFocusedImage={this.setFocusedImage}
+          />}
         />
       </View>
     );

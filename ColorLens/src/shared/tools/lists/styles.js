@@ -9,10 +9,10 @@ export default StyleSheet.create({
       flexDirection: "row"
     },
     flatListContainer: {
-      borderTopWidth: 2,
-      borderLeftWidth: 2,
-      borderRightWidth: 2,
-      borderColor: "#fff",
-      borderStyle: "solid"
+      // borderTopWidth: 2,
+      // borderLeftWidth: 2,
+      // borderRightWidth: 2,
+      // borderColor: "#fff",
+      // borderStyle: "solid"
     }
   });

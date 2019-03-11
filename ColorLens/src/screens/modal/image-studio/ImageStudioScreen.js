@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
-import { CameraRoll, View } from "react-native";
+import { CameraRoll, View, Dimensions } from "react-native";
 import ImageGallery from "./components/ImageGallery";
 import FocusedImage from "./components/FocusedImage";
-import { LoadingView } from "shared/containers";
+import { Buttons } from "shared/tools";
 import style from "./styles";
 
 export default class ImageStudioScreen extends PureComponent {
@@ -15,7 +15,8 @@ export default class ImageStudioScreen extends PureComponent {
       galleryOptions: {
         rowSize: 2,
         rowHeight: 220
-      }
+      },
+      isGalleryExpanded: false
     };
   }
   buildPhotoObject = photo => {
@@ -24,15 +25,13 @@ export default class ImageStudioScreen extends PureComponent {
     return photo;
   };
   setPhotos = photos =>
-    this.setState({
-      photos: photos.edges.map(this.buildPhotoObject),
-      focusedPhoto: {
-        valid: true,
-        photo: this.buildPhotoObject(photos.edges[0]),
-        type: "camera-roll"
+    this.setState(
+      {
+        photos: photos.edges.map(this.buildPhotoObject),
+        pageInfo: photos.page_info
       },
-      pageInfo: photos.page_info
-    });
+      this.setFocusedImage(this.buildPhotoObject(photos.edges[0]))
+    );
   getPhotos = async () => {
     const photos = await CameraRoll.getPhotos({
       first: 20,
@@ -41,10 +40,11 @@ export default class ImageStudioScreen extends PureComponent {
     this.setPhotos(photos);
   };
   setFocusedImage = image => {
-    console.log("setfocused", image);
     this.setState({
       focusedPhoto: {
+        valid: true,
         photo: {
+          id: image.id,
           uri: image.uri
         }
       }
@@ -53,11 +53,19 @@ export default class ImageStudioScreen extends PureComponent {
   setSwatches = () => {
     this.setState({});
   };
-
+  toggleGalleryState = () =>
+    this.setState({
+      isGalleryExpanded: !this.state.isGalleryExpanded
+    });
+  toggleExpandGallery = () => {
+    this.state.isGalleryExpanded ? this._panel.hide() : this._panel.show();
+    this.toggleGalleryState();
+  };
   render() {
     return (
-      <View style={style.imageStudioContainer}>
+      <View style={[style.imageStudioWrapper]}>
         <FocusedImage focusedPhoto={this.state.focusedPhoto} />
+        <Buttons.FullWidthButton pressMethod={this.toggleExpandGallery} />
         <ImageGallery
           photos={this.state.photos}
           galleryOptions={this.state.galleryOptions}

@@ -1,14 +1,21 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 //
-
+const { height } = Dimensions.get("window");
 export default StyleSheet.create({
-  galleryImageWrapper: {
-    backgroundColor: "#ddd",
-    height: "50%",
+  imageStudioWrapper: {
+    top: -height * 0.4,
+    height: height * 1.4
+  },
+  imageGalleryWrapper: {
     width: "100%"
+  },
+  imageContentWrapper: {
+    backgroundColor: "#ddd",
+    borderWidth: 1,
+    borderColor: "#fff"
   },
   focusedImageWrapper: {
     backgroundColor: "#aaa",
-    height: "50%"
+    height: height / 2
   }
 });

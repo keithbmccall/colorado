@@ -17,7 +17,7 @@ class ResponsiveImage extends Component {
       isLoaded: true
     });
   };
-  
+
   render() {
     return (
       <Fragment>
@@ -27,7 +27,9 @@ class ResponsiveImage extends Component {
           onLoad={this.imageIsLoaded}
           resizeMode={this.props.resizeMode}
         />
-        {!this.state.isLoaded && <LoadingView style={{ width: "100%", height: "100%" }} />}
+        {!this.state.isLoaded && (
+          <LoadingView style={{ width: "100%", height: "100%" }} />
+        )}
       </Fragment>
     );
   }
@@ -36,7 +38,10 @@ class ResponsiveImage extends Component {
 const isValidNumberOrPercentage = (props, propName, componentName) => {
   if (typeof props[propName] === "number") {
     return;
-  } else if (typeof props[propName] === "string" && props[propName][props[propName].length - 1] === "%") {
+  } else if (
+    typeof props[propName] === "string" &&
+    props[propName][props[propName].length - 1] === "%"
+  ) {
     return;
   }
   return new Error(

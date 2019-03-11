@@ -18,15 +18,16 @@ export default class ColorStripContainer extends Component {
   }
 
   getDominantSwatches = src => {
-    getAllSwatches(this.state.options, src, (error, swatches) => {
-      if (error) {
-        console.log("error in PhotosPage.getSwatches", error);
-      } else {
-        this.setState({
-          colors: { isLoaded: true, swatches: normalizeSwatches(swatches) }
-        });
-      }
-    });
+    getAllSwatches(this.state.options, src, (error, swatches) =>
+      error
+        ? console.log("error in PhotosPage.getSwatches", error)
+        : this.setState(
+            {
+              colors: { isLoaded: true, swatches: normalizeSwatches(swatches) }
+            },
+            this.props.onReady && this.props.onReady()
+          )
+    );
   };
 
   render() {

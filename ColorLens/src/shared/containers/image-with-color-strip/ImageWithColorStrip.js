@@ -7,22 +7,29 @@ import { ResponsiveImage } from "shared/tools";
 export default class ImageWithColorStrip extends Component {
   constructor() {
     super();
-    this.state = { isReady: false };
+    this.state = { isImageReady: false, isColorsReady: false };
   }
-  onReady = () => this.setState({ isReady: true });
+  imageReady = () => this.setState({ isImageReady: true });
+  colorsReady = () => this.setState({ isColorsReady: true });
 
   content = props => (
     <Fragment>
-      <ResponsiveImage src={props.src} onReady={this.onReady} />
-      <ColorStripContainer src={props.src} />
+      <ResponsiveImage src={props.src} onReady={this.imageReady} />
+      <ColorStripContainer src={props.src} onReady={this.colorsReady} />
+      {!this.state.imageReady && !this.state.colorsReady && (
+        <LoadingView style={{ width: "100%", height: "100%" }} />
+      )}
     </Fragment>
   );
 
   renderContent = props =>
     props.button ? (
-      <TouchableOpacity underlayColor="transparent" style={props.style} onPress={props.pressMethod}>
+      <TouchableOpacity
+        underlayColor="transparent"
+        style={props.style}
+        onPress={props.pressMethod}
+      >
         {this.content(props)}
-        <Fragment>{!this.state.isReady && <LoadingView style={{ width: "100%", height: "100%" }} />}</Fragment>
       </TouchableOpacity>
     ) : (
       <View style={props.style}>{this.content(props)}</View>

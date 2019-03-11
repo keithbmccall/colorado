@@ -8,8 +8,8 @@ import style from "../styles";
 const imageCard = (renderPhotoProps, image, key) => (
   <ImageWithColorStrip
     src={image.uri}
-    clickMethod={renderPhotoProps.setFocusedImage.bind(null, image)}
-    style={[style.galleryImageWrapper, renderPhotoProps.cellSize]}
+    pressMethod={renderPhotoProps.setFocusedImage.bind(null, image)}
+    style={[style.imageContentWrapper, renderPhotoProps.cellSize]}
     key={key}
   />
 );
@@ -21,15 +21,12 @@ const renderPhotos = props => {
   return props.photos.map(imageCard.bind(null, { cellSize, setFocusedImage }));
 };
 
-const renderContent = props =>
-  props.photos.length ? renderPhotos(props) : <LoadingView />;
+const renderContent = props => (props.photos.length ? renderPhotos(props) : <LoadingView />);
 
 const ImageGallery = props => (
-  <View style={style.galleryImageWrapper}>
-    <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize}>
-      {renderContent(props)}
-    </ScrollableList>
-  </View>
+  <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize}>
+    {renderContent(props)}
+  </ScrollableList>
 );
 
 ImageGallery.defaultProps = { galleryOptions: { rowSize: 2 } };

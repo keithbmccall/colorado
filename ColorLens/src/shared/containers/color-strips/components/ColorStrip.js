@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, TouchableOpacity } from "react-native";
-import style from "./styles";
+import style from "../styles";
 
 const renderSwatchContent = (swatch, key) => (
   <View
@@ -10,12 +10,12 @@ const renderSwatchContent = (swatch, key) => (
   />
 );
 const renderSwatches = props => {
-  if (props.clickMethod || props.longPressMethod) {
+  if (props.pressMethod || props.longPressMethod) {
     return props.swatches.map((swatch, key) => (
       <TouchableOpacity
         underlayColor="transparent"
         style={style.flex1}
-        onPress={props.clickMethod}
+        onPress={props.pressMethod}
         onLongPress={props.longPressMethod}
         key={key}
       >
@@ -35,7 +35,7 @@ ColorStrip.defaultProps = {
 };
 ColorStrip.propTypes = {
   containerStyle: PropTypes.object,
-  clickMethod: PropTypes.func,
+  pressMethod: PropTypes.func,
   longPressMethod: PropTypes.func,
   swatches: PropTypes.array.isRequired
 };

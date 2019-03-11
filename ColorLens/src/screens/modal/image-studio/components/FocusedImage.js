@@ -11,7 +11,7 @@ const FocusedImage = props =>
       style={style.focusedImageWrapper}
     />
   ) : (
-    <LoadingView />
+    <LoadingView style={style.focusedImageWrapper}/>
   );
 
 // PROPTYPES

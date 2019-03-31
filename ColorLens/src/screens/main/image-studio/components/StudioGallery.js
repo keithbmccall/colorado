@@ -21,20 +21,20 @@ const renderPhotos = props => {
   return props.photos.map(imageCard.bind(null, { cellSize, setFocusedImage }));
 };
 
-const renderContent = props => (props.photos.length ? renderPhotos(props) : <LoadingView />);
+const renderContent = props => (props.photos.length ? renderPhotos(props) : []);
 
-const ImageGallery = props => (
+const StudioGallery = props => (
   <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize}>
     {renderContent(props)}
   </ScrollableList>
 );
 
-ImageGallery.defaultProps = { galleryOptions: { rowSize: 2 } };
+StudioGallery.defaultProps = { galleryOptions: { rowSize: 2 } };
 
 // PROPTYPES
 const rowSizeRange = (props, propName, componentName) => {
   if (typeof props[propName] === "number") {
-    if (props[propName] === 2 || props[propName] === 3) {
+    if (props[propName] === 2 || props[propName] === 3 || props[propName] === 4) {
       return;
     }
   }
@@ -44,12 +44,13 @@ const rowSizeRange = (props, propName, componentName) => {
     }`
   );
 };
-ImageGallery.propTypes = {
+StudioGallery.propTypes = {
   photos: PropTypes.array.isRequired,
-  setFocusedImage: PropTypes.func.isRequired,
+  setFocusedImage: PropTypes.func,
   galleryOptions: PropTypes.shape({
     rowSize: rowSizeRange,
     rowHeight: PropTypes.number.isRequired
   })
 };
-export default ImageGallery;
+
+export default StudioGallery;

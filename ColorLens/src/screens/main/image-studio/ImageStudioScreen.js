@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
-import { CameraRoll, View, Dimensions } from "react-native";
-import ImageGallery from "./components/ImageGallery";
+import { CameraRoll, View, Text, Dimensions } from "react-native";
+import StudioGallery from "./components/StudioGallery";
 import FocusedImage from "./components/FocusedImage";
 import { Buttons } from "shared/tools";
 import style from "./styles";
@@ -10,7 +10,11 @@ export default class ImageStudioScreen extends PureComponent {
     super();
     this.state = {
       photos: [],
-      focusedPhoto: { valid: false, photo: { uri: "" }, type: "" },
+      focusedPhoto: {
+        valid: false,
+        photo: { uri: "" },
+        type: ""
+      },
       pageInfo: {},
       galleryOptions: {
         rowSize: 2,
@@ -64,13 +68,16 @@ export default class ImageStudioScreen extends PureComponent {
   render() {
     return (
       <View style={[style.imageStudioWrapper]}>
-        <FocusedImage focusedPhoto={this.state.focusedPhoto} />
+        {/* <FocusedImage focusedPhoto={this.state.focusedPhoto} /> */}
         <Buttons.FullWidthButton pressMethod={this.toggleExpandGallery} />
-        <ImageGallery
-          photos={this.state.photos}
-          galleryOptions={this.state.galleryOptions}
-          setFocusedImage={this.setFocusedImage}
-        />
+        <View style={[style.studioGalleryWrapper]}>
+          <Text>studoi images here</Text>
+          {/* <StudioGallery
+            photos={this.state.photos}
+            galleryOptions={this.state.galleryOptions}
+            setFocusedImage={this.setFocusedImage}
+          /> */}
+        </View>
       </View>
     );
   }

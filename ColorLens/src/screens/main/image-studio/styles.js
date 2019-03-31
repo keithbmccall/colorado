@@ -3,11 +3,13 @@ import { StyleSheet, Dimensions } from "react-native";
 const { height } = Dimensions.get("window");
 export default StyleSheet.create({
   imageStudioWrapper: {
-    top: -height * 0.4,
-    height: height * 1.4
+    // top: -height * 0.4,
+    // height: height * 1.4
   },
-  imageGalleryWrapper: {
-    width: "100%"
+  studioGalleryWrapper: {
+    height: height / 2,
+    width: "100%",
+    paddingBottom:80
   },
   imageContentWrapper: {
     backgroundColor: "#ddd",

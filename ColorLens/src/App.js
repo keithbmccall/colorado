@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import AppContainer from "./navigation/Router";
+import Navigation from "./navigation/Router";
+import { Provider, connect } from "react-redux";
 
 console.disableYellowBox = true;
 
 export default class App extends Component {
   render() {
-    return <AppContainer />;
+    return (
+      // <Provider>
+        <Navigation />
+      // </Provider>
+    );
   }
 }
-

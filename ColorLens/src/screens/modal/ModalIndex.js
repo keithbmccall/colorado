@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { View } from "react-native";
-import ImageStudioScreen from "./image-studio/ImageStudioScreen";
+import CameraRollScreen from "./camera-roll/CameraRollScreen";
 
 export default class ModalIndex extends Component {
   render() {
-    const modalContent = <ImageStudioScreen/>
+    const modalContent = <CameraRollScreen/>
     return (
         <View style={{flex:1,paddingTop:50}}>
             {modalContent}

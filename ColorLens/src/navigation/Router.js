@@ -1,16 +1,17 @@
 import { createAppContainer, createMaterialTopTabNavigator, createStackNavigator } from "react-navigation";
 import LibraryScreen from "../screens/main/library/LibraryScreen";
 import CameraScreen from "../screens/main/camera/CameraScreen";
-import ModalScreen from "../screens/modal/ModalIndex";
+import ImageStudio from "../screens/main/image-studio/ImageStudioScreen";
 import ModalIndex from "../screens/modal/ModalIndex";
 
-let view = "Camera";
+let view = "Studio";
 // let view = "Home";
 //
 const MainStack = createMaterialTopTabNavigator(
   {
+    Studio: ImageStudio,
     Camera: CameraScreen,
-    Home: LibraryScreen
+    Library: LibraryScreen
   },
   {
     initialRouteName: view,
@@ -42,12 +43,12 @@ const RootStack = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'Modal',
+    initialRouteName: "Modal",
     mode: "card",
     headerMode: "none"
   }
 );
 
-const AppContainer = createAppContainer(RootStack);
+const Navigation = createAppContainer(RootStack);
 
-export default AppContainer;
+export default Navigation;

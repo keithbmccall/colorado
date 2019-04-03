@@ -17,7 +17,7 @@ export default class ColorStripContainer extends Component {
     };
   }
 
-  getDominantSwatches = src => {
+  getDominantSwatches = src =>
     getAllSwatches(this.state.options, src, (error, swatches) =>
       error
         ? console.log("error in PhotosPage.getSwatches", error)
@@ -28,7 +28,6 @@ export default class ColorStripContainer extends Component {
             this.props.onReady && this.props.onReady()
           )
     );
-  };
 
   render() {
     return this.state.colors.isLoaded ? (

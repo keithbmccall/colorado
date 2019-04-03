@@ -1,22 +1,24 @@
 //evaluate actions
-import { CREATE_EVENT, FETCH_EVENTS } from "../actions/actionTypes";
+import {
+  FETCH_STUDIO_IMAGES,
+  SAVE_STUDIO_IMAGES
+} from "../actions/actionTypes";
 
 const initialState = {
-  events: [],
-  eventDetails: {}
+  studioImages: []
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_EVENTS:
+    case FETCH_STUDIO_IMAGES:
       return {
         ...state,
-        events: action.payload
+        studioImages: action.payload
       };
-    case CREATE_EVENT:
+    case SAVE_STUDIO_IMAGES:
       return {
         ...state,
-        eventDetails: action.payload
+        studioImages: action.payload
       };
     default:
       return state;

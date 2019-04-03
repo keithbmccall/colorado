@@ -1,14 +1,17 @@
-import axios from "axios";
-import { FETCH_EVENTS, CREATE_EVENT } from "./actionTypes";
+import { FETCH_STUDIO_IMAGES, SAVE_STUDIO_IMAGES } from "./actionTypes";
 
-export const fetchEvents = () => dispatch => {
+export const fetchStudioImages = () => dispatch => {
   axios({
     method: "get",
     url: "https://jsonplaceholder.typicode.com/posts"
-  }).then(res=>res.json()).then(events=>dispatch({
-      type: FETCH_EVENTS,
-      payload: events
-  }))
+  })
+    .then(res => res.json())
+    .then(studioImages =>
+      dispatch({
+        type: FETCH_STUDIO_IMAGES,
+        payload: studioImages
+      })
+    );
 };
 
 export const createPost = eventData => dispatch => {

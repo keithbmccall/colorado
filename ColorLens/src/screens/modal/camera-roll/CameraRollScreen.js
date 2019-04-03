@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import { CameraRoll, View, Text, Dimensions } from "react-native";
 import { ImageGallery } from "shared/containers";
 import { Buttons } from "shared/tools";
+import { checkPhotos, checkSelectedImages, buildPhotoObject } from "./methods";
 
 export default class CameraRollScreen extends PureComponent {
   constructor() {
@@ -15,37 +16,29 @@ export default class CameraRollScreen extends PureComponent {
       selectedImages: []
     };
   }
+  confirmSelected = ()=>{
+    console.log('...confirming...')
+  }
   checkIsSelected = (stateName, image) => {
     if (stateName === "photos") {
-      let photosArray = this.state.photos.slice(0);
-      photosArray[image.tempId].isSelected = !photosArray[image.tempId].isSelected;
-      return photosArray;
+      return checkPhotos(this.state.photos, image);
     } else if (stateName === "selectedImages") {
-      let selectedArray = this.state.selectedImages.slice(0);
-      let n = selectedArray.indexOf(image);
-      return n >= 0 ? selectedArray.splice(n, 1) && selectedArray : selectedArray.push(image) && selectedArray;
+      return checkSelectedImages(this.state.selectedImages, image);
     } else {
       console.log("error");
       return [];
     }
   };
-  selectImage = image => {
+
+  selectImage = image =>
     this.setState({
       selectedImages: this.checkIsSelected("selectedImages", image),
       photos: this.checkIsSelected("photos", image)
     });
-  };
 
-  //
-  buildPhotoObject = (photo, i) => {
-    photo.tempId = i;
-    photo.uri = photo.node.image.uri;
-    photo.isSelected = false;
-    return photo;
-  };
   setPhotos = photos =>
     this.setState({
-      photos: photos.edges.map(this.buildPhotoObject),
+      photos: photos.edges.map(buildPhotoObject),
       pageInfo: photos.page_info
     });
 
@@ -63,7 +56,7 @@ export default class CameraRollScreen extends PureComponent {
       ? `(${this.state.selectedImages.length}) images selected.`
       : "";
 
-    // finis testing
+    // finish testing
 
     return (
       <View style={{ flex: 1 }}>

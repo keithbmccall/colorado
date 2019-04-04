@@ -1,2 +1,1 @@
-export { searchByCity } from "./searchByCityActions";
-export { windowResize } from "./windowActions";
+export { fetchStudioImages, saveStudioImages } from "./studioActions";

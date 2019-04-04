@@ -14,7 +14,7 @@ export const fetchStudioImages = () => dispatch => {
     );
 };
 
-export const createPost = eventData => dispatch => {
+export const saveStudioImages = eventData => dispatch => {
   fetch("https://jsonplaceholder.typicode.com/posts", {
     method: "post",
     headers: {
@@ -25,7 +25,7 @@ export const createPost = eventData => dispatch => {
     .then(res => res.json())
     .then(event =>
       dispatch({
-        type: CREATE_EVENT,
+        type: SAVE_STUDIO_IMAGES,
         payload: event
       })
     );

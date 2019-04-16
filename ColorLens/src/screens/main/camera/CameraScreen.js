@@ -5,16 +5,14 @@ import { Layout } from "shared/containers";
 import style from "./styles";
 //
 export default class CameraScreen extends Component {
-  constructor() {
-    super();
-    this.state = {
-      autoFocus: RNCamera.Constants.AutoFocus.on,
-      flashMode: RNCamera.Constants.FlashMode.off,
-      whiteBalance: RNCamera.Constants.WhiteBalance.auto,
-      type: RNCamera.Constants.Type.back,
-      zoom: 0
-    };
-  }
+  state = {
+    autoFocus: RNCamera.Constants.AutoFocus.on,
+    flashMode: RNCamera.Constants.FlashMode.off,
+    whiteBalance: RNCamera.Constants.WhiteBalance.auto,
+    type: RNCamera.Constants.Type.back,
+    zoom: 0
+  };
+
   launchModal = () => this.props.navigation.navigate("Modal");
   //
   // takePicture = async function() {

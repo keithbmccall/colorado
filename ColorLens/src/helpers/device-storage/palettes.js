@@ -1,4 +1,7 @@
-deletePalette = name => {
+import { AsyncStorage } from "react-native";
+
+const palette = "palette";
+export const deletePalette = name => {
   AsyncStorage.removeItem(name).then(res =>
     this.setState({ palettesLoaded: false }, () => {
       this.getPalettes();
@@ -6,7 +9,7 @@ deletePalette = name => {
     })
   );
 };
-getPalettes = () => {
+export const getPalettes = () => {
   AsyncStorage.getAllKeys().then(res => {
     console.log(res);
     AsyncStorage.multiGet(res).then(response => {
@@ -22,7 +25,7 @@ getPalettes = () => {
     });
   });
 };
-savePalette = data => {
+export const savePalette = data => {
   console.log(data);
   let name = data.paletteName;
   AsyncStorage.getAllKeys().then(response => {

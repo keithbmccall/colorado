@@ -18,14 +18,14 @@ const imageCard = (renderProps, image, key) => {
   );
 };
 
-const renderPhotos = props => {
+const renderImages = props => {
   const { pressMethod, galleryOptions } = props;
   const { rowSize, rowHeight } = galleryOptions;
   const cellSize = { width: `${100 / rowSize}%`, height: rowHeight };
-  return props.photos.map(imageCard.bind(null, { cellSize, pressMethod }));
+  return props.images.map(imageCard.bind(null, { cellSize, pressMethod }));
 };
 
-const renderContent = props => (props.photos.length ? renderPhotos(props) : []);
+const renderContent = props => (props.images.length ? renderImages(props) : []);
 
 const ImageGallery = props => (
   <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize}>
@@ -49,7 +49,7 @@ const ImageGallery = props => (
 //   );
 // };
 // ImageGallery.propTypes = {
-//   photos: PropTypes.array.isRequired,
+//   images: PropTypes.array.isRequired,
 //   pressMethod: PropTypes.func,
 //   galleryOptions: PropTypes.shape({
 //     rowSize: rowSizeRange,

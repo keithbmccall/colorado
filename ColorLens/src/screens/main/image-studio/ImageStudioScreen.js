@@ -4,25 +4,24 @@ import StudioGallery from "./components/StudioGallery";
 import FocusedImage from "./components/FocusedImage";
 import { Buttons } from "shared/tools";
 import style from "./styles";
+import { getStudioImages } from "helpers/device-storage";
 
 export default class ImageStudioScreen extends PureComponent {
-  constructor() {
-    super();
-    this.state = {
-      photos: [],
-      focusedPhoto: {
-        valid: false,
-        photo: { uri: "" },
-        type: ""
-      },
-      pageInfo: {},
-      galleryOptions: {
-        rowSize: 2,
-        rowHeight: 220
-      },
-      isGalleryExpanded: false
-    };
-  }
+  state = {
+    photos: [],
+    focusedPhoto: {
+      valid: false,
+      photo: { uri: "" },
+      type: ""
+    },
+    pageInfo: {},
+    galleryOptions: {
+      rowSize: 2,
+      rowHeight: 220
+    },
+    isGalleryExpanded: false
+  };
+
   buildPhotoObject = photo => {
     photo.id = photo.node.timestamp;
     photo.uri = photo.node.image.uri;
@@ -36,13 +35,7 @@ export default class ImageStudioScreen extends PureComponent {
       },
       this.setFocusedImage(this.buildPhotoObject(photos.edges[0]))
     );
-  getPhotos = async () => {
-    const photos = await CameraRoll.getPhotos({
-      first: 20,
-      assetType: "All"
-    });
-    this.setPhotos(photos);
-  };
+
   setFocusedImage = image => {
     this.setState({
       focusedPhoto: {
@@ -64,6 +57,10 @@ export default class ImageStudioScreen extends PureComponent {
   toggleExpandGallery = () => {
     this.state.isGalleryExpanded ? this._panel.hide() : this._panel.show();
     this.toggleGalleryState();
+  };
+  getStudioImages = async () => {
+    const images = await getStudioImages();
+    console.log("images stuido:", images);
   };
   render() {
     return (

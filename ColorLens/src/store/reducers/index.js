@@ -1,12 +1,6 @@
-import { combineReducers } from "redux";
-import eventsReducer from "./eventsReducer";
-import authReducer from "./authReducer";
-import windowReducer from "./windowReducer";
-import searchByCityReducer from "./searchByCityReducer";
+import {combineReducers} from "redux";
+import studioReducer from "./studioReducer";
 
 export default combineReducers({
-  events: eventsReducer,
-  auth: authReducer,
-  window: windowReducer,
-  cityEvents: searchByCityReducer
+    studio: studioReducer
 });

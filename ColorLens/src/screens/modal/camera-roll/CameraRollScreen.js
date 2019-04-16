@@ -1,76 +1,84 @@
 import React, { PureComponent } from "react";
-import { CameraRoll, View, Text, Dimensions } from "react-native";
-import { ImageGallery } from "shared/containers";
+import { CameraRoll, View, Text, TouchableOpacity } from "react-native";
+import { ImageGallery, AnimatedView } from "shared/containers";
 import { Buttons } from "shared/tools";
-import { checkPhotos, checkSelectedImages, buildPhotoObject } from "./methods";
+import { checkIsSelected, buildImageObject, unSelectAllImages } from "./methods";
+import { saveStudioImages } from "helpers/device-storage";
 
 export default class CameraRollScreen extends PureComponent {
-  constructor() {
-    super();
-    this.state = {
-      photos: [],
-      galleryOptions: {
-        rowSize: 4,
-        rowHeight: 110
-      },
-      selectedImages: []
-    };
-  }
-  confirmSelected = ()=>{
-    console.log('...confirming...')
-  }
-  checkIsSelected = (stateName, image) => {
-    if (stateName === "photos") {
-      return checkPhotos(this.state.photos, image);
-    } else if (stateName === "selectedImages") {
-      return checkSelectedImages(this.state.selectedImages, image);
-    } else {
-      console.log("error");
-      return [];
-    }
+  state = {
+    images: [],
+    galleryOptions: {
+      rowSize: 4,
+      rowHeight: 110
+    },
+    selectedImages: [],
+    //
+    confirmMenuOpen: false
   };
 
+  confirmSelectedImages = () => saveStudioImages(this.state.selectedImages) && this.unSelectAllImages();
+
+  unSelectAllImages = () =>
+    this.setState({
+      images: unSelectAllImages(this.state.images),
+      selectedImages: []
+    });
+
+  shouldConfirmMenuOpen = () => {
+    console.log(this.state.selectedImages.length);
+    this.setState({ confirmMenuOpen: this.state.selectedImages.length });
+  };
   selectImage = image =>
+    this.setState(
+      {
+        selectedImages: checkIsSelected("selectedImages", image, this.state),
+        images: checkIsSelected("images", image, this.state)
+      },
+      this.shouldConfirmMenuOpen()
+    );
+
+  setImages = images =>
     this.setState({
-      selectedImages: this.checkIsSelected("selectedImages", image),
-      photos: this.checkIsSelected("photos", image)
+      images: images.edges.map(buildImageObject),
+      pageInfo: images.page_info
     });
 
-  setPhotos = photos =>
-    this.setState({
-      photos: photos.edges.map(buildPhotoObject),
-      pageInfo: photos.page_info
-    });
-
-  getPhotos = async () => {
-    const photos = await CameraRoll.getPhotos({
+  getImages = async () => {
+    const images = await CameraRoll.getPhotos({
       first: 20,
       assetType: "Photos"
     });
-    this.setPhotos(photos);
+    this.setImages(images);
   };
 
   render() {
-    //  testing rendering of button
     const renderCount = this.state.selectedImages.length
       ? `(${this.state.selectedImages.length}) images selected.`
       : "";
 
-    // finish testing
-
     return (
       <View style={{ flex: 1 }}>
         <Text>CameraRoll {renderCount}</Text>
-
         <ImageGallery
-          photos={this.state.photos}
+          images={this.state.images}
           galleryOptions={this.state.galleryOptions}
           pressMethod={this.selectImage}
         />
+        <AnimatedView
+          style={{ position: "absolute" }}
+          animation={{ key: "bottom", starting: 0, ending: 50 }}
+          shouldLaunch={this.state.confirmMenuOpen}
+        >
+          <TouchableOpacity onPress={this.confirmSelectedImages}>
+            <View style={{ height: 30, width: 30, backgroundColor: "red" }} />
+          </TouchableOpacity>
+        </AnimatedView>
       </View>
     );
   }
+
   componentDidMount() {
-    this.getPhotos();
+    this.getImages();
   }
 }

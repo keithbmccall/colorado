@@ -6,16 +6,13 @@ import { LoadingView } from "shared/containers";
 import { normalizeSwatches } from "./methods";
 
 export default class ColorStripContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      options: { quality: "medium" },
-      colors: {
-        isLoaded: false,
-        swatches: []
-      }
-    };
-  }
+  state = {
+    options: { quality: "medium" },
+    colors: {
+      isLoaded: false,
+      swatches: []
+    }
+  };
 
   getDominantSwatches = src =>
     getAllSwatches(this.state.options, src, (error, swatches) =>

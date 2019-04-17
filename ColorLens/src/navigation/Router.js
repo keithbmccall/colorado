@@ -1,4 +1,4 @@
-import { createAppContainer, createMaterialTopTabNavigator, createStackNavigator } from "react-navigation";
+import {createAppContainer, createMaterialTopTabNavigator, createStackNavigator} from "react-navigation";
 import LibraryScreen from "../screens/main/library/LibraryScreen";
 import CameraScreen from "../screens/main/camera/CameraScreen";
 import ImageStudio from "../screens/main/image-studio/ImageStudioScreen";
@@ -8,45 +8,45 @@ let view = "Studio";
 // let view = "Home";
 //
 const MainStack = createMaterialTopTabNavigator(
-  {
-    Studio: ImageStudio,
-    Camera: CameraScreen,
-    Library: LibraryScreen
-  },
-  {
-    initialRouteName: view,
-    lazy: true,
-    tabBarPosition: "bottom",
-    tabBarOptions: {
-      tabStyle: {
-        height: 120
-      },
-      activeTintColor: "#e91e63",
-      inactiveTintColor: "navy",
-      labelStyle: {
-        fontSize: 17
-      },
-      style: {
-        backgroundColor: "#ddd",
-        display: "none"
-      }
+    {
+        Studio: ImageStudio,
+        Camera: CameraScreen,
+        Library: LibraryScreen
+    },
+    {
+        initialRouteName: view,
+        lazy: true,
+        tabBarPosition: "bottom",
+        tabBarOptions: {
+            tabStyle: {
+                height: 120
+            },
+            activeTintColor: "#e91e63",
+            inactiveTintColor: "navy",
+            labelStyle: {
+                fontSize: 17
+            },
+            style: {
+                backgroundColor: "#ddd",
+                display: "none"
+            }
+        }
     }
-  }
 );
 const RootStack = createStackNavigator(
-  {
-    Main: {
-      screen: MainStack
+    {
+        Main: {
+            screen: MainStack
+        },
+        Modal: {
+            screen: ModalIndex
+        }
     },
-    Modal: {
-      screen: ModalIndex
+    {
+        initialRouteName: "Modal",
+        mode: "card",
+        headerMode: "none"
     }
-  },
-  {
-    initialRouteName: "Modal",
-    mode: "card",
-    headerMode: "none"
-  }
 );
 
 const Navigation = createAppContainer(RootStack);

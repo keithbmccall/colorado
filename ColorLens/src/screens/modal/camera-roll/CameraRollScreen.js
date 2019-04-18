@@ -1,10 +1,11 @@
 import React, {PureComponent} from "react";
-import {CameraRoll, View, Text, TouchableOpacity} from "react-native";
+import {CameraRoll, View, Text} from "react-native";
 import {connect} from "react-redux";
 import {ImageGallery, AnimatedView} from "shared/containers";
 import {Buttons} from "shared/tools";
 import {checkIsSelected, buildImageObject, unSelectAllImages} from "./methods";
 import {saveStudioImages} from "helpers/device-storage";
+import style from './styles';
 
 class CameraRollScreen extends PureComponent {
     state = {
@@ -14,8 +15,12 @@ class CameraRollScreen extends PureComponent {
             rowHeight: 110
         },
         selectedImages: [],
-        //
-        confirmMenuOpen: false
+        confirmMenuOpen: false,
+        sliderOptions:{
+            key: "bottom",
+            starting: 0,
+            ending: 50
+        }
     };
 
     confirmSelectedImages = () => saveStudioImages(this.state.selectedImages) && this.unSelectAllImages();
@@ -59,21 +64,19 @@ class CameraRollScreen extends PureComponent {
             : "";
 
         return (
-            <View style={{flex: 1}}>
-                <Text>CameraRoll {renderCount}</Text>
+            <View style={style.cameraRollScreenWrapper}>
+                <Text style={style.titleText}>CameraRoll {renderCount}</Text>
                 <ImageGallery
                     images={this.state.images}
                     galleryOptions={this.state.galleryOptions}
                     pressMethod={this.selectImage}
                 />
                 <AnimatedView
-                    style={{position: "absolute"}}
-                    animation={{key: "bottom", starting: 0, ending: 50}}
+                    style={style.animatedViewSlider}
+                    animation={this.state.sliderOptions}
                     shouldLaunch={this.state.confirmMenuOpen}
                 >
-                    <TouchableOpacity onPress={this.confirmSelectedImages}>
-                        <View style={{height: 30, width: 30, backgroundColor: "red"}}/>
-                    </TouchableOpacity>
+                    <Buttons.FullWidthButton pressMethod={this.confirmSelectedImages} style={{height: 30, width: 30, backgroundColor: "red"}} textStyle={{}} innerText={"text for button"}/>
                 </AnimatedView>
             </View>
         );
@@ -85,10 +88,10 @@ class CameraRollScreen extends PureComponent {
 }
 
 const mapDispatchToProps = dispatch => {
-
+    return {}
 };
 const mapStateToProps = state => {
-
+    return {}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CameraRollScreen)

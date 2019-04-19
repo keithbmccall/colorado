@@ -69,7 +69,7 @@ export default class ImageStudioScreen extends PureComponent {
                 {/* <FocusedImage focusedPhoto={this.state.focusedPhoto} /> */}
                 <Buttons.FullWidthButton pressMethod={this.toggleExpandGallery}/>
                 <View style={[style.studioGalleryWrapper]}>
-                    <Text>studoi images here</Text>
+                    <Text>studio images here</Text>
                     {/* <StudioGallery
             photos={this.state.photos}
             galleryOptions={this.state.galleryOptions}

@@ -15,7 +15,7 @@ class CameraRollScreen extends PureComponent {
             rowHeight: 110
         },
         selectedImages: [],
-        confirmMenuOpen: false,
+        shouldConfirmMenuOpen: false,
         sliderOptions:{
             key: "bottom",
             starting: 0,
@@ -33,7 +33,7 @@ class CameraRollScreen extends PureComponent {
 
     shouldConfirmMenuOpen = () => {
         console.log(this.state.selectedImages.length);
-        this.setState({confirmMenuOpen: this.state.selectedImages.length});
+        this.setState({shouldConfirmMenuOpen: !!this.state.selectedImages.length});
     };
     selectImage = image =>
         this.setState(
@@ -74,7 +74,7 @@ class CameraRollScreen extends PureComponent {
                 <AnimatedView
                     style={style.animatedViewSlider}
                     animation={this.state.sliderOptions}
-                    shouldLaunch={this.state.confirmMenuOpen}
+                    shouldLaunch={this.state.shouldConfirmMenuOpen}
                 >
                     <Buttons.FullWidthButton pressMethod={this.confirmSelectedImages} style={{height: 30, width: 30, backgroundColor: "red"}} textStyle={{}} innerText={"text for button"}/>
                 </AnimatedView>

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {Animated} from "react-native";
-import FullWidthButton from "../../tools/buttons/FullWidthButton";
 
 export default class AnimatedView extends Component {
     state = {

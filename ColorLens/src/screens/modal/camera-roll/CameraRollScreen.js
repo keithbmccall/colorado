@@ -16,7 +16,7 @@ class CameraRollScreen extends PureComponent {
         },
         selectedImages: [],
         shouldConfirmMenuOpen: false,
-        sliderOptions:{
+        sliderOptions: {
             key: "bottom",
             starting: 0,
             ending: 50
@@ -31,17 +31,16 @@ class CameraRollScreen extends PureComponent {
             selectedImages: []
         });
 
-    shouldConfirmMenuOpen = () => {
-        console.log(this.state.selectedImages.length);
+    shouldConfirmMenuOpen = () =>
         this.setState({shouldConfirmMenuOpen: !!this.state.selectedImages.length});
-    };
+
     selectImage = image =>
         this.setState(
             {
                 selectedImages: checkIsSelected("selectedImages", image, this.state),
                 images: checkIsSelected("images", image, this.state)
             },
-            this.shouldConfirmMenuOpen()
+            this.shouldConfirmMenuOpen
         );
 
     setImages = images =>
@@ -76,7 +75,9 @@ class CameraRollScreen extends PureComponent {
                     animation={this.state.sliderOptions}
                     shouldLaunch={this.state.shouldConfirmMenuOpen}
                 >
-                    <Buttons.FullWidthButton pressMethod={this.confirmSelectedImages} style={{height: 30, width: 30, backgroundColor: "red"}} textStyle={{}} innerText={"text for button"}/>
+                    <Buttons.FullWidthButton pressMethod={this.confirmSelectedImages}
+                                             style={{height: 30, width: 30, backgroundColor: "red"}} textStyle={{}}
+                                             innerText={"text for button"}/>
                 </AnimatedView>
             </View>
         );
@@ -87,11 +88,7 @@ class CameraRollScreen extends PureComponent {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {}
-};
-const mapStateToProps = state => {
-    return {}
-};
+const mapDispatchToProps = dispatch => ({});
+const mapStateToProps = state => ({})
 
 export default connect(mapStateToProps, mapDispatchToProps)(CameraRollScreen)

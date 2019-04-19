@@ -1,5 +1,7 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {Animated} from "react-native";
+import FullWidthButton from "../../tools/buttons/FullWidthButton";
 
 export default class AnimatedView extends Component {
     state = {
@@ -20,14 +22,8 @@ export default class AnimatedView extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log("s",this.props.shouldLaunch,prevProps.shouldLaunch)
         if (this.props.shouldLaunch !== prevProps.shouldLaunch) {
-            console.log("shoul",this.props.shouldLaunch,prevProps.shouldLaunch)
-            if (this.props.shouldLaunch) {
-                this.openMenu();
-            } else if (!this.props.shouldLaunch) {
-                this.closeMenu();
-            }
+            this.props.shouldLaunch ? this.openMenu() : this.closeMenu();
         }
     }
 
@@ -40,3 +36,17 @@ export default class AnimatedView extends Component {
         );
     }
 }
+AnimatedView.defaultProps = {
+    style: {flex: 1}
+}
+AnimatedView.propTypes = {
+    shouldLaunch: PropTypes.bool.isRequired,
+    style: PropTypes.object,
+    children: PropTypes.node.isRequired,
+    animation: PropTypes.shape({
+        key: PropTypes.string,
+        starting: PropTypes.number,
+        ending: PropTypes.number
+    })
+
+};

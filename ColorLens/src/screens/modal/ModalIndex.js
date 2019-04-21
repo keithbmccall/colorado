@@ -1,14 +1,16 @@
-import React, { Component } from "react";
-import { View } from "react-native";
+import React, {Component} from "react";
+import {Layout} from 'shared/containers'
+import {colors} from 'shared/constants'
 import CameraRollScreen from "./camera-roll/CameraRollScreen";
 
+
 export default class ModalIndex extends Component {
-  render() {
-    const modalContent = <CameraRollScreen/>
-    return (
-        <View style={{flex:1,paddingTop:50}}>
-            {modalContent}
-        </View>
-    );
-  }
+    render() {
+        const modalContent = <CameraRollScreen navigation={this.props.navigation}/>;
+        return (
+            <Layout style={{backgroundColor: colors.modalViewBackground}}>
+                {modalContent}
+            </Layout>
+        );
+    }
 }

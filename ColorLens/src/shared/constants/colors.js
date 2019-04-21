@@ -1,5 +1,9 @@
 const colors = {
-  selectedBorderColor: "#91268d"
+    selectedBorder: "#91268d",
+
+
+//
+    modalViewBackground: '#d9d9d9'
 };
 
 export default colors;

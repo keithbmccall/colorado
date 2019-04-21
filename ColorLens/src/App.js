@@ -1,17 +1,26 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
 import Navigation from "./navigation/Router";
-import {Provider} from "react-redux";
-import {initStore} from './store/config'
+import {studioActions} from "store/actions";
+
 
 console.disableYellowBox = true;
 
-const store = initStore();
-export default class App extends Component {
+
+class App extends Component {
+
+
+    componentDidMount() {
+        this.props.fetchStudioImages()
+    }
+
     render() {
-        return (
-            <Provider store={store}>
-                <Navigation/>
-            </Provider>
-        );
+        return (<Navigation/>);
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    fetchStudioImages: () => dispatch(studioActions.fetchStudioImages())
+});
+
+export default connect(null, mapDispatchToProps)(App)

@@ -27,14 +27,14 @@ const renderSwatches = props => {
 };
 
 const ColorStrip = props => (
-  <View style={props.containerStyle}>{renderSwatches(props)}</View>
+  <View style={props.style}>{renderSwatches(props)}</View>
 );
 
 ColorStrip.defaultProps = {
-  containerStyle: style.colorStripWrapper
+  style: style.colorStripWrapper
 };
 ColorStrip.propTypes = {
-  containerStyle: PropTypes.object,
+  style: PropTypes.object,
   pressMethod: PropTypes.func,
   longPressMethod: PropTypes.func,
   swatches: PropTypes.array.isRequired

@@ -5,9 +5,12 @@ import ColorStrip from "./components/ColorStrip";
 import {LoadingView} from "shared/containers";
 import {normalizeSwatches} from "./methods";
 
+const reactNativePaletteOptions = {
+    quality: "medium"
+}
 export default class ColorStripContainer extends Component {
     state = {
-        options: {quality: "medium"},
+        options: reactNativePaletteOptions,
         colors: {
             isLoaded: false,
             swatches: []
@@ -20,16 +23,25 @@ export default class ColorStripContainer extends Component {
                 ? console.log("error in PhotosPage.getSwatches", error)
                 : this.setState(
                 {
-                    colors: {isLoaded: true, swatches: normalizeSwatches(swatches)}
+                    colors: {
+                        isLoaded: true,
+                        swatches: normalizeSwatches(swatches)
+                    }
                 },
                 this.props.onReady && this.props.onReady()
                 )
         );
 
+    setSwatches = image =>
+        image.swatches ?
+            console.log('swatching the image: ', image) :
+            this.getDominantSwatches(image.uri);
+
+
     render() {
         return this.state.colors.isLoaded ? (
             <ColorStrip
-                // containerStyle={this.props.containerStyle}
+                // style={this.props.style}
                 // pressMethod={}
                 // longPressMethod={}
                 swatches={this.state.colors.swatches}
@@ -40,17 +52,22 @@ export default class ColorStripContainer extends Component {
     }
 
     componentDidMount() {
-        this.getDominantSwatches(this.props.src);
+        this.setSwatches(this.props.image)
     }
 }
 
 ColorStripContainer.defaultProps = {
-    containerStyle: {
+    style: {
         height: 50,
         width: "100%"
-    }
+    },
+    standAlone: false
 };
 ColorStripContainer.propTypes = {
-    src: PropTypes.string.isRequired,
-    containerStyle: PropTypes.object
+    image: PropTypes.shape({
+        uri: PropTypes.string.isRequired,
+    }),
+    style: PropTypes.object,
+    onReady: PropTypes.func,
+    standAlone: PropTypes.bool
 };

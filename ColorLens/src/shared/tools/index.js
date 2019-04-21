@@ -1,5 +1,4 @@
-import ScrollableList from "./lists/ScrollableList";
-import ResponsiveImage from "./images/ResponsiveImage";
-import Buttons from "./buttons";
+export ScrollableList from "./lists/ScrollableList";
+export ResponsiveImage from "./images/ResponsiveImage";
+export Buttons from "./buttons";
 
-export { ScrollableList, ResponsiveImage, Buttons };

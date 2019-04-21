@@ -1,8 +1,16 @@
 import React from "react";
-import { View } from "react-native";
-import style from "./styles";
+import {SafeAreaView} from "react-navigation";
+import {StyleSheet} from "react-native";
 //
 const Layout = props => {
-  return <View style={style.layoutWrapper}>{props.children}</View>;
+    return <SafeAreaView style={{...style.layoutWrapper}}>{props.children}</SafeAreaView>;
 };
+
+const style = StyleSheet.create({
+    layoutWrapper: {
+        flex: 1,
+        backgroundColor: "#fff",
+    }
+});
+
 export default Layout;

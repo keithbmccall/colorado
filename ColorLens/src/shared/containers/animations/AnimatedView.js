@@ -10,13 +10,13 @@ export default class AnimatedView extends Component {
     openMenu = () => {
         Animated.timing(this.state.animationValue, {
             toValue: this.props.animation.ending,
-            duration: 300
+            duration: this.props.duration
         }).start();
     }
     closeMenu = () => {
         Animated.timing(this.state.animationValue, {
             toValue: this.props.animation.starting,
-            duration: 300
+            duration: this.props.duration
         }).start();
     }
 
@@ -29,17 +29,18 @@ export default class AnimatedView extends Component {
     render() {
         const {animationValue} = this.state;
         return (
-            <Animated.View style={{...this.props.style, [this.props.animation.key]: animationValue}}>
+            <Animated.View style={{flex: 1, ...this.props.style, [this.props.animation.key]: animationValue}}>
                 {this.props.children}
             </Animated.View>
         );
     }
 }
 AnimatedView.defaultProps = {
-    style: {flex: 1}
+    duration: 300
 }
 AnimatedView.propTypes = {
     shouldLaunch: PropTypes.bool.isRequired,
+    duration: PropTypes.number,
     style: PropTypes.object,
     children: PropTypes.node.isRequired,
     animation: PropTypes.shape({

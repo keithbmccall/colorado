@@ -1,14 +1,17 @@
 import React, {PureComponent} from "react";
-import {CameraRoll, View, Text, Dimensions} from "react-native";
+import {View, Text} from "react-native";
+import {connect} from "react-redux";
+import {Layout, LoadingView} from 'shared/containers'
 import StudioGallery from "./components/StudioGallery";
 import FocusedImage from "./components/FocusedImage";
 import {Buttons} from "shared/tools";
-import style from "./styles";
-import {getStudioImages} from "helpers/device-storage";
 
-export default class ImageStudioScreen extends PureComponent {
+import {getStudioImages} from "helpers/device-storage";
+import {studioActions} from "store/actions";
+import style from "./styles";
+
+class ImageStudioScreen extends PureComponent {
     state = {
-        photos: [],
         focusedPhoto: {
             valid: false,
             photo: {uri: ""},
@@ -22,65 +25,40 @@ export default class ImageStudioScreen extends PureComponent {
         isGalleryExpanded: false
     };
 
-    buildPhotoObject = photo => {
-        photo.id = photo.node.timestamp;
-        photo.uri = photo.node.image.uri;
-        return photo;
-    };
-    setPhotos = photos =>
-        this.setState(
-            {
-                photos: photos.edges.map(this.buildPhotoObject),
-                pageInfo: photos.page_info
-            },
-            this.setFocusedImage(this.buildPhotoObject(photos.edges[0]))
-        );
+    setFocusedImage = () => console.log('setfocusediunmage')
 
-    setFocusedImage = image => {
-        this.setState({
-            focusedPhoto: {
-                valid: true,
-                photo: {
-                    id: image.id,
-                    uri: image.uri
-                }
-            }
-        });
-    };
-    setSwatches = () => {
-        this.setState({});
-    };
-    toggleGalleryState = () =>
-        this.setState({
-            isGalleryExpanded: !this.state.isGalleryExpanded
-        });
-    toggleExpandGallery = () => {
-        this.state.isGalleryExpanded ? this._panel.hide() : this._panel.show();
-        this.toggleGalleryState();
-    };
-    getStudioImages = async () => {
-        const images = await getStudioImages();
-        console.log("images stuido:", images);
-    };
+    temporaryAddStudioImages = () =>
+        this.props.navigation.state.params.newSelectedImages && this.props.temporaryAddStudioImages(this.props.navigation.state.params.newSelectedImages)
+
 
     render() {
         return (
-            <View style={[style.imageStudioWrapper]}>
-                {/* <FocusedImage focusedPhoto={this.state.focusedPhoto} /> */}
-                <Buttons.FullWidthButton pressMethod={this.toggleExpandGallery}/>
+            <Layout style={[style.imageStudioWrapper]}>
                 <View style={[style.studioGalleryWrapper]}>
-                    <Text>studio images here</Text>
-                    {/* <StudioGallery
-            photos={this.state.photos}
-            galleryOptions={this.state.galleryOptions}
-            setFocusedImage={this.setFocusedImage}
-          /> */}
+                    <Text>Studio Images</Text>
+                    {this.props.images && this.props.images.length ? <StudioGallery
+                        images={this.props.images.reverse()}
+                        galleryOptions={this.state.galleryOptions}
+                        setFocusedImage={this.setFocusedImage}
+                    /> : <LoadingView/>}
                 </View>
-            </View>
+            </Layout>
         );
     }
 
     componentDidMount() {
-        this.getPhotos();
+        this.temporaryAddStudioImages()
+        //    adds images from camera roll confirmation to bypass having to reload from storage
     }
+
 }
+
+const mapDispatchToProps = dispatch => ({
+    fetchStudioImages: () => dispatch(studioActions.fetchStudioImages()),
+    temporaryAddStudioImages: newImages => dispatch(studioActions.temporaryAddStudioImages(newImages))
+});
+const mapStateToProps = state => ({
+    images: state.studio.studioImages
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageStudioScreen)

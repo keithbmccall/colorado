@@ -29,9 +29,11 @@ class CameraRollScreen extends PureComponent {
     };
 
     confirmSelectedImages = () => {
-        saveStudioImages(this.state.selectedImages) && this.unSelectAllImages();
-        this.props.navigation.navigate("Studio");
+        saveStudioImages(this.state.selectedImages);
+        this.props.navigation.navigate("Studio", {newSelectedImages: this.state.selectedImages});
+        this.unSelectAllImages();
     }
+
     unSelectAllImages = () =>
         this.props.images = unSelectAllImages(this.props.images) &&
             this.setState({
@@ -50,9 +52,7 @@ class CameraRollScreen extends PureComponent {
                 this.shouldConfirmMenuOpen
             );
 
-
     render() {
-
         return (
             <View style={style.cameraRollScreenWrapper}>
                 <Text style={style.titleText}>CameraRoll</Text>

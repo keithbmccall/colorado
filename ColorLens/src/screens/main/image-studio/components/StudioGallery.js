@@ -1,33 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View } from "react-native";
+import { View ,TouchableOpacity} from "react-native";
 import { LoadingView, ImageWithColorStrip } from "shared/containers";
 import { ScrollableList } from "shared/tools";
 import style from "../styles";
 
 const imageCard = (renderPhotoProps, image, key) => (
   <ImageWithColorStrip
-    src={image.uri}
+    image={image}
     pressMethod={renderPhotoProps.setFocusedImage.bind(null, image)}
     style={[style.imageContentWrapper, renderPhotoProps.cellSize]}
     key={key}
   />
 );
 
-const renderPhotos = props => {
+const renderImages = props => {
   const { setFocusedImage, galleryOptions } = props;
   const { rowSize, rowHeight } = galleryOptions;
   const cellSize = { width: `${100 / rowSize}%`, height: rowHeight };
-  return props.photos.map(imageCard.bind(null, { cellSize, setFocusedImage }));
+  return props.images.map(imageCard.bind(null, { cellSize, setFocusedImage }));
 };
 
-const renderContent = props => (props.photos.length ? renderPhotos(props) : []);
+const renderContent = props => (props.images && props.images.length ? renderImages(props) : []);
 
 const StudioGallery = props => (
   <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize}>
     {renderContent(props)}
   </ScrollableList>
 );
+
+
+
 
 StudioGallery.defaultProps = { galleryOptions: { rowSize: 2 } };
 
@@ -45,7 +48,7 @@ const rowSizeRange = (props, propName, componentName) => {
   );
 };
 StudioGallery.propTypes = {
-  photos: PropTypes.array.isRequired,
+  images: PropTypes.array.isRequired,
   setFocusedImage: PropTypes.func,
   galleryOptions: PropTypes.shape({
     rowSize: rowSizeRange,

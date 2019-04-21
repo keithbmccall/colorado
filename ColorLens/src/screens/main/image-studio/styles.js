@@ -13,11 +13,11 @@ export default StyleSheet.create({
   },
   imageContentWrapper: {
     backgroundColor: "#ddd",
-    borderWidth: 1,
+    borderWidth: 5,
     borderColor: "#fff"
   },
   focusedImageWrapper: {
     backgroundColor: "#aaa",
     height: height / 2
-  }
+  },
 });

@@ -4,7 +4,7 @@ import CameraScreen from "../screens/main/camera/CameraScreen";
 import ImageStudio from "../screens/main/image-studio/ImageStudioScreen";
 import ModalIndex from "../screens/modal/ModalIndex";
 
-let view = "Camera";
+let view = "Studio";
 // let view = "Home";
 //
 const MainStack = createMaterialTopTabNavigator(

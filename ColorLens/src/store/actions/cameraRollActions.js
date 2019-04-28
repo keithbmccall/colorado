@@ -9,6 +9,3 @@ export const fetchCameraImages = () => async dispatch => {
     })
 };
 
-export const saveStudioImages = eventData => dispatch => {
-
-};

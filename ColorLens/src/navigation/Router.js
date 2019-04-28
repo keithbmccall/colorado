@@ -43,7 +43,7 @@ const RootStack = createStackNavigator(
         }
     },
     {
-        initialRouteName: "Modal",
+        initialRouteName: "Main",
         mode: "card",
         headerMode: "none"
     }

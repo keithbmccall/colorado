@@ -5,46 +5,47 @@ import ColorStrip from "./components/ColorStrip";
 import {LoadingView} from "shared/containers";
 import {normalizeSwatches} from "./methods";
 
-const reactNativePaletteOptions = {
-    quality: "medium"
-}
 export default class ColorStripContainer extends Component {
     state = {
-        options: reactNativePaletteOptions,
-        colors: {
-            isLoaded: false,
-            swatches: []
-        }
+        isLoaded: false,
+        swatches: []
     };
 
-    getDominantSwatches = src =>
-        getAllSwatches(this.state.options, src, (error, swatches) =>
+    markAsReady = () => this.props.onReady && this.props.onReady();
+
+    setSwatches = image => {
+        //    checks to see if image has palettes already, if not then it runs code to find the dominant colors
+        if (image.palette) {
+            this.setState({
+                isLoaded: true,
+                swatches: image.palette.swatches
+            }, this.markAsReady())
+        } else {
+            this.getDominantSwatches(image);
+        }
+    };
+    getDominantSwatches = image => {
+        getAllSwatches({quality: "medium"}, image.uri, (error, swatches) =>
             error
                 ? console.log("error in PhotosPage.getSwatches", error)
                 : this.setState(
                 {
-                    colors: {
-                        isLoaded: true,
-                        swatches: normalizeSwatches(swatches)
-                    }
+                    isLoaded: true,
+                    swatches: normalizeSwatches(swatches)
                 },
-                this.props.onReady && this.props.onReady()
+                this.markAsReady()
                 )
         );
-
-    setSwatches = image =>
-        image.swatches ?
-            console.log('swatching the image: ', image) :
-            this.getDominantSwatches(image.uri);
-
+    }
 
     render() {
-        return this.state.colors.isLoaded ? (
+        // this.state.colors.isLoaded && console.log("image", this.props.image.id, this.state.colors);
+        return this.state.isLoaded ? (
             <ColorStrip
                 // style={this.props.style}
                 // pressMethod={}
                 // longPressMethod={}
-                swatches={this.state.colors.swatches}
+                swatches={this.state.swatches}
             />
         ) : (
             <LoadingView/>
@@ -52,7 +53,7 @@ export default class ColorStripContainer extends Component {
     }
 
     componentDidMount() {
-        this.setSwatches(this.props.image)
+        this.setSwatches(this.props.image);
     }
 }
 
@@ -71,3 +72,4 @@ ColorStripContainer.propTypes = {
     onReady: PropTypes.func,
     standAlone: PropTypes.bool
 };
+

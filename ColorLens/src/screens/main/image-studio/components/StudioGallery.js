@@ -23,14 +23,16 @@ const renderImages = props => {
 
 const renderContent = props => (props.images && props.images.length ? renderImages(props) : []);
 
-const StudioGallery = props => (
-  <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize}>
-    {renderContent(props)}
-  </ScrollableList>
-);
+const StudioGallery = props => {
+
+  return (
+      <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize}>
+        {renderContent(props).reverse()}
+      </ScrollableList>
+  );
 
 
-
+}
 
 StudioGallery.defaultProps = { galleryOptions: { rowSize: 2 } };
 

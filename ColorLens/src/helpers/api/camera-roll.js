@@ -8,9 +8,8 @@ const buildImageObject = (image, i) => {
 };
 export const getCameraRollImages = async () => {
     const images = await CameraRoll.getPhotos({
-        first: 20,
+        first: 5000,
         assetType: "Photos"
     })
     return images.edges.map(buildImageObject)
-
-}
+};

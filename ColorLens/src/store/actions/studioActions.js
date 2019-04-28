@@ -8,12 +8,12 @@ export const fetchStudioImages = () => async dispatch => {
         payload: images
     })
 };
-export const temporaryAddStudioImages = newImages => dispatch => {
+export const temporaryAddStudioImages = newImages => dispatch =>
     dispatch({
         type: TEMP_ADD_STUDIO_IMAGES,
         payload: newImages
-    })
-}
+    });
+
 export const saveStudioImages = eventData => dispatch => {
 
 };

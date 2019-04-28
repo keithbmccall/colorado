@@ -1,29 +1,33 @@
 import {AsyncStorage} from "react-native";
+import {studioMethods} from "./methods";
 
 const studio = "studio";
-const buildImageObject = (allCurrentImages, image) => {
-    const imageObject = image.node;
-    imageObject.uri = image.uri;
-    imageObject.id = allCurrentImages ? allCurrentImages.length + 1 : 1;
-    return imageObject
-};
 
 export const saveStudioImages = async images => {
     const allImagesJSON = await AsyncStorage.getItem('studio', error => error && console.log("error getting studio images during save"));
     const allCurrentImages = JSON.parse(allImagesJSON);
-    const newImages = images.map(buildImageObject.bind(null, allCurrentImages));
+    const newImages = await Promise.all(images.map(studioMethods.buildImageObjectWithSwatches.bind(null, allCurrentImages)));
+    let imagesToSave = [];
     if (allImagesJSON) {
-        allCurrentImages.length ?
-            AsyncStorage.setItem(studio, JSON.stringify([...allCurrentImages, ...newImages,])) :
-            AsyncStorage.setItem(studio, JSON.stringify([...newImages,]))
+        if (allCurrentImages.length) {
+            imagesToSave = [...allCurrentImages, ...newImages];
+            AsyncStorage.setItem(studio, JSON.stringify(imagesToSave))
+        } else {
+            imagesToSave = newImages;
+            AsyncStorage.setItem(studio, JSON.stringify(imagesToSave))
+        }
     } else {
-        AsyncStorage.setItem(studio, JSON.stringify([...newImages,]))
+        imagesToSave = newImages;
+        AsyncStorage.setItem(studio, JSON.stringify(imagesToSave))
     }
     // AsyncStorage.removeItem(studio)
-}
-
+};
 
 export const getStudioImages = async () => {
     const images = await AsyncStorage.getItem(studio, error => error && console.log("error getting studio images"));
     return JSON.parse(images);
 };
+
+export const updateStudioImage = () => {
+
+}

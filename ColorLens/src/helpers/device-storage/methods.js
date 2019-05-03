@@ -12,6 +12,7 @@ const equalizeSwatchLength = swatches => {
     }
     return swatches;
 };
+
 const normalizeSwatches = swatches => {
     swatches = equalizeSwatchLength(swatches);
     //
@@ -41,7 +42,7 @@ const buildImageObjectWithSwatches = async (allCurrentImages, image, i) => {
     imageObject.id = allCurrentImages ? allCurrentImages.length + count : count;
     // imageObject.palette = swatches.palette;
     await new Promise(
-        (resolve, reject) => {
+        (resolve, reject) =>
             getAllSwatches({quality: "medium"}, image.uri, (error, swatches) => {
                 if (error) {
                     console.log("error in getDominantSwatches!: ", error);
@@ -53,8 +54,7 @@ const buildImageObjectWithSwatches = async (allCurrentImages, image, i) => {
                     imageObject.palette = colors;
                     resolve(imageObject.palette);
                 }
-            });
-        }
+            })
     );
     return imageObject
 };

@@ -34,11 +34,12 @@ class ImageStudioScreen extends Component {
             <Layout style={[style.imageStudioWrapper]}>
                 <View style={[style.studioGalleryWrapper]}>
                     <Text>Studio Images</Text>
-                    {this.props.images && this.props.images.length ? <StudioGallery
-                        images={this.props.images}
-                        galleryOptions={this.state.galleryOptions}
-                        setFocusedImage={this.setFocusedImage}
-                    /> : <LoadingView/>}
+                    {this.props.images && this.props.images.length ?
+                        <StudioGallery
+                            images={this.props.images}
+                            galleryOptions={this.state.galleryOptions}
+                            setFocusedImage={this.setFocusedImage}
+                        /> : <LoadingView/>}
                 </View>
             </Layout>
         );

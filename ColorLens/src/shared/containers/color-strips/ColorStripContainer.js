@@ -1,11 +1,11 @@
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {getAllSwatches} from "react-native-palette";
 import ColorStrip from "./components/ColorStrip";
 import {LoadingView} from "shared/containers";
 import {normalizeSwatches} from "./methods";
 
-export default class ColorStripContainer extends Component {
+export default class ColorStripContainer extends PureComponent {
     state = {
         isLoaded: false,
         swatches: []

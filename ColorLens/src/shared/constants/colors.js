@@ -3,7 +3,9 @@ const colors = {
 
 
 //
-    modalViewBackground: '#d9d9d9'
+    modalViewBackground: '#d9d9d9',
+//
+    layoutBackground: "#ffffff"
 };
 
 export default colors;

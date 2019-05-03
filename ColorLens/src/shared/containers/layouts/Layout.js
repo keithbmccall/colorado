@@ -1,6 +1,7 @@
 import React from "react";
 import {SafeAreaView} from "react-navigation";
 import {StyleSheet} from "react-native";
+import {colors} from 'shared/constants'
 //
 const Layout = props => {
     return <SafeAreaView style={{...style.layoutWrapper}}>{props.children}</SafeAreaView>;
@@ -9,7 +10,7 @@ const Layout = props => {
 const style = StyleSheet.create({
     layoutWrapper: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: colors.layoutBackground,
     }
 });
 

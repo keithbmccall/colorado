@@ -13,6 +13,7 @@ export default class AnimatedView extends Component {
             duration: this.props.duration
         }).start();
     }
+
     closeMenu = () => {
         Animated.timing(this.state.animationValue, {
             toValue: this.props.animation.starting,

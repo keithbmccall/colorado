@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-// import FastImage from "react-native-fast-image";
 import { Image } from "react-native";
 import { LoadingView } from "shared/containers";
 class ResponsiveImage extends Component {

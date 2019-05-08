@@ -7,23 +7,23 @@ export default class AnimatedView extends Component {
         animationValue: new Animated.Value(this.props.animation.starting)
     };
 
-    openMenu = () => {
+    startAnimation = () =>
         Animated.timing(this.state.animationValue, {
             toValue: this.props.animation.ending,
             duration: this.props.duration
         }).start();
-    }
 
-    closeMenu = () => {
+
+    reverseAnimation = () =>
         Animated.timing(this.state.animationValue, {
             toValue: this.props.animation.starting,
             duration: this.props.duration
         }).start();
-    }
+
 
     componentDidUpdate(prevProps) {
         if (this.props.shouldLaunch !== prevProps.shouldLaunch) {
-            this.props.shouldLaunch ? this.openMenu() : this.closeMenu();
+            this.props.shouldLaunch ? this.startAnimation() : this.reverseAnimation();
         }
     }
 

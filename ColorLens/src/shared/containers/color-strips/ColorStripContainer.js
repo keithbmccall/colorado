@@ -24,10 +24,10 @@ export default class ColorStripContainer extends PureComponent {
             this.getDominantSwatches(image);
         }
     };
-    getDominantSwatches = image => {
+    getDominantSwatches = image =>
         getAllSwatches({quality: "medium"}, image.uri, (error, swatches) =>
             error
-                ? console.log("error in PhotosPage.getSwatches", error)
+                ? console.log("error in ColorStripcontainer.getDominantSwatches", error)
                 : this.setState(
                 {
                     isLoaded: true,
@@ -36,7 +36,7 @@ export default class ColorStripContainer extends PureComponent {
                 this.markAsReady()
                 )
         );
-    }
+
 
     render() {
         // this.state.colors.isLoaded && console.log("image", this.props.image.id, this.state.colors);

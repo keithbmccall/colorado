@@ -1,12 +1,27 @@
-import React, {Component} from "react";
-import PropTypes from "prop-types";
+import React, {Component, ReactNode} from "react";
 import {Animated} from "react-native";
 
-export default class AnimatedView extends Component {
+type Props = {
+    children: ReactNode,
+    animation: {
+        ending: number,
+        starting: number,
+        key: string
+    },
+    duration: number,
+    shouldLaunch: boolean,
+    style?: object
+}
+type State = {
+    animationValue: any
+}
+export default class AnimatedView extends Component<Props, State> {
     state = {
         animationValue: new Animated.Value(this.props.animation.starting)
     };
-
+    static defaultProps = {
+        duration: 300
+    }
     startAnimation = () =>
         Animated.timing(this.state.animationValue, {
             toValue: this.props.animation.ending,
@@ -21,7 +36,7 @@ export default class AnimatedView extends Component {
         }).start();
 
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps: Props) {
         if (this.props.shouldLaunch !== prevProps.shouldLaunch) {
             this.props.shouldLaunch ? this.startAnimation() : this.reverseAnimation();
         }
@@ -36,18 +51,4 @@ export default class AnimatedView extends Component {
         );
     }
 }
-AnimatedView.defaultProps = {
-    duration: 300
-}
-AnimatedView.propTypes = {
-    shouldLaunch: PropTypes.bool.isRequired,
-    duration: PropTypes.number,
-    style: PropTypes.object,
-    children: PropTypes.node.isRequired,
-    animation: PropTypes.shape({
-        key: PropTypes.string,
-        starting: PropTypes.number,
-        ending: PropTypes.number
-    })
 
-};

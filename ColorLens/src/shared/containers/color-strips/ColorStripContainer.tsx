@@ -1,19 +1,47 @@
 import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
 import {getAllSwatches} from "react-native-palette";
 import ColorStrip from "./components/ColorStrip";
 import {LoadingView} from "shared/containers";
 import {normalizeSwatches} from "./methods";
 
-export default class ColorStripContainer extends PureComponent {
+type Props = {
+    onReady(): any,
+    image: {
+        uri: string
+    },
+    style?: object,
+    standAlone?: boolean
+}
+type Swatch = {
+    color:string
+}
+type State = {
+    isLoaded: boolean,
+    swatches: Array<Swatch> | Array<any>
+}
+type ColorStripImage = {
+    uri: string,
+    palette?: {
+        swatches: Array<object>
+    }
+}
+
+export default class ColorStripContainer extends PureComponent<Props, State> {
     state = {
         isLoaded: false,
         swatches: []
     };
+    static defaultProps = {
+        style: {
+            height: 50,
+            width: "100%"
+        },
+        standAlone: false
+    };
 
     markAsReady = () => this.props.onReady && this.props.onReady();
 
-    setSwatches = image => {
+    setSwatches = (image: ColorStripImage) => {
         //    checks to see if image has palettes already, if not then it runs code to find the dominant colors
         if (image.palette) {
             this.setState({
@@ -24,8 +52,8 @@ export default class ColorStripContainer extends PureComponent {
             this.getDominantSwatches(image);
         }
     };
-    getDominantSwatches = image =>
-        getAllSwatches({quality: "medium"}, image.uri, (error, swatches) =>
+    getDominantSwatches = (image: ColorStripImage) =>
+        getAllSwatches({quality: "medium"}, image.uri, (error: any, swatches: []) =>
             error
                 ? console.log("error in ColorStripcontainer.getDominantSwatches", error)
                 : this.setState(
@@ -57,19 +85,5 @@ export default class ColorStripContainer extends PureComponent {
     }
 }
 
-ColorStripContainer.defaultProps = {
-    style: {
-        height: 50,
-        width: "100%"
-    },
-    standAlone: false
-};
-ColorStripContainer.propTypes = {
-    image: PropTypes.shape({
-        uri: PropTypes.string.isRequired,
-    }),
-    style: PropTypes.object,
-    onReady: PropTypes.func,
-    standAlone: PropTypes.bool
-};
+
 

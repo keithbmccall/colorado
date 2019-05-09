@@ -1,11 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {TouchableOpacity, StyleSheet} from "react-native";
-import {LoadingView} from "shared/containers";
 import {ScrollableList, ResponsiveImage} from "shared/tools";
 import {colors} from "shared/constants";
 
-const imageCard = (renderProps, image, key) => {
+type Image = {
+    isSelected?: boolean,
+    uri: string
+}
+type Props = {
+    images: Array<Image>,
+    pressMethod(arg1:Image): any,
+    galleryOptions?: {
+        rowSize: number,
+        rowHeight: number
+    }
+}
+
+const imageCard = (renderProps: any, image: Image, key: number) => {
     const imageCardStyle = image.isSelected ? style.selectedImageWrapper : style.imageWrapper;
     return (
         <TouchableOpacity
@@ -18,44 +30,39 @@ const imageCard = (renderProps, image, key) => {
     );
 };
 
-const renderImages = props => {
+const renderImages = (props: Props) => {
     const {pressMethod, galleryOptions} = props;
-    const {rowSize, rowHeight} = galleryOptions;
-    const cellSize = {width: `${100 / rowSize}%`, height: rowHeight};
+    // @ts-ignore
+    const cellSize = {width: `${100 / galleryOptions.rowSize}%`, height: galleryOptions.rowHeight};
     return props.images.map(imageCard.bind(null, {cellSize, pressMethod}));
 };
 
-const renderContent = props => (props.images.length ? renderImages(props) : []);
+const renderContent = (props: Props) => (props.images.length ? renderImages(props) : []);
 
-const ImageGallery = props => (
-    <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize}>
-        {renderContent(props)}
-    </ScrollableList>
-);
+const ImageGallery = (props: Props) => {
+    props.galleryOptions && rowSizeRange(props.galleryOptions.rowSize)
+
+    return (
+        // @ts-ignore
+        <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize}>
+            {renderContent(props)}
+        </ScrollableList>
+    )
+}
 
 ImageGallery.defaultProps = {galleryOptions: {rowSize: 2}};
 
-// // PROPTYPES
-const rowSizeRange = (props, propName, componentName) => {
-    if (typeof props[propName] === "number") {
-        if (props[propName] === 2 || props[propName] === 3 || props[propName] === 4) {
-            return;
-        }
+const rowSizeRange = (rowSize: number) => {
+    if (rowSize === 2 || rowSize === 3 || rowSize === 4) {
+        return;
     }
     return new Error(
-        `Invalid prop '${propName}' supplied to '${componentName}'. Expected a Number of value '2' or '3' but received: ${
-            props[propName]
+        `Invalid prop '${rowSize}' supplied to StudioGallery. Expected a Number of value '2' or '3' but received: ${
+            rowSize
             }`
     );
 };
-ImageGallery.propTypes = {
-    images: PropTypes.array.isRequired,
-    pressMethod: PropTypes.func,
-    galleryOptions: PropTypes.shape({
-        rowSize: rowSizeRange,
-        rowHeight: PropTypes.number.isRequired
-    })
-};
+
 export default ImageGallery;
 
 const style = StyleSheet.create({

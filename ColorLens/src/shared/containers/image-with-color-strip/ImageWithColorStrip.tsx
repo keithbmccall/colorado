@@ -1,10 +1,20 @@
 import React, {Component, Fragment} from "react";
-import PropTypes from "prop-types";
 import {View, TouchableOpacity} from "react-native";
 import {LoadingView, ColorStripContainer} from "shared/containers";
 import {ResponsiveImage} from "shared/tools";
 
-export default class ImageWithColorStrip extends Component {
+type Props = {
+    image: {
+        uri: string
+    },
+    style?: object,
+    pressMethod?: any
+}
+type State = {
+    isImageReady: boolean,
+    isColorsReady: boolean
+}
+export default class ImageWithColorStrip extends Component<Props, State> {
     state = {
         isImageReady: false,
         isColorsReady: false
@@ -14,9 +24,9 @@ export default class ImageWithColorStrip extends Component {
 
     colorsReady = () => this.setState({isColorsReady: true});
 
-    isImageWithColorStripReady = () => this.state.isImageReady === true && this.state.isColorsReady === true;
+    isImageWithColorStripReady = () => this.state.isImageReady && this.state.isColorsReady;
 
-    content = props => (
+    content = (props: Props) => (
         <Fragment>
             <ResponsiveImage src={props.image.uri} onReady={this.imageReady}/>
             <ColorStripContainer image={props.image} onReady={this.colorsReady} standAlone={false}/>
@@ -25,9 +35,9 @@ export default class ImageWithColorStrip extends Component {
         </Fragment>
     );
 
-    renderContent = props =>
+    renderContent = (props: Props) =>
         props.pressMethod ? (
-            <TouchableOpacity underlayColor="transparent" style={props.style} onPress={props.pressMethod}>
+            <TouchableOpacity style={props.style} onPress={props.pressMethod}>
                 {this.content(props)}
             </TouchableOpacity>
         ) : (
@@ -36,25 +46,10 @@ export default class ImageWithColorStrip extends Component {
             </View>
         );
 
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.shouldLaunch !== prevProps.shouldLaunch) {
-            this.props.shouldLaunch ? this.openMenu() : this.closeMenu();
-        }
-    }
-
     render() {
         return <Fragment>{this.renderContent(this.props)}</Fragment>;
     }
 }
 
 //  PROPTYPES
-ImageWithColorStrip.defaultProps = {
-    // button: false
-};
-ImageWithColorStrip.propTypes = {
-    image: PropTypes.shape({
-        uri: PropTypes.string.isRequired
-    }),
-    style: PropTypes.any,
-    pressMethod: PropTypes.func
-};
+

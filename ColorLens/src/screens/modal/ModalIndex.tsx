@@ -3,12 +3,12 @@ import {Layout} from 'shared/containers'
 import {colors} from 'shared/constants'
 import CameraRollScreen from "./camera-roll/CameraRollScreen";
 
-
-export default class ModalIndex extends Component {
+type Props = {
+    navigation: object
+}
+export default class ModalIndex extends Component<Props> {
     render() {
         const modalContent = <CameraRollScreen navigation={this.props.navigation}/>;
-
-
 
         return (
             <Layout style={{backgroundColor: colors.modalViewBackground}}>

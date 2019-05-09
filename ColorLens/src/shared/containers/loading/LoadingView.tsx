@@ -2,7 +2,10 @@ import React from "react";
 import { View, Text } from "react-native";
 
 //
-const LoadingView = props => (
+type Props ={
+    style?:object
+}
+const LoadingView = (props:Props) => (
   <View style={props.style}>
     <Text>LOADING</Text>
   </View>

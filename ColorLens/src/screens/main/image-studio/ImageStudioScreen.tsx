@@ -1,15 +1,33 @@
 import React, {PureComponent, Component} from "react";
 import {View, Text} from "react-native";
 import {connect} from "react-redux";
-import {Layout, LoadingView} from 'shared/containers'
+import {Dispatch} from "redux";
 import StudioGallery from "./components/StudioGallery";
 import FocusedImage from "./components/FocusedImage";
+import {Layout, LoadingView} from 'shared/containers'
 import {Buttons} from "shared/tools";
 import {getStudioImages} from "helpers/device-storage";
 import {studioActions} from "store/actions";
+import {rootReducer} from "store/reducers"
 import style from "./styles";
 
-class ImageStudioScreen extends Component {
+
+type State = {}
+type Props = {
+    images: Array<object>,
+    navigation: {
+        state: {
+            params: {
+                newSelectedImages: Array<object>
+            }
+        }
+    },
+    temporaryAddStudioImages: any,
+    fetchStudioImages: any
+}
+type ReduxState = rootReducer
+
+class ImageStudioScreen extends Component<Props, State> {
     state = {
         focusedPhoto: {
             valid: false,
@@ -52,12 +70,12 @@ class ImageStudioScreen extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
     fetchStudioImages: () => dispatch(studioActions.fetchStudioImages()),
-    temporaryAddStudioImages: newImages => dispatch(studioActions.temporaryAddStudioImages(newImages))
+    temporaryAddStudioImages: (newImages: Array<object>) => dispatch(studioActions.temporaryAddStudioImages(newImages))
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: ReduxState) => ({
     images: state.studio.studioImages ? state.studio.studioImages : []
 });
 

@@ -1,4 +1,4 @@
-import {fetchStudioImages, saveStudioImages,temporaryAddStudioImages} from "./studioActions";
+import {fetchStudioImages, temporaryAddStudioImages} from "./studioActions";
 import {fetchCameraImages} from './cameraRollActions'
 
 

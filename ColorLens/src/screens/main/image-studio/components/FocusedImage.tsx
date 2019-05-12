@@ -4,10 +4,26 @@ import { ImageWithColorStrip, LoadingView } from "shared/containers";
 import style from "../styles";
 
 //
-const FocusedImage = props =>
+type Props ={
+  focusedPhoto: {
+    valid:boolean,
+    photo: Image
+  }
+}
+type Image = {
+  node:{
+    location:object,
+    image: object,
+    group_name:string,
+
+  },
+  tempId:number,
+  uri:string
+}
+const FocusedImage = (props:Props) =>
   props.focusedPhoto.valid ? (
     <ImageWithColorStrip
-      src={props.focusedPhoto.photo.uri}
+     image={props.focusedPhoto.photo}
       style={style.focusedImageWrapper}
     />
   ) : (

@@ -6,8 +6,10 @@ import style from "../styles";
 type Image = {
     uri: string
 }
+
+type Images = Array<Image>
 type Props = {
-    images: Array<Image>,
+    images: Images,
     setFocusedImage(): any,
     galleryOptions?: {
         rowSize: number,

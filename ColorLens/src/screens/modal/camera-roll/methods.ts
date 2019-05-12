@@ -7,7 +7,7 @@ type Image = {
     },
     tempId:number,
     uri:string,
-    isSelected:boolean
+    isSelected?:boolean
 }
 type Images = Array<Image>;
 const checkImages = (images:Images, image:Image) => {
@@ -16,7 +16,7 @@ const checkImages = (images:Images, image:Image) => {
     imagesArray[image.tempId].isSelected = !imagesArray[image.tempId].isSelected;
     return imagesArray;
 };
-const checkSelectedImages = (selectedImages:Images, image:Image) => {
+const checkSelectedImages = (selectedImages: Images, image: Image) => {
     // adds images to selectedImages array/state
     let selectedArray = selectedImages.slice(0);
     let n = selectedArray.indexOf(image);
@@ -36,7 +36,7 @@ const renderSelectedImageCount = (images:Images) => {
         return `${images.length} Images`
     }
 }
-module.exports = {
+export {
     checkImages,
     checkSelectedImages,
     unSelectAllImages,

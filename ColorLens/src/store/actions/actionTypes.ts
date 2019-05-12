@@ -36,6 +36,6 @@ type TempAddStudioImageType = {
     type: typeof TEMP_ADD_STUDIO_IMAGES,
     payload: Array<object>
 }
-export type NewImagesTypes = Image | Images
+export type NewImagesTypes = Images
 export type CameraImageTypes = SaveCameraImageType | FetchCameraImageType
 export type StudioImageTypes = TempAddStudioImageType | SaveStudioImageType | FetchStudioImageType

@@ -6,7 +6,7 @@ import {Buttons} from "shared/tools";
 import {checkImages, checkSelectedImages, unSelectAllImages, renderSelectedImageCount} from "./methods";
 import {saveStudioImages} from "helpers/device-storage";
 import {cameraRollActions} from "store/actions";
-import {rootReducer} from "store/reducers"
+import rootReducer from "store/reducers"
 import style from './styles';
 import {Dispatch} from "redux";
 
@@ -15,6 +15,12 @@ type Image = {
     isSelected?: boolean,
     uri: string
 }
+type CameraRollImage = {
+    node:any,
+    tempId:number,
+    uri: string
+}
+// @ts-ignore
 type ReduxState = rootReducer
 type Props = {
     navigation: {
@@ -69,11 +75,11 @@ class CameraRollScreen extends PureComponent<Props, State> {
     shouldConfirmMenuOpen = (): void =>
         this.setState({shouldConfirmMenuOpen: !!this.state.selectedImages.length});
 
-    selectImage = (image: object): void => {
+    selectImage = (image: CameraRollImage): void => {
         // @ts-ignore
         this.props.images = checkImages(this.props.images, image);
-        this.setState(
-            {
+        // @ts-ignore
+        this.setState({
                 selectedImages: checkSelectedImages(this.state.selectedImages, image),
             },
             this.shouldConfirmMenuOpen
@@ -110,7 +116,9 @@ class CameraRollScreen extends PureComponent<Props, State> {
     }
 }
 
+
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+    // @ts-ignore
     fetchCameraImages: () => dispatch(cameraRollActions.fetchCameraImages())
 });
 const mapStateToProps = (state: ReduxState) => ({

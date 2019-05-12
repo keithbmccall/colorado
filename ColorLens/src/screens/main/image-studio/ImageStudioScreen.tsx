@@ -8,13 +8,23 @@ import {Layout, LoadingView} from 'shared/containers'
 import {Buttons} from "shared/tools";
 import {getStudioImages} from "helpers/device-storage";
 import {studioActions} from "store/actions";
-import {rootReducer} from "store/reducers"
+import rootReducer from "store/reducers"
 import style from "./styles";
 
+type Image = {
+    node: {
+        location: object,
+        image: object,
+        group_name: string,
 
+    },
+    tempId: number,
+    uri: string
+}
+type Images = Array<Image>
 type State = {}
 type Props = {
-    images: Array<object>,
+    images: Images,
     navigation: {
         state: {
             params: {
@@ -25,6 +35,7 @@ type Props = {
     temporaryAddStudioImages: any,
     fetchStudioImages: any
 }
+// @ts-ignore
 type ReduxState = rootReducer
 
 class ImageStudioScreen extends Component<Props, State> {
@@ -70,9 +81,12 @@ class ImageStudioScreen extends Component<Props, State> {
     }
 }
 
+
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+    // @ts-ignore
     fetchStudioImages: () => dispatch(studioActions.fetchStudioImages()),
-    temporaryAddStudioImages: (newImages: Array<object>) => dispatch(studioActions.temporaryAddStudioImages(newImages))
+    // @ts-ignore
+    temporaryAddStudioImages: (newImages: Images) => dispatch(studioActions.temporaryAddStudioImages(newImages))
 });
 
 const mapStateToProps = (state: ReduxState) => ({

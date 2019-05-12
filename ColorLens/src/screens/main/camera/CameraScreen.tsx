@@ -4,7 +4,12 @@ import CameraOptions from "./components/CameraOptions";
 import {Layout} from "shared/containers";
 import style from "./styles";
 //
-export default class CameraScreen extends Component {
+type Props ={
+    navigation: {
+        navigate:any
+    }
+}
+export default class CameraScreen extends Component<Props>{
     state = {
         autoFocus: RNCamera.Constants.AutoFocus.on,
         flashMode: RNCamera.Constants.FlashMode.off,
@@ -30,7 +35,8 @@ export default class CameraScreen extends Component {
             <Layout>
                 <RNCamera
                     ref={ref => {
-                        this.camera = ref;
+                        //@ts-ignore
+                        this.camera= ref;
                     }}
                     style={style.cameraView}
                     type={type}

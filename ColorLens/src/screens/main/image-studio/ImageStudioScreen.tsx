@@ -22,9 +22,19 @@ type Image = {
     uri: string
 }
 type Images = Array<Image>
-type State = {}
+type State = {
+    focusedImage:{
+        image: Images | any
+    },
+    galleryOptions: {
+        rowSize: number
+        rowHeight: number
+    },
+    isGalleryExpanded: boolean
+}
 type Props = {
     images: Images,
+    focusedImage: Image,
     navigation: {
         state: {
             params: {
@@ -40,12 +50,9 @@ type ReduxState = rootReducer
 
 class ImageStudioScreen extends Component<Props, State> {
     state = {
-        focusedPhoto: {
-            valid: false,
-            photo: {uri: ""},
-            type: ""
+        focusedImage:{
+            image: this.props.focusedImage
         },
-        pageInfo: {},
         galleryOptions: {
             rowSize: 2,
             rowHeight: 220
@@ -59,8 +66,12 @@ class ImageStudioScreen extends Component<Props, State> {
         this.props.navigation.state.params.newSelectedImages && this.props.temporaryAddStudioImages(this.props.navigation.state.params.newSelectedImages);
 
     render() {
+
         return (
             <Layout style={[style.imageStudioWrapper]}>
+                <View style={[style.focusedImageWrapper]}>
+                    <FocusedImage focusedImage={this.props.focusedImage}/>
+                </View>
                 <View style={[style.studioGalleryWrapper]}>
                     <Text>Studio Images</Text>
                     {this.props.images && this.props.images.length ?
@@ -90,7 +101,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
 
 const mapStateToProps = (state: ReduxState) => ({
-    images: state.studio.studioImages ? state.studio.studioImages : []
+    images: state.studio.studioImages ? state.studio.studioImages : [],
+    focusedImage:state.studio.studioImages ? state.studio.studioImages[0] : []
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ImageStudioScreen)

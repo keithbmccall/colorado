@@ -13,7 +13,7 @@ type Props = {
     standAlone?: boolean
 }
 type Swatch = {
-    color:string
+    color: string
 }
 type State = {
     isLoaded: boolean,

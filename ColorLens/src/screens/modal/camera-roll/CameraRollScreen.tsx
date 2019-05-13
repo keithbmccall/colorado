@@ -9,12 +9,10 @@ import {cameraRollActions} from "store/actions";
 import rootReducer from "store/reducers"
 import style from './styles';
 import {Dispatch} from "redux";
+import {CommonImageType} from "types-store";
 
 //slider options
-type Image = {
-    isSelected?: boolean,
-    uri: string
-}
+
 type CameraRollImage = {
     node:any,
     tempId:number,
@@ -26,7 +24,7 @@ type Props = {
     navigation: {
         navigate(arg1: string, arg2: object): any
     },
-    images: Array<Image>,
+    images: Array<CommonImageType>,
     fetchCameraImages(): any
 }
 type State = {
@@ -40,7 +38,7 @@ type State = {
         rowSize: number,
         rowHeight: number
     },
-    selectedImages: Array<Image> | Array<any>
+    selectedImages: Array<CommonImageType> | Array<any>
 }
 
 //slider options end

@@ -3,21 +3,19 @@ import PropTypes from "prop-types";
 import {TouchableOpacity, StyleSheet} from "react-native";
 import {ScrollableList, ResponsiveImage} from "shared/tools";
 import {colors} from "shared/constants";
+import {CommonImageType} from "types-store";
 
-type Image = {
-    isSelected?: boolean,
-    uri: string
-}
+
 type Props = {
-    images: Array<Image>,
-    pressMethod(arg1:Image): any,
+    images: Array<CommonImageType>,
+    pressMethod(arg1:CommonImageType): any,
     galleryOptions?: {
         rowSize: number,
         rowHeight: number
     }
 }
 
-const imageCard = (renderProps: any, image: Image, key: number) => {
+const imageCard = (renderProps: any, image: CommonImageType, key: number) => {
     const imageCardStyle = image.isSelected ? style.selectedImageWrapper : style.imageWrapper;
     return (
         <TouchableOpacity

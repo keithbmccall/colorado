@@ -2,11 +2,10 @@ import React, {Component, Fragment} from "react";
 import {View, TouchableOpacity} from "react-native";
 import {LoadingView, ColorStripContainer} from "shared/containers";
 import {ResponsiveImage} from "shared/tools";
+import {CommonImageType} from "types-store";
 
 type Props = {
-    image: {
-        uri: string
-    },
+    image: CommonImageType,
     style?: object,
     pressMethod?: any
 }

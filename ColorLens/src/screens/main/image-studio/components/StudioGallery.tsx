@@ -2,12 +2,9 @@ import React from "react";
 import {ImageWithColorStrip} from "shared/containers";
 import {ScrollableList} from "shared/tools";
 import style from "../styles";
+import {CommonImageType} from "types-store";
 
-type Image = {
-    uri: string
-}
-
-type Images = Array<Image>
+type Images = Array<CommonImageType>
 type Props = {
     images: Images,
     setFocusedImage(): any,
@@ -17,7 +14,7 @@ type Props = {
     }
 }
 
-const imageCard = (renderPhotoProps: any, image: Image, key: number) => (
+const imageCard = (renderPhotoProps: any, image: CommonImageType, key: number) => (
     <ImageWithColorStrip
         image={image}
         pressMethod={renderPhotoProps.setFocusedImage.bind(null, image)}

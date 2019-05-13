@@ -31,13 +31,13 @@ export default class ImageWithColorStrip extends Component<Props, State> {
             <ResponsiveImage src={props.image.uri} onReady={this.imageReady}/>
             <ColorStripContainer image={props.image} onReady={this.colorsReady} standAlone={false}/>
             {!this.isImageWithColorStripReady() &&
-            <LoadingView style={{position: 'absolute', width: "100%", height: "100%", backgroundColor: 'red'}}/>}
+            <LoadingView/>}
         </Fragment>
     );
 
     renderContent = (props: Props) =>
         props.pressMethod ? (
-            <TouchableOpacity style={props.style} onPress={props.pressMethod}>
+            <TouchableOpacity style={props.style} onPress={props.pressMethod} activeOpacity={.8}>
                 {this.content(props)}
             </TouchableOpacity>
         ) : (

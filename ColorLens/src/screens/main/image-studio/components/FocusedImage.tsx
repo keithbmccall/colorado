@@ -1,42 +1,41 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { ImageWithColorStrip, LoadingView } from "shared/containers";
+import {TouchableOpacity, View} from "react-native";
+import {ImageWithColorStrip, LoadingView} from "shared/containers";
 import style from "../styles";
 
 //
-type Props ={
-  focusedPhoto: {
-    valid:boolean,
-    photo: Image
-  }
+type Props = {
+    focusedImage: Image
 }
 type Image = {
-  node:{
-    location:object,
-    image: object,
-    group_name:string,
+    node: {
+        location: object,
+        image: object,
+        group_name: string,
 
-  },
-  tempId:number,
-  uri:string
+    },
+    tempId: number,
+    uri: string
 }
-const FocusedImage = (props:Props) =>
-  props.focusedPhoto.valid ? (
-    <ImageWithColorStrip
-     image={props.focusedPhoto.photo}
-      style={style.focusedImageWrapper}
-    />
-  ) : (
-    <LoadingView style={style.focusedImageWrapper}/>
-  );
+const FocusedImage = (props: Props) =>
+    props.focusedImage ? (
+        <View style={style.focusedImageWrapper}>
+            <ImageWithColorStrip
+                image={props.focusedImage}
+                style={style.focusedImageWrapper}
+            />
+            <TouchableOpacity onPress={() => console.log('fuck boy')}
+                              style={{
+                                  backgroundColor: 'pink',
+                                  height: 20,
+                                  width: 20,
+                                  position: 'absolute',
+                                  top: 10,
+                                  right: 20
+                              }} />
+        </View>
+    ) : (
+        <LoadingView style={style.focusedImageWrapper}/>
+    );
 
-// PROPTYPES
-FocusedImage.propTypes = {
-  focusedPhoto: PropTypes.shape({
-    valid: PropTypes.bool.isRequired,
-    photo: PropTypes.shape({
-      uri: PropTypes.string.isRequired
-    })
-  })
-};
 export default FocusedImage;

@@ -2,21 +2,13 @@ import React from "react";
 import {TouchableOpacity, View} from "react-native";
 import {ImageWithColorStrip, LoadingView} from "shared/containers";
 import style from "../styles";
+import {CommonImageType} from "types-store";
 
 //
 type Props = {
-    focusedImage: Image
+    focusedImage: CommonImageType
 }
-type Image = {
-    node: {
-        location: object,
-        image: object,
-        group_name: string,
 
-    },
-    tempId: number,
-    uri: string
-}
 const FocusedImage = (props: Props) =>
     props.focusedImage ? (
         <View style={style.focusedImageWrapper}>

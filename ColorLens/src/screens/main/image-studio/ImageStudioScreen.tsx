@@ -10,18 +10,10 @@ import {getStudioImages} from "helpers/device-storage";
 import {studioActions} from "store/actions";
 import rootReducer from "store/reducers"
 import style from "./styles";
+import {CommonImageType} from "types-store";
 
-type Image = {
-    node: {
-        location: object,
-        image: object,
-        group_name: string,
 
-    },
-    tempId: number,
-    uri: string
-}
-type Images = Array<Image>
+type Images = Array<CommonImageType>
 type State = {
     focusedImage:{
         image: Images | any
@@ -34,7 +26,7 @@ type State = {
 }
 type Props = {
     images: Images,
-    focusedImage: Image,
+    focusedImage:CommonImageType,
     navigation: {
         state: {
             params: {

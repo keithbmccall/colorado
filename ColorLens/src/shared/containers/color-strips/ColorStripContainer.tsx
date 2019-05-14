@@ -1,8 +1,8 @@
 import React, {PureComponent} from "react";
 import {getAllSwatches} from "react-native-palette";
 import ColorStrip from "./components/ColorStrip";
-import {LoadingView} from "shared/containers";
 import {normalizeSwatches} from "./methods";
+import LoadingView from "../loading/LoadingView";
 
 type Props = {
     onReady(): any,
@@ -10,7 +10,8 @@ type Props = {
         uri: string
     },
     style?: object,
-    standAlone?: boolean
+    standAlone?: boolean,
+    editMode?: boolean
 }
 type Swatch = {
     color: string
@@ -36,7 +37,8 @@ export default class ColorStripContainer extends PureComponent<Props, State> {
             height: 50,
             width: "100%"
         },
-        standAlone: false
+        standAlone: false,
+        editMode: false
     };
 
     markAsReady = () => this.props.onReady && this.props.onReady();
@@ -64,25 +66,31 @@ export default class ColorStripContainer extends PureComponent<Props, State> {
                 this.markAsReady()
                 )
         );
-
+    inspectColorSwatch = (): void => {
+        console.log('inspecting')
+    }
+    updateColorSwatch = (): void => {
+        console.log('updating')
+    }
 
     render() {
-        // this.state.colors.isLoaded && console.log("image", this.props.image.id, this.state.colors);
-        return this.state.isLoaded ? (
-            <ColorStrip
-                // style={this.props.style}
-                // pressMethod={}
-                // longPressMethod={}
-                swatches={this.state.swatches}
-            />
-        ) : (
-            <LoadingView/>
-        );
+        if (this.state.isLoaded) {
+            return this.props.editMode ? (
+                <ColorStrip swatches={this.state.swatches} pressMethod={this.inspectColorSwatch}
+                            longPressMethod={this.updateColorSwatch}/>
+            ) : (
+                <ColorStrip swatches={this.state.swatches}/>
+            )
+        } else {
+            return <LoadingView blank={true}/>
+        }
     }
 
     componentDidMount() {
         this.setSwatches(this.props.image);
     }
+
+
 }
 
 

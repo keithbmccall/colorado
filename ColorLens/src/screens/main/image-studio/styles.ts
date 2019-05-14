@@ -7,8 +7,7 @@ export default StyleSheet.create({
         // height: height * 1.4
     },
     studioGalleryWrapper: {
-        height: height / 2,
-        width: "100%"
+        flex: 5
     },
     imageContentWrapper: {
         backgroundColor: "#ddd",
@@ -17,8 +16,10 @@ export default StyleSheet.create({
     },
     focusedImageWrapper: {
         backgroundColor: "transparent",
-        height: height / 2,
-        position: 'relative',
-        flex: 1
+        flex: 6,
+        position: 'relative'
     },
+    buttonBarWrapper: {
+        flex: 1
+    }
 });

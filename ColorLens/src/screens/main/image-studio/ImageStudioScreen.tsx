@@ -1,21 +1,19 @@
 import React, {PureComponent, Component} from "react";
 import {View, Text} from "react-native";
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
 import StudioGallery from "./components/StudioGallery";
 import FocusedImage from "./components/FocusedImage";
-import {Layout, LoadingView} from 'shared/containers'
-import {Buttons} from "shared/tools";
-import {getStudioImages} from "helpers/device-storage";
+import {BottomButtonBar, Layout, LoadingView, ButtonBarOptionType} from 'shared/containers'
+import {CommonImageType} from "types-store";
 import {studioActions} from "store/actions";
 import rootReducer from "store/reducers"
 import style from "./styles";
-import {CommonImageType} from "types-store";
+import {ThunkDispatch} from "redux-thunk";
 
 
 type Images = Array<CommonImageType>
 type State = {
-    focusedImage:{
+    focusedImage: {
         image: Images | any
     },
     galleryOptions: {
@@ -26,7 +24,7 @@ type State = {
 }
 type Props = {
     images: Images,
-    focusedImage:CommonImageType,
+    focusedImage: CommonImageType,
     navigation: {
         state: {
             params: {
@@ -42,7 +40,7 @@ type ReduxState = rootReducer
 
 class ImageStudioScreen extends Component<Props, State> {
     state = {
-        focusedImage:{
+        focusedImage: {
             image: this.props.focusedImage
         },
         galleryOptions: {
@@ -51,6 +49,30 @@ class ImageStudioScreen extends Component<Props, State> {
         },
         isGalleryExpanded: false
     };
+    toggleGalleryOptions = () => {
+        //    rowSize:3,
+        //    rowHeight:140
+        //    or
+        //    rowSize:2,
+        //    rowHeight:220
+        const toggleRowSize = (rowSize: number) => {
+            if (rowSize === 2) {
+                // toggle rowsize from 2 per row (default) to 3 per row
+                return {rowSize: 3, rowHeight: 140};
+            }
+            return {rowSize: 2, rowHeight: 220};
+
+        };
+        this.setState({
+            galleryOptions: toggleRowSize(this.state.galleryOptions.rowSize)
+        })
+    }
+    buttonBarOptions = (): Array<ButtonBarOptionType> => [
+        {
+            label: "Switch Columns",
+            pressMethod: this.toggleGalleryOptions
+        }
+    ];
 
     setFocusedImage = () => console.log('setfocusediunmage');
 
@@ -66,13 +88,14 @@ class ImageStudioScreen extends Component<Props, State> {
                 </View>
                 <View style={[style.studioGalleryWrapper]}>
                     <Text>Studio Images</Text>
-                    {this.props.images && this.props.images.length ?
+                    {this.props.images.length ?
                         <StudioGallery
                             images={this.props.images}
                             galleryOptions={this.state.galleryOptions}
                             setFocusedImage={this.setFocusedImage}
                         /> : <LoadingView/>}
                 </View>
+                <BottomButtonBar options={this.buttonBarOptions()} style={style.buttonBarWrapper}/>
             </Layout>
         );
     }
@@ -85,16 +108,14 @@ class ImageStudioScreen extends Component<Props, State> {
 }
 
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    // @ts-ignore
+const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>) => ({
     fetchStudioImages: () => dispatch(studioActions.fetchStudioImages()),
-    // @ts-ignore
     temporaryAddStudioImages: (newImages: Images) => dispatch(studioActions.temporaryAddStudioImages(newImages))
 });
 
 const mapStateToProps = (state: ReduxState) => ({
     images: state.studio.studioImages ? state.studio.studioImages : [],
-    focusedImage:state.studio.studioImages ? state.studio.studioImages[0] : []
+    focusedImage: state.studio.studioImages ? state.studio.studioImages[0] : []
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ImageStudioScreen)

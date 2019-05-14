@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from "react";
-import {Image} from "react-native";
+import {Image, View} from "react-native";
 // @ts-ignore
 import {LoadingView} from "shared/containers";
 
@@ -59,7 +59,7 @@ class ResponsiveImage extends Component<Props, State> {
                     resizeMode={this.props.resizeMode}
                 />
                 {!this.state.isLoaded && (
-                    <LoadingView style={{width: "100%", height: "100%"}}/>
+                    <LoadingView blank={false}/>
                 )}
             </Fragment>
         );

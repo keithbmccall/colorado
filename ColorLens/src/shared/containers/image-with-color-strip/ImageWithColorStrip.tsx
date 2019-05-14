@@ -7,7 +7,8 @@ import {CommonImageType} from "types-store";
 type Props = {
     image: CommonImageType,
     style?: object,
-    pressMethod?: any
+    pressMethod?: any,
+    editMode?:boolean
 }
 type State = {
     isImageReady: boolean,
@@ -18,6 +19,9 @@ export default class ImageWithColorStrip extends Component<Props, State> {
         isImageReady: false,
         isColorsReady: false
     };
+    static defaultProps={
+        editMode:false
+    }
 
     imageReady = () => this.setState({isImageReady: true});
 
@@ -25,14 +29,16 @@ export default class ImageWithColorStrip extends Component<Props, State> {
 
     isImageWithColorStripReady = () => this.state.isImageReady && this.state.isColorsReady;
 
-    content = (props: Props) => (
-        <Fragment>
-            <ResponsiveImage src={props.image.uri} onReady={this.imageReady}/>
-            <ColorStripContainer image={props.image} onReady={this.colorsReady} standAlone={false}/>
-            {!this.isImageWithColorStripReady() &&
-            <LoadingView/>}
-        </Fragment>
-    );
+    content = (props: Props) => {
+        return (
+            <Fragment>
+                <ResponsiveImage src={props.image.uri} onReady={this.imageReady}/>
+                <ColorStripContainer image={props.image} onReady={this.colorsReady} standAlone={false} editMode={this.props.editMode}/>
+                {(!this.state.isColorsReady || !this.state.isColorsReady) &&
+                <LoadingView blank={false}/>}
+            </Fragment>
+        );
+    };
 
     renderContent = (props: Props) =>
         props.pressMethod ? (

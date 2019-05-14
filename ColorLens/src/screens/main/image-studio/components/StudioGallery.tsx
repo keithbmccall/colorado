@@ -50,7 +50,7 @@ const StudioGallery = (props: Props) => {
 
     return (
         // @ts-ignore
-        <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize}>
+        <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize} >
             {renderContent(props).reverse()}
         </ScrollableList>
     )

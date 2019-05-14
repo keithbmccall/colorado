@@ -3,6 +3,7 @@ package com.colorlens;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.react.rnspinkit.RNSpinkitPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import io.palette.RNPalettePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSpinkitPackage(),
             new FastImageViewPackage(),
             new RNPalettePackage(),
             new VectorIconsPackage(),

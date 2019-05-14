@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
 import Navigation from "./navigation/Router";
 // @ts-ignore
 import {studioActions} from "store/actions";
+import {ThunkDispatch} from "redux-thunk";
 
 
 console.disableYellowBox = true;
@@ -22,7 +22,7 @@ class App extends Component<Props> {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>) => ({
     fetchStudioImages: () => dispatch(studioActions.fetchStudioImages())
 });
 

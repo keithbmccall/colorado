@@ -8,16 +8,12 @@ import {saveStudioImages} from "helpers/device-storage";
 import {cameraRollActions} from "store/actions";
 import rootReducer from "store/reducers"
 import style from './styles';
-import {Dispatch} from "redux";
 import {CommonImageType} from "types-store";
+import {ThunkDispatch} from "redux-thunk";
 
 //slider options
 
-type CameraRollImage = {
-    node:any,
-    tempId:number,
-    uri: string
-}
+
 // @ts-ignore
 type ReduxState = rootReducer
 type Props = {
@@ -25,7 +21,9 @@ type Props = {
         navigate(arg1: string, arg2: object): any
     },
     images: Array<CommonImageType>,
-    fetchCameraImages(): any
+    fetchCameraImages(): any,
+    selectCameraRollImage(images: Array<CommonImageType>, image: CommonImageType): any,
+    unselectCameraRollImages(images: Array<CommonImageType>): any
 }
 type State = {
     shouldConfirmMenuOpen: boolean
@@ -38,7 +36,7 @@ type State = {
         rowSize: number,
         rowHeight: number
     },
-    selectedImages: Array<CommonImageType> | Array<any>
+    selectedImages: Array<CommonImageType>
 }
 
 //slider options end
@@ -64,8 +62,7 @@ class CameraRollScreen extends PureComponent<Props, State> {
     }
 
     unSelectAllImages = (): void => {
-        // @ts-ignore
-        this.props.images = unSelectAllImages(this.props.images);
+        this.props.unselectCameraRollImages(this.props.images);
         this.setState({
             selectedImages: []
         });
@@ -73,16 +70,14 @@ class CameraRollScreen extends PureComponent<Props, State> {
     shouldConfirmMenuOpen = (): void =>
         this.setState({shouldConfirmMenuOpen: !!this.state.selectedImages.length});
 
-    selectImage = (image: CameraRollImage): void => {
-        // @ts-ignore
-        this.props.images = checkImages(this.props.images, image);
-        // @ts-ignore
+    selectImage = (image: CommonImageType): void => {
+        this.props.selectCameraRollImage(this.props.images, image);
         this.setState({
                 selectedImages: checkSelectedImages(this.state.selectedImages, image),
             },
             this.shouldConfirmMenuOpen
         );
-    }
+    };
 
     render() {
         return (
@@ -115,9 +110,10 @@ class CameraRollScreen extends PureComponent<Props, State> {
 }
 
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    // @ts-ignore
-    fetchCameraImages: () => dispatch(cameraRollActions.fetchCameraImages())
+const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>) => ({
+    fetchCameraImages: () => dispatch(cameraRollActions.fetchCameraImages()),
+    selectCameraRollImage: (images: Array<CommonImageType>, image: CommonImageType) => dispatch(cameraRollActions.selectCameraImage(images, image)),
+    unselectCameraRollImages: (images: Array<CommonImageType>) => dispatch(cameraRollActions.unselectAllCameraImages(images))
 });
 const mapStateToProps = (state: ReduxState) => ({
     images: state.cameraRoll.cameraImages

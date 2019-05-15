@@ -5,7 +5,7 @@ import ImageStudio from "../screens/main/image-studio/ImageStudioScreen";
 import ModalIndex from "../screens/modal/ModalIndex";
 
 let view = "Studio";
-// let view = "Home";
+// let view = "Camera";
 //
 const MainStack = createMaterialTopTabNavigator(
     {
@@ -52,3 +52,4 @@ const RootStack = createStackNavigator(
 const Navigation = createAppContainer(RootStack);
 
 export default Navigation;
+

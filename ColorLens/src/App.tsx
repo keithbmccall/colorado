@@ -1,10 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import Navigation from "./navigation/Router";
-// @ts-ignore
 import {studioActions} from "store/actions";
 import {ThunkDispatch} from "redux-thunk";
-
 
 console.disableYellowBox = true;
 

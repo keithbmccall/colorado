@@ -43,7 +43,7 @@ export default class ColorStripContainer extends PureComponent<Props, State> {
 
     markAsReady = () => this.props.onReady && this.props.onReady();
 
-    setSwatches = (image: ColorStripImage) => {
+    setSwatches = (image: ColorStripImage): void => {
         //    checks to see if image has palettes already, if not then it runs code to find the dominant colors
         if (image.palette) {
             this.setState({
@@ -54,7 +54,7 @@ export default class ColorStripContainer extends PureComponent<Props, State> {
             this.getDominantSwatches(image);
         }
     };
-    getDominantSwatches = (image: ColorStripImage) =>
+    getDominantSwatches = (image: ColorStripImage): void =>
         getAllSwatches({quality: "medium"}, image.uri, (error: any, swatches: []) =>
             error
                 ? console.log("error in ColorStripcontainer.getDominantSwatches", error)
@@ -66,6 +66,7 @@ export default class ColorStripContainer extends PureComponent<Props, State> {
                 this.markAsReady()
                 )
         );
+
     inspectColorSwatch = (): void => {
         console.log('inspecting')
     }

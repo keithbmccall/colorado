@@ -135,7 +135,6 @@ android {
 
 dependencies {
     implementation project(':react-native-spinkit')
-    implementation project(':react-native-fast-image')
     implementation project(':react-native-palette')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-gesture-handler')

@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from "react";
-import {Image, View} from "react-native";
-// @ts-ignore
+import {Image} from "react-native";
 import {LoadingView} from "shared/containers";
 
 type Props = {

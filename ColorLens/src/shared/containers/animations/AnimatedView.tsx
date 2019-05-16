@@ -8,7 +8,7 @@ type Props = {
         starting: number,
         key: string
     },
-    duration: number,
+    speed?: number,
     shouldLaunch: boolean,
     style?: object
 }
@@ -20,19 +20,19 @@ export default class AnimatedView extends Component<Props, State> {
         animationValue: new Animated.Value(this.props.animation.starting)
     };
     static defaultProps = {
-        duration: 300
-    }
+        speed: 12
+    };
     startAnimation = () =>
-        Animated.timing(this.state.animationValue, {
+        Animated.spring(this.state.animationValue, {
             toValue: this.props.animation.ending,
-            duration: this.props.duration
+            speed: this.props.speed
         }).start();
 
 
     reverseAnimation = () =>
-        Animated.timing(this.state.animationValue, {
+        Animated.spring(this.state.animationValue, {
             toValue: this.props.animation.starting,
-            duration: this.props.duration
+            speed: this.props.speed
         }).start();
 
 
@@ -45,7 +45,7 @@ export default class AnimatedView extends Component<Props, State> {
     render() {
         const {animationValue} = this.state;
         return (
-            <Animated.View style={{flex: 1, ...this.props.style, [this.props.animation.key]: animationValue}}>
+            <Animated.View style={{...this.props.style, [this.props.animation.key]: animationValue}}>
                 {this.props.children}
             </Animated.View>
         );

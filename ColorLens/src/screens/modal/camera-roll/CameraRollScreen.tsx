@@ -8,7 +8,7 @@ import {saveStudioImages} from "helpers/device-storage";
 import {cameraRollActions} from "store/actions";
 import rootReducer from "store/reducers"
 import style from './styles';
-import {CommonImageType} from "types-store";
+import {AnimatedViewType, CommonImageType} from "types-store";
 import {ThunkDispatch} from "redux-thunk";
 
 //slider options
@@ -27,11 +27,7 @@ type Props = {
 }
 type State = {
     shouldConfirmMenuOpen: boolean
-    sliderOptions: {
-        key: string,
-        starting: number,
-        ending: number
-    },
+    sliderOptions: AnimatedViewType,
     galleryOptions: {
         rowSize: number,
         rowHeight: number
@@ -92,12 +88,13 @@ class CameraRollScreen extends PureComponent<Props, State> {
                     style={style.animatedViewSlider}
                     animation={this.state.sliderOptions}
                     shouldLaunch={this.state.shouldConfirmMenuOpen}
-                    duration={500}
+                    speed={12}
                 >
-                    <Buttons.FullWidthButton pressMethod={this.confirmSelectedImages}
-                                             innerText={`Import ${renderSelectedImageCount(this.state.selectedImages)} To The Studio`}
-                                             style={{}}
-                                             textStyle={{...style.animatedViewText}}
+                    <Buttons.FullWidthButton
+                        pressMethod={this.confirmSelectedImages}
+                        innerText={`Import ${renderSelectedImageCount(this.state.selectedImages)} To The Studio`}
+                        style={{}}
+                        textStyle={{...style.animatedViewText}}
                     />
                 </AnimatedView>
             </View>

@@ -3,8 +3,8 @@ import {View, Text} from "react-native";
 import {connect} from "react-redux";
 import StudioGallery from "./components/StudioGallery";
 import FocusedImage from "./components/FocusedImage";
-import {BottomButtonBar, Layout, LoadingView, ButtonBarOptionType} from 'shared/containers'
-import {CommonImageType} from "types-store";
+import {BottomButtonBar, Layout, LoadingView, ButtonBarOptionType, AnimatedView} from 'shared/containers'
+import {AnimatedViewType, CommonImageType} from "types-store";
 import {studioActions} from "store/actions";
 import rootReducer from "store/reducers"
 import style from "./styles";
@@ -20,7 +20,8 @@ type State = {
         rowSize: number
         rowHeight: number
     },
-    isGalleryExpanded: boolean
+    editMode: boolean,
+    sliderOptions: AnimatedViewType
 }
 type Props = {
     images: Images,
@@ -47,7 +48,12 @@ class ImageStudioScreen extends Component<Props, State> {
             rowSize: 2,
             rowHeight: 220
         },
-        isGalleryExpanded: false
+        editMode: false,
+        sliderOptions: {
+            starting: -style.directionsWrapper.height,
+            ending: 30,
+            key: "bottom"
+        }
     };
     toggleGalleryOptions = () => {
         //    rowSize:3,
@@ -79,23 +85,35 @@ class ImageStudioScreen extends Component<Props, State> {
     temporaryAddStudioImages = () =>
         this.props.navigation.state.params.newSelectedImages && this.props.temporaryAddStudioImages(this.props.navigation.state.params.newSelectedImages);
 
+
+    toggleEditMode = (): void => {
+        this.setState({
+            editMode: !this.state.editMode
+        })
+    };
+
     render() {
 
         return (
-            <Layout style={[style.imageStudioWrapper]}>
-                <View style={[style.focusedImageWrapper]}>
-                    <FocusedImage focusedImage={this.props.focusedImage}/>
+            <Layout style={style.imageStudioWrapper}>
+                <View style={style.imageStudioHeadingWrapper}>
+                    <Text style={style.imageStudioHeading}>Studio</Text>
                 </View>
-                <View style={[style.studioGalleryWrapper]}>
-                    <Text>Studio Images</Text>
-                    {this.props.images.length ?
-                        <StudioGallery
-                            images={this.props.images}
-                            galleryOptions={this.state.galleryOptions}
-                            setFocusedImage={this.setFocusedImage}
-                        /> : <LoadingView/>}
-                </View>
-                <BottomButtonBar options={this.buttonBarOptions()} style={style.buttonBarWrapper}/>
+                <FocusedImage focusedImage={this.props.focusedImage} editMode={this.state.editMode}
+                              toggleEditMode={this.toggleEditMode}/>
+                <StudioGallery images={this.props.images} galleryOptions={this.state.galleryOptions}
+                               setFocusedImage={this.setFocusedImage}/>
+                <BottomButtonBar options={this.buttonBarOptions()} style={style.buttonBarWrapper}
+                                 labelStyle={style.buttonBarLabel}/>
+                <AnimatedView shouldLaunch={this.state.editMode} animation={this.state.sliderOptions}
+                              style={style.directionsWrapper}>
+                    <View style={style.directionsCard}>
+                        <Text style={style.directionsLabel}><Text style={style.directionsSpan}>TAP</Text> on a swatch to
+                            read swatch strip or</Text>
+                        <Text style={style.directionsLabel}><Text style={style.directionsSpan}>PRESS</Text> on a swatch
+                            to edit your Palette!</Text>
+                    </View>
+                </AnimatedView>
             </Layout>
         );
     }

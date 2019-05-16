@@ -1,49 +1,35 @@
-import React, {Component} from "react";
-import {TouchableOpacity, View} from "react-native";
+import React from "react";
+import {View} from "react-native";
 import {ImageWithColorStrip, LoadingView} from "shared/containers";
-import style from "../styles";
 import {CommonImageType} from "types-store";
+import {Buttons} from "shared/tools";
+import style from "../styles";
 
 //
 type Props = {
-    focusedImage: CommonImageType
-}
-type State = {
-    editMode: boolean
+    focusedImage: CommonImageType,
+    editMode: boolean,
+    toggleEditMode: any
 }
 
-class FocusedImage extends Component<Props, State> {
-    state = {
-        editMode: false
-    };
-    toggleMode = () => {
-        this.setState({
-            editMode: !this.state.editMode
-        })
-    };
+const FocusedImage = (props: Props) =>
+    props.focusedImage ? (
+        <View style={style.focusedImageWrapper}>
+            <ImageWithColorStrip
+                image={props.focusedImage}
+                style={style.focusedImageWrapper}
+                editMode={props.editMode}
+            />
+            <Buttons.IconButton
+                style={style.focusedImageEditButton}
+                name={props.editMode ? "pencil-box" : "pencil-box-outline"}
+                pressMethod={props.toggleEditMode}
+                size={30}
+            />
+        </View>
+    ) : (
+        <LoadingView style={style.focusedImageWrapper}/>
+    );
 
-    render() {
-        return this.props.focusedImage ? (
-            <View style={style.focusedImageWrapper}>
-                <ImageWithColorStrip
-                    image={this.props.focusedImage}
-                    style={style.focusedImageWrapper}
-                    editMode={this.state.editMode}
-                />
-                <TouchableOpacity onPress={this.toggleMode}
-                                  style={{
-                                      backgroundColor: 'pink',
-                                      height: 20,
-                                      width: 20,
-                                      position: 'absolute',
-                                      top: 10,
-                                      right: 20
-                                  }}/>
-            </View>
-        ) : (
-            <LoadingView style={style.focusedImageWrapper}/>
-        );
-    }
-}
 
 export default FocusedImage;

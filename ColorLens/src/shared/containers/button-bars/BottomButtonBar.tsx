@@ -34,8 +34,6 @@ const style = StyleSheet.create({
     label: {
         fontSize: 15,
         fontWeight: "bold",
-        fontStyle: "italic",
-        color: colors.buttonLabel
     }
 });
 

@@ -1,14 +1,16 @@
 import React from "react";
+import {Text, View} from "react-native";
 import {ImageWithColorStrip} from "shared/containers";
 import {ScrollableList} from "shared/tools";
-import style from "../styles";
 import {CommonImageType} from "types-store";
+import style from "../styles";
+
 
 type Images = Array<CommonImageType>
 type Props = {
     images: Images,
     setFocusedImage(): any,
-    galleryOptions?: {
+    galleryOptions: {
         rowSize: number,
         rowHeight: number
     }
@@ -49,10 +51,11 @@ const StudioGallery = (props: Props) => {
     props.galleryOptions && rowSizeRange(props.galleryOptions.rowSize)
 
     return (
-        // @ts-ignore
-        <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize} >
-            {renderContent(props).reverse()}
-        </ScrollableList>
+        <View style={style.studioGalleryWrapper}>
+            <ScrollableList isLazy={true} columns={props.galleryOptions.rowSize}>
+                {renderContent(props).reverse()}
+            </ScrollableList>
+        </View>
     )
 };
 StudioGallery.defaultProps = {galleryOptions: {rowSize: 2}};

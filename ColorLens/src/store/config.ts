@@ -7,6 +7,7 @@ const initialState = {};
 
 const middleware = [thunk];
 
+//@ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const initStore = ()=>createStore(

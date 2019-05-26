@@ -9,13 +9,11 @@ import {studioActions} from "store/actions";
 import rootReducer from "store/reducers"
 import style from "./styles";
 import {ThunkDispatch} from "redux-thunk";
+import StudioInstructions from "./components/StudioInstructions";
 
 
 type Images = Array<CommonImageType>
 type State = {
-    focusedImage: {
-        image: Images | any
-    },
     galleryOptions: {
         rowSize: number
         rowHeight: number
@@ -33,17 +31,15 @@ type Props = {
             }
         }
     },
-    temporaryAddStudioImages: any,
-    fetchStudioImages: any
+    temporaryAddStudioImages(images: CommonImageType[] | any[]): any,
+    fetchStudioImages(): any,
+    setFocusedImage(image: CommonImageType): any
 }
 // @ts-ignore
 type ReduxState = rootReducer
 
 class ImageStudioScreen extends Component<Props, State> {
     state = {
-        focusedImage: {
-            image: this.props.focusedImage
-        },
         galleryOptions: {
             rowSize: 2,
             rowHeight: 220
@@ -80,8 +76,6 @@ class ImageStudioScreen extends Component<Props, State> {
         }
     ];
 
-    setFocusedImage = () => console.log('setfocusediunmage');
-
     temporaryAddStudioImages = () =>
         this.props.navigation.state.params.newSelectedImages && this.props.temporaryAddStudioImages(this.props.navigation.state.params.newSelectedImages);
 
@@ -91,9 +85,11 @@ class ImageStudioScreen extends Component<Props, State> {
             editMode: !this.state.editMode
         })
     };
+    setFocusedImage = (image: CommonImageType) => {
+        this.props.setFocusedImage(image)
+    };
 
     render() {
-
         return (
             <Layout style={style.imageStudioWrapper}>
                 <View style={style.imageStudioHeadingWrapper}>
@@ -105,15 +101,7 @@ class ImageStudioScreen extends Component<Props, State> {
                                setFocusedImage={this.setFocusedImage}/>
                 <BottomButtonBar options={this.buttonBarOptions()} style={style.buttonBarWrapper}
                                  labelStyle={style.buttonBarLabel}/>
-                <AnimatedView shouldLaunch={this.state.editMode} animation={this.state.sliderOptions}
-                              style={style.directionsWrapper}>
-                    <View style={style.directionsCard}>
-                        <Text style={style.directionsLabel}><Text style={style.directionsSpan}>TAP</Text> on a swatch to
-                            read swatch strip or</Text>
-                        <Text style={style.directionsLabel}><Text style={style.directionsSpan}>PRESS</Text> on a swatch
-                            to edit your Palette!</Text>
-                    </View>
-                </AnimatedView>
+                <StudioInstructions editMode={this.state.editMode} sliderOptions={this.state.sliderOptions}/>
             </Layout>
         );
     }
@@ -128,12 +116,13 @@ class ImageStudioScreen extends Component<Props, State> {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>) => ({
     fetchStudioImages: () => dispatch(studioActions.fetchStudioImages()),
-    temporaryAddStudioImages: (newImages: Images) => dispatch(studioActions.temporaryAddStudioImages(newImages))
+    temporaryAddStudioImages: (newImages: Images) => dispatch(studioActions.temporaryAddStudioImages(newImages)),
+    setFocusedImage: (image: CommonImageType) => dispatch(studioActions.setFocusedImage(image))
 });
 
 const mapStateToProps = (state: ReduxState) => ({
-    images: state.studio.studioImages ? state.studio.studioImages : [],
-    focusedImage: state.studio.studioImages ? state.studio.studioImages[0] : []
+    images: state.studio.studioImages.length ? state.studio.studioImages : [],
+    focusedImage: state.studio.focusedImage ? state.studio.focusedImage : null
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ImageStudioScreen)

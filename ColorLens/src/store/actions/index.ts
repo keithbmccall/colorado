@@ -1,4 +1,4 @@
-import {fetchStudioImages, temporaryAddStudioImages} from "./studioActions";
+import {fetchStudioImages, temporaryAddStudioImages,setFocusedImage} from "./studioActions";
 import {fetchCameraImages,selectCameraImage,unselectAllCameraImages} from './cameraRollActions'
 
 
@@ -9,5 +9,6 @@ export const cameraRollActions = {
 }
 export const studioActions = {
     fetchStudioImages,
-    temporaryAddStudioImages
+    temporaryAddStudioImages,
+    setFocusedImage
 }

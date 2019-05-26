@@ -1,19 +1,12 @@
 import {AsyncStorage} from "react-native";
 import {studioMethods} from "./methods";
+import {CommonImageType} from "types-store";
+
 
 const studio = "studio";
+type Images = Array<CommonImageType>
 
-type Image = {
-    node: {
-        location: object,
-        image: object,
-        group_name: string,
-
-    },
-    tempId: number,
-    uri: string
-}
-export const saveStudioImages = async (images: Array<Image>) => {
+export const saveStudioImages = async (images: Images) => {
     const allImagesJSON: any = await AsyncStorage.getItem('studio', error => error && console.log("error getting studio images during save"));
     const allCurrentImages = JSON.parse(allImagesJSON);
     const newImages = await Promise.all(images.map(studioMethods.buildImageObjectWithSwatches.bind(null, allCurrentImages)));

@@ -1,22 +1,17 @@
 //these methods moved here to streamline the color extractions for better UI
+//these are helper functions create in my rebuild of my Colorado Color Palettes application
+// these methods are imported into my device storage component with purpose of saving data
+// to the saved image objects as we save to AsyncStorage on ios
 import {getAllSwatches} from "react-native-palette";
 import rgb2hex from "rgb2hex";
+import {CommonImageType} from "types-store";
 
 type Swatch = {
     color: string,
     population: number
 }
 type Swatches = Array<Swatch>
-type Image = {
-    node:{
-        location:object,
-        image: object,
-        group_name:string,
 
-    },
-    tempId:number,
-    uri:string
-}
 
 // buildSwatchObj
 const equalizeSwatchLength = (swatches:Swatches) => {
@@ -31,14 +26,13 @@ const equalizeSwatchLength = (swatches:Swatches) => {
 
 const normalizeSwatches = (swatches:Swatches) => {
     swatches = equalizeSwatchLength(swatches);
-    //
     return swatches
         .sort((a, b) => b.population - a.population)
         .slice(0, 6)
         .map(swatch => (swatch.color = rgb2hex(swatch.color).hex) && swatch);
 };
 
-const buildImageObject = (allCurrentImages:Swatches, image:Image, i:number) => {
+const buildImageObject = (allCurrentImages:Swatches, image:CommonImageType, i:number):object => {
     const count = i + 1;
     let imageObject:any = {};
     imageObject.groupName = image.node.group_name;
@@ -48,14 +42,8 @@ const buildImageObject = (allCurrentImages:Swatches, image:Image, i:number) => {
     imageObject.id = allCurrentImages ? allCurrentImages.length + count : count;
     return imageObject
 };
-const buildImageObjectWithSwatches = async (allCurrentImages:Swatches, image:Image, i:number) => {
-    const count = i + 1;
-    let imageObject:any = {};
-    imageObject.groupName = image.node.group_name;
-    imageObject.details = image.node.image;
-    imageObject.location = image.node.location;
-    imageObject.uri = image.uri;
-    imageObject.id = allCurrentImages ? allCurrentImages.length + count : count;
+const buildImageObjectWithSwatches = async (allCurrentImages:Swatches, image:CommonImageType, i:number):Promise<object> => {
+    let imageObject:any = buildImageObject(allCurrentImages,image,i)
     await new Promise(
         (resolve, reject) =>
             getAllSwatches({quality: "medium"}, image.uri, (error:any, swatches:[]) => {
@@ -63,10 +51,10 @@ const buildImageObjectWithSwatches = async (allCurrentImages:Swatches, image:Ima
                     console.log("error in getDominantSwatches!: ", error);
                     reject(error)
                 } else {
-                    let colors:any = {};
-                    colors.swatches = normalizeSwatches(swatches);
-                    colors.id = image.tempId;
-                    imageObject.palette = colors;
+                    imageObject.palette = {
+                        id: image.tempId,
+                        swatches: normalizeSwatches(swatches),
+                    };
                     resolve(imageObject.palette);
                 }
             })

@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React, {Component} from "react";
 import {getAllSwatches} from "react-native-palette";
 import ColorStrip from "./components/ColorStrip";
 import {normalizeSwatches} from "./methods";
@@ -6,9 +6,7 @@ import LoadingView from "../loading/LoadingView";
 
 type Props = {
     onReady(): any,
-    image: {
-        uri: string
-    },
+    image: ColorStripImage,
     style?: object,
     standAlone?: boolean,
     editMode?: boolean
@@ -27,7 +25,7 @@ type ColorStripImage = {
     }
 }
 
-export default class ColorStripContainer extends PureComponent<Props, State> {
+export default class ColorStripContainer extends Component<Props, State> {
     state = {
         isLoaded: false,
         swatches: []
@@ -89,6 +87,13 @@ export default class ColorStripContainer extends PureComponent<Props, State> {
 
     componentDidMount() {
         this.setSwatches(this.props.image);
+    }
+
+
+    componentDidUpdate(prevProps: Readonly<Props>): void {
+        if (this.props.image.palette != prevProps.image.palette) {
+            this.setSwatches(this.props.image);
+        }
     }
 
 

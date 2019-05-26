@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {PureComponent, Fragment} from "react";
 import {View, TouchableOpacity} from "react-native";
 import {LoadingView, ColorStripContainer} from "shared/containers";
 import {ResponsiveImage} from "shared/tools";
@@ -8,34 +8,34 @@ type Props = {
     image: CommonImageType,
     style?: object,
     pressMethod?: any,
-    editMode?:boolean
+    editMode?: boolean
 }
 type State = {
     isImageReady: boolean,
     isColorsReady: boolean
 }
-export default class ImageWithColorStrip extends Component<Props, State> {
+export default class ImageWithColorStrip extends PureComponent<Props, State> {
     state = {
         isImageReady: false,
         isColorsReady: false
     };
-    static defaultProps={
-        editMode:false
-    }
+    static defaultProps = {
+        editMode: false
+    };
 
     imageReady = () => this.setState({isImageReady: true});
 
     colorsReady = () => this.setState({isColorsReady: true});
 
-    isImageWithColorStripReady = () => this.state.isImageReady && this.state.isColorsReady;
 
     content = (props: Props) => {
         return (
             <Fragment>
                 <ResponsiveImage src={props.image.uri} onReady={this.imageReady}/>
-                <ColorStripContainer image={props.image} onReady={this.colorsReady} standAlone={false} editMode={this.props.editMode}/>
-                {(!this.state.isColorsReady || !this.state.isColorsReady) &&
-                <LoadingView blank={false}/>}
+                {props.image.uri &&
+                <ColorStripContainer image={props.image} onReady={this.colorsReady} standAlone={false}
+                                     editMode={this.props.editMode}/>}
+                {(!this.state.isColorsReady || !this.state.isColorsReady) && <LoadingView blank={false}/>}
             </Fragment>
         );
     };
@@ -54,6 +54,7 @@ export default class ImageWithColorStrip extends Component<Props, State> {
     render() {
         return <Fragment>{this.renderContent(this.props)}</Fragment>;
     }
+
 }
 
 //  PROPTYPES

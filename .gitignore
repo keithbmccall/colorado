@@ -1,3 +1,14 @@
-/Colorado_images
+Colorado_images
 
-ColorLens/
+
+ColorPalettes/
+
+./.DS_Store
+
+
+.history
+.vscode
+./*/**/keys
+__src
+.idea
+

@@ -38,7 +38,7 @@ type Props = {
 // @ts-ignore
 type ReduxState = rootReducer
 
-class ImageStudioScreen extends Component<Props, State> {
+class ImageStudioScreen extends PureComponent<Props, State> {
     state = {
         galleryOptions: {
             rowSize: 2,
@@ -95,8 +95,12 @@ class ImageStudioScreen extends Component<Props, State> {
                 <View style={style.imageStudioHeadingWrapper}>
                     <Text style={style.imageStudioHeading}>Studio</Text>
                 </View>
-                <FocusedImage focusedImage={this.props.focusedImage} editMode={this.state.editMode}
-                              toggleEditMode={this.toggleEditMode}/>
+                {this.props.focusedImage ?
+                    <FocusedImage focusedImage={this.props.focusedImage} editMode={this.state.editMode}
+                                  toggleEditMode={this.toggleEditMode}/> : (
+                        <LoadingView style={style.focusedImageWrapper}/>
+                    )}
+
                 <StudioGallery images={this.props.images} galleryOptions={this.state.galleryOptions}
                                setFocusedImage={this.setFocusedImage}/>
                 <BottomButtonBar options={this.buttonBarOptions()} style={style.buttonBarWrapper}

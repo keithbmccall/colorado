@@ -28,7 +28,7 @@ class StudioGallery extends PureComponent<Props> {
             image={image}
             pressMethod={renderPhotoProps.setFocusedImage.bind(null, image)}
             style={[style.imageContentWrapper, renderPhotoProps.cellSize]}
-            key={key}
+            key={image.id}
         />
     );
 

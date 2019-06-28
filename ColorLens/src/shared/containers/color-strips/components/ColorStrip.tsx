@@ -23,8 +23,8 @@ const renderSwatches = (props: Props) => {
         return props.swatches.map((swatch, key) => (
             <TouchableOpacity
                 style={style.flex1}
-                onPress={props.pressMethod}
-                onLongPress={props.longPressMethod}
+                onPress={props.pressMethod.bind(null, swatch, key)}
+                onLongPress={props.longPressMethod.bind(null, swatch, key)}
                 key={key}
             >
                 {renderSwatchContent(swatch, key)}

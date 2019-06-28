@@ -65,11 +65,11 @@ export default class ColorStripContainer extends Component<Props, State> {
                 )
         );
 
-    inspectColorSwatch = (): void => {
-        console.log('inspecting')
+    inspectColorSwatch = (color: object,colorIndex: number): void => {
+        console.log('inspecting',color, colorIndex)
     }
-    updateColorSwatch = (): void => {
-        console.log('updating')
+    updateColorSwatch = (color: object,colorIndex: number): void  => {
+        console.log('updating', color,colorIndex)
     }
 
     render() {

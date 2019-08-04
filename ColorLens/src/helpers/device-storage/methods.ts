@@ -14,7 +14,7 @@ type Swatches = Array<Swatch>
 
 
 // buildSwatchObj
-const equalizeSwatchLength = (swatches:Swatches) => {
+const equalizeSwatchLength = (swatches: Swatches) => {
     if (swatches.length < 6) {
         let n = 6 - swatches.length;
         for (let i = 0; i < n; i++) {
@@ -24,17 +24,16 @@ const equalizeSwatchLength = (swatches:Swatches) => {
     return swatches;
 };
 
-const normalizeSwatches = (swatches:Swatches) => {
-    swatches = equalizeSwatchLength(swatches);
-    return swatches
+const normalizeSwatches = (swatches: Swatches): Array<object> => {
+    return equalizeSwatchLength(swatches)
         .sort((a, b) => b.population - a.population)
         .slice(0, 6)
         .map(swatch => (swatch.color = rgb2hex(swatch.color).hex) && swatch);
 };
 
-const buildImageObject = (allCurrentImages:Swatches, image:CommonImageType, i:number):object => {
+const buildImageObject = (allCurrentImages: Swatches, image: CommonImageType, i: number): object => {
     const count = i + 1;
-    let imageObject:any = {};
+    let imageObject: any = {};
     imageObject.groupName = image.node.group_name;
     imageObject.details = image.node.image;
     imageObject.location = image.node.location;
@@ -42,11 +41,11 @@ const buildImageObject = (allCurrentImages:Swatches, image:CommonImageType, i:nu
     imageObject.id = allCurrentImages ? allCurrentImages.length + count : count;
     return imageObject
 };
-const buildImageObjectWithSwatches = async (allCurrentImages:Swatches, image:CommonImageType, i:number):Promise<object> => {
-    let imageObject:any = buildImageObject(allCurrentImages,image,i)
+const buildImageObjectWithSwatches = async (allCurrentImages: Swatches, image: CommonImageType, i: number): Promise<object> => {
+    let imageObject: any = buildImageObject(allCurrentImages, image, i)
     await new Promise(
         (resolve, reject) =>
-            getAllSwatches({quality: "medium"}, image.uri, (error:any, swatches:[]) => {
+            getAllSwatches({quality: "medium"}, image.uri, (error: any, swatches: []) => {
                 if (error) {
                     console.log("error in getDominantSwatches!: ", error);
                     reject(error)

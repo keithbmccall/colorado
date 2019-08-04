@@ -1,0 +1,87 @@
+{
+  "name": "ColorLens",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ../ColorLens/node_modules/react-native/local-cli/cli.js start",
+    "test": "../ColorLens/node_modules/.bin/jest"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "react": "16.6.3",
+    "react-native": "0.58.4",
+    "react-native-camera": "^1.13.1",
+    "react-native-gesture-handler": "^1.2.1",
+    "react-native-palette": "^0.3.2",
+    "react-native-paper": "^2.15.2",
+    "react-native-spinkit": "^1.2.0",
+    "react-native-vector-icons": "^6.4.2",
+    "react-navigation": "^3.9.1",
+    "react-navigation-material-bottom-tabs": "^1.0.0",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-axios-middleware": "^4.0.0",
+    "redux-persist": "^5.10.0",
+    "redux-thunk": "^2.3.0",
+    "rgb2hex": "^0.1.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/runtime": "^7.4.4",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "^24.0.12",
+    "@types/react": "^16.8.16",
+    "@types/react-native": "^0.57.51",
+    "@types/react-native-vector-icons": "^6.4.0",
+    "@types/react-navigation": "^3.0.6",
+    "@types/react-redux": "^7.0.8",
+    "@types/react-test-renderer": "^16.8.1",
+    "@types/redux-thunk": "^2.1.0",
+    "babel-jest": "^24.8.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "jest": "^24.8.0",
+    "jest-fetch-mock": "^2.1.2",
+    "metro-react-native-babel-preset": "0.51.1",
+    "react-addons-test-utils": "^15.6.2",
+    "react-dom": "^16.8.6",
+    "react-native-typescript-transformer": "^1.2.12",
+    "react-test-renderer": "^16.8.6",
+    "redux-mock-store": "^1.5.3",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.5"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "./tsconfig.jest.json"
+      }
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "modulePaths": [
+      "<rootDir>/src/"
+    ],
+    "transformIgnorePatterns": [
+      "./node_modules/(?!((jest-)?react-native|react-navigation|@react-navigation/.*))"
+    ],
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./enzyme-config.js"
+    ]
+  }
+}

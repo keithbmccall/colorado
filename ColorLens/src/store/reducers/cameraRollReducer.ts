@@ -1,4 +1,4 @@
-import {CameraImageTypes, FETCH_CAMERA_IMAGES, SAVE_CAMERA_IMAGES} from "../actions/actionTypes";
+import {CameraImageTypes, FETCH_CAMERA_IMAGES, SAVE_CAMERA_IMAGES} from "store/actions/cameraRollActions";
 
 const initialState = {
     cameraImages: []

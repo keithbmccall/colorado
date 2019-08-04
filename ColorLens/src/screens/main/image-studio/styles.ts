@@ -45,6 +45,11 @@ export default StyleSheet.create({
         top: 10,
         right: 10
     },
+    focusedImageTrashButton: {
+        position: 'absolute',
+        top: 60,
+        right: 10
+    },
     directionsWrapper: {
         height: height / 2.6,
         width: "100%",

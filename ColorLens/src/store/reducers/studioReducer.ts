@@ -5,7 +5,7 @@ import {
     StudioImageTypes,
     TEMP_ADD_STUDIO_IMAGES,
     SET_FOCUSED_IMAGE
-} from "store/actions/actionTypes";
+} from "store/actions/studioActions";
 import {studioMethods} from 'helpers/device-storage'
 
 const initialState = {

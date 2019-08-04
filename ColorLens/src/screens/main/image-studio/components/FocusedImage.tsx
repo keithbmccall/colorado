@@ -42,8 +42,15 @@ class FocusedImage extends PureComponent<Props, State> {
                     style={style.focusedImageEditButton}
                     name={this.props.editMode ? "pencil-box" : "pencil-box-outline"}
                     pressMethod={this.props.toggleEditMode}
-                    size={30}
+                    size={35}
                 />
+                {!this.props.editMode &&
+                <Buttons.IconButton
+                    style={style.focusedImageTrashButton}
+                    name={"trash-can-outline"}
+                    pressMethod={this.props.toggleEditMode}
+                    size={35}
+                />}
             </View>
         )
     }

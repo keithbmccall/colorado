@@ -1,4 +1,3 @@
-import {getStudioImages} from 'helpers/device-storage'
 import {ThunkDispatch} from "redux-thunk";
 import {CommonImageType} from "../../types-store";
 
@@ -26,20 +25,6 @@ type SetFocusedImageType = {
 }
 export type NewImagesTypes = Images
 export type StudioImageTypes = TempAddStudioImageType | SaveStudioImageType | FetchStudioImageType | SetFocusedImageType
-
-
-export const fetchStudioImages = () => async (dispatch: ThunkDispatch<{}, {}, any>) => {
-    const images = await getStudioImages();
-    dispatch({
-        type: FETCH_STUDIO_IMAGES,
-        payload: images
-    })
-};
-export const temporaryAddStudioImages = (newImages: NewImagesTypes) => (dispatch: ThunkDispatch<{}, {}, any>) =>
-    dispatch({
-        type: TEMP_ADD_STUDIO_IMAGES,
-        payload: newImages
-    });
 
 export const setFocusedImage = (image: CommonImageType) => (dispatch: ThunkDispatch<{}, {}, any>) =>
     dispatch({

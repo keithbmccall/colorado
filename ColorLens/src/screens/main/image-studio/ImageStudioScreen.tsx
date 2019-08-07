@@ -32,7 +32,6 @@ type Props = {
         }
     },
     temporaryAddStudioImages(images: CommonImageType[] | any[]): any,
-    fetchStudioImages(): any,
     setFocusedImage(image: CommonImageType): any
 }
 // @ts-ignore
@@ -111,7 +110,7 @@ class ImageStudioScreen extends PureComponent<Props, State> {
     }
 
     componentDidMount() {
-        this.props.navigation.state.params ? this.temporaryAddStudioImages() : this.props.fetchStudioImages()
+        // this.props.navigation.state.params ? this.temporaryAddStudioImages() : this.props.fetchStudioImages()
         //    adds images from camera roll confirmation to bypass having to reload from storage
         //    creates a better UI as the transition is seamless when confirming new images to studio
     }
@@ -119,8 +118,8 @@ class ImageStudioScreen extends PureComponent<Props, State> {
 
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>) => ({
-    fetchStudioImages: () => dispatch(studioActions.fetchStudioImages()),
-    temporaryAddStudioImages: (newImages: Images) => dispatch(studioActions.temporaryAddStudioImages(newImages)),
+    // fetchStudioImages: () => dispatch(studioActions.fetchStudioImages()),
+    // temporaryAddStudioImages: (newImages: Images) => dispatch(studioActions.temporaryAddStudioImages(newImages)),
     setFocusedImage: (image: CommonImageType) => dispatch(studioActions.setFocusedImage(image))
 });
 

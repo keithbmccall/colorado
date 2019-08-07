@@ -3,16 +3,12 @@ import {View, Text} from "react-native";
 import {connect} from "react-redux";
 import {ImageGallery, AnimatedView} from "shared/containers";
 import {Buttons} from "shared/tools";
-import {checkImages, checkSelectedImages, unSelectAllImages, renderSelectedImageCount} from "./methods";
-import {saveStudioImages} from "helpers/device-storage";
+import {renderSelectedImageCount, selectOrUnselectImage} from "./methods";
 import {cameraRollActions} from "store/actions";
 import rootReducer from "store/reducers"
 import style from './styles';
 import {AnimatedViewType, CommonImageType} from "types-store";
 import {ThunkDispatch} from "redux-thunk";
-
-//slider options
-
 
 // @ts-ignore
 type ReduxState = rootReducer
@@ -22,7 +18,7 @@ type Props = {
     },
     images: Array<CommonImageType>,
     fetchCameraImages(): any,
-    selectCameraRollImage(images: Array<CommonImageType>, image: CommonImageType): any,
+    saveImagesToStudio(images: Array<CommonImageType>): any,
     unselectCameraRollImages(images: Array<CommonImageType>): any
 }
 type State = {
@@ -32,6 +28,7 @@ type State = {
         rowSize: number,
         rowHeight: number
     },
+    images: Array<CommonImageType>,
     selectedImages: Array<CommonImageType>
 }
 
@@ -42,7 +39,6 @@ class CameraRollScreen extends PureComponent<Props, State> {
             rowSize: 4,
             rowHeight: 110
         },
-
         shouldConfirmMenuOpen: false,
         sliderOptions: {
             key: "bottom",
@@ -50,26 +46,41 @@ class CameraRollScreen extends PureComponent<Props, State> {
             ending: 0
         },
         selectedImages: [],
+        images: []
     };
+    fetchCameraRollImages = async (): Promise<void> => {
+        await this.props.fetchCameraImages();
+        this.setState({
+            images: this.props.images
+        })
+    }
+
     confirmSelectedImages = (): void => {
-        saveStudioImages(this.state.selectedImages);
-        this.props.navigation.navigate("Studio", {newSelectedImages: this.state.selectedImages});
+        this.props.saveImagesToStudio(this.state.selectedImages);
+        // this.props.navigation.navigate("Studio", {newSelectedImages: this.state.selectedImages});
         this.unSelectAllImages();
     }
 
     unSelectAllImages = (): void => {
-        this.props.unselectCameraRollImages(this.props.images);
         this.setState({
             selectedImages: []
         });
-    }
-    shouldConfirmMenuOpen = (): void =>
-        this.setState({shouldConfirmMenuOpen: !!this.state.selectedImages.length});
+    };
 
-    selectImage = (image: CommonImageType): void => {
-        this.props.selectCameraRollImage(this.props.images, image);
+    shouldConfirmMenuOpen = (): void => {
         this.setState({
-                selectedImages: checkSelectedImages(this.state.selectedImages, image),
+            shouldConfirmMenuOpen: !!this.state.selectedImages.length
+        });
+    };
+    selectImage = (image: CommonImageType): void => {
+        const {images, selectedImages} = selectOrUnselectImage(
+            this.state.images,
+            this.state.selectedImages,
+            image
+        )
+        this.setState({
+                images,
+                selectedImages
             },
             this.shouldConfirmMenuOpen
         );
@@ -80,7 +91,7 @@ class CameraRollScreen extends PureComponent<Props, State> {
             <View style={style.cameraRollScreenWrapper}>
                 <Text style={style.titleText}>CameraRoll</Text>
                 <ImageGallery
-                    images={this.props.images}
+                    images={this.state.images}
                     galleryOptions={this.state.galleryOptions}
                     pressMethod={this.selectImage}
                 />
@@ -92,7 +103,7 @@ class CameraRollScreen extends PureComponent<Props, State> {
                 >
                     <Buttons.FullWidthButton
                         pressMethod={this.confirmSelectedImages}
-                        innerText={`Import ${renderSelectedImageCount(this.state.selectedImages)} To The Studio`}
+                        innerText={`Import ${renderSelectedImageCount(this.state.images)} To The Studio`}
                         style={{}}
                         textStyle={{...style.animatedViewText}}
                     />
@@ -102,15 +113,13 @@ class CameraRollScreen extends PureComponent<Props, State> {
     }
 
     componentDidMount() {
-        this.props.fetchCameraImages();
+        this.fetchCameraRollImages()
     }
 }
 
-
 const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>) => ({
     fetchCameraImages: () => dispatch(cameraRollActions.fetchCameraImages()),
-    selectCameraRollImage: (images: Array<CommonImageType>, image: CommonImageType) => dispatch(cameraRollActions.selectCameraImage(images, image)),
-    unselectCameraRollImages: (images: Array<CommonImageType>) => dispatch(cameraRollActions.unselectAllCameraImages(images))
+    saveImagesToStudio: (images: Array<CommonImageType>) => dispatch(cameraRollActions.saveImagesToStudio(images))
 });
 const mapStateToProps = (state: ReduxState) => ({
     images: state.cameraRoll.cameraImages

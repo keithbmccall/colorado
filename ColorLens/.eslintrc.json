@@ -57,6 +57,8 @@
     "setTimeout": true,
     "setInterval": true,
     "console": true,
-    "window": true
+    "window": true,
+    "__DEV__": true,
+    "ErrorUtils": true
   }
 }

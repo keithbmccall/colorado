@@ -1,5 +1,5 @@
 type Palette = {
-    id:number,
+    id: number,
     swatches: Array<object>
 }
 type Image = {
@@ -15,11 +15,13 @@ type Image = {
     id?: number,
     palette?: Palette | any
 }
+
 type AnimatedView = {
     key: string,
     starting: number,
     ending: number
 }
+
 export type SwatchPalette = Palette
 export type CommonImageType = Image
 export type AnimatedViewType = AnimatedView

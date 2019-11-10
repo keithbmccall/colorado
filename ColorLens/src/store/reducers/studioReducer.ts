@@ -29,7 +29,7 @@ export default (state = initialState, action: StudioImageTypes) => {
             return {
                 ...state,
                 focusedImage: action.payload
-            }
+            };
         default:
             return state;
     }

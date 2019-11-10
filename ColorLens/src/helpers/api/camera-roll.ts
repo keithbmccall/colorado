@@ -1,7 +1,7 @@
 import {CameraRoll} from "react-native";
 
 
-const buildImageObject = (image:object, i:number) => {
+export const buildImageObject = (image:object, i:number) => {
     // @ts-ignore
     image.tempId = i;
     // @ts-ignore

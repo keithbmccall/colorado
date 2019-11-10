@@ -19,12 +19,13 @@ const renderSwatchContent = (swatch: Swatch, key: number) => (
     />
 );
 const renderSwatches = (props: Props) => {
-    if (props.pressMethod || props.longPressMethod) {
+    const {pressMethod,longPressMethod} = props
+    if (pressMethod || longPressMethod) {
         return props.swatches.map((swatch, key) => (
             <TouchableOpacity
                 style={style.flex1}
-                onPress={props.pressMethod.bind(null, swatch, key)}
-                onLongPress={props.longPressMethod.bind(null, swatch, key)}
+                onPress={pressMethod && pressMethod.bind(null, swatch, key)}
+                onLongPress={longPressMethod && longPressMethod.bind(null, swatch, key)}
                 key={key}
             >
                 {renderSwatchContent(swatch, key)}

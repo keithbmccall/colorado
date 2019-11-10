@@ -4,17 +4,15 @@ import Layout from "./layouts/Layout";
 import LoadingView from "./loading/LoadingView";
 import ImageWithColorStrip from "./image-with-color-strip/ImageWithColorStrip";
 import AnimatedView from "./animations/AnimatedView";
-import BottomButtonBar, {ButtonBarOptionType} from './button-bars/BottomButtonBar'
-
-
+import BottomButtonBar, { ButtonBarOptionType } from "./button-bars/BottomButtonBar";
 
 export {
-    ColorStripContainer,
-    ImageGallery,
-    Layout,
-    LoadingView,
-    ImageWithColorStrip,
-    AnimatedView,
-    BottomButtonBar,
-    ButtonBarOptionType
+  ColorStripContainer,
+  ImageGallery,
+  Layout,
+  LoadingView,
+  ImageWithColorStrip,
+  AnimatedView,
+  BottomButtonBar,
+  ButtonBarOptionType
 };

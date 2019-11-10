@@ -1,5 +1,3 @@
-import { cameraOptions} from "./camera";
+import { cameraOptions } from "./camera";
 
-
-
-export {cameraOptions}
+export { cameraOptions };

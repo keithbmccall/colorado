@@ -1,5 +1,5 @@
 import FullWidthButton from "./FullWidthButton";
-import IconButton from './IconButton'
+import IconButton from "./IconButton";
 
 const Buttons = {
   FullWidthButton,

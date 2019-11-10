@@ -1,1 +1,1 @@
-export {getCameraRollImages} from "./camera-roll"
+export { getCameraRollImages } from "./camera-roll";

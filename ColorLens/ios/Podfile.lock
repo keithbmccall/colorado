@@ -192,8 +192,6 @@ PODS:
     - React
   - react-native-cameraroll (1.3.0):
     - React
-  - react-native-palette (0.3.2):
-    - React
   - react-native-spinkit (1.4.1):
     - React
   - React-RCTActionSheet (0.61.4):
@@ -235,12 +233,18 @@ PODS:
     - React
   - RNGestureHandler (1.5.0):
     - React
+  - RNPalette (1.0.0):
+    - React
+    - SDWebImage (~> 4.3.3)
   - RNReanimated (1.4.0):
     - React
   - RNScreens (2.0.0-alpha.8):
     - React
   - RNVectorIcons (6.6.0):
     - React
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -262,7 +266,6 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-camera (from `../node_modules/react-native-camera`)
   - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
-  - react-native-palette (from `../node_modules/react-native-palette`)
   - react-native-spinkit (from `../node_modules/react-native-spinkit`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -277,6 +280,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNPalette (from `../node_modules/react-native-palette-full/ios`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -285,6 +289,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - boost-for-react-native
+    - SDWebImage
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -319,8 +324,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-camera"
   react-native-cameraroll:
     :path: "../node_modules/@react-native-community/cameraroll"
-  react-native-palette:
-    :path: "../node_modules/react-native-palette"
   react-native-spinkit:
     :path: "../node_modules/react-native-spinkit"
   React-RCTActionSheet:
@@ -347,6 +350,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNPalette:
+    :path: "../node_modules/react-native-palette-full/ios"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -374,7 +379,6 @@ SPEC CHECKSUMS:
   React-jsinspector: 044105eea064aec81adc5e4d777a8f6589e7d094
   react-native-camera: 9c50d7def800895e7991ccda6203929553ceec9c
   react-native-cameraroll: a0817e9d2e054f166500e3ca1c70f2e7c615c66a
-  react-native-palette: 6a83cabeba19d8114163b43ce24b37395d2f4671
   react-native-spinkit: 6def74431fec10e312e7b71a148bf9aa223bfdbc
   React-RCTActionSheet: 49433f6e3659ba5d3ee650e44b9c18743ef9a7fc
   React-RCTAnimation: 12f86a4e3542032329366b03bca2cc254a7c64a9
@@ -388,9 +392,11 @@ SPEC CHECKSUMS:
   ReactCommon: eb96b70a2a5bed775e919151fd77699fed52944c
   RNCAsyncStorage: e99188b8a89ea0edddc82d8831cd5142f4550fdc
   RNGestureHandler: 311e3b1cef021a7c9ef31e97e7dc31970cc6288d
+  RNPalette: 19c3f576da74ecb7f2cf2a911a7fa93daee39b74
   RNReanimated: 438b025d37de68a20188ead653ad5a5050b65990
   RNScreens: cbad3ccd2798bd19cc9ca5070e95e31c950b50ac
   RNVectorIcons: 66af4d5c8ff4f584c7b7cd9c4b0780920f27fce2
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   Yoga: 6af72bedeaea291a3a3717772d6d41836f23a1b9
 
 PODFILE CHECKSUM: 6cff77f2eee334540a06a67cbb429a2aa325d6d7

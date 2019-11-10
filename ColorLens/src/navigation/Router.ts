@@ -1,4 +1,6 @@
-import {createAppContainer, createMaterialTopTabNavigator, createStackNavigator} from "react-navigation";
+import {createAppContainer} from "react-navigation";
+import {createMaterialTopTabNavigator} from "react-navigation-tabs";
+import { createStackNavigator} from "react-navigation-stack";
 import LibraryScreen from "../screens/main/library/LibraryScreen";
 import CameraScreen from "../screens/main/camera/CameraScreen";
 import ImageStudio from "../screens/main/image-studio/ImageStudioScreen";

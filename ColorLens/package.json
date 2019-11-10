@@ -18,7 +18,7 @@
     "react-native": "^0.61.4",
     "react-native-camera": "^3.9.0",
     "react-native-gesture-handler": "^1.5.0",
-    "react-native-palette-full": "^1.0.9",
+    "react-native-palette": "git+https://github.com/keithmccall/react-native-palette#master",
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "^2.0.0-alpha.8",
     "react-native-spinkit": "^1.5.0",
@@ -56,7 +56,6 @@
     "prettier": "^1.19.1",
     "react-addons-test-utils": "^15.6.2",
     "react-do": "^1.1.6",
-    "react-native-typescript-transformer": "^1.2.13",
     "react-test-renderer": "16.9.0",
     "redux-mock-store": "^1.5.3"
   },

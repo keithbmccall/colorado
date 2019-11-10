@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ColorLensTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ColorLensTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -28,6 +29,7 @@
 		7695D13F3A454B52B5E67122 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A22F0235FC149868588E545 /* Zocial.ttf */; };
 		8B2633BBD1D2475395082663 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FF5A0B8676B491B87F11DCF /* FontAwesome5_Solid.ttf */; };
 		8F2D4B4A3FA542389818C251 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F72CD36C34174BDD8A973B43 /* FontAwesome.ttf */; };
+		966027B02377E22B008840E8 /* libRNPalette.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966027AF2377E14D008840E8 /* libRNPalette.a */; };
 		9EF8E104B3F0477D9075FD0C /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79A334A7426D42B7A5F08FD7 /* FontAwesome5_Regular.ttf */; };
 		C45B65581B51598FB838DF6C /* libPods-ColorLensTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0520F9362E4F417CA90FEAF /* libPods-ColorLensTests.a */; };
 		C82F050C92D44EF7B8AE9BE1 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1F91530951D4898B8972C29 /* Fontisto.ttf */; };
@@ -51,6 +53,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "ColorLens-tvOS";
+		};
+		966027AE2377E14D008840E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 966027AA2377E14D008840E8 /* RNPalette.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNPalette;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -86,6 +95,7 @@
 		64D3165BF3A147FFB04443C4 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		79A334A7426D42B7A5F08FD7 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		8D0000E11A5B4C4487DBBCF6 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		966027AA2377E14D008840E8 /* RNPalette.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNPalette.xcodeproj; path = "../node_modules/react-native-palette/ios/RNPalette.xcodeproj"; sourceTree = "<group>"; };
 		A0520F9362E4F417CA90FEAF /* libPods-ColorLensTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ColorLensTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A103C4E96F2D97992215ECA2 /* libPods-ColorLens-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ColorLens-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A560C048D3F94D55B368AB78 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -113,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				966027B02377E22B008840E8 /* libRNPalette.a in Frameworks */,
 				4331D268FF62E9EB70F36DC0 /* libPods-ColorLens.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,6 +209,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				966027AA2377E14D008840E8 /* RNPalette.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -225,6 +237,14 @@
 				00E356EE1AD99517003FC87E /* ColorLensTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* ColorLens-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* ColorLens-tvOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		966027AB2377E14D008840E8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				966027AF2377E14D008840E8 /* libRNPalette.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -374,6 +394,12 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 966027AB2377E14D008840E8 /* Products */;
+					ProjectRef = 966027AA2377E14D008840E8 /* RNPalette.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* ColorLens */,
@@ -383,6 +409,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		966027AF2377E14D008840E8 /* libRNPalette.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNPalette.a;
+			remoteRef = 966027AE2377E14D008840E8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
@@ -519,11 +555,11 @@
 		};
 		5D24B8B3FEFFAEA1DE2C819A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ColorLens/Pods-ColorLens-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ColorLens/Pods-ColorLens-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -560,9 +596,9 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ColorLens/Pods-ColorLens-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ColorLens/Pods-ColorLens-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E3F9F0333FF095B47DE464F8 /* [CP] Check Pods Manifest.lock */ = {
@@ -739,7 +775,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.colorado.id-com.colorado.id";
 				PRODUCT_NAME = ColorLens;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -760,7 +796,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.colorado.id-com.colorado.id";
 				PRODUCT_NAME = ColorLens;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

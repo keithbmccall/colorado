@@ -1,4 +1,4 @@
-import {CameraRoll} from "react-native";
+import CameraRoll from "@react-native-community/cameraroll";
 
 
 export const buildImageObject = (image:object, i:number) => {

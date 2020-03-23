@@ -1,6 +1,6 @@
 {
   "name": "ColorLens",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.jsx src --ignore-path .eslintignore",
@@ -18,7 +18,7 @@
     "react-native": "^0.61.4",
     "react-native-camera": "^3.9.0",
     "react-native-gesture-handler": "^1.5.0",
-    "react-native-palette": "git+https://github.com/keithmccall/react-native-palette#master",
+    "react-native-palette": "^1.0.0",
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "^2.0.0-alpha.8",
     "react-native-spinkit": "^1.5.0",

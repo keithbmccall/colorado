@@ -8,7 +8,9 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "prettier": "prettier --write \"{src,module-overrides}/**/*.js\""
+    "prettier": "prettier --write \"{src,module-overrides}/**/*.js\"",
+    "prettylint": "yarn run lint && yarn run prettier",
+    "deps": "rm -rf node_modules && yarn && cd ios && pod install && cd ../"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
@@ -18,7 +20,7 @@
     "react-native": "^0.61.4",
     "react-native-camera": "^3.9.0",
     "react-native-gesture-handler": "^1.5.0",
-    "react-native-palette": "^1.0.0",
+    "react-native-palette": "keithmccall/react-native-palette#master",
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "^2.0.0-alpha.8",
     "react-native-spinkit": "^1.5.0",

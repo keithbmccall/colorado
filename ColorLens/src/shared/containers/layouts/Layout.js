@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView } from "react-navigation";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native";
 import { colors } from "shared/constants";
 //

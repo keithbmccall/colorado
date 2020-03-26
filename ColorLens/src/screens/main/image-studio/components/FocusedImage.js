@@ -19,7 +19,6 @@ class FocusedImage extends PureComponent {
   }
 
   render() {
-    console.log("focu", this.props.focusedImage);
     return (
       <View style={style.focusedImageWrapper}>
         <ImageWithColorStrip

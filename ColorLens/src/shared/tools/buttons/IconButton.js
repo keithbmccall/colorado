@@ -1,13 +1,13 @@
 import React from "react";
 import { View } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { Button } from "react-native-paper";
 import { colors } from "shared/constants";
 
 const IconButton = props => (
   <View style={props.style}>
-    <Icon.Button
+    <Button
       size={props.size}
-      name={props.name}
+      icon={props.name}
       backgroundColor="transparent"
       color={props.color}
       onPress={props.pressMethod}

@@ -34,8 +34,9 @@ export default class ColorStripContainer extends Component {
       this.getDominantSwatches(image);
     }
   };
-  getDominantSwatches = image =>
-    getAllSwatches({ quality: "medium" }, image.uri, (error, swatches) =>
+  getDominantSwatches = image => {
+    console.log("*****:", image.uri);
+    return getAllSwatches({ quality: "medium" }, image.uri, (error, swatches) =>
       error
         ? console.log("error in ColorStripcontainer.getDominantSwatches", error)
         : this.setState(
@@ -46,6 +47,7 @@ export default class ColorStripContainer extends Component {
             this.markAsReady()
           )
     );
+  };
 
   inspectColorSwatch = (color, colorIndex) => {
     console.log("inspecting", color, colorIndex);

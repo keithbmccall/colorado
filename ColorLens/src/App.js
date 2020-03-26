@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Navigation from "./navigation/Router";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AsyncStorage } from "react-native";
 
 console.disableYellowBox = true;
@@ -23,7 +24,12 @@ class App extends Component {
   }
 
   render() {
-    return <Navigation />;
+    console.log("runnign");
+    return (
+      <SafeAreaProvider>
+        <Navigation />
+      </SafeAreaProvider>
+    );
   }
 }
 

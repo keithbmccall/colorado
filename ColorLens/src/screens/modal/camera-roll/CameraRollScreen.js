@@ -32,7 +32,13 @@ class CameraRollScreen extends PureComponent {
 
   confirmSelectedImages = () => {
     this.props.saveImagesToStudio(this.state.selectedImages);
-    this.props.navigation.navigate("Studio", { newSelectedImages: this.state.selectedImages });
+    this.props.navigation.navigate("Main", {
+      screen: "Studio",
+      params: {
+        screen: "Modal",
+        newSelectedImages: this.state.selectedImages
+      }
+    });
     this.unSelectAllImages();
   };
 

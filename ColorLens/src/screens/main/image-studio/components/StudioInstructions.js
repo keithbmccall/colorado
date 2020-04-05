@@ -1,7 +1,7 @@
 import React from "react";
 import style from "../styles";
 import { Text, View } from "react-native";
-import { AnimatedView } from "shared/containers";
+import { AnimatedView } from "#containers";
 
 const StudioInstructions = props => (
   <AnimatedView

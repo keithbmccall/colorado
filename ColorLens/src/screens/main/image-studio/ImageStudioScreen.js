@@ -3,8 +3,8 @@ import { View, Text } from "react-native";
 import { connect } from "react-redux";
 import StudioGallery from "./components/StudioGallery";
 import FocusedImage from "./components/FocusedImage";
-import { BottomButtonBar, Layout, LoadingView } from "shared/containers";
-import { studioActions } from "store/actions";
+import { Buttons, Layout, LoadingView } from "#containers";
+import { studioActions } from "#store/actions";
 import style from "./styles";
 import StudioInstructions from "./components/StudioInstructions";
 
@@ -46,8 +46,8 @@ class ImageStudioScreen extends PureComponent {
   ];
 
   temporaryAddStudioImages = () =>
-    this.props.navigation.state.params.newSelectedImages &&
-    this.props.temporaryAddStudioImages(this.props.navigation.state.params.newSelectedImages);
+    this.props.navigation.state.params.selectedImages &&
+    this.props.temporaryAddStudioImages(this.props.navigation.state.params.selectedImages);
 
   toggleEditMode = () => {
     this.setState({
@@ -79,7 +79,7 @@ class ImageStudioScreen extends PureComponent {
           galleryOptions={this.state.galleryOptions}
           setFocusedImage={this.setFocusedImage}
         />
-        <BottomButtonBar
+        <Buttons.BottomButtonBar
           options={this.buttonBarOptions()}
           style={style.buttonBarWrapper}
           labelStyle={style.buttonBarLabel}

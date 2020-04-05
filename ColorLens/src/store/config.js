@@ -12,7 +12,7 @@ const middleware = [thunk];
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
-  blacklist: ["app"],
+  blacklist: ["app", "cameraRoll"],
   stateReconciler: autoMergeLevel2
 };
 

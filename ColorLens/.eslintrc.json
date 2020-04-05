@@ -4,21 +4,15 @@
       "version": "detect"
     }
   },
-  "plugins": [
-    "prettier"
-  ],
-  "extends" : [
-    "walmart",
-    "walmart/configurations/es6-react",
-    "prettier"
-  ],
+  "plugins": ["prettier"],
+  "extends": ["walmart", "walmart/configurations/es6-react", "prettier"],
   "parser": "babel-eslint",
   "env": {
     "jest": true
   },
-  "rules" : {
+  "rules": {
     "object-curly-spacing": ["error", "always"],
-    "no-magic-numbers" : 0,
+    "no-magic-numbers": 0,
     "no-arrow-condition": 0,
     "no-empty-label": 0,
     "no-labels": 2,
@@ -49,7 +43,9 @@
     "no-useless-concat": 0,
     "react/jsx-handler-names": 0,
     "no-invalid-this": 0,
-    "no-console": 0
+    "no-console": 0,
+    "camelcase": 0,
+    "no-case-declarations": 0
   },
   "globals": {
     "global": true,

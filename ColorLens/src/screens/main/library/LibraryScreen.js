@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { Text } from "react-native";
-import { Layout } from "shared/containers";
+import { Layout } from "#containers";
 
 export default class LibraryScreen extends PureComponent {
   render() {

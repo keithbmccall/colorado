@@ -5,10 +5,10 @@ import { name as appName } from "./app.json";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./src/store/config";
-import { LoadingView } from "./src/shared/containers";
+import { LoadingView } from "./src/containers";
 import "react-native-gesture-handler";
 
-const RNRedux = () => (
+const ReduxWrapper = () => (
   <Provider store={store}>
     <PersistGate loading={<LoadingView />} persistor={persistor}>
       <App />
@@ -16,4 +16,4 @@ const RNRedux = () => (
   </Provider>
 );
 
-AppRegistry.registerComponent(appName, () => RNRedux);
+AppRegistry.registerComponent(appName, () => ReduxWrapper);

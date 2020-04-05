@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import { View } from "react-native";
-import { ImageWithColorStrip } from "shared/containers";
-import { Buttons } from "shared/tools";
+import { ImageWithColorStrip, Buttons } from "#containers";
 import style from "../styles";
 
 class FocusedImage extends PureComponent {

@@ -1,10 +1,9 @@
 import React, { PureComponent } from "react";
 import { View, Text } from "react-native";
 import { connect } from "react-redux";
-import { ImageGallery, AnimatedView } from "shared/containers";
-import { Buttons } from "shared/tools";
-import { renderSelectedImageCount, selectOrUnselectImage } from "./methods";
-import { cameraRollActions, studioActions } from "store/actions";
+import { renderSelectedImageCount, selectOrUnselectImage } from "./utils";
+import { ImageGallery, AnimatedView, Buttons } from "#containers";
+import { cameraRollActions, studioActions } from "#store/actions";
 import style from "./styles";
 
 //slider options end
@@ -23,49 +22,42 @@ class CameraRollScreen extends PureComponent {
     selectedImages: [],
     images: []
   };
-  fetchCameraRollImages = async () => {
-    await this.props.fetchCameraImages();
-    this.setState({
-      images: this.props.images
-    });
+
+  cameraRollOptions = {
+    first: 5000,
+    assetType: "Photos"
   };
 
+  fetchCameraRollImages = async () => await this.props.fetchCameraImages(this.cameraRollOptions);
+
   confirmSelectedImages = () => {
-    this.props.saveImagesToStudio(this.state.selectedImages);
-    this.props.navigation.navigate("Main", {
+    const { selectedImages, saveImagesToStudio, unselectAllImages, navigation } = this.props;
+    saveImagesToStudio(selectedImages);
+    navigation.navigate("Main", {
       screen: "Studio",
       params: {
         screen: "Modal",
-        newSelectedImages: this.state.selectedImages
+        selectedImages
       }
     });
-    this.unSelectAllImages();
-  };
-
-  unSelectAllImages = () => {
-    this.setState({
-      selectedImages: []
-    });
+    unselectAllImages();
   };
 
   shouldConfirmMenuOpen = () => {
     this.setState({
-      shouldConfirmMenuOpen: !!this.state.selectedImages.length
+      shouldConfirmMenuOpen: !!this.props.selectedImages.length
     });
   };
-  selectImage = image => {
-    const { images, selectedImages } = selectOrUnselectImage(
-      this.state.images,
-      this.state.selectedImages,
+
+  selectImage = async image => {
+    const { images, selectedImages } = selectOrUnselectImage({
+      images: this.props.images,
+      selectedImages: this.state.selectedImages,
       image
-    );
-    this.setState(
-      {
-        images,
-        selectedImages
-      },
-      this.shouldConfirmMenuOpen
-    );
+    });
+
+    await this.props.saveImageState({ images, selectedImages });
+    this.shouldConfirmMenuOpen();
   };
 
   render() {
@@ -73,7 +65,7 @@ class CameraRollScreen extends PureComponent {
       <View style={style.cameraRollScreenWrapper}>
         <Text style={style.titleText}>CameraRoll</Text>
         <ImageGallery
-          images={this.state.images}
+          images={this.props.images}
           galleryOptions={this.state.galleryOptions}
           pressMethod={this.selectImage}
         />
@@ -85,7 +77,7 @@ class CameraRollScreen extends PureComponent {
         >
           <Buttons.FullWidthButton
             pressMethod={this.confirmSelectedImages}
-            innerText={`Import ${renderSelectedImageCount(this.state.images)} To The Studio`}
+            innerText={`Import ${renderSelectedImageCount(this.props.images)} To The Studio`}
             style={{}}
             textStyle={{ ...style.animatedViewText }}
           />
@@ -99,12 +91,19 @@ class CameraRollScreen extends PureComponent {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  fetchCameraImages: () => dispatch(cameraRollActions.fetchCameraImages()),
-  saveImagesToStudio: images => dispatch(studioActions.saveImagesToStudio(images))
-});
+const mapDispatchToProps = dispatch => {
+  const { fetchCameraImages, saveImageState, unselectAllImages } = cameraRollActions;
+  return {
+    fetchCameraImages: () => dispatch(fetchCameraImages()),
+    saveImageState: ({ images, selectedImages }) =>
+      dispatch(saveImageState({ images, selectedImages })),
+    unselectAllImages: () => dispatch(unselectAllImages()),
+    saveImagesToStudio: images => dispatch(studioActions.saveImagesToStudio(images))
+  };
+};
 const mapStateToProps = state => ({
-  images: state.cameraRoll.cameraImages
+  images: state.cameraRoll.cameraImages,
+  selectedImages: state.cameraRoll.selectedImages
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CameraRollScreen);

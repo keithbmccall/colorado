@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import studioReducer from "./studioReducer";
-import cameraRollReducer from "./cameraRollReducer";
-import appReducer from "./appReducer";
+import studioReducer from "./studio";
+import cameraRollReducer from "./camera-roll";
+import appReducer from "./app";
 
 const rootReducer = combineReducers({
   studio: studioReducer,

@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import { View } from "react-native";
-import { ImageWithColorStrip } from "shared/containers";
-import { ScrollableList } from "shared/tools";
+import { ImageWithColorStrip, ScrollableList } from "#containers";
 import style from "../styles";
 
 class StudioGallery extends PureComponent {

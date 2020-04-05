@@ -1,9 +1,8 @@
-import { setFocusedImage, saveImagesToStudio } from "./studioActions";
-import { fetchCameraImages } from "./cameraRollActions";
+import { setFocusedImage, saveImagesToStudio } from "./studio";
+import * as cameraRollActions from "./camera-roll";
 
-export const cameraRollActions = {
-  fetchCameraImages
-};
+export { cameraRollActions };
+
 export const studioActions = {
   // fetchStudioImages,
   // temporaryAddStudioImages,

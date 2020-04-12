@@ -182,13 +182,13 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
   - React-jsinspector (0.61.5)
-  - react-native-camera (3.21.0):
+  - react-native-camera (3.22.1):
     - React
-    - react-native-camera/RCT (= 3.21.0)
-    - react-native-camera/RN (= 3.21.0)
-  - react-native-camera/RCT (3.21.0):
+    - react-native-camera/RCT (= 3.22.1)
+    - react-native-camera/RN (= 3.22.1)
+  - react-native-camera/RCT (3.22.1):
     - React
-  - react-native-camera/RN (3.21.0):
+  - react-native-camera/RN (3.22.1):
     - React
   - react-native-cameraroll (1.5.2):
     - React
@@ -235,11 +235,11 @@ PODS:
     - ReactCommon/jscallinvoker (= 0.61.5)
   - RNCAsyncStorage (1.9.0):
     - React
-  - RNCMaskedView (0.1.7):
+  - RNCMaskedView (0.1.8):
     - React
   - RNGestureHandler (1.6.1):
     - React
-  - RNReanimated (1.7.1):
+  - RNReanimated (1.8.0):
     - React
   - RNScreens (2.4.0):
     - React
@@ -387,7 +387,7 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-camera: 4e12e877b8fef60b0914a49c942a0f32479e5b50
+  react-native-camera: a49f960eb362b9fbff87667c0ce639eef1161530
   react-native-cameraroll: 4360c9faab50dc6844f56d222c2d0c7ef5f1fe92
   react-native-palette: 0d54c504dd9c9825afca8559362a5977a4f4e0cd
   react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
@@ -403,9 +403,9 @@ SPEC CHECKSUMS:
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
   RNCAsyncStorage: 453cd7c335ec9ba3b877e27d02238956b76f3268
-  RNCMaskedView: 76c40a1d41c3e2535df09246a2b5487f04de0814
+  RNCMaskedView: 4383c3140f1235391fd6029968c166f09ddd0973
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
-  RNReanimated: 4e102df74a9674fa943e05f97f3362b6e44d0b48
+  RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
   RNScreens: b5c0e1b2b04512919e78bd3898e144a157ce2363
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5

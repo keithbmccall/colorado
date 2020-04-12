@@ -9,6 +9,7 @@ const equalizeSwatchLength = swatches => {
   }
   return swatches;
 };
+
 const normalizeSwatches = swatches =>
   equalizeSwatchLength(swatches)
     .sort((a, b) => b.population - a.population)

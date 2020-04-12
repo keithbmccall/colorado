@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Image } from "react-native";
 import LoadingView from "../loading/LoadingView";
+import { isValidNumberOrPercentage } from "#utils";
 
 class ResponsiveImage extends Component {
   state = {
@@ -10,6 +11,7 @@ class ResponsiveImage extends Component {
     resizeMode: "cover",
     style: { width: "100%", height: "100%" }
   };
+
   imageIsLoaded = () => {
     if (this.props.onReady) {
       this.props.onReady();
@@ -18,33 +20,27 @@ class ResponsiveImage extends Component {
       isLoaded: true
     });
   };
-  isValidNumberOrPercentage = style => {
-    if (typeof style === "number") {
-      return;
-    } else if (style[style.length - 1] === "%") {
-      return;
-    }
-    return new Error(
-      `Invalid prop '${style}' supplied to ResponsiveImage. Expected a Number or Stringed number as a percentage but received: ${style}`
-    );
-  };
 
   componentDidMount() {
-    if (this.props.style) {
-      this.isValidNumberOrPercentage(this.props.style.width);
-      this.isValidNumberOrPercentage(this.props.style.height);
+    const {
+      style: { width, height },
+      ...style
+    } = this.props;
+    if (style) {
+      isValidNumberOrPercentage(width);
+      isValidNumberOrPercentage(height);
     }
   }
 
   render() {
+    const {
+      style,
+      resizeMode,
+      src: { uri }
+    } = this.props;
     return (
       <Fragment>
-        <Image
-          source={{ uri: this.props.src }}
-          style={this.props.style}
-          onLoad={this.imageIsLoaded}
-          resizeMode={this.props.resizeMode}
-        />
+        <Image source={{ uri }} style={style} onLoad={this.imageIsLoaded} resizeMode={resizeMode} />
         {!this.state.isLoaded && <LoadingView blank={false} />}
       </Fragment>
     );

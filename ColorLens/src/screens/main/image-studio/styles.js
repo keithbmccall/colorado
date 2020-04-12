@@ -18,16 +18,6 @@ export default StyleSheet.create({
     // fontStyle: "italic",
     color: colors.primary
   },
-  studioGalleryWrapper: {
-    flex: 8
-  },
-
-  imageContentWrapper: {
-    backgroundColor: "#ddd",
-    borderWidth: 5,
-    borderColor: "#fff"
-  },
-
   buttonBarWrapper: {
     flex: 2
   },

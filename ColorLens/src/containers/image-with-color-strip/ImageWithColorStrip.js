@@ -20,7 +20,7 @@ export default class ImageWithColorStrip extends PureComponent {
   content = props => {
     return (
       <Fragment>
-        <ResponsiveImage src={props.image.uri} onReady={this.imageReady} />
+        <ResponsiveImage src={props.image} onReady={this.imageReady} />
         {props.image.uri && (
           <ColorStripContainer
             image={props.image}

@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { Animated } from "react-native";
 
 export default class AnimatedView extends Component {
-  state = {
-    animationValue: new Animated.Value(this.props.animation.starting)
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      animationValue: new Animated.Value(props.animation.starting)
+    };
+  }
 
   static defaultProps = {
     speed: 12
@@ -24,7 +27,7 @@ export default class AnimatedView extends Component {
     const { shouldLaunch: prevLaunch } = prevProps;
 
     if (shouldLaunch !== prevLaunch) {
-      if (this.props.shouldLaunch) {
+      if (shouldLaunch) {
         this.startAnimation({ toValue: ending });
       } else {
         this.startAnimation({ toValue: starting });

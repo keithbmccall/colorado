@@ -40,7 +40,7 @@ class ResponsiveImage extends Component {
     return (
       <Fragment>
         <Image
-          source={{ uri: this.props.src }}
+          source={{ uri: this.props.src.uri }}
           style={this.props.style}
           onLoad={this.imageIsLoaded}
           resizeMode={this.props.resizeMode}

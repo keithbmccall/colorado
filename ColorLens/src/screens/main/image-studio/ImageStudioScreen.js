@@ -1,12 +1,12 @@
 import React, { PureComponent } from "react";
 import { View, Text } from "react-native";
 import { connect } from "react-redux";
-import StudioGallery from "./components/StudioGallery";
 import FocusedImage from "./components/FocusedImage";
 import { Buttons, Layout, LoadingView } from "#containers";
 import { studioActions } from "#store/actions";
 import style from "./styles";
 import StudioInstructions from "./components/StudioInstructions";
+import ImageGallery from "#containers/image-gallery/ImageGallery";
 
 class ImageStudioScreen extends PureComponent {
   state = {
@@ -74,10 +74,11 @@ class ImageStudioScreen extends PureComponent {
           <LoadingView style={style.focusedImageWrapper} />
         )}
 
-        <StudioGallery
+        <ImageGallery
           images={this.props.images}
           galleryOptions={this.state.galleryOptions}
           setFocusedImage={this.setFocusedImage}
+          isStudio
         />
         <Buttons.BottomButtonBar
           options={this.buttonBarOptions()}

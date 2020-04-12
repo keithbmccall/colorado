@@ -9,11 +9,13 @@ export default class ColorStripContainer extends Component {
     isLoaded: false,
     swatches: []
   };
+
   static defaultProps = {
     style: {
       height: 50,
       width: "100%"
     },
+    quality: "medium",
     standAlone: false,
     editMode: false
   };
@@ -34,19 +36,26 @@ export default class ColorStripContainer extends Component {
       this.getDominantSwatches(image);
     }
   };
-  getDominantSwatches = image => {
-    console.log("*****:", image.uri);
-    return getAllSwatches({ quality: "medium" }, image.uri, (error, swatches) =>
-      error
-        ? console.log("error in ColorStripcontainer.getDominantSwatches", error)
-        : this.setState(
-            {
-              isLoaded: true,
-              swatches: normalizeSwatches(swatches)
-            },
-            this.markAsReady()
-          )
+
+  dominantSwatchCallback = (error, swatches) => {
+    console.log("finished");
+    if (error) {
+      console.log("error in ColorStripContainer.getDominantSwatches", error);
+      return;
+    }
+    this.props.onSwatchDiscovery(normalizeSwatches(swatches));
+
+    this.setState(
+      {
+        isLoaded: true
+      },
+      this.markAsReady()
     );
+  };
+
+  getDominantSwatches = image => {
+    console.log("start");
+    return getAllSwatches({ quality: this.props.quality }, image.uri, this.dominantSwatchCallback);
   };
 
   inspectColorSwatch = (color, colorIndex) => {
@@ -58,14 +67,12 @@ export default class ColorStripContainer extends Component {
 
   render() {
     if (this.state.isLoaded) {
-      return this.props.editMode ? (
+      return (
         <ColorStrip
           swatches={this.state.swatches}
           pressMethod={this.inspectColorSwatch}
           longPressMethod={this.updateColorSwatch}
         />
-      ) : (
-        <ColorStrip swatches={this.state.swatches} />
       );
     } else {
       return <LoadingView blank />;

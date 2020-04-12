@@ -9,7 +9,7 @@ export const buildImageObject = (edge, i) => {
     ...image,
     location,
     timestamp,
-    key: i,
+    id: `${timestamp}_${i}`,
     isSelected: false
   };
 };

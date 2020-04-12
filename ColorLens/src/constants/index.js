@@ -1,4 +1,3 @@
-import colors from "./colors";
-import textContent from "./text-content";
-
-export { colors, textContent };
+export colors from "./colors";
+export textContent from "./text-content";
+export rowDimensions from "./row-dimensions";

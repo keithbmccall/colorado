@@ -18,9 +18,7 @@ class CameraRollScreen extends PureComponent {
       key: "bottom",
       starting: -100,
       ending: 0
-    },
-    selectedImages: [],
-    images: []
+    }
   };
 
   cameraRollOptions = {
@@ -30,9 +28,9 @@ class CameraRollScreen extends PureComponent {
 
   fetchCameraRollImages = async () => await this.props.fetchCameraImages(this.cameraRollOptions);
 
-  confirmSelectedImages = () => {
+  confirmSelectedImages = async () => {
     const { selectedImages, saveImagesToStudio, unselectAllImages, navigation } = this.props;
-    saveImagesToStudio(selectedImages);
+    await saveImagesToStudio(selectedImages);
     navigation.navigate("Main", {
       screen: "Studio",
       params: {
@@ -52,7 +50,7 @@ class CameraRollScreen extends PureComponent {
   selectImage = async image => {
     const { images, selectedImages } = selectOrUnselectImage({
       images: this.props.images,
-      selectedImages: this.state.selectedImages,
+      selectedImages: this.props.selectedImages,
       image
     });
 
@@ -101,6 +99,7 @@ const mapDispatchToProps = dispatch => {
     saveImagesToStudio: images => dispatch(studioActions.saveImagesToStudio(images))
   };
 };
+
 const mapStateToProps = state => ({
   images: state.cameraRoll.cameraImages,
   selectedImages: state.cameraRoll.selectedImages

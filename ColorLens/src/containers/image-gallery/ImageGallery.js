@@ -34,11 +34,11 @@ class ImageGallery extends PureComponent {
           image={image}
           pressMethod={() => pressMethod(image)}
           style={[style.imageWrapper, cellSize]}
-          key={image.key}
+          key={image.id}
         />
       ) : (
         <TouchableOpacity
-          key={image.key}
+          key={image.id}
           style={{ ...imageCardStyle, ...cellSize }}
           onPress={() => pressMethod(image)}
         >

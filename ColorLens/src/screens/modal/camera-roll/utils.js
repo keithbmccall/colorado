@@ -18,7 +18,7 @@ export const checkSelectedImages = (selectedImages, image) => {
 export const selectOrUnselectImage = ({ images, selectedImages, image }) => {
   let newSelectedImages = [...selectedImages];
   const newImages = images.map(stateImage => {
-    if (stateImage.key === image.key) {
+    if (stateImage.id === image.id) {
       stateImage.isSelected = !stateImage.isSelected;
       newSelectedImages = checkSelectedImages(selectedImages, stateImage);
     }

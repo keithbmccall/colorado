@@ -7,6 +7,7 @@ import { studioActions } from "#store/actions";
 import style from "./styles";
 import StudioInstructions from "./components/StudioInstructions";
 import ImageGallery from "#containers/image-gallery/ImageGallery";
+import rowDimensions from "../../../constants/row-dimensions";
 
 class ImageStudioScreen extends PureComponent {
   state = {
@@ -21,19 +22,15 @@ class ImageStudioScreen extends PureComponent {
       key: "bottom"
     }
   };
+
   toggleGalleryOptions = () => {
-    //    rowSize:3,
-    //    rowHeight:140
-    //    or
-    //    rowSize:2,
-    //    rowHeight:220
     const toggleRowSize = rowSize => {
       if (rowSize === 2) {
-        // toggle rowsize from 2 per row (default) to 3 per row
-        return { rowSize: 3, rowHeight: 140 };
+        return rowDimensions.rowSize3;
       }
-      return { rowSize: 2, rowHeight: 220 };
+      return rowDimensions.rowSize2;
     };
+
     this.setState({
       galleryOptions: toggleRowSize(this.state.galleryOptions.rowSize)
     });
@@ -73,7 +70,6 @@ class ImageStudioScreen extends PureComponent {
         ) : (
           <LoadingView style={style.focusedImageWrapper} />
         )}
-
         <ImageGallery
           images={this.props.images}
           galleryOptions={this.state.galleryOptions}

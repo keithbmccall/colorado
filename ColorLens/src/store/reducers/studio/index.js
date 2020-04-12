@@ -3,8 +3,10 @@ import {
   SAVE_CAMERA_IMAGES,
   FETCH_STUDIO_IMAGES,
   SAVE_STUDIO_IMAGES,
-  SET_FOCUSED_IMAGE
+  SET_FOCUSED_IMAGE,
+  SET_SWATCHES_ON_IMAGE
 } from "../../actions/studio";
+import { setSwatchesOnStudioImages } from "./util";
 
 const initialState = {
   studioImages: [],
@@ -29,11 +31,18 @@ export default (state = initialState, action) => {
         ...state,
         studioImages: action.payload
       };
-    //
     case SET_FOCUSED_IMAGE:
       return {
         ...state,
         focusedImage: action.payload
+      };
+    case SET_SWATCHES_ON_IMAGE:
+      return {
+        ...state,
+        studioImages: setSwatchesOnStudioImages({
+          studioImages: state.studioImages,
+          imageWithSwatch: action.payload
+        })
       };
     default:
       return state;

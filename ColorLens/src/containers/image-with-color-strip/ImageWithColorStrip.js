@@ -3,8 +3,10 @@ import { View, TouchableOpacity } from "react-native";
 import LoadingView from "../../containers/loading/LoadingView";
 import ColorStripContainer from "../../containers/color-strips/ColorStripContainer";
 import ResponsiveImage from "../image-containers/ResponsiveImage";
+import { connect } from "react-redux";
+import { studioActions } from "#store/actions";
 
-export default class ImageWithColorStrip extends PureComponent {
+class ImageWithColorStrip extends PureComponent {
   state = {
     isImageReady: false,
     isColorsReady: false
@@ -13,9 +15,17 @@ export default class ImageWithColorStrip extends PureComponent {
     editMode: false
   };
 
-  imageReady = () => this.setState({ isImageReady: true });
+  imageReady = () => {
+    this.setState({ isImageReady: true });
+  };
 
-  colorsReady = () => this.setState({ isColorsReady: true });
+  colorsReady = () => {
+    this.setState({ isColorsReady: true });
+  };
+
+  onSwatchDiscovery = swatches => {
+    this.props.setSwatchesOnImage({ swatches, image: this.props.image });
+  };
 
   content = props => {
     return (
@@ -25,8 +35,8 @@ export default class ImageWithColorStrip extends PureComponent {
           <ColorStripContainer
             image={props.image}
             onReady={this.colorsReady}
-            standAlone={false}
             editMode={this.props.editMode}
+            onSwatchDiscovery={this.onSwatchDiscovery}
           />
         )}
         {(!this.state.isColorsReady || !this.state.isColorsReady) && <LoadingView blank={false} />}
@@ -47,5 +57,11 @@ export default class ImageWithColorStrip extends PureComponent {
     return <Fragment>{this.renderContent(this.props)}</Fragment>;
   }
 }
-
+const mapDispatchToProps = dispatch => {
+  const { setSwatchesOnImage } = studioActions;
+  return {
+    setSwatchesOnImage: ({ swatches, image }) => dispatch(setSwatchesOnImage({ swatches, image }))
+  };
+};
+export default connect(null, mapDispatchToProps)(ImageWithColorStrip);
 //  PROPTYPES

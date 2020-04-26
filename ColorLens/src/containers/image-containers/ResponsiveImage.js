@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { Image } from "react-native";
 import LoadingView from "../loading/LoadingView";
-import { isValidNumberOrPercentage } from "#utils";
+import { isValidNumberOrPercentageValidator } from "#utils";
 
 class ResponsiveImage extends Component {
   state = {
     isLoaded: false
   };
+
   static defaultProps = {
     resizeMode: "cover",
     style: { width: "100%", height: "100%" }
@@ -21,16 +22,14 @@ class ResponsiveImage extends Component {
     });
   };
 
-  componentDidMount() {
-    const {
-      style: { width, height },
-      ...style
-    } = this.props;
+  validation = () => {
+    const { style } = this.props;
+
     if (style) {
-      isValidNumberOrPercentage(width);
-      isValidNumberOrPercentage(height);
+      isValidNumberOrPercentageValidator(style.width);
+      isValidNumberOrPercentageValidator(style.height);
     }
-  }
+  };
 
   render() {
     const {
@@ -44,6 +43,14 @@ class ResponsiveImage extends Component {
         {!this.state.isLoaded && <LoadingView blank={false} />}
       </Fragment>
     );
+  }
+
+  componentDidMount() {
+    this.validation();
+  }
+
+  componentDidUpdate() {
+    this.validation();
   }
 }
 

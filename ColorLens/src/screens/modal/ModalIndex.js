@@ -1,12 +1,11 @@
-import React, { Component } from "react";
+import React, { memo } from "react";
 import { Layout } from "#containers";
 import { colors } from "#constants";
 import CameraRollScreen from "./camera-roll/CameraRollScreen";
 
-export default class ModalIndex extends Component {
-  render() {
-    const modalContent = <CameraRollScreen navigation={this.props.navigation} />;
+const ModalIndex = props => {
+  const modalContent = <CameraRollScreen navigation={props.navigation} />;
 
-    return <Layout style={{ backgroundColor: colors.modalViewBackground }}>{modalContent}</Layout>;
-  }
-}
+  return <Layout style={{ backgroundColor: colors.modalViewBackground }}>{modalContent}</Layout>;
+};
+export default memo(ModalIndex);

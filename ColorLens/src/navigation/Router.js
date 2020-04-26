@@ -4,7 +4,7 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import { createStackNavigator } from "@react-navigation/stack";
 import LibraryScreen from "../screens/main/library/LibraryScreen";
 import CameraScreen from "../screens/main/camera/CameraScreen";
-import ImageStudio from "../screens/main/image-studio/ImageStudioScreen";
+import ImageStudioScreen from "../screens/main/image-studio/ImageStudioScreen";
 import ModalIndex from "../screens/modal/ModalIndex";
 
 const view = "Studio";
@@ -38,7 +38,7 @@ const MainStack = () => {
         }
       }}
     >
-      <Main.Screen name="Studio" component={ImageStudio} />
+      <Main.Screen name="Studio" component={ImageStudioScreen} />
       <Main.Screen name="Camera" component={CameraScreen} />
       <Main.Screen name="Library" component={LibraryScreen} />
     </Main.Navigator>

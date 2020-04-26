@@ -16,7 +16,6 @@ class App extends Component {
 
   async wrapGlobalHandler(error, isFatal) {
     // If the error kills our app in Release mode, make sure we don't rehydrate
-    // with an invalid Redux state and cleanly go back to login page instead
     if (isFatal && !__DEV__) AsyncStorage.clear();
 
     //Once finished, make sure react-native also gets the error

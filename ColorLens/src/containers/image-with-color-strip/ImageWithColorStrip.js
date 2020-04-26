@@ -31,14 +31,12 @@ class ImageWithColorStrip extends PureComponent {
     return (
       <Fragment>
         <ResponsiveImage src={props.image} onReady={this.imageReady} />
-        {props.image.uri && (
-          <ColorStripContainer
-            image={props.image}
-            onReady={this.colorsReady}
-            editMode={this.props.editMode}
-            onSwatchDiscovery={this.onSwatchDiscovery}
-          />
-        )}
+        <ColorStripContainer
+          image={props.image}
+          onReady={this.colorsReady}
+          editMode={this.props.editMode}
+          onSwatchDiscovery={this.onSwatchDiscovery}
+        />
         {(!this.state.isColorsReady || !this.state.isColorsReady) && <LoadingView blank={false} />}
       </Fragment>
     );

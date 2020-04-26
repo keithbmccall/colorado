@@ -6,8 +6,8 @@ import { Buttons, Layout, LoadingView } from "#containers";
 import { studioActions } from "#store/actions";
 import style from "./styles";
 import StudioInstructions from "./components/StudioInstructions";
-import ImageGallery from "#containers/image-gallery/ImageGallery";
-import rowDimensions from "../../../constants/row-dimensions";
+import { ImageGallery } from "#containers";
+import { rowDimensions } from "#constants";
 
 class ImageStudioScreen extends PureComponent {
   state = {

@@ -4,7 +4,7 @@ import ResponsiveImage from "../image-containers/ResponsiveImage";
 import ScrollableList from "../lists/ScrollableList";
 import style from "./styles";
 import ConditionalWrapper from "../tools/ConditionalWrapper";
-import { conditionalListReverse, rowSizeRange } from "#utils";
+import { conditionalListReverse, rowSizeRangeValidator } from "#utils";
 import { ImageWithColorStrip } from "#containers";
 
 class ImageGallery extends PureComponent {
@@ -26,7 +26,7 @@ class ImageGallery extends PureComponent {
       height: rowHeight
     };
 
-    return images.map(image => {
+    const imageList = images.map(image => {
       const imageCardStyle = image.isSelected ? style.selectedImageWrapper : style.imageWrapper;
 
       return isStudio ? (
@@ -46,6 +46,15 @@ class ImageGallery extends PureComponent {
         </TouchableOpacity>
       );
     });
+
+    return conditionalListReverse({
+      list: imageList,
+      test: isStudio
+    });
+  };
+
+  validation = () => {
+    rowSizeRangeValidator(this.props.galleryOptions.rowSize);
   };
 
   render() {
@@ -54,18 +63,21 @@ class ImageGallery extends PureComponent {
       isStudio
     } = this.props;
 
-    rowSizeRange(rowSize);
-
     return (
       <ConditionalWrapper enable={isStudio} style={style.studioGalleryWrapper}>
         <ScrollableList isLazy columns={rowSize}>
-          {conditionalListReverse({
-            list: this.renderContent(),
-            test: isStudio
-          })}
+          {this.renderContent()}
         </ScrollableList>
       </ConditionalWrapper>
     );
+  }
+
+  componentDidMount() {
+    this.validation();
+  }
+
+  componentDidUpdate() {
+    this.validation();
   }
 }
 

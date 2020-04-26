@@ -9,16 +9,21 @@ import style from "./styles";
 //slider options end
 class CameraRollScreen extends PureComponent {
   state = {
+    isConfirmMenuOpen: false,
     galleryOptions: {
       rowSize: 4,
       rowHeight: 110
     },
-    shouldConfirmMenuOpen: false,
     sliderOptions: {
       key: "bottom",
       starting: -100,
       ending: 0
     }
+  };
+
+  galleryOptions = {
+    rowSize: 4,
+    rowHeight: 110
   };
 
   cameraRollOptions = {
@@ -58,6 +63,10 @@ class CameraRollScreen extends PureComponent {
     this.shouldConfirmMenuOpen();
   };
 
+  renderButtonText = () => {
+    return `Import ${renderSelectedImageCount(this.props.images)} To The Studio`;
+  };
+
   render() {
     return (
       <View style={style.cameraRollScreenWrapper}>
@@ -75,7 +84,7 @@ class CameraRollScreen extends PureComponent {
         >
           <Buttons.FullWidthButton
             pressMethod={this.confirmSelectedImages}
-            innerText={`Import ${renderSelectedImageCount(this.props.images)} To The Studio`}
+            innerText={this.renderButtonText()}
             style={{}}
             textStyle={{ ...style.animatedViewText }}
           />

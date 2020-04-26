@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { getAllSwatches } from "react-native-palette";
 import ColorStrip from "./components/ColorStrip";
-import { normalizeSwatches } from "./methods";
+import { normalizeSwatches } from "#utils";
 import LoadingView from "../loading/LoadingView";
 
-export default class ColorStripContainer extends Component {
+export default class ColorStripContainer extends PureComponent {
   state = {
     isLoaded: false,
     swatches: []
@@ -24,11 +24,11 @@ export default class ColorStripContainer extends Component {
 
   setSwatches = image => {
     //    checks to see if image has palettes already, if not then it runs code to find the dominant colors
-    if (image.palette) {
+    if (image.swatches) {
       this.setState(
         {
           isLoaded: true,
-          swatches: image.palette.swatches
+          swatches: image.swatches
         },
         this.markAsReady()
       );
@@ -54,7 +54,6 @@ export default class ColorStripContainer extends Component {
   };
 
   getDominantSwatches = image => {
-    console.log("start");
     return getAllSwatches({ quality: this.props.quality }, image.uri, this.dominantSwatchCallback);
   };
 
@@ -84,7 +83,7 @@ export default class ColorStripContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.image.palette !== prevProps.image.palette) {
+    if (this.props.image.swatches !== prevProps.image.swatches) {
       this.setSwatches(this.props.image);
     }
   }

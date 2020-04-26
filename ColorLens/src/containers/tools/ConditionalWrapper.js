@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-
 import { View } from "react-native";
 
 const ConditionalWrapper = ({ enable, style, children }) =>

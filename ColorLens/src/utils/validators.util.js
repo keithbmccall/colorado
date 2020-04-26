@@ -1,4 +1,4 @@
-export const rowSizeRange = rowSize => {
+export const rowSizeRangeValidator = rowSize => {
   // ImageGallery.js
   if (rowSize === 2 || rowSize === 3 || rowSize === 4) {
     return;
@@ -8,7 +8,7 @@ export const rowSizeRange = rowSize => {
   );
 };
 
-export const isValidNumberOrPercentage = style => {
+export const isValidNumberOrPercentageValidator = style => {
   // ResponsiveImage.js
   if (typeof style === "number") {
     return;

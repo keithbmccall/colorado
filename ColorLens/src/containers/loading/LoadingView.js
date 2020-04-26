@@ -1,8 +1,8 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import Spinner from "react-native-spinkit";
-import { colors } from "#constants";
-//
+import style from "./styles";
+
 const LoadingView = props =>
   props.blank ? (
     <View style={{ ...props.style }} />
@@ -13,26 +13,12 @@ const LoadingView = props =>
         ...props.style
       }}
     >
-      <Spinner isVisible color={colors.loadingAnimation} size={75} type="9CubeGrid" />
+      <Spinner isVisible color={style.loadingAnimation.color} size={75} type="9CubeGrid" />
     </View>
   );
+
 LoadingView.defaultProps = {
   blank: true
 };
 
 export default LoadingView;
-const style = StyleSheet.create({
-  loadingView: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    top: 0,
-    height: "100%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    zIndex: 10
-  }
-});

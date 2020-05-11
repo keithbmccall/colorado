@@ -5,6 +5,7 @@ import { renderSelectedImageCount, selectOrUnselectImage } from "./utils";
 import { ImageGallery, AnimatedView, Buttons } from "#containers";
 import { cameraRollActions, studioActions } from "#store/actions";
 import style from "./styles";
+import { defaultCameraRollOptionsEnum } from "#enum";
 
 //slider options end
 class CameraRollScreen extends PureComponent {
@@ -21,17 +22,11 @@ class CameraRollScreen extends PureComponent {
     }
   };
 
-  galleryOptions = {
-    rowSize: 4,
-    rowHeight: 110
+  cameraRollOptions = () => {
+    return defaultCameraRollOptionsEnum;
   };
 
-  cameraRollOptions = {
-    first: 5000,
-    assetType: "Photos"
-  };
-
-  fetchCameraRollImages = async () => await this.props.fetchCameraImages(this.cameraRollOptions);
+  fetchCameraRollImages = async () => await this.props.fetchCameraImages(this.cameraRollOptions());
 
   confirmSelectedImages = async () => {
     const { selectedImages, saveImagesToStudio, unselectAllImages, navigation } = this.props;

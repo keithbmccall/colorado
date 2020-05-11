@@ -1,4 +1,5 @@
 import CameraRoll from "@react-native-community/cameraroll";
+import { defaultCameraRollOptionsEnum } from "#enum";
 
 export const buildImageObject = (edge, i) => {
   const {
@@ -14,12 +15,7 @@ export const buildImageObject = (edge, i) => {
   };
 };
 
-const defaultCameraRollOptions = {
-  first: 5000,
-  assetType: "Photos"
-};
-
-export const getCameraRollImages = async (options = defaultCameraRollOptions) => {
+export const getCameraRollImages = async (options = defaultCameraRollOptionsEnum) => {
   const images = (await CameraRoll.getPhotos(options)) || [];
   const { edges: imageEdges, page_info } = images;
 

@@ -3,11 +3,13 @@ import { getAllSwatches } from "react-native-palette";
 import ColorStrip from "./components/ColorStrip";
 import { normalizeSwatches } from "#utils";
 import LoadingView from "../loading/LoadingView";
+import { studioActions } from "#store/actions";
+import { connect } from "react-redux";
 
-export default class ColorStripContainer extends PureComponent {
+class ColorStripContainer extends PureComponent {
   state = {
     isLoaded: false,
-    swatches: []
+    swatches: {}
   };
 
   static defaultProps = {
@@ -18,6 +20,10 @@ export default class ColorStripContainer extends PureComponent {
     quality: "medium",
     standAlone: false,
     editMode: false
+  };
+
+  onSwatchDiscovery = swatches => {
+    this.props.setSwatchesOnImage({ swatches, image: this.props.image });
   };
 
   markAsReady = () => this.props.onReady && this.props.onReady();
@@ -43,7 +49,8 @@ export default class ColorStripContainer extends PureComponent {
       console.log("error in ColorStripContainer.getDominantSwatches", error);
       return;
     }
-    this.props.onSwatchDiscovery(normalizeSwatches(swatches));
+
+    this.onSwatchDiscovery(normalizeSwatches(swatches));
 
     this.setState(
       {
@@ -53,13 +60,13 @@ export default class ColorStripContainer extends PureComponent {
     );
   };
 
-  getDominantSwatches = image => {
-    return getAllSwatches({ quality: this.props.quality }, image.uri, this.dominantSwatchCallback);
-  };
+  getDominantSwatches = image =>
+    getAllSwatches({ quality: this.props.quality }, image.uri, this.dominantSwatchCallback);
 
   inspectColorSwatch = (color, colorIndex) => {
     console.log("inspecting", color, colorIndex);
   };
+
   updateColorSwatch = (color, colorIndex) => {
     console.log("updating", color, colorIndex);
   };
@@ -88,3 +95,12 @@ export default class ColorStripContainer extends PureComponent {
     }
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  const { setSwatchesOnImage } = studioActions;
+  return {
+    setSwatchesOnImage: ({ swatches, image }) => dispatch(setSwatchesOnImage({ swatches, image }))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(ColorStripContainer);

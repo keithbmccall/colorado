@@ -11,7 +11,8 @@ module.exports = {
           "#constants": "./src/constants",
           "#store": "./src/store",
           "#helpers": "./src/helpers",
-          "#utils": "./src/utils"
+          "#utils": "./src/utils",
+          "#enum": "./src/enum"
         }
       }
     ]

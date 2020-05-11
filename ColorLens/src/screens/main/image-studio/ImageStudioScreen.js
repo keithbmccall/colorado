@@ -104,7 +104,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   images: state.studio.studioImages.length ? state.studio.studioImages : [],
-  focusedImage: state.studio.focusedImage ? state.studio.focusedImage : null
+  focusedImage: state.studio.focusedImage || null
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ImageStudioScreen);

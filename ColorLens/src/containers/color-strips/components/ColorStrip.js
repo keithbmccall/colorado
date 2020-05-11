@@ -1,26 +1,24 @@
 import React from "react";
-import { View, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import style from "../styles";
+import { mapSwatchPaletteToArray } from "#utils";
+import ConditionalButton from "../../tools/ConditionalButton";
+import { swatchDictionaryEnum } from "../../../enum";
 
-const renderSwatchContent = (swatch, key) => (
-  <View style={[style.flex1, { backgroundColor: swatch }]} key={key} />
-);
-
-const renderSwatches = ({ pressMethod, longPressMethod, swatches }) => {
-  if (pressMethod || longPressMethod) {
-    return swatches.map((swatch, key) => (
-      <TouchableOpacity
+const renderSwatches = ({ pressMethod, longPressMethod, swatches }) =>
+  mapSwatchPaletteToArray(swatches).map((swatch, key) => {
+    const _key = swatchDictionaryEnum[key];
+    return (
+      <ConditionalButton
         style={style.flex1}
-        onPress={pressMethod && pressMethod.bind(null, swatch, key)}
-        onLongPress={longPressMethod && longPressMethod.bind(null, swatch, key)}
-        key={key}
+        onPress={pressMethod && pressMethod.bind(null, swatch, _key)}
+        onLongPress={longPressMethod && longPressMethod.bind(null, swatch, _key)}
+        key={`${key}_${swatch}`}
       >
-        {renderSwatchContent(swatch)}
-      </TouchableOpacity>
-    ));
-  }
-  return swatches.map((swatch, key) => renderSwatchContent(swatch, key));
-};
+        <View style={[style.flex1, { backgroundColor: swatch }]} key={key} />
+      </ConditionalButton>
+    );
+  });
 
 const ColorStrip = props => {
   return <View style={props.style}>{renderSwatches(props)}</View>;

@@ -13,7 +13,7 @@ export const setFocusedImage = image => dispatch =>
 
 export const saveImagesToStudio = images => dispatch => {
   return dispatch({
-    type: SAVE_CAMERA_IMAGES,
+    type: SAVE_STUDIO_IMAGES,
     payload: images
   });
 };

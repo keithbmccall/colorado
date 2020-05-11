@@ -6680,7 +6680,7 @@ react-native-iphone-x-helper@^1.2.1:
 
 react-native-palette@keithmccall/react-native-palette#master:
   version "1.0.0"
-  resolved "https://codeload.github.com/keithmccall/react-native-palette/tar.gz/79fb41e904734c603b38f9d9063dbe78c44c8239"
+  resolved "https://codeload.github.com/keithmccall/react-native-palette/tar.gz/2968693b48fb89730e185e11fbc23442cf45e969"
 
 react-native-paper@^3.6.0:
   version "3.8.0"

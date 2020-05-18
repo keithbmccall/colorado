@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { getAllSwatches } from "react-native-palette";
+// import { getSwatches } from "react-native-color-lens";
 import ColorStrip from "./components/ColorStrip";
 import { normalizeSwatches } from "#utils";
 import LoadingView from "../loading/LoadingView";

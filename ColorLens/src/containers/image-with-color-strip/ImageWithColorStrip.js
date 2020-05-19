@@ -9,9 +9,6 @@ class ImageWithColorStrip extends PureComponent {
     isImageReady: false,
     isColorsReady: false
   };
-  static defaultProps = {
-    editMode: false
-  };
 
   imageReady = () => {
     this.setState({ isImageReady: true });
@@ -21,33 +18,42 @@ class ImageWithColorStrip extends PureComponent {
     this.setState({ isColorsReady: true });
   };
 
-  content = props => {
+  content = () => {
+    const { image } = this.props;
+    const { isColorsReady, isImageReady } = this.state;
     return (
       <Fragment>
-        <ResponsiveImage src={props.image} onReady={this.imageReady} />
+        <ResponsiveImage src={image} onReady={this.imageReady} />
         <ColorStripContainer
-          image={props.image}
+          image={image}
           onReady={this.colorsReady}
           editMode={this.props.editMode}
+          isStatic
         />
-        {(!this.state.isColorsReady || !this.state.isColorsReady) && <LoadingView blank={false} />}
+        {!(isColorsReady && isImageReady) && <LoadingView />}
       </Fragment>
     );
   };
 
-  renderContent = props =>
-    props.pressMethod ? (
-      <TouchableOpacity style={props.style} onPress={props.pressMethod} activeOpacity={0.8}>
-        {this.content(props)}
+  renderContent = () => {
+    const { onPress, style } = this.props;
+    return onPress ? (
+      <TouchableOpacity style={style} onPress={onPress} activeOpacity={0.8}>
+        {this.content()}
       </TouchableOpacity>
     ) : (
-      <View style={props.style}>{this.content(props)}</View>
+      <View style={style}>{this.content()}</View>
     );
+  };
 
   render() {
-    return <Fragment>{this.renderContent(this.props)}</Fragment>;
+    return <Fragment>{this.renderContent()}</Fragment>;
   }
 }
 
+ImageWithColorStrip.defaultProps = {
+  editMode: false,
+  onPress: null
+};
+
 export default ImageWithColorStrip;
-//  PROPTYPES

@@ -8,6 +8,7 @@ import style from "./styles";
 import StudioInstructions from "./components/StudioInstructions";
 import { ImageGallery } from "#containers";
 import { rowDimensions } from "#constants";
+import { studioSelectors } from "#selectors";
 
 class ImageStudioScreen extends PureComponent {
   state = {
@@ -73,7 +74,7 @@ class ImageStudioScreen extends PureComponent {
         <ImageGallery
           images={this.props.images}
           galleryOptions={this.state.galleryOptions}
-          setFocusedImage={this.setFocusedImage}
+          onPress={this.setFocusedImage}
           isStudio
         />
         <Buttons.BottomButtonBar
@@ -102,9 +103,11 @@ const mapDispatchToProps = dispatch => ({
   setFocusedImage: image => dispatch(studioActions.setFocusedImage(image))
 });
 
-const mapStateToProps = state => ({
-  images: state.studio.studioImages.length ? state.studio.studioImages : [],
-  focusedImage: state.studio.focusedImage || null
-});
-
+const mapStateToProps = state => {
+  const { focusedImageSelector, studioImagesSelector } = studioSelectors;
+  return {
+    images: studioImagesSelector(state),
+    focusedImage: focusedImageSelector(state)
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(ImageStudioScreen);

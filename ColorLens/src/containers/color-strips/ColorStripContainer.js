@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
-import { getAllSwatches } from "react-native-palette";
-// import { getSwatches } from "react-native-color-lens";
+import { getPalette } from "react-native-color-lens";
 import ColorStrip from "./components/ColorStrip";
 import { normalizeSwatches } from "#utils";
 import LoadingView from "../loading/LoadingView";
@@ -9,18 +8,8 @@ import { connect } from "react-redux";
 
 class ColorStripContainer extends PureComponent {
   state = {
-    isLoaded: false,
-    swatches: {}
-  };
-
-  static defaultProps = {
-    style: {
-      height: 50,
-      width: "100%"
-    },
-    quality: "medium",
-    standAlone: false,
-    editMode: false
+    isLoaded: false
+    // swatches: {}
   };
 
   onSwatchDiscovery = swatches => {
@@ -30,12 +19,12 @@ class ColorStripContainer extends PureComponent {
   markAsReady = () => this.props.onReady && this.props.onReady();
 
   setSwatches = image => {
-    //    checks to see if image has palettes already, if not then it runs code to find the dominant colors
+    //    checks to see if image has swatches already,
+    //    if not then it runs code to find the dominant colors
     if (image.swatches) {
       this.setState(
         {
-          isLoaded: true,
-          swatches: image.swatches
+          isLoaded: true
         },
         this.markAsReady()
       );
@@ -45,7 +34,6 @@ class ColorStripContainer extends PureComponent {
   };
 
   dominantSwatchCallback = (error, swatches) => {
-    console.log("finished");
     if (error) {
       console.log("error in ColorStripContainer.getDominantSwatches", error);
       return;
@@ -61,8 +49,7 @@ class ColorStripContainer extends PureComponent {
     );
   };
 
-  getDominantSwatches = image =>
-    getAllSwatches({ quality: this.props.quality }, image.uri, this.dominantSwatchCallback);
+  getDominantSwatches = image => getPalette(image.uri, this.dominantSwatchCallback);
 
   inspectColorSwatch = (color, colorIndex) => {
     console.log("inspecting", color, colorIndex);
@@ -72,18 +59,22 @@ class ColorStripContainer extends PureComponent {
     console.log("updating", color, colorIndex);
   };
 
+  renderContent = () => {
+    const { isStatic } = this.props;
+
+    return isStatic ? (
+      <ColorStrip swatches={this.props.image.swatches} />
+    ) : (
+      <ColorStrip
+        swatches={this.props.image.swatches}
+        pressMethod={this.inspectColorSwatch}
+        longPressMethod={this.updateColorSwatch}
+      />
+    );
+  };
+
   render() {
-    if (this.state.isLoaded) {
-      return (
-        <ColorStrip
-          swatches={this.state.swatches}
-          pressMethod={this.inspectColorSwatch}
-          longPressMethod={this.updateColorSwatch}
-        />
-      );
-    } else {
-      return <LoadingView blank />;
-    }
+    return this.state.isLoaded ? this.renderContent() : <LoadingView blank />;
   }
 
   componentDidMount() {
@@ -96,6 +87,16 @@ class ColorStripContainer extends PureComponent {
     }
   }
 }
+
+ColorStripContainer.defaultProps = {
+  style: {
+    height: 50,
+    width: "100%"
+  },
+  quality: "medium",
+  isStatic: false,
+  editMode: false
+};
 
 const mapDispatchToProps = dispatch => {
   const { setSwatchesOnImage } = studioActions;

@@ -12,7 +12,8 @@ module.exports = {
           "#store": "./src/store",
           "#helpers": "./src/helpers",
           "#utils": "./src/utils",
-          "#enum": "./src/enum"
+          "#enum": "./src/enum",
+          "#selectors": "./src/selectors"
         }
       }
     ]

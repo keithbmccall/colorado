@@ -18,7 +18,7 @@ const LoadingView = props =>
   );
 
 LoadingView.defaultProps = {
-  blank: true
+  blank: false
 };
 
 export default LoadingView;

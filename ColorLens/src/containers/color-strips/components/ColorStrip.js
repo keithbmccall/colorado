@@ -3,7 +3,7 @@ import { View } from "react-native";
 import style from "../styles";
 import { mapSwatchPaletteToArray } from "#utils";
 import ConditionalButton from "../../tools/ConditionalButton";
-import { swatchDictionaryEnum } from "../../../enum";
+import { swatchDictionaryEnum } from "#enum";
 
 const renderSwatches = ({ pressMethod, longPressMethod, swatches }) =>
   mapSwatchPaletteToArray(swatches).map((swatch, key) => {
@@ -25,7 +25,9 @@ const ColorStrip = props => {
 };
 
 ColorStrip.defaultProps = {
-  style: style.colorStripWrapper
+  style: style.colorStripWrapper,
+  onPress: null,
+  onLongPress: null
 };
 
 export default ColorStrip;

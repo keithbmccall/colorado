@@ -69,7 +69,7 @@ class CameraRollScreen extends PureComponent {
         <ImageGallery
           images={this.props.images}
           galleryOptions={this.state.galleryOptions}
-          pressMethod={this.selectImage}
+          onPress={this.selectImage}
         />
         <AnimatedView
           style={style.animatedViewSlider}

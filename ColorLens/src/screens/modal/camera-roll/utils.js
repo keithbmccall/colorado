@@ -10,9 +10,13 @@ export const checkSelectedImages = (selectedImages, image) => {
   const selectedArray = selectedImages.slice(0);
   const n = selectedArray.indexOf(image);
 
-  return n >= 0
-    ? selectedArray.splice(n, 1) && selectedArray
-    : selectedArray.push(image) && selectedArray;
+  if (n >= 0) {
+    selectedArray.splice(n, 1);
+  } else {
+    selectedArray.push(image);
+  }
+
+  return selectedArray;
 };
 
 export const selectOrUnselectImage = ({ images, selectedImages, image }) => {
@@ -24,6 +28,7 @@ export const selectOrUnselectImage = ({ images, selectedImages, image }) => {
     }
     return stateImage;
   });
+
   return {
     images: newImages,
     selectedImages: newSelectedImages

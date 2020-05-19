@@ -14,38 +14,59 @@ class ImageGallery extends PureComponent {
     }
   };
 
-  renderContent = () => {
+  renderStudioGallery = () => {
     const {
       images,
-      pressMethod,
-      galleryOptions: { rowSize, rowHeight },
-      isStudio
+      onPress,
+      galleryOptions: { rowSize, rowHeight }
+    } = this.props;
+    const cellSize = {
+      width: `${100 / rowSize}%`,
+      height: rowHeight
+    };
+    return images.map((image, key) => {
+      return (
+        <TouchableOpacity
+          key={key}
+          style={{ ...style.imageWrapper, ...cellSize }}
+          onPress={() => onPress(image)}
+        >
+          <ImageWithColorStrip image={image} />
+        </TouchableOpacity>
+      );
+    });
+  };
+
+  renderImageGallery = () => {
+    const {
+      images,
+      onPress,
+      galleryOptions: { rowSize, rowHeight }
     } = this.props;
     const cellSize = {
       width: `${100 / rowSize}%`,
       height: rowHeight
     };
 
-    const imageList = images.map(image => {
+    return images.map((image, key) => {
       const imageCardStyle = image.isSelected ? style.selectedImageWrapper : style.imageWrapper;
 
-      return isStudio ? (
-        <ImageWithColorStrip
-          image={image}
-          pressMethod={() => pressMethod(image)}
-          style={[style.imageWrapper, cellSize]}
-          key={image.id}
-        />
-      ) : (
+      return (
         <TouchableOpacity
-          key={image.id}
+          key={key}
           style={{ ...imageCardStyle, ...cellSize }}
-          onPress={() => pressMethod(image)}
+          onPress={() => onPress(image)}
         >
           <ResponsiveImage src={image} />
         </TouchableOpacity>
       );
     });
+  };
+
+  renderContent = () => {
+    const { isStudio } = this.props;
+
+    const imageList = isStudio ? this.renderStudioGallery() : this.renderImageGallery();
 
     return conditionalListReverse({
       list: imageList,

@@ -8,11 +8,6 @@ class ResponsiveImage extends Component {
     isLoaded: false
   };
 
-  static defaultProps = {
-    resizeMode: "cover",
-    style: { width: "100%", height: "100%" }
-  };
-
   imageIsLoaded = () => {
     if (this.props.onReady) {
       this.props.onReady();
@@ -39,8 +34,13 @@ class ResponsiveImage extends Component {
     } = this.props;
     return (
       <Fragment>
-        <Image source={{ uri }} style={style} onLoad={this.imageIsLoaded} resizeMode={resizeMode} />
-        {!this.state.isLoaded && <LoadingView blank={false} />}
+        <Image
+          source={{ uri, cache: "force-cache" }}
+          style={style}
+          onLoad={this.imageIsLoaded}
+          resizeMode={resizeMode}
+        />
+        {!this.state.isLoaded && <LoadingView />}
       </Fragment>
     );
   }
@@ -53,5 +53,10 @@ class ResponsiveImage extends Component {
     this.validation();
   }
 }
+
+ResponsiveImage.defaultProps = {
+  resizeMode: "cover",
+  style: { width: "100%", height: "100%" }
+};
 
 export default ResponsiveImage;

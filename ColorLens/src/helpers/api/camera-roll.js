@@ -1,5 +1,6 @@
 import CameraRoll from "@react-native-community/cameraroll";
 import { defaultCameraRollOptionsEnum } from "#enum";
+import { keyGenerator } from "../../utils";
 
 export const buildImageObject = (edge, i) => {
   const {
@@ -10,7 +11,7 @@ export const buildImageObject = (edge, i) => {
     ...image,
     location,
     timestamp,
-    id: `${timestamp}_${i}`,
+    id: keyGenerator(timestamp, i),
     isSelected: false
   };
 };

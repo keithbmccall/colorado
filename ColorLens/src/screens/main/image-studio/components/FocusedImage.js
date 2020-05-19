@@ -4,19 +4,6 @@ import { ImageWithColorStrip, Buttons } from "#containers";
 import style from "../styles";
 
 class FocusedImage extends PureComponent {
-  state = {
-    palette: {
-      id: 0,
-      swatches: []
-    }
-  };
-
-  componentDidMount() {
-    this.setState({
-      palette: this.props.focusedImage.palette
-    });
-  }
-
   render() {
     return (
       <View style={style.focusedImageWrapper}>

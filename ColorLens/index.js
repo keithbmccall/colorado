@@ -17,6 +17,7 @@ if (process.env.NODE_ENV === "development") {
 
 const ReduxWrapper = () => {
   persistor.purge();
+
   return (
     <Provider store={store}>
       <PersistGate loading={<LoadingView />} persistor={persistor}>

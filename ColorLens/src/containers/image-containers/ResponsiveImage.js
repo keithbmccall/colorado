@@ -32,6 +32,7 @@ class ResponsiveImage extends Component {
       resizeMode,
       src: { uri }
     } = this.props;
+
     return (
       <Fragment>
         <Image

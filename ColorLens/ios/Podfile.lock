@@ -245,9 +245,6 @@ PODS:
     - React
   - RNVectorIcons (6.6.0):
     - React
-  - SDWebImage (4.3.3):
-    - SDWebImage/Core (= 4.3.3)
-  - SDWebImage/Core (4.3.3)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -289,13 +286,11 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
-  - SDWebImage (~> 4.3.3)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
     - boost-for-react-native
-    - SDWebImage
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -408,9 +403,8 @@ SPEC CHECKSUMS:
   RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
   RNScreens: cf198f915f8a2bf163de94ca9f5bfc8d326c3706
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
-  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 8378b503e5b9abc7499b754843cc9a6bb7bf9d7b
+PODFILE CHECKSUM: 7ecf2762a32bef290ac1f04acf18394fc9f1c5fc
 
 COCOAPODS: 1.8.4

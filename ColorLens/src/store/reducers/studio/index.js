@@ -2,14 +2,14 @@
 import {
   FETCH_STUDIO_IMAGES,
   SAVE_STUDIO_IMAGES,
-  SET_FOCUSED_IMAGE,
-  SET_SWATCHES_ON_IMAGE
+  SET_STUDIO_IMAGE,
+  SET_SWATCHES_ON_IMAGE,
+  SET_SWATCHES_ON_STUDIO_IMAGE
 } from "../../actions/studio";
-import { setSwatchesOnStudioImages } from "./util";
 
 const initialState = {
   studioImages: [],
-  focusedImage: null
+  imageStudioImage: null
 };
 
 export default (state = initialState, action) => {
@@ -18,25 +18,28 @@ export default (state = initialState, action) => {
       return {
         ...state,
         studioImages: action.payload,
-        focusedImage: action.payload[0]
+        imageStudioImage: action.payload[0]
       };
     case SAVE_STUDIO_IMAGES:
       return {
         ...state,
-        studioImages: action.payload
+        studioImages: action.payload.updatedImages,
+        imageStudioImage: action.payload.imageStudioImage
       };
-    case SET_FOCUSED_IMAGE:
+    case SET_STUDIO_IMAGE:
       return {
         ...state,
-        focusedImage: action.payload
+        imageStudioImage: action.payload
       };
     case SET_SWATCHES_ON_IMAGE:
       return {
         ...state,
-        studioImages: setSwatchesOnStudioImages({
-          studioImages: state.studioImages,
-          imageWithSwatch: action.payload
-        })
+        studioImages: action.payload
+      };
+    case SET_SWATCHES_ON_STUDIO_IMAGE:
+      return {
+        ...state,
+        imageStudioImage: action.payload
       };
     default:
       return state;

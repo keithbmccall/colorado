@@ -5,12 +5,13 @@ import { colors } from "../../constants";
 
 const IconButton = props => (
   <View style={props.style}>
-    <Button size={props.size} icon={props.name} color={"white"} onPress={props.pressMethod} />
+    <Button size={props.size} icon={props.name} color={"white"} onPress={props.onPress} />
   </View>
 );
 
 IconButton.defaultProps = {
   color: colors.primary,
-  size: 30
+  size: 30,
+  onPress: () => {}
 };
 export default IconButton;

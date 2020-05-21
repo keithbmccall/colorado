@@ -3,10 +3,6 @@ import { colors } from "#constants";
 
 const { height, width } = Dimensions.get("window");
 export default StyleSheet.create({
-  imageStudioWrapper: {
-    // top: -height * 0.4,
-    // height: height * 1.4
-  },
   imageStudioHeadingWrapper: {
     flex: 2,
     justifyContent: "center",
@@ -25,17 +21,17 @@ export default StyleSheet.create({
     fontStyle: "italic",
     color: colors.buttonLabel
   },
-  focusedImageWrapper: {
+  imageStudioWrapper: {
     backgroundColor: "transparent",
-    flex: 12,
+    flex: 8,
     position: "relative"
   },
-  focusedImageEditButton: {
+  imageStudioEditButton: {
     position: "absolute",
     top: 10,
     right: 10
   },
-  focusedImageTrashButton: {
+  imageStudioTrashButton: {
     position: "absolute",
     top: 80,
     right: 10

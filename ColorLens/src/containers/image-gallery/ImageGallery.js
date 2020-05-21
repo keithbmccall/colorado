@@ -8,12 +8,6 @@ import { conditionalListReverse, rowSizeRangeValidator } from "#utils";
 import { ImageWithColorStrip } from "#containers";
 
 class ImageGallery extends PureComponent {
-  static defaultProps = {
-    galleryOptions: {
-      rowSize: 2
-    }
-  };
-
   renderStudioGallery = () => {
     const {
       images,
@@ -102,4 +96,9 @@ class ImageGallery extends PureComponent {
   }
 }
 
+ImageGallery.defaultProps = {
+  galleryOptions: {
+    rowSize: 2
+  }
+};
 export default ImageGallery;

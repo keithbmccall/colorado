@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
 import { View, Text } from "react-native";
 import { connect } from "react-redux";
-import FocusedImage from "./components/FocusedImage";
-import { Buttons, Layout, LoadingView } from "#containers";
+import ImageStudio from "./components/ImageStudio";
+import { Buttons, Layout } from "#containers";
 import { studioActions } from "#store/actions";
 import style from "./styles";
 import StudioInstructions from "./components/StudioInstructions";
@@ -52,8 +52,17 @@ class ImageStudioScreen extends PureComponent {
       editMode: !this.state.editMode
     });
   };
-  setFocusedImage = image => {
-    this.props.setFocusedImage(image);
+
+  setImageStudioImage = image => {
+    this.props.setImageStudioImage(image);
+  };
+
+  inspectColorSwatch = (color, colorIndex) => {
+    console.log("inspecting", color, colorIndex);
+  };
+
+  updateColorSwatch = (color, colorIndex) => {
+    console.log("updating", color, colorIndex);
   };
 
   render() {
@@ -62,19 +71,17 @@ class ImageStudioScreen extends PureComponent {
         <View style={style.imageStudioHeadingWrapper}>
           <Text style={style.imageStudioHeading}>Studio</Text>
         </View>
-        {this.props.focusedImage ? (
-          <FocusedImage
-            focusedImage={this.props.focusedImage}
-            editMode={this.state.editMode}
-            toggleEditMode={this.toggleEditMode}
-          />
-        ) : (
-          <LoadingView style={style.focusedImageWrapper} />
-        )}
+        <ImageStudio
+          image={this.props.imageStudioImage}
+          editMode={this.state.editMode}
+          toggleEditMode={this.toggleEditMode}
+          onPress={this.inspectColorSwatch}
+          onLongPress={this.updateColorSwatch}
+        />
         <ImageGallery
           images={this.props.images}
           galleryOptions={this.state.galleryOptions}
-          onPress={this.setFocusedImage}
+          onPress={this.setImageStudioImage}
           isStudio
         />
         <Buttons.BottomButtonBar
@@ -100,14 +107,15 @@ class ImageStudioScreen extends PureComponent {
 const mapDispatchToProps = dispatch => ({
   // fetchStudioImages: () => dispatch(studioActions.fetchStudioImages()),
   // temporaryAddStudioImages: (newImages: Images) => dispatch(studioActions.temporaryAddStudioImages(newImages)),
-  setFocusedImage: image => dispatch(studioActions.setFocusedImage(image))
+  setImageStudioImage: image => dispatch(studioActions.setImageStudioImage(image))
 });
 
 const mapStateToProps = state => {
-  const { focusedImageSelector, studioImagesSelector } = studioSelectors;
+  const { imageStudioImageSelector, studioImagesSelector } = studioSelectors;
   return {
     images: studioImagesSelector(state),
-    focusedImage: focusedImageSelector(state)
+    imageStudioImage: imageStudioImageSelector(state)
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(ImageStudioScreen);

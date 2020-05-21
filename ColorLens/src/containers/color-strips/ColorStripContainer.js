@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import { getPalette } from "react-native-color-lens";
 import ColorStrip from "./components/ColorStrip";
 import { normalizeSwatches } from "#utils";
@@ -6,22 +6,27 @@ import LoadingView from "../loading/LoadingView";
 import { studioActions } from "#store/actions";
 import { connect } from "react-redux";
 
-class ColorStripContainer extends PureComponent {
+class ColorStripContainer extends Component {
   state = {
     isLoaded: false
-    // swatches: {}
   };
 
   onSwatchDiscovery = swatches => {
-    this.props.setSwatchesOnImage({ swatches, image: this.props.image });
+    const { isStudio } = this.props;
+    if (isStudio) {
+      this.props.setSwatchesOnStudioImage({ swatches, image: this.props.image });
+    } else {
+      this.props.setSwatchesOnImage({ swatches, image: this.props.image });
+    }
   };
 
   markAsReady = () => this.props.onReady && this.props.onReady();
 
   setSwatches = image => {
+    const { swatches = null } = image;
     //    checks to see if image has swatches already,
     //    if not then it runs code to find the dominant colors
-    if (image.swatches) {
+    if (swatches) {
       this.setState(
         {
           isLoaded: true
@@ -40,36 +45,24 @@ class ColorStripContainer extends PureComponent {
     }
 
     this.onSwatchDiscovery(normalizeSwatches(swatches));
-
-    this.setState(
-      {
-        isLoaded: true
-      },
-      this.markAsReady()
-    );
   };
 
-  getDominantSwatches = image => getPalette(image.uri, this.dominantSwatchCallback);
-
-  inspectColorSwatch = (color, colorIndex) => {
-    console.log("inspecting", color, colorIndex);
-  };
-
-  updateColorSwatch = (color, colorIndex) => {
-    console.log("updating", color, colorIndex);
+  getDominantSwatches = image => {
+    getPalette(image.uri, this.dominantSwatchCallback);
   };
 
   renderContent = () => {
-    const { isStatic } = this.props;
+    const { isStudio } = this.props;
 
-    return isStatic ? (
-      <ColorStrip swatches={this.props.image.swatches} />
-    ) : (
+    return isStudio ? (
       <ColorStrip
         swatches={this.props.image.swatches}
-        pressMethod={this.inspectColorSwatch}
-        longPressMethod={this.updateColorSwatch}
+        onPress={this.props.onPress}
+        onLongPress={this.props.onLongPress}
+        isStudio
       />
+    ) : (
+      <ColorStrip swatches={this.props.image.swatches} />
     );
   };
 
@@ -94,14 +87,16 @@ ColorStripContainer.defaultProps = {
     width: "100%"
   },
   quality: "medium",
-  isStatic: false,
+  isStudio: false,
   editMode: false
 };
 
 const mapDispatchToProps = dispatch => {
-  const { setSwatchesOnImage } = studioActions;
+  const { setSwatchesOnImage, setSwatchesOnStudioImage } = studioActions;
   return {
-    setSwatchesOnImage: ({ swatches, image }) => dispatch(setSwatchesOnImage({ swatches, image }))
+    setSwatchesOnImage: ({ swatches, image }) => dispatch(setSwatchesOnImage({ swatches, image })),
+    setSwatchesOnStudioImage: ({ swatches, image }) =>
+      dispatch(setSwatchesOnStudioImage({ swatches, image }))
   };
 };
 

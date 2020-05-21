@@ -1,10 +1,10 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { View, TouchableOpacity } from "react-native";
 import LoadingView from "../../containers/loading/LoadingView";
 import ColorStripContainer from "../../containers/color-strips/ColorStripContainer";
 import ResponsiveImage from "../image-containers/ResponsiveImage";
 
-class ImageWithColorStrip extends PureComponent {
+class ImageWithColorStrip extends Component {
   state = {
     isImageReady: false,
     isColorsReady: false
@@ -18,9 +18,22 @@ class ImageWithColorStrip extends PureComponent {
     this.setState({ isColorsReady: true });
   };
 
+  resetImageStatus = prevProps => {
+    if (prevProps.image.id !== this.props.image.id) {
+      this.setState({
+        isImageReady: false
+      });
+    }
+  };
+
+  componentDidUpdate(prevProps) {
+    this.resetImageStatus(prevProps);
+  }
+
   content = () => {
-    const { image } = this.props;
+    const { image, isStudio } = this.props;
     const { isColorsReady, isImageReady } = this.state;
+
     return (
       <Fragment>
         <ResponsiveImage src={image} onReady={this.imageReady} />
@@ -28,7 +41,9 @@ class ImageWithColorStrip extends PureComponent {
           image={image}
           onReady={this.colorsReady}
           editMode={this.props.editMode}
-          isStatic
+          isStudio={isStudio}
+          onPress={this.props.onPress}
+          onLongPress={this.props.onLongPress}
         />
         {!(isColorsReady && isImageReady) && <LoadingView />}
       </Fragment>
@@ -53,7 +68,9 @@ class ImageWithColorStrip extends PureComponent {
 
 ImageWithColorStrip.defaultProps = {
   editMode: false,
-  onPress: null
+  isStudio: false,
+  onPress: null,
+  onLongPress: null
 };
 
 export default ImageWithColorStrip;

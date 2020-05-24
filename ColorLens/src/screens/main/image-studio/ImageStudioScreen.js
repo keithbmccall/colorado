@@ -20,7 +20,7 @@ class ImageStudioScreen extends PureComponent {
     sliderOptions: {
       starting: -style.directionsWrapper.height,
       ending: 30,
-      key: "bottom"
+      key: "translateY"
     }
   };
 

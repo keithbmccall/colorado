@@ -13,7 +13,8 @@ module.exports = {
           "#helpers": "./src/helpers",
           "#utils": "./src/utils",
           "#enum": "./src/enum",
-          "#selectors": "./src/selectors"
+          "#selectors": "./src/selectors",
+          "#styles": "./src/styles-global"
         }
       }
     ]

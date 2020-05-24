@@ -17,9 +17,9 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* ColorLensTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ColorLensTests.m */; };
 		8D6CD80573B776519C2556E1 /* libPods-ColorLens-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D74C8FBD1686ED4AC01BBE /* libPods-ColorLens-tvOS.a */; };
-		940DC2610F60768240BF0391 /* libPods-ColorLens-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54302FBFA0F364D6778DB1F9 /* libPods-ColorLens-tvOSTests.a */; };
+		8F972EADA524E80909447FA4 /* libPods-ColorLens-ColorLensTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E807C5FAF759FA097A0780 /* libPods-ColorLens-ColorLensTests.a */; };
 		966B29212468629C0065903B /* CL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966B29202468629C0065903B /* CL.swift */; };
-		9BD6CD2D6FB8F5F4986479B0 /* libPods-ColorLensTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7E2078AB87D629B6CCB5BF /* libPods-ColorLensTests.a */; };
+		9B8500AFF1533C7D9DC33EA0 /* libPods-ColorLens-tvOS-ColorLens-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 305EB399F4F861036E8B2D31 /* libPods-ColorLens-tvOS-ColorLens-tvOSTests.a */; };
 		B565079A1962F08EF7456256 /* libPods-ColorLens.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD8542C288B7470383EE1DE /* libPods-ColorLens.a */; };
 /* End PBXBuildFile section */
 
@@ -60,11 +60,12 @@
 		203D0FFBC0234B74B9073EF0 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		29562E251268728E987F4F69 /* Pods-ColorLens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorLens.debug.xcconfig"; path = "Target Support Files/Pods-ColorLens/Pods-ColorLens.debug.xcconfig"; sourceTree = "<group>"; };
 		29A229156EAA4AC6A40C5EFD /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		29B3F597B265820EF992B810 /* Pods-ColorLens-ColorLensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorLens-ColorLensTests.debug.xcconfig"; path = "Target Support Files/Pods-ColorLens-ColorLensTests/Pods-ColorLens-ColorLensTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* ColorLens-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ColorLens-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* ColorLens-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ColorLens-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		305EB399F4F861036E8B2D31 /* libPods-ColorLens-tvOS-ColorLens-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ColorLens-tvOS-ColorLens-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36D6ABF930CA4C36B4D61B0A /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		489675881B924FAE8A5E5658 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		54302FBFA0F364D6778DB1F9 /* libPods-ColorLens-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ColorLens-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A88F991542426C8D5C9AA1 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		70A58FECC9894AB584467B24 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		73B9C2A5ABE0D2BAAC594215 /* Pods-ColorLens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorLens.release.xcconfig"; path = "Target Support Files/Pods-ColorLens/Pods-ColorLens.release.xcconfig"; sourceTree = "<group>"; };
@@ -79,13 +80,16 @@
 		AADECEF8C46C4497B35A0BCB /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		ABD8542C288B7470383EE1DE /* libPods-ColorLens.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ColorLens.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD2E34CA57B3B23D3D30C254 /* Pods-ColorLens-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorLens-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ColorLens-tvOSTests/Pods-ColorLens-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		B5E807C5FAF759FA097A0780 /* libPods-ColorLens-ColorLensTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ColorLens-ColorLensTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0EF1B8895C26702BB9377A /* Pods-ColorLens-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorLens-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ColorLens-tvOS/Pods-ColorLens-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		DB7E2078AB87D629B6CCB5BF /* libPods-ColorLensTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ColorLensTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF3D58A8E052F9E966AD8EFC /* Pods-ColorLens-ColorLensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorLens-ColorLensTests.release.xcconfig"; path = "Target Support Files/Pods-ColorLens-ColorLensTests/Pods-ColorLens-ColorLensTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		EDFA9982F55285E5590B6E90 /* Pods-ColorLens-tvOS-ColorLens-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorLens-tvOS-ColorLens-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ColorLens-tvOS-ColorLens-tvOSTests/Pods-ColorLens-tvOS-ColorLens-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F0E0FA2E458648BB9687ADAA /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		F3D74C8FBD1686ED4AC01BBE /* libPods-ColorLens-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ColorLens-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F31D5E03D646FC9AD2508F /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		FBCEED8426163E365A97E19E /* Pods-ColorLens-tvOS-ColorLens-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorLens-tvOS-ColorLens-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ColorLens-tvOS-ColorLens-tvOSTests/Pods-ColorLens-tvOS-ColorLens-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BD6CD2D6FB8F5F4986479B0 /* libPods-ColorLensTests.a in Frameworks */,
+				8F972EADA524E80909447FA4 /* libPods-ColorLens-ColorLensTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,7 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				940DC2610F60768240BF0391 /* libPods-ColorLens-tvOSTests.a in Frameworks */,
+				9B8500AFF1533C7D9DC33EA0 /* libPods-ColorLens-tvOS-ColorLens-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,8 +166,8 @@
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				ABD8542C288B7470383EE1DE /* libPods-ColorLens.a */,
 				F3D74C8FBD1686ED4AC01BBE /* libPods-ColorLens-tvOS.a */,
-				54302FBFA0F364D6778DB1F9 /* libPods-ColorLens-tvOSTests.a */,
-				DB7E2078AB87D629B6CCB5BF /* libPods-ColorLensTests.a */,
+				B5E807C5FAF759FA097A0780 /* libPods-ColorLens-ColorLensTests.a */,
+				305EB399F4F861036E8B2D31 /* libPods-ColorLens-tvOS-ColorLens-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,6 +242,10 @@
 				AD2E34CA57B3B23D3D30C254 /* Pods-ColorLens-tvOSTests.release.xcconfig */,
 				9D8E1D3E6CDC68A44DD6DF23 /* Pods-ColorLensTests.debug.xcconfig */,
 				1B36C959459C948032712AA8 /* Pods-ColorLensTests.release.xcconfig */,
+				29B3F597B265820EF992B810 /* Pods-ColorLens-ColorLensTests.debug.xcconfig */,
+				CF3D58A8E052F9E966AD8EFC /* Pods-ColorLens-ColorLensTests.release.xcconfig */,
+				EDFA9982F55285E5590B6E90 /* Pods-ColorLens-tvOS-ColorLens-tvOSTests.debug.xcconfig */,
+				FBCEED8426163E365A97E19E /* Pods-ColorLens-tvOS-ColorLens-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -253,6 +261,7 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				80C399F0AF536FFB2113BD50 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -330,8 +339,8 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
-				ORGANIZATIONNAME = Facebook;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -353,10 +362,9 @@
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ColorLens" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -499,11 +507,59 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ColorLens-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ColorLens-tvOS-ColorLens-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80C399F0AF536FFB2113BD50 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ColorLens-ColorLensTests/Pods-ColorLens-ColorLensTests-resources.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ColorLens-ColorLensTests/Pods-ColorLens-ColorLensTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D0A9A328DC8FCC12640A3CF1 /* [CP] Check Pods Manifest.lock */ = {
@@ -565,7 +621,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ColorLensTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ColorLens-ColorLensTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -678,7 +734,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D8E1D3E6CDC68A44DD6DF23 /* Pods-ColorLensTests.debug.xcconfig */;
+			baseConfigurationReference = 29B3F597B265820EF992B810 /* Pods-ColorLens-ColorLensTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -702,7 +758,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B36C959459C948032712AA8 /* Pods-ColorLensTests.release.xcconfig */;
+			baseConfigurationReference = CF3D58A8E052F9E966AD8EFC /* Pods-ColorLens-ColorLensTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -825,7 +881,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 128C0B767CB94C5D7D34D8AC /* Pods-ColorLens-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = EDFA9982F55285E5590B6E90 /* Pods-ColorLens-tvOS-ColorLens-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -852,7 +908,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD2E34CA57B3B23D3D30C254 /* Pods-ColorLens-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = FBCEED8426163E365A97E19E /* Pods-ColorLens-tvOS-ColorLens-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -914,6 +970,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					"FB_SONARKIT_ENABLED=1",
 					"DEBUG=1",
 					"$(inherited)",
 				);
@@ -925,6 +982,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\",",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\",",
+					"\"$(inherited)\"",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -972,8 +1034,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\",",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\",",
+					"\"$(inherited)\"",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

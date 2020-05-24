@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "#constants";
+import { DEVICE_HEIGHT } from "../../../styles-global";
 //
 
 export default StyleSheet.create({
@@ -19,5 +20,9 @@ export default StyleSheet.create({
   animatedViewButton: {},
   animatedViewText: {
     fontSize: 16
+  },
+  animatedViewPosition: {
+    bottom: DEVICE_HEIGHT,
+    top: DEVICE_HEIGHT * 0.75
   }
 });

@@ -16,9 +16,9 @@ class CameraRollScreen extends PureComponent {
       rowHeight: 110
     },
     sliderOptions: {
-      key: "bottom",
-      starting: -100,
-      ending: 0
+      key: "translateY",
+      starting: style.animatedViewPosition.bottom,
+      ending: style.animatedViewPosition.top
     }
   };
 

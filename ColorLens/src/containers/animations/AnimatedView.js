@@ -9,14 +9,11 @@ export default class AnimatedView extends Component {
     };
   }
 
-  static defaultProps = {
-    speed: 12
-  };
-
   startAnimation = ({ toValue }) =>
     Animated.spring(this.state.animationValue, {
       toValue,
-      speed: this.props.speed
+      speed: this.props.speed,
+      useNativeDriver: true
     }).start();
 
   componentDidUpdate(prevProps) {
@@ -43,6 +40,14 @@ export default class AnimatedView extends Component {
       animation: { key }
     } = this.props;
 
-    return <Animated.View style={{ ...style, [key]: animationValue }}>{children}</Animated.View>;
+    return (
+      <Animated.View style={{ ...style, transform: [{ [key]: animationValue }] }}>
+        {children}
+      </Animated.View>
+    );
   }
 }
+
+AnimatedView.defaultProps = {
+  speed: 12
+};

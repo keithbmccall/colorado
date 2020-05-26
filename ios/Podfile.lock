@@ -243,9 +243,9 @@ PODS:
     - React
   - react-native-cameraroll (1.7.1):
     - React
-  - react-native-color-lens (1.0.6):
+  - react-native-color-lens (1.0.8):
     - React
-  - react-native-safe-area-context (0.7.3):
+  - react-native-safe-area-context (2.0.2):
     - React
   - react-native-spinkit (1.4.1):
     - React
@@ -308,7 +308,7 @@ PODS:
     - React-cxxreact (= 0.62.2)
     - React-jsi (= 0.62.2)
     - ReactCommon/callinvoker (= 0.62.2)
-  - RNCAsyncStorage (1.10.3):
+  - RNCAsyncStorage (1.11.0):
     - React
   - RNCMaskedView (0.1.10):
     - React
@@ -501,8 +501,8 @@ SPEC CHECKSUMS:
   React-jsinspector: 512e560d0e985d0e8c479a54a4e5c147a9c83493
   react-native-camera: 2b74be8edc1103c4c46d1f4e5f41723d9ff052cc
   react-native-cameraroll: 53663a679e973ff98b60708d93a9f203d7b41b8d
-  react-native-color-lens: 22a0273bf2406d986c8bddc203d7a0b93fd95b4e
-  react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
+  react-native-color-lens: 299c0c4200eaf6407df25d1f4bbd3f628cd6564e
+  react-native-safe-area-context: 3cecc12a70698e46b5357f04c7cc8826ef7422e1
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
   React-RCTAnimation: 49ab98b1c1ff4445148b72a3d61554138565bad0
@@ -514,7 +514,7 @@ SPEC CHECKSUMS:
   React-RCTText: fae545b10cfdb3d247c36c56f61a94cfd6dba41d
   React-RCTVibration: 4356114dbcba4ce66991096e51a66e61eda51256
   ReactCommon: ed4e11d27609d571e7eee8b65548efc191116eb3
-  RNCAsyncStorage: cd7234ff15c010723ed7c499ae4eedc605eac1fd
+  RNCAsyncStorage: d059c3ee71738c39834a627476322a5a8cd5bf36
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43

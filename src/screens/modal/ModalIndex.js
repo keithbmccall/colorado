@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { Layout } from "#containers";
-import { colors } from "#constants";
+import { colors } from "#styles";
 import CameraRollScreen from "./camera-roll/CameraRollScreen";
 
 const ModalIndex = props => {

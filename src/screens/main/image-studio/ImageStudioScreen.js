@@ -7,7 +7,7 @@ import { studioActions } from "#store/actions";
 import style from "./styles";
 import StudioInstructions from "./components/StudioInstructions";
 import { ImageGallery } from "#containers";
-import { rowDimensions } from "#constants";
+import { ROW_DIMENSIONS } from "#constants";
 import { studioSelectors } from "#selectors";
 
 class ImageStudioScreen extends PureComponent {
@@ -27,9 +27,9 @@ class ImageStudioScreen extends PureComponent {
   toggleGalleryOptions = () => {
     const toggleRowSize = rowSize => {
       if (rowSize === 2) {
-        return rowDimensions.rowSize3;
+        return ROW_DIMENSIONS.rowSize3;
       }
-      return rowDimensions.rowSize2;
+      return ROW_DIMENSIONS.rowSize2;
     };
 
     this.setState({

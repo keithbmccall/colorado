@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "#constants";
-import { DEVICE_HEIGHT } from "../../../styles-global";
+import { DEVICE_HEIGHT, colors } from "#styles";
 //
 
 export default StyleSheet.create({

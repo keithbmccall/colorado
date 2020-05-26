@@ -1,5 +1,2 @@
-import { StyleSheet, Dimensions } from "react-native";
-//
-export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get("window");
-
-export default StyleSheet.create({});
+export { DEVICE_HEIGHT, DEVICE_WIDTH, globalStyle } from "./styles";
+export { colors } from "./colors";

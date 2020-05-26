@@ -3,13 +3,13 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.jsx src --ignore-path .eslintignore",
+    "lint": "eslint --ext .js,.jsx src --fix --ignore-path .eslintignore",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
     "prettier": "prettier --write \"{src,module-overrides}/**/*.js\"",
-    "prettylint": "yarn run lint && yarn run prettier",
+    "format": "yarn run lint && yarn run prettier",
     "cache": "yarn cache clean",
     "deps": "rm -rf node_modules && yarn && yarn cache clean && cd ios && pod install && cd ../"
   },

@@ -6,7 +6,8 @@ const primaryColors = {
   //
   semiTransparent: "rgba(255,255,255,0.7)"
 };
-const colors = {
+
+export const colors = {
   primary: primaryColors.purple,
   secondary: primaryColors.darkGrey,
   semiTransparent: primaryColors.semiTransparent,
@@ -20,5 +21,3 @@ const colors = {
   layoutBackground: primaryColors.white,
   buttonLabel: primaryColors.darkGrey
 };
-
-export default colors;

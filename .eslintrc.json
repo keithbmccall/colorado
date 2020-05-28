@@ -5,7 +5,7 @@
     }
   },
   "plugins": ["prettier"],
-  "extends": ["walmart", "walmart/configurations/es6-react", "prettier"],
+  "extends": ["plugin:react-hooks/recommended" ,"walmart", "walmart/configurations/es6-react", "prettier"],
   "parser": "babel-eslint",
   "env": {
     "jest": true

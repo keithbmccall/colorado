@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
-import { colors } from "../../constants";
+import { colors } from "#styles";
 
 const renderButtons = (props, options, key) => (
   <TouchableOpacity key={key} onPress={options.pressMethod}>

@@ -1,112 +1,112 @@
-import React, { PureComponent } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { View, Text } from "react-native";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import { renderSelectedImageCount, selectOrUnselectImage } from "./utils";
 import { ImageGallery, AnimatedView, Buttons } from "#containers";
 import { cameraRollActions, studioActions } from "#store/actions";
+import { defaultCameraRollOptionsEnum, ROW_DIMENSIONS } from "#enum";
 import style from "./styles";
-import { defaultCameraRollOptionsEnum } from "#enum";
+import { cameraRollSelectors } from "#selectors";
 
-//slider options end
-class CameraRollScreen extends PureComponent {
-  state = {
-    isConfirmMenuOpen: false,
-    galleryOptions: {
-      rowSize: 4,
-      rowHeight: 110
-    },
-    sliderOptions: {
-      key: "translateY",
-      starting: style.animatedViewPosition.bottom,
-      ending: style.animatedViewPosition.top
-    }
-  };
+const initialState = {
+  sliderOptions: {
+    key: "translateY",
+    starting: style.animatedViewPosition.bottom,
+    ending: style.animatedViewPosition.top
+  },
+  galleryOptions: ROW_DIMENSIONS.rowSize4,
+  shouldConfirmMenuOpen: false
+};
 
-  cameraRollOptions = () => {
+const CameraRollScreen = props => {
+  const reduxCameraImages = useSelector(cameraRollSelectors.cameraImagesSelector);
+  const reduxSelectedImages = useSelector(cameraRollSelectors.selectedImagesSelector);
+  const dispatch = useDispatch();
+
+  const [shouldConfirmMenuOpen, setShouldConfirmMenuOpen] = useState(
+    initialState.shouldConfirmMenuOpen
+  );
+  const [galleryOptions] = useState(initialState.galleryOptions);
+  const [sliderOptions] = useState(initialState.sliderOptions);
+
+  useEffect(() => {
+    const fetchCameraRollImages = async () =>
+      await dispatch(cameraRollActions.fetchCameraImages(getCameraRollOptions()));
+
+    fetchCameraRollImages();
+  }, [dispatch]);
+
+  useEffect(() => {
+    const toggleConfirmMenu = () => setShouldConfirmMenuOpen(!!reduxSelectedImages.length);
+
+    toggleConfirmMenu();
+  }, [reduxSelectedImages]);
+
+  const getCameraRollOptions = () => {
     return defaultCameraRollOptionsEnum;
   };
 
-  fetchCameraRollImages = async () => await this.props.fetchCameraImages(this.cameraRollOptions());
+  const renderButtonText = () => {
+    return `Import ${renderSelectedImageCount(reduxCameraImages)} To The Studio`;
+  };
 
-  confirmSelectedImages = async () => {
-    const { selectedImages, saveImagesToStudio, unselectAllImages, navigation } = this.props;
-    await saveImagesToStudio(selectedImages);
+  const selectImage = async image => {
+    const { images, selectedImages } = selectOrUnselectImage({
+      images: reduxCameraImages,
+      selectedImages: reduxSelectedImages,
+      image
+    });
+
+    await dispatch(cameraRollActions.saveImageState({ images, selectedImages }));
+  };
+
+  const confirmSelectedImages = async () => {
+    const { navigation } = props;
+    const { unselectAllImages } = cameraRollActions;
+    const { saveImagesToStudio } = studioActions;
+
+    await dispatch(saveImagesToStudio(reduxSelectedImages));
     navigation.navigate("Main", {
       screen: "Studio",
       params: {
         screen: "Modal",
-        selectedImages
+        selectedImages: reduxSelectedImages
       }
     });
-    unselectAllImages();
+    dispatch(unselectAllImages());
   };
 
-  shouldConfirmMenuOpen = () => {
-    this.setState({
-      shouldConfirmMenuOpen: !!this.props.selectedImages.length
-    });
-  };
-
-  selectImage = async image => {
-    const { images, selectedImages } = selectOrUnselectImage({
-      images: this.props.images,
-      selectedImages: this.props.selectedImages,
-      image
-    });
-
-    await this.props.saveImageState({ images, selectedImages });
-    this.shouldConfirmMenuOpen();
-  };
-
-  renderButtonText = () => {
-    return `Import ${renderSelectedImageCount(this.props.images)} To The Studio`;
-  };
-
-  render() {
-    return (
-      <View style={style.cameraRollScreenWrapper}>
-        <Text style={style.titleText}>CameraRoll</Text>
-        <ImageGallery
-          images={this.props.images}
-          galleryOptions={this.state.galleryOptions}
-          onPress={this.selectImage}
+  return (
+    <View style={style.cameraRollScreenWrapper}>
+      <Text style={style.titleText}>CameraRoll</Text>
+      <ImageGallery
+        images={reduxCameraImages}
+        galleryOptions={galleryOptions}
+        onPress={selectImage}
+      />
+      <AnimatedView
+        style={style.animatedViewSlider}
+        animation={sliderOptions}
+        shouldLaunch={shouldConfirmMenuOpen}
+      >
+        <Buttons.FullWidthButton
+          pressMethod={confirmSelectedImages}
+          innerText={renderButtonText()}
+          style={{}}
+          textStyle={{ ...style.animatedViewText }}
         />
-        <AnimatedView
-          style={style.animatedViewSlider}
-          animation={this.state.sliderOptions}
-          shouldLaunch={this.state.shouldConfirmMenuOpen}
-          speed={12}
-        >
-          <Buttons.FullWidthButton
-            pressMethod={this.confirmSelectedImages}
-            innerText={this.renderButtonText()}
-            style={{}}
-            textStyle={{ ...style.animatedViewText }}
-          />
-        </AnimatedView>
-      </View>
-    );
-  }
-
-  componentDidMount() {
-    this.fetchCameraRollImages();
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  const { fetchCameraImages, saveImageState, unselectAllImages } = cameraRollActions;
-  return {
-    fetchCameraImages: () => dispatch(fetchCameraImages()),
-    saveImageState: ({ images, selectedImages }) =>
-      dispatch(saveImageState({ images, selectedImages })),
-    unselectAllImages: () => dispatch(unselectAllImages()),
-    saveImagesToStudio: images => dispatch(studioActions.saveImagesToStudio(images))
-  };
+      </AnimatedView>
+    </View>
+  );
 };
 
-const mapStateToProps = state => ({
-  images: state.cameraRoll.cameraImages,
-  selectedImages: state.cameraRoll.selectedImages
-});
+CameraRollScreen.defaultProps = {
+  navigation: {}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(CameraRollScreen);
+CameraRollScreen.propTypes = {
+  navigation: PropTypes.object
+};
+
+export default memo(CameraRollScreen);

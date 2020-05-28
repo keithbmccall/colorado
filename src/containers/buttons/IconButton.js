@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { IconButton as Button } from "react-native-paper";
-import { colors } from "../../constants";
+import { colors } from "#styles";
 
 const IconButton = props => (
   <View style={props.style}>

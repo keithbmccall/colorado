@@ -241,11 +241,11 @@ PODS:
     - React
   - react-native-camera/RN (3.26.0):
     - React
-  - react-native-cameraroll (1.7.1):
+  - react-native-cameraroll (1.7.2):
     - React
   - react-native-color-lens (1.0.8):
     - React
-  - react-native-safe-area-context (2.0.2):
+  - react-native-safe-area-context (2.0.3):
     - React
   - react-native-spinkit (1.4.1):
     - React
@@ -500,9 +500,9 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 1540d1c01bb493ae3124ed83351b1b6a155db7da
   React-jsinspector: 512e560d0e985d0e8c479a54a4e5c147a9c83493
   react-native-camera: 2b74be8edc1103c4c46d1f4e5f41723d9ff052cc
-  react-native-cameraroll: 53663a679e973ff98b60708d93a9f203d7b41b8d
+  react-native-cameraroll: 06e60780a4e6e7bb9a588eca72506744cf6e133b
   react-native-color-lens: 299c0c4200eaf6407df25d1f4bbd3f628cd6564e
-  react-native-safe-area-context: 3cecc12a70698e46b5357f04c7cc8826ef7422e1
+  react-native-safe-area-context: 14c793e8b0bfe51e74dcdbe75dd14ee7498b88b8
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
   React-RCTAnimation: 49ab98b1c1ff4445148b72a3d61554138565bad0

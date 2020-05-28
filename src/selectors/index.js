@@ -1,3 +1,4 @@
-import * as studioSelectors from "./studioSelectors";
+import * as studioSelectors from "./studio-selectors";
+import * as cameraRollSelectors from "./camera-roll-selectors";
 
-export { studioSelectors };
+export { studioSelectors, cameraRollSelectors };

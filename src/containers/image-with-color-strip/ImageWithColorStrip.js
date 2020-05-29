@@ -1,70 +1,71 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { View, TouchableOpacity } from "react-native";
+import PropTypes from "prop-types";
 import LoadingView from "../../containers/loading/LoadingView";
 import ColorStripContainer from "../../containers/color-strips/ColorStripContainer";
 import ResponsiveImage from "../image-containers/ResponsiveImage";
+import { usePrevious } from "#hooks";
 
-class ImageWithColorStrip extends Component {
-  state = {
-    isImageReady: false,
-    isColorsReady: false
-  };
+const ImageWithColorStrip = props => {
+  const { onPress, onLongPress, style, isStudio, editMode, image } = props;
 
-  imageReady = () => {
-    this.setState({ isImageReady: true });
-  };
+  const [isImageReady, setIsImageReady] = useState(false);
+  const [isColorsReady, setIsColorsReady] = useState(false);
 
-  colorsReady = () => {
-    this.setState({ isColorsReady: true });
-  };
+  const prevImage = usePrevious(image);
 
-  resetImageStatus = prevProps => {
-    if (prevProps.image.id !== this.props.image.id) {
-      this.setState({
-        isImageReady: false
-      });
+  useEffect(() => {
+    if (prevImage && prevImage.id !== image.id) {
+      setIsImageReady(false);
     }
+  }, [image, prevImage]);
+
+  const markImageReady = () => {
+    setIsImageReady(true);
   };
 
-  componentDidUpdate(prevProps) {
-    this.resetImageStatus(prevProps);
-  }
+  const markColorsReady = () => {
+    setIsColorsReady(true);
+  };
 
-  content = () => {
-    const { image, isStudio } = this.props;
-    const { isColorsReady, isImageReady } = this.state;
-
+  const content = () => {
     return (
       <Fragment>
-        <ResponsiveImage src={image} onReady={this.imageReady} />
+        <ResponsiveImage src={image} onReady={markImageReady} />
         <ColorStripContainer
           image={image}
-          onReady={this.colorsReady}
-          editMode={this.props.editMode}
+          onReady={markColorsReady}
+          editMode={editMode}
           isStudio={isStudio}
-          onPress={this.props.onPress}
-          onLongPress={this.props.onLongPress}
+          onPress={onPress}
+          onLongPress={onLongPress}
         />
         {!(isColorsReady && isImageReady) && <LoadingView />}
       </Fragment>
     );
   };
 
-  renderContent = () => {
-    const { onPress, style } = this.props;
+  const renderContent = () => {
     return onPress ? (
       <TouchableOpacity style={style} onPress={onPress} activeOpacity={0.8}>
-        {this.content()}
+        {content()}
       </TouchableOpacity>
     ) : (
-      <View style={style}>{this.content()}</View>
+      <View style={style}>{content()}</View>
     );
   };
 
-  render() {
-    return <Fragment>{this.renderContent()}</Fragment>;
-  }
-}
+  return <Fragment>{renderContent()}</Fragment>;
+};
+
+ImageWithColorStrip.propTypes = {
+  onPress: PropTypes.func,
+  onLongPress: PropTypes.func,
+  style: PropTypes.object,
+  isStudio: PropTypes.bool,
+  editMode: PropTypes.bool,
+  image: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired
+};
 
 ImageWithColorStrip.defaultProps = {
   editMode: false,

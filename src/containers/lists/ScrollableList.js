@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList } from "react-native";
+import PropTypes from "prop-types";
+import style from "./styles";
 
 const ScrollableList = props => (
   <FlatList
@@ -11,26 +13,17 @@ const ScrollableList = props => (
   />
 );
 
-ScrollableList.defaultProps = { isLazy: false };
+ScrollableList.propTypes = {
+  isLazy: PropTypes.bool,
+  columns: PropTypes.number,
+  children: PropTypes.node.isRequired,
+  style: PropTypes.object
+};
 
-//PROPTYPES
+ScrollableList.defaultProps = {
+  isLazy: false,
+  columns: 2,
+  style: {}
+};
 
 export default ScrollableList;
-
-//
-const style = StyleSheet.create({
-  scrollViewContainer: {
-    borderWidth: 10,
-    borderColor: "#000",
-    borderStyle: "solid",
-    flexWrap: "wrap",
-    flexDirection: "row"
-  },
-  flatListContainer: {
-    // borderTopWidth: 2,
-    // borderLeftWidth: 2,
-    // borderRightWidth: 2,
-    // borderColor: "#fff",
-    // borderStyle: "solid"
-  }
-});

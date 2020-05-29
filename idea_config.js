@@ -12,6 +12,7 @@ System.config({
     "#utils": "./src/utils/*",
     "#enum": "./src/enum/*",
     "#selectors": "./src/selectors/*",
-    "#styles": "./src/styles-global/*"
+    "#styles": "./src/styles-global/*",
+    "#hooks": "./src/hooks/*"
   }
 });

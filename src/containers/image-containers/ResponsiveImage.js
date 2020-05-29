@@ -1,63 +1,60 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Image } from "react-native";
+import PropTypes from "prop-types";
 import LoadingView from "../loading/LoadingView";
 import { isValidNumberOrPercentageValidator } from "#utils";
 
-class ResponsiveImage extends Component {
-  state = {
-    isLoaded: false
-  };
+const ResponsiveImage = props => {
+  const {
+    style,
+    resizeMode,
+    src: { uri },
+    onReady
+  } = props;
 
-  imageIsLoaded = () => {
-    if (this.props.onReady) {
-      this.props.onReady();
-    }
-    this.setState({
-      isLoaded: true
-    });
-  };
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  validation = () => {
-    const { style } = this.props;
-
+  useEffect(() => {
     if (style) {
       isValidNumberOrPercentageValidator(style.width);
       isValidNumberOrPercentageValidator(style.height);
     }
+  }, [style]);
+
+  const imageIsLoaded = () => {
+    if (onReady) {
+      onReady();
+    }
+    setIsLoaded(true);
   };
 
-  render() {
-    const {
-      style,
-      resizeMode,
-      src: { uri }
-    } = this.props;
+  return (
+    <Fragment>
+      <Image
+        source={{ uri, cache: "force-cache" }}
+        style={style}
+        onLoad={imageIsLoaded}
+        resizeMode={resizeMode}
+      />
+      {!isLoaded && <LoadingView />}
+    </Fragment>
+  );
+};
 
-    return (
-      <Fragment>
-        <Image
-          source={{ uri, cache: "force-cache" }}
-          style={style}
-          onLoad={this.imageIsLoaded}
-          resizeMode={resizeMode}
-        />
-        {!this.state.isLoaded && <LoadingView />}
-      </Fragment>
-    );
-  }
-
-  componentDidMount() {
-    this.validation();
-  }
-
-  componentDidUpdate() {
-    this.validation();
-  }
-}
+ResponsiveImage.propTypes = {
+  resizeMode: PropTypes.string,
+  style: PropTypes.shape({
+    width: PropTypes.string.isRequired,
+    height: PropTypes.string.isRequired
+  }),
+  src: PropTypes.shape({ uri: PropTypes.string.isRequired }).isRequired,
+  onReady: PropTypes.func
+};
 
 ResponsiveImage.defaultProps = {
   resizeMode: "cover",
-  style: { width: "100%", height: "100%" }
+  style: { width: "100%", height: "100%" },
+  onReady: null
 };
 
 export default ResponsiveImage;

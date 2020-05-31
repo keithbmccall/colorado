@@ -1,34 +1,48 @@
-import React from "react";
+import React, { memo } from "react";
 import { View } from "react-native";
-import style from "../styles";
+import { globalStyle } from "#styles";
+import defaultStyle from "../styles";
+import PropTypes from "prop-types";
 import { mapSwatchPaletteToArray } from "#utils";
 import ConditionalButton from "../../tools/ConditionalButton";
 import { swatchDictionaryEnum } from "#enum";
 
-const renderSwatches = ({ onPress, onLongPress, swatches }) =>
-  mapSwatchPaletteToArray(swatches).map((swatch, key) => {
-    const _key = swatchDictionaryEnum[key];
-    return (
-      <ConditionalButton
-        style={style.flex1}
-        onPress={onPress && onPress.bind(null, swatch, _key)}
-        onLongPress={onLongPress && onLongPress.bind(null, swatch, _key)}
-        key={`${key}_${swatch}`}
-      >
-        <View style={[style.flex1, { backgroundColor: swatch }]} key={key} />
-      </ConditionalButton>
-    );
-  });
-
 const ColorStrip = props => {
-  return <View style={props.style}>{renderSwatches(props)}</View>;
+  const { onPress, onLongPress, swatches, isStudio, style } = props;
+
+  const renderSwatches = () => {
+    return mapSwatchPaletteToArray(swatches).map((swatch, key) => {
+      const _key = swatchDictionaryEnum[key];
+      return (
+        <ConditionalButton
+          style={globalStyle.flex1}
+          onPress={onPress && onPress.bind(null, swatch, _key)}
+          onLongPress={onLongPress && onLongPress.bind(null, swatch, _key)}
+          key={`${key}_${swatch}`}
+          enable={!isStudio}
+        >
+          <View style={[globalStyle.flex1, { backgroundColor: swatch }]} key={key} />
+        </ConditionalButton>
+      );
+    });
+  };
+
+  return <View style={style}>{renderSwatches()}</View>;
+};
+
+ColorStrip.propTypes = {
+  style: PropTypes.style,
+  onLongPress: PropTypes.func,
+  onPress: PropTypes.func,
+  isStudio: PropTypes.bool,
+  swatches: PropTypes.array.isRequired
 };
 
 ColorStrip.defaultProps = {
-  style: style.colorStripWrapper,
+  style: defaultStyle.containerDefaultWrapper,
   onPress: null,
   onLongPress: null,
   isStudio: false
 };
 
-export default ColorStrip;
+export default memo(ColorStrip);

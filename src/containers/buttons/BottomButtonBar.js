@@ -1,32 +1,24 @@
 import React from "react";
-import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
-import { colors } from "#styles";
+import { TouchableOpacity, Text } from "react-native";
+import PropTypes from "prop-types";
+import defaultStyle from "./styles";
 
-const renderButtons = (props, options, key) => (
-  <TouchableOpacity key={key} onPress={options.pressMethod}>
-    <Text style={{ ...style.label, ...props.labelStyle }}>{options.label}</Text>
-  </TouchableOpacity>
-);
+const BottomButtonBar = props => {
+  const { style, label, onPress, labelStyle } = props;
 
-const BottomButtonBar = ({ style: buttonStyle, options, ...props }) => {
   return (
-    <View style={{ ...buttonStyle.bottomButtonBar, ...style }}>
-      {options.map(renderButtons.bind(null, props))}
-    </View>
+    <TouchableOpacity onPress={onPress} style={{ ...defaultStyle.bottomButtonBar, ...style }}>
+      <Text style={{ ...defaultStyle.label, ...labelStyle }}>{label}</Text>
+    </TouchableOpacity>
   );
 };
-
-const style = StyleSheet.create({
-  bottomButtonBar: {
-    backgroundColor: colors.layoutBackground,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-evenly"
-  },
-  label: {
-    fontSize: 15,
-    fontWeight: "bold"
-  }
-});
-
+BottomButtonBar.propTypes = {
+  style: PropTypes.object,
+  label: PropTypes.string,
+  onPress: PropTypes.func
+};
+BottomButtonBar.defaultProps = {
+  label: "ThisButtonHasNoLabel",
+  onPress: () => {}
+};
 export default BottomButtonBar;

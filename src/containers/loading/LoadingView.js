@@ -1,22 +1,27 @@
 import React from "react";
 import { View } from "react-native";
 import Spinner from "react-native-spinkit";
-import style from "./styles";
+import defaultStyle from "./styles";
+import PropTypes from "prop-types";
 
-const LoadingView = props =>
-  props.blank ? (
-    <View style={{ ...props.style }} />
+const LoadingView = ({ blank, style }) =>
+  blank ? (
+    <View style={{ ...style }} />
   ) : (
     <View
       style={{
-        ...style.loadingView,
-        ...props.style
+        ...defaultStyle.loadingView,
+        ...style
       }}
     >
       <Spinner isVisible color={style.loadingAnimation.color} size={75} type="9CubeGrid" />
     </View>
   );
 
+LoadingView.propTypes = {
+  blank: PropTypes.bool,
+  style: PropTypes.object
+};
 LoadingView.defaultProps = {
   blank: false
 };

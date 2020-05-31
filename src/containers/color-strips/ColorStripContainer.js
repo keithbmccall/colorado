@@ -1,103 +1,74 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { getPalette } from "react-native-color-lens";
 import ColorStrip from "./components/ColorStrip";
+import PropTypes from "prop-types";
 import { normalizeSwatches } from "#utils";
 import LoadingView from "../loading/LoadingView";
 import { studioActions } from "#store/actions";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import style from "./styles";
 
-class ColorStripContainer extends Component {
-  state = {
-    isLoaded: false
-  };
+const ColorStripContainer = props => {
+  const { isStudio, onPress, onLongPress, image, onReady } = props;
 
-  onSwatchDiscovery = swatches => {
-    const { isStudio } = this.props;
-    if (isStudio) {
-      this.props.setSwatchesOnStudioImage({ swatches, image: this.props.image });
-    } else {
-      this.props.setSwatchesOnImage({ swatches, image: this.props.image });
-    }
-  };
+  const dispatch = useDispatch();
 
-  markAsReady = () => this.props.onReady && this.props.onReady();
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    const { setSwatchesOnImage, setSwatchesOnStudioImage } = studioActions;
 
-  setSwatches = image => {
-    const { swatches = null } = image;
+    const { swatches: hasSwatches = false, uri } = image;
     //    checks to see if image has swatches already,
     //    if not then it runs code to find the dominant colors
-    if (swatches) {
-      this.setState(
-        {
-          isLoaded: true
-        },
-        this.markAsReady()
-      );
+    if (hasSwatches) {
+      setIsLoaded(true);
+      if (onReady) {
+        onReady();
+      }
     } else {
-      this.getDominantSwatches(image);
+      getPalette(uri, (error, newSwatches) => {
+        const imageSwatches = {
+          swatches: normalizeSwatches(newSwatches),
+          image
+        };
+        if (error) {
+          console.log("error in ColorStripContainer.getDominantSwatches", error);
+          return;
+        }
+        if (isStudio) {
+          dispatch(setSwatchesOnStudioImage(imageSwatches));
+        } else {
+          dispatch(setSwatchesOnImage(imageSwatches));
+        }
+      });
     }
-  };
+  }, [dispatch, image, isStudio, onReady]);
 
-  dominantSwatchCallback = (error, swatches) => {
-    if (error) {
-      console.log("error in ColorStripContainer.getDominantSwatches", error);
-      return;
-    }
+  return isLoaded ? (
+    <ColorStrip swatches={image.swatches} onPress={onPress} onLongPress={onLongPress} isStudio />
+  ) : (
+    <LoadingView blank />
+  );
+};
 
-    this.onSwatchDiscovery(normalizeSwatches(swatches));
-  };
-
-  getDominantSwatches = image => {
-    getPalette(image.uri, this.dominantSwatchCallback);
-  };
-
-  renderContent = () => {
-    const { isStudio } = this.props;
-
-    return isStudio ? (
-      <ColorStrip
-        swatches={this.props.image.swatches}
-        onPress={this.props.onPress}
-        onLongPress={this.props.onLongPress}
-        isStudio
-      />
-    ) : (
-      <ColorStrip swatches={this.props.image.swatches} />
-    );
-  };
-
-  render() {
-    return this.state.isLoaded ? this.renderContent() : <LoadingView blank />;
-  }
-
-  componentDidMount() {
-    this.setSwatches(this.props.image);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.image.swatches !== prevProps.image.swatches) {
-      this.setSwatches(this.props.image);
-    }
-  }
-}
+ColorStripContainer.propTypes = {
+  image: PropTypes.shape({
+    uri: PropTypes.string.isRequired,
+    swatches: PropTypes.array
+  }).isRequired,
+  onPress: PropTypes.func,
+  onReady: PropTypes.func,
+  isStudio: PropTypes.bool,
+  onLongPress: PropTypes.func
+};
 
 ColorStripContainer.defaultProps = {
-  style: {
-    height: 50,
-    width: "100%"
-  },
+  style: style.containerDefaultWrapper,
   quality: "medium",
   isStudio: false,
-  editMode: false
+  onReady: null,
+  onPress: null,
+  onLongPress: null
 };
 
-const mapDispatchToProps = dispatch => {
-  const { setSwatchesOnImage, setSwatchesOnStudioImage } = studioActions;
-  return {
-    setSwatchesOnImage: ({ swatches, image }) => dispatch(setSwatchesOnImage({ swatches, image })),
-    setSwatchesOnStudioImage: ({ swatches, image }) =>
-      dispatch(setSwatchesOnStudioImage({ swatches, image }))
-  };
-};
-
-export default connect(null, mapDispatchToProps)(ColorStripContainer);
+export default ColorStripContainer;

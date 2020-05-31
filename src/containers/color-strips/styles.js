@@ -11,5 +11,9 @@ export default StyleSheet.create({
   },
   flex1: {
     flex: 1
+  },
+  containerDefaultWrapper: {
+    height: 50,
+    width: "100%"
   }
 });

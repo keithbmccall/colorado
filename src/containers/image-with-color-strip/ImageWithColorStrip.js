@@ -28,7 +28,7 @@ const ImageWithColorStrip = props => {
     setIsColorsReady(true);
   };
 
-  const content = () => {
+  const renderContent = () => {
     return (
       <Fragment>
         <ResponsiveImage src={image} onReady={markImageReady} />
@@ -45,17 +45,13 @@ const ImageWithColorStrip = props => {
     );
   };
 
-  const renderContent = () => {
-    return onPress ? (
-      <TouchableOpacity style={style} onPress={onPress} activeOpacity={0.8}>
-        {content()}
-      </TouchableOpacity>
-    ) : (
-      <View style={style}>{content()}</View>
-    );
-  };
-
-  return <Fragment>{renderContent()}</Fragment>;
+  return onPress ? (
+    <TouchableOpacity style={style} onPress={onPress} activeOpacity={0.8}>
+      {renderContent()}
+    </TouchableOpacity>
+  ) : (
+    <View style={style}>{renderContent()}</View>
+  );
 };
 
 ImageWithColorStrip.propTypes = {

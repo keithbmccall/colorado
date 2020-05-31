@@ -86,6 +86,8 @@ class ImageStudioScreen extends PureComponent {
         />
         <Buttons.BottomButtonBar
           options={this.buttonBarOptions()}
+          label={this.buttonBarOptions().label}
+          onPress={this.buttonBarOptions().pressMethod}
           style={style.buttonBarWrapper}
           labelStyle={style.buttonBarLabel}
         />

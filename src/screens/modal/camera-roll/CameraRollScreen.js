@@ -38,9 +38,7 @@ const CameraRollScreen = props => {
   }, [dispatch]);
 
   useEffect(() => {
-    const toggleConfirmMenu = () => setShouldConfirmMenuOpen(!!reduxSelectedImages.length);
-
-    toggleConfirmMenu();
+    setShouldConfirmMenuOpen(!!reduxSelectedImages.length);
   }, [reduxSelectedImages]);
 
   const getCameraRollOptions = () => {

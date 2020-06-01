@@ -34,6 +34,7 @@ class ImageStudio extends Component {
     );
   }
 }
+
 ImageStudio.defaultProps = {
   editMode: false,
   onPress: null,

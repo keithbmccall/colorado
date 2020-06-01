@@ -7,3 +7,4 @@ export {
   buildSwatchPalette,
   mapSwatchPaletteToArray
 } from "./swatch.util";
+export { errorHandler, setGlobalHandler } from "./errors.util";

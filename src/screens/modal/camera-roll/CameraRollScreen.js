@@ -1,6 +1,6 @@
 import React, { useState, useEffect, memo } from "react";
 import { View, Text } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { renderSelectedImageCount, selectOrUnselectImage } from "./utils";
 import { ImageGallery, AnimatedView, Buttons } from "#containers";
@@ -20,9 +20,7 @@ const initialState = {
 };
 
 const CameraRollScreen = props => {
-  const reduxCameraImages = useSelector(cameraRollSelectors.cameraImagesSelector);
-  const reduxSelectedImages = useSelector(cameraRollSelectors.selectedImagesSelector);
-  const dispatch = useDispatch();
+  const { images, selectedImages, fetchCameraRollImages } = props;
 
   const [shouldConfirmMenuOpen, setShouldConfirmMenuOpen] = useState(
     initialState.shouldConfirmMenuOpen
@@ -31,58 +29,49 @@ const CameraRollScreen = props => {
   const [sliderOptions] = useState(initialState.sliderOptions);
 
   useEffect(() => {
-    const fetchCameraRollImages = async () =>
-      await dispatch(cameraRollActions.fetchCameraImages(getCameraRollOptions()));
-
-    fetchCameraRollImages();
-  }, [dispatch]);
+    fetchCameraRollImages(getCameraRollOptions());
+  }, [fetchCameraRollImages]);
 
   useEffect(() => {
-    setShouldConfirmMenuOpen(!!reduxSelectedImages.length);
-  }, [reduxSelectedImages]);
+    setShouldConfirmMenuOpen(!!selectedImages.length);
+  }, [selectedImages]);
 
   const getCameraRollOptions = () => {
     return defaultCameraRollOptionsEnum;
   };
 
   const renderButtonText = () => {
-    return `Import ${renderSelectedImageCount(reduxCameraImages)} To The Studio`;
+    return `Import ${renderSelectedImageCount(images)} To The Studio`;
   };
 
   const selectImage = async image => {
-    const { images, selectedImages } = selectOrUnselectImage({
-      images: reduxCameraImages,
-      selectedImages: reduxSelectedImages,
+    const { images: _images, selectedImages: _selectedImages } = selectOrUnselectImage({
+      images,
+      selectedImages,
       image
     });
 
-    await dispatch(cameraRollActions.saveImageState({ images, selectedImages }));
+    await props.saveImageState({ images: _images, selectedImages: _selectedImages });
   };
 
   const confirmSelectedImages = async () => {
-    const { navigation } = props;
-    const { unselectAllImages } = cameraRollActions;
-    const { saveImagesToStudio } = studioActions;
+    const { navigation, saveImagesToStudio, unselectAllImages } = props;
 
-    await dispatch(saveImagesToStudio(reduxSelectedImages));
+    await saveImagesToStudio(selectedImages);
     navigation.navigate("Main", {
       screen: "Studio",
       params: {
         screen: "Modal",
-        selectedImages: reduxSelectedImages
+        selectedImages
       }
     });
-    dispatch(unselectAllImages());
+    unselectAllImages();
   };
 
   return (
     <View style={style.cameraRollScreenWrapper}>
       <Text style={style.titleText}>CameraRoll</Text>
-      <ImageGallery
-        images={reduxCameraImages}
-        galleryOptions={galleryOptions}
-        onPress={selectImage}
-      />
+      <ImageGallery images={images} galleryOptions={galleryOptions} onPress={selectImage} />
       <AnimatedView
         style={style.animatedViewSlider}
         animation={sliderOptions}
@@ -104,7 +93,27 @@ CameraRollScreen.defaultProps = {
 };
 
 CameraRollScreen.propTypes = {
-  navigation: PropTypes.object
+  navigation: PropTypes.object,
+  // redux
+  images: PropTypes.array.isRequired,
+  selectedImages: PropTypes.array.isRequired,
+  fetchCameraRollImages: PropTypes.func.isRequired,
+  saveImageState: PropTypes.func.isRequired,
+  saveImagesToStudio: PropTypes.func.isRequired,
+  unselectImages: PropTypes.func.isRequired
 };
 
-export default memo(CameraRollScreen);
+const mapStateToProps = state => ({
+  images: cameraRollSelectors.cameraImagesSelector(state),
+  selectedImages: cameraRollSelectors.selectedImagesSelector(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchCameraRollImages: options => dispatch(cameraRollActions.fetchCameraImages(options)),
+  saveImageState: ({ images, selectedImages }) =>
+    dispatch(cameraRollActions.saveImageState({ images, selectedImages })),
+  saveImagesToStudio: selectedImages => dispatch(studioActions.saveImagesToStudio(selectedImages)),
+  unselectImages: () => dispatch(cameraRollActions.unselectAllImages())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(memo(CameraRollScreen));

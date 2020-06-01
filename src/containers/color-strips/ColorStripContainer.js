@@ -5,18 +5,23 @@ import PropTypes from "prop-types";
 import { normalizeSwatches } from "#utils";
 import LoadingView from "../loading/LoadingView";
 import { studioActions } from "#store/actions";
-import { useDispatch } from "react-redux";
-import style from "./styles";
+import { connect } from "react-redux";
+import defaultStyle from "./styles";
 
 const ColorStripContainer = props => {
-  const { isStudio, onPress, onLongPress, image, onReady } = props;
-
-  const dispatch = useDispatch();
+  const {
+    isStudio,
+    onPress,
+    onLongPress,
+    image,
+    onReady,
+    setSwatchesOnImage,
+    setSwatchesOnStudioImage
+  } = props;
 
   const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    const { setSwatchesOnImage, setSwatchesOnStudioImage } = studioActions;
 
+  useEffect(() => {
     const { swatches: hasSwatches = false, uri } = image;
     //    checks to see if image has swatches already,
     //    if not then it runs code to find the dominant colors
@@ -36,13 +41,13 @@ const ColorStripContainer = props => {
           return;
         }
         if (isStudio) {
-          dispatch(setSwatchesOnStudioImage(imageSwatches));
+          setSwatchesOnStudioImage(imageSwatches);
         } else {
-          dispatch(setSwatchesOnImage(imageSwatches));
+          setSwatchesOnImage(imageSwatches);
         }
       });
     }
-  }, [dispatch, image, isStudio, onReady]);
+  }, [image, isStudio, onReady, setSwatchesOnImage, setSwatchesOnStudioImage]);
 
   return isLoaded ? (
     <ColorStrip swatches={image.swatches} onPress={onPress} onLongPress={onLongPress} isStudio />
@@ -54,7 +59,7 @@ const ColorStripContainer = props => {
 ColorStripContainer.propTypes = {
   image: PropTypes.shape({
     uri: PropTypes.string.isRequired,
-    swatches: PropTypes.array
+    swatches: PropTypes.object
   }).isRequired,
   onPress: PropTypes.func,
   onReady: PropTypes.func,
@@ -63,7 +68,7 @@ ColorStripContainer.propTypes = {
 };
 
 ColorStripContainer.defaultProps = {
-  style: style.containerDefaultWrapper,
+  style: defaultStyle.containerDefaultWrapper,
   quality: "medium",
   isStudio: false,
   onReady: null,
@@ -71,4 +76,9 @@ ColorStripContainer.defaultProps = {
   onLongPress: null
 };
 
-export default ColorStripContainer;
+const mapDispatchToProps = dispatch => ({
+  setSwatchesOnStudioImage: swatches => dispatch(studioActions.setSwatchesOnStudioImage(swatches)),
+  setSwatchesOnImage: swatches => dispatch(studioActions.setSwatchesOnImage(swatches))
+});
+
+export default connect(null, mapDispatchToProps)(ColorStripContainer);

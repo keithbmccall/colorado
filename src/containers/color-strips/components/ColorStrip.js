@@ -31,15 +31,15 @@ const ColorStrip = props => {
 };
 
 ColorStrip.propTypes = {
-  style: PropTypes.style,
+  style: PropTypes.object,
   onLongPress: PropTypes.func,
   onPress: PropTypes.func,
   isStudio: PropTypes.bool,
-  swatches: PropTypes.array.isRequired
+  swatches: PropTypes.object.isRequired
 };
 
 ColorStrip.defaultProps = {
-  style: defaultStyle.containerDefaultWrapper,
+  style: defaultStyle.colorStripWrapper,
   onPress: null,
   onLongPress: null,
   isStudio: false

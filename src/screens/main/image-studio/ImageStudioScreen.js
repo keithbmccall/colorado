@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { useState, memo } from "react";
 import { View, Text } from "react-native";
 import { connect } from "react-redux";
 import ImageStudio from "./components/ImageStudio";
@@ -7,24 +7,29 @@ import { studioActions } from "#store/actions";
 import style from "./styles";
 import StudioInstructions from "./components/StudioInstructions";
 import { ImageGallery } from "#containers";
-import { ROW_DIMENSIONS } from "#constants";
+import { ROW_DIMENSIONS } from "#enum";
 import { studioSelectors } from "#selectors";
+import { SWITCH_COLUMNS } from "#constants";
+import PropTypes from "prop-types";
 
-class ImageStudioScreen extends PureComponent {
-  state = {
-    galleryOptions: {
-      rowSize: 2,
-      rowHeight: 220
-    },
-    editMode: false,
-    sliderOptions: {
-      starting: -style.directionsWrapper.height,
-      ending: 30,
-      key: "translateY"
-    }
-  };
+const initialState = {
+  galleryOptions: ROW_DIMENSIONS.rowSize2,
+  editMode: false,
+  sliderOptions: {
+    starting: -style.directionsWrapper.height,
+    ending: 30,
+    key: "translateY"
+  }
+};
 
-  toggleGalleryOptions = () => {
+const ImageStudioScreen = props => {
+  const { studioImage, studioImages } = props;
+
+  const [galleryOptions, setGalleryOptions] = useState(initialState.galleryOptions);
+  const [editMode, setEditMode] = useState(initialState.editMode);
+  const [sliderOptions] = useState(initialState.sliderOptions);
+
+  const toggleGalleryOptions = () => {
     const toggleRowSize = rowSize => {
       if (rowSize === 2) {
         return ROW_DIMENSIONS.rowSize3;
@@ -32,92 +37,68 @@ class ImageStudioScreen extends PureComponent {
       return ROW_DIMENSIONS.rowSize2;
     };
 
-    this.setState({
-      galleryOptions: toggleRowSize(this.state.galleryOptions.rowSize)
-    });
-  };
-  buttonBarOptions = () => [
-    {
-      label: "Switch Columns",
-      pressMethod: this.toggleGalleryOptions
-    }
-  ];
-
-  temporaryAddStudioImages = () =>
-    this.props.navigation.state.params.selectedImages &&
-    this.props.temporaryAddStudioImages(this.props.navigation.state.params.selectedImages);
-
-  toggleEditMode = () => {
-    this.setState({
-      editMode: !this.state.editMode
-    });
+    setGalleryOptions(toggleRowSize(galleryOptions.rowSize));
   };
 
-  setImageStudioImage = image => {
-    this.props.setImageStudioImage(image);
-  };
-
-  inspectColorSwatch = (color, colorIndex) => {
+  const inspectColorSwatch = (color, colorIndex) => {
     console.log("inspecting", color, colorIndex);
   };
 
-  updateColorSwatch = (color, colorIndex) => {
+  const updateColorSwatch = (color, colorIndex) => {
     console.log("updating", color, colorIndex);
   };
 
-  render() {
-    return (
-      <Layout style={style.imageStudioWrapper}>
-        <View style={style.imageStudioHeadingWrapper}>
-          <Text style={style.imageStudioHeading}>Studio</Text>
-        </View>
-        <ImageStudio
-          image={this.props.imageStudioImage}
-          editMode={this.state.editMode}
-          toggleEditMode={this.toggleEditMode}
-          onPress={this.inspectColorSwatch}
-          onLongPress={this.updateColorSwatch}
-        />
-        <ImageGallery
-          images={this.props.images}
-          galleryOptions={this.state.galleryOptions}
-          onPress={this.setImageStudioImage}
-          isStudio
-        />
-        <Buttons.BottomButtonBar
-          options={this.buttonBarOptions()}
-          label={this.buttonBarOptions().label}
-          onPress={this.buttonBarOptions().pressMethod}
-          style={style.buttonBarWrapper}
-          labelStyle={style.buttonBarLabel}
-        />
-        <StudioInstructions
-          editMode={this.state.editMode}
-          sliderOptions={this.state.sliderOptions}
-        />
-      </Layout>
-    );
-  }
+  const toggleEditMode = () => {
+    setEditMode(!editMode);
+  };
 
-  componentDidMount() {
-    // this.props.navigation.state.params ? this.temporaryAddStudioImages() : this.props.fetchStudioImages()
-    //    adds images from camera roll confirmation to bypass having to reload from storage
-    //    creates a better UI as the transition is seamless when confirming new images to studio
-  }
-}
+  const setImageStudioImage = image => {
+    props.setImageStudioImage(image);
+  };
+
+  return (
+    <Layout style={style.imageStudioWrapper}>
+      <View style={style.imageStudioHeadingWrapper}>
+        <Text style={style.imageStudioHeading}>Studio</Text>
+      </View>
+      <ImageStudio
+        image={studioImage}
+        editMode={editMode}
+        toggleEditMode={toggleEditMode}
+        onPress={inspectColorSwatch}
+        onLongPress={updateColorSwatch}
+      />
+      <ImageGallery
+        images={studioImages}
+        galleryOptions={galleryOptions}
+        onPress={setImageStudioImage}
+        isStudio
+      />
+      <Buttons.BottomButtonBar
+        label={SWITCH_COLUMNS}
+        onPress={toggleGalleryOptions}
+        style={style.buttonBarWrapper}
+        labelStyle={style.buttonBarLabel}
+      />
+      <StudioInstructions editMode={editMode} sliderOptions={sliderOptions} />
+    </Layout>
+  );
+};
+
+ImageStudioScreen.propTypes = {
+  // redux
+  studioImages: PropTypes.array.isRequired,
+  studioImage: PropTypes.object.isRequired,
+  setImageStudioImage: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  studioImages: studioSelectors.studioImagesSelector(state),
+  studioImage: studioSelectors.imageStudioImageSelector(state)
+});
 
 const mapDispatchToProps = dispatch => ({
-  // fetchStudioImages: () => dispatch(studioActions.fetchStudioImages()),
-  // temporaryAddStudioImages: (newImages: Images) => dispatch(studioActions.temporaryAddStudioImages(newImages)),
   setImageStudioImage: image => dispatch(studioActions.setImageStudioImage(image))
 });
 
-const mapStateToProps = state => {
-  const { imageStudioImageSelector, studioImagesSelector } = studioSelectors;
-  return {
-    images: studioImagesSelector(state),
-    imageStudioImage: imageStudioImageSelector(state)
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ImageStudioScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(memo(ImageStudioScreen));

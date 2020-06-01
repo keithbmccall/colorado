@@ -12,11 +12,13 @@ const BottomButtonBar = props => {
     </TouchableOpacity>
   );
 };
+
 BottomButtonBar.propTypes = {
   style: PropTypes.object,
   label: PropTypes.string,
   onPress: PropTypes.func
 };
+
 BottomButtonBar.defaultProps = {
   label: "ThisButtonHasNoLabel",
   onPress: () => {}

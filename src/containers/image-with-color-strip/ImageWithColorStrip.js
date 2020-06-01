@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, memo } from "react";
 import { View, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 import LoadingView from "../../containers/loading/LoadingView";
@@ -67,7 +67,8 @@ ImageWithColorStrip.defaultProps = {
   editMode: false,
   isStudio: false,
   onPress: null,
-  onLongPress: null
+  onLongPress: null,
+  style: {}
 };
 
-export default ImageWithColorStrip;
+export default memo(ImageWithColorStrip);

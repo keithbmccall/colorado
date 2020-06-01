@@ -6,7 +6,7 @@ import ScrollableList from "../lists/ScrollableList";
 import ConditionalWrapper from "../tools/ConditionalWrapper";
 import { conditionalListReverse, rowSizeRangeValidator } from "#utils";
 import { ImageWithColorStrip } from "#containers";
-import style from "./styles";
+import defaultStyle from "./styles";
 import { ROW_DIMENSIONS } from "#enum";
 
 const ImageGallery = props => {
@@ -32,7 +32,7 @@ const ImageGallery = props => {
       return (
         <TouchableOpacity
           key={key}
-          style={{ ...style.imageWrapper, ...cellSize }}
+          style={{ ...defaultStyle.imageWrapper, ...cellSize }}
           onPress={_onPress({ image, onPress })}
         >
           <ImageWithColorStrip image={image} />
@@ -44,7 +44,9 @@ const ImageGallery = props => {
   const renderImageGallery = () => {
     const { onPress, images } = props;
     return images.map((image, key) => {
-      const imageCardStyle = image.isSelected ? style.selectedImageWrapper : style.imageWrapper;
+      const imageCardStyle = image.isSelected
+        ? defaultStyle.selectedImageWrapper
+        : defaultStyle.imageWrapper;
 
       return (
         <TouchableOpacity
@@ -68,7 +70,7 @@ const ImageGallery = props => {
   };
 
   return (
-    <ConditionalWrapper enable={isStudio} style={style.studioGalleryWrapper}>
+    <ConditionalWrapper enable={isStudio} style={defaultStyle.studioGalleryWrapper}>
       <ScrollableList isLazy columns={rowSize}>
         {renderContent()}
       </ScrollableList>

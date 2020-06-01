@@ -21,16 +21,16 @@ export const checkSelectedImages = (selectedImages, image) => {
 
 export const selectOrUnselectImage = ({ images, selectedImages, image }) => {
   let newSelectedImages = [...selectedImages];
-  const newImages = images.map(stateImage => {
+
+  images.find(stateImage => {
     if (stateImage.id === image.id) {
       stateImage.isSelected = !stateImage.isSelected;
       newSelectedImages = checkSelectedImages(selectedImages, stateImage);
     }
-    return stateImage;
   });
 
   return {
-    images: newImages,
+    images,
     selectedImages: newSelectedImages
   };
 };

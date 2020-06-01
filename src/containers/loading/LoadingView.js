@@ -22,8 +22,12 @@ LoadingView.propTypes = {
   blank: PropTypes.bool,
   style: PropTypes.object
 };
+
 LoadingView.defaultProps = {
-  blank: false
+  blank: false,
+  style: {
+    loadingAnimation: defaultStyle.loadingAnimation
+  }
 };
 
 export default LoadingView;

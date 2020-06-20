@@ -8,7 +8,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "prettier": "prettier --write \"{src,module-overrides}/**/*.js\"",
+    "prettier": "prettier --write src",
     "format": "yarn run lint && yarn run prettier",
     "cache": "yarn cache clean",
     "deps": "rm -rf node_modules && yarn && yarn cache clean && cd ios && pod install && cd ../"

@@ -2,10 +2,15 @@ import React, { useState, useEffect, memo } from "react";
 import { View, Text } from "react-native";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { renderSelectedImageCount, selectOrUnselectImage } from "./utils";
+import {
+  confirmSelectedImages,
+  getCameraRollOptions,
+  renderButtonText,
+  selectImage
+} from "./methods";
 import { ImageGallery, AnimatedView, Buttons } from "#containers";
 import { cameraRollActions, studioActions } from "#store/actions";
-import { defaultCameraRollOptionsEnum, ROW_DIMENSIONS } from "#enum";
+import { ROW_DIMENSIONS } from "#enum";
 import style from "./styles";
 import { cameraRollSelectors } from "#selectors";
 
@@ -36,50 +41,18 @@ const CameraRollScreen = props => {
     setShouldConfirmMenuOpen(!!selectedImages.length);
   }, [selectedImages]);
 
-  const getCameraRollOptions = () => {
-    return defaultCameraRollOptionsEnum;
-  };
-
-  const renderButtonText = () => {
-    return `Import ${renderSelectedImageCount(images)} To The Studio`;
-  };
-
-  const selectImage = async image => {
-    const { images: _images, selectedImages: _selectedImages } = selectOrUnselectImage({
-      images,
-      selectedImages,
-      image
-    });
-
-    await props.saveImageState({ images: _images, selectedImages: _selectedImages });
-  };
-
-  const confirmSelectedImages = async () => {
-    const { navigation, saveImagesToStudio, unselectAllImages } = props;
-
-    await saveImagesToStudio(selectedImages);
-    navigation.navigate("Main", {
-      screen: "Studio",
-      params: {
-        screen: "Modal",
-        selectedImages
-      }
-    });
-    unselectAllImages();
-  };
-
   return (
     <View style={style.cameraRollScreenWrapper}>
       <Text style={style.titleText}>CameraRoll</Text>
-      <ImageGallery images={images} galleryOptions={galleryOptions} onPress={selectImage} />
+      <ImageGallery images={images} galleryOptions={galleryOptions} onPress={selectImage(props)} />
       <AnimatedView
         style={style.animatedViewSlider}
         animation={sliderOptions}
         shouldLaunch={shouldConfirmMenuOpen}
       >
         <Buttons.FullWidthButton
-          pressMethod={confirmSelectedImages}
-          innerText={renderButtonText()}
+          pressMethod={confirmSelectedImages(props)}
+          innerText={renderButtonText(images)}
           style={{}}
           textStyle={{ ...style.animatedViewText }}
         />

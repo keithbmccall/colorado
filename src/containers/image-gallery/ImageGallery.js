@@ -9,6 +9,50 @@ import { ImageWithColorStrip } from "#containers";
 import defaultStyle from "./styles";
 import { ROW_DIMENSIONS } from "#enum";
 
+const _onPress = ({ image, onPress }) => () => onPress(image);
+
+const renderStudioGallery = ({ onPress, images, cellSize }) => {
+  return images.map((image, key) => {
+    return (
+      <TouchableOpacity
+        key={key}
+        style={{ ...defaultStyle.imageWrapper, ...cellSize }}
+        onPress={_onPress({ image, onPress })}
+      >
+        <ImageWithColorStrip image={image} />
+      </TouchableOpacity>
+    );
+  });
+};
+
+const renderImageGallery = ({ onPress, images, cellSize }) => {
+  return images.map((image, key) => {
+    const imageCardStyle = image.isSelected
+      ? defaultStyle.selectedImageWrapper
+      : defaultStyle.imageWrapper;
+
+    return (
+      <TouchableOpacity
+        key={key}
+        style={{ ...imageCardStyle, ...cellSize }}
+        onPress={_onPress({ image, onPress })}
+      >
+        <ResponsiveImage src={image} />
+      </TouchableOpacity>
+    );
+  });
+};
+
+const renderContent = props => {
+  const { isStudio } = props;
+  const imageList = isStudio ? renderStudioGallery(props) : renderImageGallery(props);
+
+  return conditionalListReverse({
+    list: imageList,
+    test: isStudio
+  });
+};
+
 const ImageGallery = props => {
   const {
     isStudio,
@@ -23,56 +67,10 @@ const ImageGallery = props => {
     rowSizeRangeValidator(rowSize);
   }, [rowSize]);
 
-  const _onPress = ({ image, onPress }) => () => onPress(image);
-
-  const renderStudioGallery = () => {
-    const { onPress, images } = props;
-
-    return images.map((image, key) => {
-      return (
-        <TouchableOpacity
-          key={key}
-          style={{ ...defaultStyle.imageWrapper, ...cellSize }}
-          onPress={_onPress({ image, onPress })}
-        >
-          <ImageWithColorStrip image={image} />
-        </TouchableOpacity>
-      );
-    });
-  };
-
-  const renderImageGallery = () => {
-    const { onPress, images } = props;
-    return images.map((image, key) => {
-      const imageCardStyle = image.isSelected
-        ? defaultStyle.selectedImageWrapper
-        : defaultStyle.imageWrapper;
-
-      return (
-        <TouchableOpacity
-          key={key}
-          style={{ ...imageCardStyle, ...cellSize }}
-          onPress={_onPress({ image, onPress })}
-        >
-          <ResponsiveImage src={image} />
-        </TouchableOpacity>
-      );
-    });
-  };
-
-  const renderContent = () => {
-    const imageList = isStudio ? renderStudioGallery() : renderImageGallery();
-
-    return conditionalListReverse({
-      list: imageList,
-      test: isStudio
-    });
-  };
-
   return (
     <ConditionalWrapper enable={isStudio} style={defaultStyle.studioGalleryWrapper}>
       <ScrollableList isLazy columns={rowSize}>
-        {renderContent()}
+        {renderContent({ ...props, cellSize })}
       </ScrollableList>
     </ConditionalWrapper>
   );

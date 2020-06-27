@@ -1,4 +1,4 @@
-import React, { useState, memo } from "react";
+import React, { useState, memo, useCallback } from "react";
 import { View, Text } from "react-native";
 import { connect } from "react-redux";
 import ImageStudio from "./components/ImageStudio";
@@ -11,6 +11,7 @@ import { ROW_DIMENSIONS } from "#enum";
 import { studioSelectors } from "#selectors";
 import { SWITCH_COLUMNS } from "#constants";
 import PropTypes from "prop-types";
+import { toggleRowSize } from "#utils";
 
 const initialState = {
   galleryOptions: ROW_DIMENSIONS.rowSize2,
@@ -23,22 +24,19 @@ const initialState = {
 };
 
 const ImageStudioScreen = props => {
-  const { studioImage, studioImages } = props;
+  const { studioImage, studioImages, setImageStudioImage } = props;
 
   const [galleryOptions, setGalleryOptions] = useState(initialState.galleryOptions);
   const [editMode, setEditMode] = useState(initialState.editMode);
   const [sliderOptions] = useState(initialState.sliderOptions);
 
-  const toggleGalleryOptions = () => {
-    const toggleRowSize = rowSize => {
-      if (rowSize === 2) {
-        return ROW_DIMENSIONS.rowSize3;
-      }
-      return ROW_DIMENSIONS.rowSize2;
-    };
-
+  const toggleGalleryOptions = useCallback(() => {
     setGalleryOptions(toggleRowSize(galleryOptions.rowSize));
-  };
+  }, [galleryOptions.rowSize]);
+
+  const toggleEditMode = useCallback(() => {
+    setEditMode(!editMode);
+  }, [editMode]);
 
   const inspectColorSwatch = (color, colorIndex) => {
     console.log("inspecting", color, colorIndex);
@@ -46,14 +44,6 @@ const ImageStudioScreen = props => {
 
   const updateColorSwatch = (color, colorIndex) => {
     console.log("updating", color, colorIndex);
-  };
-
-  const toggleEditMode = () => {
-    setEditMode(!editMode);
-  };
-
-  const setImageStudioImage = image => {
-    props.setImageStudioImage(image);
   };
 
   return (

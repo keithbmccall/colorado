@@ -8,3 +8,4 @@ export {
   mapSwatchPaletteToArray
 } from "./swatch.util";
 export { errorHandler, setGlobalHandler } from "./errors.util";
+export { toggleRowSize } from "./gallery.util";

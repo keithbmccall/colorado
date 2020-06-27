@@ -45,34 +45,3 @@ export const getCameraRollOptions = () => {
 export const renderButtonText = images => {
   return `Import ${renderSelectedImageCount(images)} To The Studio`;
 };
-
-export const selectImage = ({ images, selectedImages, saveImageState }) => {
-  return async image => {
-    const { images: _images, selectedImages: _selectedImages } = selectOrUnselectImage({
-      images,
-      selectedImages,
-      image
-    });
-
-    await saveImageState({ images: _images, selectedImages: _selectedImages });
-  };
-};
-
-export const confirmSelectedImages = ({
-  navigation,
-  saveImagesToStudio,
-  unselectAllImages,
-  selectedImages
-}) => {
-  return async () => {
-    await saveImagesToStudio(selectedImages);
-    navigation.navigate("Main", {
-      screen: "Studio",
-      params: {
-        screen: "Modal",
-        selectedImages
-      }
-    });
-    unselectAllImages();
-  };
-};

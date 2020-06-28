@@ -1,6 +1,7 @@
 /* eslint-disable */
 System.config({
   paths: {
+    "#navigation": "./src/navigation/*",
     "#containers": "./src/containers/*",
     "#constants": "./src/constants/*",
     // store

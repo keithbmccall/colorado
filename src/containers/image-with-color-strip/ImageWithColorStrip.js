@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, memo } from "react";
+import React, { Fragment, useState, useEffect, memo, useCallback } from "react";
 import { View, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 import LoadingView from "../../containers/loading/LoadingView";
@@ -20,13 +20,13 @@ const ImageWithColorStrip = props => {
     }
   }, [image, prevImage]);
 
-  const markImageReady = () => {
+  const markImageReady = useCallback(() => {
     setIsImageReady(true);
-  };
+  }, []);
 
-  const markColorsReady = () => {
+  const markColorsReady = useCallback(() => {
     setIsColorsReady(true);
-  };
+  }, []);
 
   const renderContent = () => {
     return (

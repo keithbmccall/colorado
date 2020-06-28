@@ -6,96 +6,38 @@ import LibraryScreen from "../screens/main/library/LibraryScreen";
 import CameraScreen from "../screens/main/camera/CameraScreen";
 import ImageStudioScreen from "../screens/main/image-studio/ImageStudioScreen";
 import ModalIndex from "../screens/modal/ModalIndex";
+import { navigatorOptions } from "./options";
 
-const view = "Studio";
-// let view = "Camera";
-//
-
-const Main = createMaterialTopTabNavigator();
+const Tab = createMaterialTopTabNavigator();
 const Root = createStackNavigator();
+const {
+  tabInitialRouteName,
+  tabBarOptions,
+  screenOptions,
+  rootInitialRouteName,
+  rootMode,
+  headerMode
+} = navigatorOptions;
 
-const MainStack = () => {
+const TabStack = tab => {
+  console.log("tab", { tab });
   return (
-    <Main.Navigator
-      initialRouteName={view}
-      screenOptions={{
-        initialRouteName: view,
-        lazy: true,
-        tabBarPosition: "bottom",
-        tabBarOptions: {
-          tabStyle: {
-            height: 120
-          },
-          activeTintColor: "#e91e63",
-          inactiveTintColor: "navy",
-          labelStyle: {
-            fontSize: 17
-          },
-          style: {
-            backgroundColor: "#ddd",
-            display: "none"
-          }
-        }
-      }}
-    >
-      <Main.Screen name="Studio" component={ImageStudioScreen} />
-      <Main.Screen name="Camera" component={CameraScreen} />
-      <Main.Screen name="Library" component={LibraryScreen} />
-    </Main.Navigator>
+    <Tab.Navigator initialRouteName={tabInitialRouteName} tabBarOptions={tabBarOptions}>
+      <Tab.Screen name="studio" component={ImageStudioScreen} />
+      <Tab.Screen name="camera" component={CameraScreen} />
+      <Tab.Screen name="library" component={LibraryScreen} />
+    </Tab.Navigator>
   );
 };
 
-const Navigation = () => {
+export const Navigation = nav => {
+  console.log("nav", { nav });
   return (
     <NavigationContainer>
-      <Root.Navigator initialRouteName="Modal">
-        <Root.Screen name="Main" component={MainStack} />
-        <Root.Screen name="Modal" component={ModalIndex} mode="card" headerMode="none" />
+      <Root.Navigator initialRouteName={rootInitialRouteName} screenOptions={screenOptions}>
+        <Root.Screen name="tab" component={TabStack} />
+        <Root.Screen name="modal" component={ModalIndex} mode={rootMode} headerMode={headerMode} />
       </Root.Navigator>
     </NavigationContainer>
   );
 };
-
-// const MainStack = createMaterialTopTabNavigator(
-//   {
-//     Studio: ImageStudio,
-//     Camera: CameraScreen,
-//     Library: LibraryScreen
-//   },
-//   {
-//     initialRouteName: view,
-//     lazy: true,
-//     tabBarPosition: "bottom",
-//     tabBarOptions: {
-//       tabStyle: {
-//         height: 120
-//       },
-//       activeTintColor: "#e91e63",
-//       inactiveTintColor: "navy",
-//       labelStyle: {
-//         fontSize: 17
-//       },
-//       style: {
-//         backgroundColor: "#ddd",
-//         display: "none"
-//       }
-//     }
-//   }
-// );
-// const RootStack = createStackNavigator(
-//   {
-//     Main: {
-//       screen: MainStack
-//     },
-//     Modal: {
-//       screen: ModalIndex
-//     }
-//   },
-//   {
-//     initialRouteName: "Modal",
-//     mode: "card",
-//     headerMode: "none"
-//   }
-// );
-
-export default Navigation;

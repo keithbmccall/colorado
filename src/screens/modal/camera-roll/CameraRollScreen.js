@@ -8,6 +8,7 @@ import { cameraRollActions, studioActions } from "#store/actions";
 import { ROW_DIMENSIONS } from "#enum";
 import style from "./styles";
 import { cameraRollSelectors } from "#selectors";
+import { navigateTo, STUDIO, fromCameraRollScreen } from "#navigation";
 
 const initialState = {
   sliderOptions: {
@@ -59,13 +60,7 @@ const CameraRollScreen = props => {
 
   const confirmSelectedImages = useCallback(async () => {
     await saveImagesToStudio(selectedImages);
-    navigation.navigate("Main", {
-      screen: "Studio",
-      params: {
-        screen: "Modal",
-        selectedImages
-      }
-    });
+    navigateTo(navigation, STUDIO, fromCameraRollScreen({ selectedImages }));
     unselectAllImages();
   }, [navigation, saveImagesToStudio, selectedImages, unselectAllImages]);
 
@@ -101,7 +96,7 @@ CameraRollScreen.propTypes = {
   fetchCameraRollImages: PropTypes.func.isRequired,
   saveImageState: PropTypes.func.isRequired,
   saveImagesToStudio: PropTypes.func.isRequired,
-  unselectImages: PropTypes.func.isRequired
+  unselectAllImages: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -114,7 +109,7 @@ const mapDispatchToProps = dispatch => ({
   saveImageState: ({ images, selectedImages }) =>
     dispatch(cameraRollActions.saveImageState({ images, selectedImages })),
   saveImagesToStudio: selectedImages => dispatch(studioActions.saveImagesToStudio(selectedImages)),
-  unselectImages: () => dispatch(cameraRollActions.unselectAllImages())
+  unselectAllImages: () => dispatch(cameraRollActions.unselectAllImages())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(memo(CameraRollScreen));

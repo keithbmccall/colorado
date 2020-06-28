@@ -15,7 +15,8 @@ module.exports = {
           "#enum": "./src/enum",
           "#selectors": "./src/selectors",
           "#styles": "./src/styles-global",
-          "#hooks": "./src/hooks"
+          "#hooks": "./src/hooks",
+          "#navigation": "./src/navigation"
         }
       }
     ]

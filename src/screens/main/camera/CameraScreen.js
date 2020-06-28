@@ -14,7 +14,7 @@ export default class CameraScreen extends Component {
     zoom: 0
   };
 
-  launchModal = () => this.props.navigation.navigate("Modal");
+  launchModal = () => this.props.navigation.navigate("modal");
   //
   // takePicture = async function() {
   //   if (this.camera) {

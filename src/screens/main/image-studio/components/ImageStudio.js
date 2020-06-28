@@ -23,7 +23,7 @@ const ImageStudio = props => {
         onPress={toggleEditMode}
         size={35}
       />
-      {!this.props.editMode && (
+      {!editMode && (
         <Buttons.IconButton
           style={style.imageStudioTrashButton}
           name={"trash-can-outline"}

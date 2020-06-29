@@ -7,7 +7,7 @@ import ResponsiveImage from "../image-containers/ResponsiveImage";
 import { usePrevious } from "#hooks";
 
 const ImageWithColorStrip = props => {
-  const { onPress, onLongPress, style, isStudio, editMode, image } = props;
+  const { onPress, onStripPress, onStripLongPress, style, isStudio, editMode, image } = props;
 
   const [isImageReady, setIsImageReady] = useState(false);
   const [isColorsReady, setIsColorsReady] = useState(false);
@@ -37,8 +37,8 @@ const ImageWithColorStrip = props => {
           onReady={markColorsReady}
           editMode={editMode}
           isStudio={isStudio}
-          onPress={onPress}
-          onLongPress={onLongPress}
+          onPress={onStripPress}
+          onLongPress={onStripLongPress}
         />
         {!(isColorsReady && isImageReady) && <LoadingView />}
       </Fragment>
@@ -60,7 +60,9 @@ ImageWithColorStrip.propTypes = {
   style: PropTypes.object,
   isStudio: PropTypes.bool,
   editMode: PropTypes.bool,
-  image: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired
+  image: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired,
+  onStripPress: PropTypes.func,
+  onStripLongPress: PropTypes.func
 };
 
 ImageWithColorStrip.defaultProps = {
@@ -68,6 +70,8 @@ ImageWithColorStrip.defaultProps = {
   isStudio: false,
   onPress: null,
   onLongPress: null,
+  onStripPress: null,
+  onStripLongPress: null,
   style: {}
 };
 

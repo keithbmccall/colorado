@@ -5,3 +5,11 @@ export const fromCameraRollScreen = params => {
     ...params
   };
 };
+
+export const fromImageStudioScreen = params => {
+  return {
+    prevStack: "tab",
+    prevScreen: "ImageStudioScreen",
+    ...params
+  };
+};

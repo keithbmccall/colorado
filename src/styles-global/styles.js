@@ -1,9 +1,12 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { Dimensions } from "react-native";
 //
 export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get("window");
 
-export const globalStyle = StyleSheet.create({
+export const globalStyle = {
   flex1: {
     flex: 1
+  },
+  headerWrapper: {
+    height: 70
   }
-});
+};

@@ -1,4 +1,4 @@
-import React, { useEffect, memo } from "react";
+import React, { useEffect, memo, useCallback, useMemo } from "react";
 import { TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 import ResponsiveImage from "../image-containers/ResponsiveImage";
@@ -9,15 +9,14 @@ import { ImageWithColorStrip } from "#containers";
 import defaultStyle from "./styles";
 import { ROW_DIMENSIONS } from "#enum";
 
-const _onPress = ({ image, onPress }) => () => onPress(image);
-
-const renderStudioGallery = ({ onPress, images, cellSize }) => {
+const renderStudioGallery = props => {
+  const { images, onPress, cellSize } = props;
   return images.map((image, key) => {
     return (
       <TouchableOpacity
         key={key}
         style={{ ...defaultStyle.imageWrapper, ...cellSize }}
-        onPress={_onPress({ image, onPress })}
+        onPress={() => onPress(image)}
       >
         <ImageWithColorStrip image={image} />
       </TouchableOpacity>
@@ -25,7 +24,8 @@ const renderStudioGallery = ({ onPress, images, cellSize }) => {
   });
 };
 
-const renderImageGallery = ({ onPress, images, cellSize }) => {
+const renderImageGallery = props => {
+  const { images, onPress, cellSize } = props;
   return images.map((image, key) => {
     const imageCardStyle = image.isSelected
       ? defaultStyle.selectedImageWrapper
@@ -35,7 +35,7 @@ const renderImageGallery = ({ onPress, images, cellSize }) => {
       <TouchableOpacity
         key={key}
         style={{ ...imageCardStyle, ...cellSize }}
-        onPress={_onPress({ image, onPress })}
+        onPress={() => onPress(image)}
       >
         <ResponsiveImage src={image} />
       </TouchableOpacity>
@@ -43,34 +43,39 @@ const renderImageGallery = ({ onPress, images, cellSize }) => {
   });
 };
 
-const renderContent = props => {
-  const { isStudio } = props;
-  const imageList = isStudio ? renderStudioGallery(props) : renderImageGallery(props);
-
-  return conditionalListReverse({
-    list: imageList,
-    test: isStudio
-  });
-};
-
 const ImageGallery = props => {
   const {
     isStudio,
-    galleryOptions: { rowSize, rowHeight }
+    galleryOptions: { rowSize, rowHeight },
+    style
   } = props;
-  const cellSize = {
-    width: `${100 / rowSize}%`,
-    height: rowHeight
-  };
+  const cellSize = useMemo(
+    () => ({
+      width: `${100 / rowSize}%`,
+      height: rowHeight
+    }),
+    [rowHeight, rowSize]
+  );
 
   useEffect(() => {
     rowSizeRangeValidator(rowSize);
   }, [rowSize]);
 
+  const renderContent = useCallback(() => {
+    const imageList = isStudio
+      ? renderStudioGallery({ ...props, cellSize })
+      : renderImageGallery({ ...props, cellSize });
+
+    return conditionalListReverse({
+      list: imageList,
+      test: isStudio
+    });
+  }, [cellSize, isStudio, props]);
+
   return (
-    <ConditionalWrapper enable={isStudio} style={defaultStyle.studioGalleryWrapper}>
+    <ConditionalWrapper enable={isStudio} style={style}>
       <ScrollableList isLazy columns={rowSize}>
-        {renderContent({ ...props, cellSize })}
+        {renderContent()}
       </ScrollableList>
     </ConditionalWrapper>
   );

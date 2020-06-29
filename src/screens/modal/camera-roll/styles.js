@@ -18,10 +18,12 @@ export default StyleSheet.create({
   },
   animatedViewButton: {},
   animatedViewText: {
-    fontSize: 16
+    fontSize: 16,
+    fontWeight: "bold",
+    color: colors.primary
   },
   animatedViewPosition: {
     bottom: DEVICE_HEIGHT,
-    top: DEVICE_HEIGHT * 0.75
+    top: DEVICE_HEIGHT * 0.85
   }
 });

@@ -5,7 +5,8 @@ export {
   equalizeSwatchLength,
   converRGBToHex,
   buildSwatchPalette,
-  mapSwatchPaletteToArray
+  mapSwatchPaletteToArray,
+  getHexInfo
 } from "./swatch.util";
 export { errorHandler, setGlobalHandler } from "./errors.util";
 export { toggleRowSize } from "./gallery.util";

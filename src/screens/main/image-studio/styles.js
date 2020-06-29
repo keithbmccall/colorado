@@ -1,21 +1,20 @@
-import { StyleSheet, Dimensions } from "react-native";
-import { colors } from "#styles";
+import { StyleSheet } from "react-native";
+import { colors, DEVICE_HEIGHT, DEVICE_WIDTH, globalStyle } from "#styles";
 
-const { height, width } = Dimensions.get("window");
 export default StyleSheet.create({
   imageStudioHeadingWrapper: {
-    flex: 2,
+    ...globalStyle.headerWrapper,
     justifyContent: "center",
     alignItems: "center"
   },
   imageStudioHeading: {
     fontSize: 20,
     fontWeight: "bold",
-    // fontStyle: "italic",
     color: colors.primary
   },
   buttonBarWrapper: {
-    flex: 2
+    position: "absolute",
+    top: DEVICE_HEIGHT * 0.92
   },
   buttonBarLabel: {
     fontStyle: "italic",
@@ -23,7 +22,7 @@ export default StyleSheet.create({
   },
   imageStudioWrapper: {
     backgroundColor: "transparent",
-    flex: 8,
+    height: DEVICE_HEIGHT * 0.5,
     position: "relative"
   },
   imageStudioEditButton: {
@@ -36,8 +35,12 @@ export default StyleSheet.create({
     top: 80,
     right: 10
   },
+  directionsWrapperPosition: {
+    bottom: DEVICE_HEIGHT,
+    top: DEVICE_HEIGHT * 0.506
+  },
   directionsWrapper: {
-    height: height / 2.6,
+    height: DEVICE_HEIGHT * 0.506,
     width: "100%",
     backgroundColor: colors.semiTransparent,
     position: "absolute",
@@ -46,7 +49,7 @@ export default StyleSheet.create({
   },
   directionsCard: {
     height: 90,
-    width: width / 1.2,
+    width: DEVICE_WIDTH / 1.2,
     backgroundColor: colors.white,
     justifyContent: "center",
     alignItems: "center",
@@ -61,5 +64,8 @@ export default StyleSheet.create({
   directionsSpan: {
     color: colors.primary,
     fontStyle: "italic"
+  },
+  imageStudioGalleryWrapper: {
+    height: DEVICE_HEIGHT - (DEVICE_HEIGHT * 0.5 + globalStyle.headerWrapper.height)
   }
 });

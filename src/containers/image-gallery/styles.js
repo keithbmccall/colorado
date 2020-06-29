@@ -6,13 +6,12 @@ export default StyleSheet.create({
     backgroundColor: "#ddd",
     borderWidth: 5,
     borderColor: colors.white
+    // borderWidth: 5,
+    // borderColor: "red"
   },
   selectedImageWrapper: {
     backgroundColor: "#ddd",
     borderWidth: 5,
     borderColor: colors.selectedBorder
-  },
-  studioGalleryWrapper: {
-    flex: 8
   }
 });

@@ -1,5 +1,10 @@
 import { defaultCameraRollOptionsEnum } from "#enum";
 
+/**
+ *
+ * @param images
+ * @returns {string}
+ */
 export const renderSelectedImageCount = images => {
   const selectedImages = images.filter(image => image.isSelected);
   if (selectedImages.length === 0 || selectedImages.length === 1) {
@@ -9,6 +14,12 @@ export const renderSelectedImageCount = images => {
   }
 };
 
+/**
+ *
+ * @param selectedImages
+ * @param image
+ * @returns {object[]}
+ */
 export const checkSelectedImages = (selectedImages, image) => {
   const selectedArray = selectedImages.slice(0);
   const n = selectedArray.indexOf(image);
@@ -22,6 +33,13 @@ export const checkSelectedImages = (selectedImages, image) => {
   return selectedArray;
 };
 
+/**
+ *
+ * @param images
+ * @param selectedImages
+ * @param image
+ * @returns {{images: object[], selectedImages: object[]}}
+ */
 export const selectOrUnselectImage = ({ images, selectedImages, image }) => {
   let newSelectedImages = [...selectedImages];
 
@@ -38,10 +56,19 @@ export const selectOrUnselectImage = ({ images, selectedImages, image }) => {
   };
 };
 
+/**
+ *
+ * @returns {{first: number, assetType: string}}
+ */
 export const getCameraRollOptions = () => {
   return defaultCameraRollOptionsEnum;
 };
 
+/**
+ *
+ * @param images
+ * @returns {string}
+ */
 export const renderButtonText = images => {
   return `Import ${renderSelectedImageCount(images)} To The Studio`;
 };

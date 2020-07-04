@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LibraryScreen from "../screens/main/library/LibraryScreen";
 import CameraScreen from "../screens/main/camera/CameraScreen";
 import ImageStudioScreen from "../screens/main/image-studio/ImageStudioScreen";
-import ModalIndex from "../screens/modal/ModalIndex";
+import Modal from "../screens/modal";
 import { navigatorOptions } from "./options";
 
 const Tab = createMaterialTopTabNavigator();
@@ -30,13 +30,13 @@ const TabStack = tab => {
   );
 };
 
-export const Navigation = nav => {
+export const Router = nav => {
   console.log("nav", { nav });
   return (
     <NavigationContainer>
       <Root.Navigator initialRouteName={rootInitialRouteName} screenOptions={screenOptions}>
         <Root.Screen name="tab" component={TabStack} />
-        <Root.Screen name="modal" component={ModalIndex} mode={rootMode} headerMode={headerMode} />
+        <Root.Screen name="modal" component={Modal} mode={rootMode} headerMode={headerMode} />
       </Root.Navigator>
     </NavigationContainer>
   );

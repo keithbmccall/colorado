@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./src/store/config";
 import { LoadingView } from "./src/containers";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import "react-native-gesture-handler";
 
 const ReduxWrapper = () => {
@@ -15,7 +16,9 @@ const ReduxWrapper = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={<LoadingView />} persistor={persistor}>
-        <App />
+        <SafeAreaProvider>
+          <App />
+        </SafeAreaProvider>
       </PersistGate>
     </Provider>
   );

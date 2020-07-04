@@ -4,7 +4,7 @@ import { setGlobalHandler } from "#utils";
 
 console.disableYellowBox = true;
 
-const App = () => {
+const Root = () => {
   useEffect(() => {
     setGlobalHandler();
   });
@@ -12,4 +12,4 @@ const App = () => {
   return <Router />;
 };
 
-export default App;
+export default Root;

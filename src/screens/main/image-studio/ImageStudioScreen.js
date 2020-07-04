@@ -8,13 +8,10 @@ import {
 } from "#containers";
 import { studioActions } from "#store/actions";
 import style from "./styles";
-// import StudioInstructions from "./components/StudioInstructions";
 import { ImageGallery } from "#containers";
 import { ROW_DIMENSIONS } from "#enum";
 import { studioSelectors } from "#selectors";
-// import { SWITCH_COLUMNS } from "#constants";
 import PropTypes from "prop-types";
-// import { toggleRowSize } from "#utils";
 import { navigateTo, CAMERA_ROLL, INSPECT, fromImageStudioScreen } from "#navigation";
 
 const initialState = {

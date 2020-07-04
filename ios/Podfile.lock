@@ -23,6 +23,8 @@ PODS:
     - OpenSSL-Universal (= 1.0.2.19)
   - Flipper-Glog (0.3.6)
   - Flipper-PeerTalk (0.0.4)
+  - flipper-plugin-react-native-performance (0.5.0):
+    - React
   - Flipper-RSocket (1.1.0):
     - Flipper-Folly (~> 2.2)
   - FlipperKit (0.33.1):
@@ -233,17 +235,19 @@ PODS:
     - React-cxxreact (= 0.62.2)
     - React-jsi (= 0.62.2)
   - React-jsinspector (0.62.2)
-  - react-native-camera (3.30.0):
+  - react-native-camera (3.31.0):
     - React
-    - react-native-camera/RCT (= 3.30.0)
-    - react-native-camera/RN (= 3.30.0)
-  - react-native-camera/RCT (3.30.0):
+    - react-native-camera/RCT (= 3.31.0)
+    - react-native-camera/RN (= 3.31.0)
+  - react-native-camera/RCT (3.31.0):
     - React
-  - react-native-camera/RN (3.30.0):
+  - react-native-camera/RN (3.31.0):
     - React
   - react-native-cameraroll (1.8.1):
     - React
   - react-native-color-lens (1.0.8):
+    - React
+  - react-native-flipper (0.49.0):
     - React
   - react-native-safe-area-context (2.0.3):
     - React
@@ -318,7 +322,9 @@ PODS:
     - React
   - RNScreens (2.9.0):
     - React
-  - RNVectorIcons (6.6.0):
+  - RNVectorIcons (6.7.0):
+    - React
+  - toolbar-android (0.1.0-rc.2):
     - React
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -333,6 +339,7 @@ DEPENDENCIES:
   - Flipper-Folly (~> 2.1)
   - Flipper-Glog (= 0.3.6)
   - Flipper-PeerTalk (~> 0.0.4)
+  - flipper-plugin-react-native-performance (from `../node_modules/flipper-plugin-react-native-performance/ios`)
   - Flipper-RSocket (~> 1.0)
   - FlipperKit (~> 0.33.1)
   - FlipperKit/Core (~> 0.33.1)
@@ -363,6 +370,7 @@ DEPENDENCIES:
   - react-native-camera (from `../node_modules/react-native-camera`)
   - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
   - react-native-color-lens (from `../node_modules/react-native-color-lens`)
+  - react-native-flipper (from `../node_modules/react-native-flipper`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-spinkit (from `../node_modules/react-native-spinkit`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -382,6 +390,7 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - "toolbar-android (from `../node_modules/@react-native-community/toolbar-android`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -406,6 +415,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   FBReactNativeSpec:
     :path: "../node_modules/react-native/Libraries/FBReactNativeSpec"
+  flipper-plugin-react-native-performance:
+    :path: "../node_modules/flipper-plugin-react-native-performance/ios"
   Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
@@ -434,6 +445,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/cameraroll"
   react-native-color-lens:
     :path: "../node_modules/react-native-color-lens"
+  react-native-flipper:
+    :path: "../node_modules/react-native-flipper"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-spinkit:
@@ -470,6 +483,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
+  toolbar-android:
+    :path: "../node_modules/@react-native-community/toolbar-android"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -485,6 +500,7 @@ SPEC CHECKSUMS:
   Flipper-Folly: c12092ea368353b58e992843a990a3225d4533c3
   Flipper-Glog: 1dfd6abf1e922806c52ceb8701a3599a79a200a6
   Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
+  flipper-plugin-react-native-performance: bfe0f405c600267cac5c921cdb1f4a06b171722f
   Flipper-RSocket: 64e7431a55835eb953b0bf984ef3b90ae9fdddd7
   FlipperKit: 6dc9b8f4ef60d9e5ded7f0264db299c91f18832e
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
@@ -499,9 +515,10 @@ SPEC CHECKSUMS:
   React-jsi: b6dc94a6a12ff98e8877287a0b7620d365201161
   React-jsiexecutor: 1540d1c01bb493ae3124ed83351b1b6a155db7da
   React-jsinspector: 512e560d0e985d0e8c479a54a4e5c147a9c83493
-  react-native-camera: eeb5b5f4ba4c1365fed3563af8a72007cbad7aab
+  react-native-camera: b5c8c7a71feecfdd5b39f0dbbf6b64b957ed55f2
   react-native-cameraroll: e2917a5e62da9f10c3d525e157e25e694d2d6dfa
   react-native-color-lens: 299c0c4200eaf6407df25d1f4bbd3f628cd6564e
+  react-native-flipper: 1dde244c24b0a16b8b8866cee522e390ec97ea74
   react-native-safe-area-context: 14c793e8b0bfe51e74dcdbe75dd14ee7498b88b8
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
@@ -519,10 +536,11 @@ SPEC CHECKSUMS:
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
   RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
-  RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  RNVectorIcons: 368d6d8b8301224e5ffb6254191f4f8876c2be0d
+  toolbar-android: 85f3ef4d691469f2d304e7dee4bca013aa1ba1ff
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: fe17a771fadf3f50c5a5b3dc84d2a767b6260b7e
+PODFILE CHECKSUM: c3ac5e0723c6683524a1e61afe15d8eeedfa1d60
 
 COCOAPODS: 1.8.4

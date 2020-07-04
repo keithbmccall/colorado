@@ -736,7 +736,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 29B3F597B265820EF992B810 /* Pods-ColorLens-ColorLensTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -760,7 +760,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF3D58A8E052F9E966AD8EFC /* Pods-ColorLens-ColorLensTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = ColorLensTests/Info.plist;

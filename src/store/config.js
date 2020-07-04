@@ -1,32 +1,29 @@
 import { createStore, compose, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
-import { persistStore, persistReducer } from "redux-persist";
-import AsyncStorage from "@react-native-community/async-storage";
-import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
-import { createFlipperMiddleware, createThunkMiddleware } from "./middleware";
+import { composeMiddleware } from "./middleware";
+import { createPersistStore } from "./persistor";
 
-const initialState = {};
+const initStore = () => {
+  const initialState = {};
 
-const persistConfig = {
-  key: "root",
-  storage: AsyncStorage,
-  blacklist: ["app", "cameraRoll"],
-  stateReconciler: autoMergeLevel2
+  const middleware = composeMiddleware();
+
+  const { persistStore, persistedReducer } = createPersistStore(rootReducer);
+
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+  return {
+    persistStore,
+    store: createStore(
+      persistedReducer,
+      initialState,
+      composeEnhancers(applyMiddleware(...middleware))
+    )
+  };
 };
 
-const middleware = [createThunkMiddleware()];
+const { store, persistStore } = initStore();
 
-if (__DEV__) {
-  middleware.push(createFlipperMiddleware()());
-}
+const persistor = persistStore(store);
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const initStore = () =>
-  createStore(persistedReducer, initialState, composeEnhancers(applyMiddleware(...middleware)));
-
-export const store = initStore();
-
-export const persistor = persistStore(store);
+export { store, persistor };

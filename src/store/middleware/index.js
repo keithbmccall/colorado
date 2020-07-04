@@ -1,7 +1,17 @@
-export const createFlipperMiddleware = () => {
+const createFlipperMiddleware = () => {
   return require("redux-flipper").default;
 };
 
-export const createThunkMiddleware = () => {
+const createThunkMiddleware = () => {
   return require("redux-thunk").default;
+};
+
+export const composeMiddleware = () => {
+  const middleware = [createThunkMiddleware()];
+
+  if (__DEV__) {
+    middleware.push(createFlipperMiddleware()());
+  }
+
+  return middleware;
 };

@@ -1,8 +1,8 @@
 import React from "react";
 import style from "../styles";
 import PropTypes from "prop-types";
-import { Text, View } from "react-native";
-import { AnimatedView } from "#containers";
+import { View } from "react-native";
+import { AnimatedView, Text } from "#containers";
 
 const StudioInstructions = props => (
   <AnimatedView
@@ -11,12 +11,14 @@ const StudioInstructions = props => (
     style={style.directionsWrapper}
   >
     <View style={style.directionsCard}>
-      <Text style={style.directionsLabel}>
-        <Text style={style.directionsSpan}>TAP</Text> on a swatch to read swatch strip or
-      </Text>
-      <Text style={style.directionsLabel}>
-        <Text style={style.directionsSpan}>PRESS</Text> on a swatch to edit your Palette!
-      </Text>
+      <Text.Small style={style.directionsLabel}>
+        <Text.Small style={style.directionsSpan}>TAP</Text.Small> on a swatch to read swatch strip
+        or
+      </Text.Small>
+      <Text.Small style={style.directionsLabel}>
+        <Text.Small style={style.directionsSpan}>PRESS</Text.Small> on a swatch to edit your
+        Palette!
+      </Text.Small>
     </View>
   </AnimatedView>
 );

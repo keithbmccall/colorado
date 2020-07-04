@@ -7,9 +7,5 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly"
-  },
-  label: {
-    fontSize: 15,
-    fontWeight: "bold"
   }
 });

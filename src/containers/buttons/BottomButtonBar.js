@@ -1,6 +1,7 @@
 import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
+import { Text } from "#containers";
 import defaultStyle from "./styles";
 
 const BottomButtonBar = props => {
@@ -8,7 +9,7 @@ const BottomButtonBar = props => {
 
   return (
     <TouchableOpacity onPress={onPress} style={{ ...defaultStyle.bottomButtonBar, ...style }}>
-      <Text style={{ ...defaultStyle.label, ...labelStyle }}>{label}</Text>
+      <Text.Sentence style={{ ...labelStyle }}>{label}</Text.Sentence>
     </TouchableOpacity>
   );
 };
@@ -20,7 +21,7 @@ BottomButtonBar.propTypes = {
 };
 
 BottomButtonBar.defaultProps = {
-  label: "ThisButtonHasNoLabel",
+  label: "__ThisButtonHasNoLabel!__",
   onPress: () => {}
 };
 export default BottomButtonBar;

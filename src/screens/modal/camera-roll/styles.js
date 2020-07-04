@@ -6,7 +6,6 @@ export default StyleSheet.create({
   cameraRollScreenWrapper: {
     flex: 1
   },
-  titleText: {},
   animatedViewSlider: {
     position: "absolute",
     width: "100%",
@@ -15,12 +14,6 @@ export default StyleSheet.create({
     borderTopWidth: 2,
     borderStyle: "solid"
     // backgroundColor: colors.modalViewBackground
-  },
-  animatedViewButton: {},
-  animatedViewText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: colors.primary
   },
   animatedViewPosition: {
     bottom: DEVICE_HEIGHT,

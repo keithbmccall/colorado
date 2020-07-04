@@ -8,8 +8,6 @@ export default StyleSheet.create({
     alignItems: "center"
   },
   imageStudioHeading: {
-    fontSize: 20,
-    fontWeight: "bold",
     color: colors.primary
   },
   buttonBarWrapper: {
@@ -57,9 +55,7 @@ export default StyleSheet.create({
   },
   directionsLabel: {
     marginTop: 5,
-    marginBottom: 5,
-    fontSize: 14,
-    fontWeight: "bold"
+    marginBottom: 5
   },
   directionsSpan: {
     color: colors.primary,

@@ -1,9 +1,10 @@
 import React, { useState, memo, useCallback } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { connect } from "react-redux";
 import ImageStudio from "./components/ImageStudio";
 import {
   // Buttons,
+  Text,
   Layout
 } from "#containers";
 import { studioActions } from "#store/actions";
@@ -64,7 +65,7 @@ const ImageStudioScreen = props => {
   return (
     <Layout style={style.imageStudioWrapper}>
       <View style={style.imageStudioHeadingWrapper}>
-        <Text style={style.imageStudioHeading}>Studio</Text>
+        <Text.Title style={style.imageStudioHeading}>Studio</Text.Title>
       </View>
       <ImageStudio
         image={studioImage}

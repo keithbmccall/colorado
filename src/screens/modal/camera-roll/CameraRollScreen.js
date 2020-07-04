@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback, memo } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCameraRollOptions, renderButtonText, selectOrUnselectImage } from "./methods";
-import { ImageGallery, AnimatedView, Buttons } from "#containers";
+import { ImageGallery, AnimatedView, Buttons, Text } from "#containers";
 import { cameraRollActions, studioActions } from "#store/actions";
 import { ROW_DIMENSIONS } from "#enum";
 import style from "./styles";
@@ -66,7 +66,7 @@ const CameraRollScreen = props => {
 
   return (
     <View style={style.cameraRollScreenWrapper}>
-      <Text style={style.titleText}>CameraRoll</Text>
+      <Text.Title>CameraRoll</Text.Title>
       <ImageGallery images={images} galleryOptions={galleryOptions} onPress={selectImage} />
       <AnimatedView
         style={style.animatedViewSlider}
@@ -76,8 +76,6 @@ const CameraRollScreen = props => {
         <Buttons.FullWidthButton
           pressMethod={confirmSelectedImages}
           innerText={renderButtonText(images)}
-          style={{}}
-          textStyle={{ ...style.animatedViewText }}
         />
       </AnimatedView>
     </View>

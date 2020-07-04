@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { getHexInfo } from "#utils";
+import { Text } from "#containers";
 import style from "./styles";
 
 const Inspector = props => {
@@ -12,10 +13,12 @@ const Inspector = props => {
   return (
     <View style={{ ...style.inspectorWrapper, backgroundColor: color }}>
       <View style={style.inspectorTextWrapper}>
-        <Text style={style.inspectorTextName}>{name}</Text>
-        <Text style={style.inspectorText}>{pantone}</Text>
-        <Text style={style.inspectorText}>{color.toUpperCase()}</Text>
-        <Text style={style.inspectorText}>{rgb}</Text>
+        <Text.Title style={style.inspectorTextName}>{name}</Text.Title>
+        <View style={style.inspectorDetailsWrapper}>
+          <Text.SubTitle style={style.inspectorText}>{pantone}</Text.SubTitle>
+          <Text.SubTitle style={style.inspectorText}>{color.toUpperCase()}</Text.SubTitle>
+          <Text.SubTitle style={style.inspectorText}>{rgb}</Text.SubTitle>
+        </View>
       </View>
     </View>
   );

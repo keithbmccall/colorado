@@ -10,13 +10,13 @@ export default StyleSheet.create({
     left: 20
   },
   inspectorTextName: {
-    fontSize: 20,
-    fontWeight: "bold",
     color: colors.white
   },
   inspectorText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: colors.white
+    color: colors.white,
+    marginTop: 2
+  },
+  inspectorDetailsWrapper: {
+    marginTop: 6
   }
 });

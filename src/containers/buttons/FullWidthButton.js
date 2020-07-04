@@ -1,12 +1,15 @@
 import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity } from "react-native";
+import { Text } from "#containers";
 
 const FullWidthButton = props => (
   <TouchableOpacity
     onPress={props.pressMethod}
     style={{ ...props.style, justifyContent: "center", alignItems: "center", flex: 1 }}
   >
-    {props.innerText && <Text style={{ ...props.textStyle }}>{props.innerText}</Text>}
+    {props.innerText && (
+      <Text.Sentence style={{ ...props.textStyle }}>{props.innerText}</Text.Sentence>
+    )}
   </TouchableOpacity>
 );
 

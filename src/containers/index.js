@@ -7,6 +7,7 @@ import AnimatedView from "./animations/AnimatedView";
 import ScrollableList from "./lists/ScrollableList";
 import ResponsiveImage from "./image-containers/ResponsiveImage";
 import * as Buttons from "./buttons";
+import * as Text from "./text";
 
 export {
   ColorStripContainer,
@@ -17,5 +18,6 @@ export {
   AnimatedView,
   ScrollableList,
   ResponsiveImage,
-  Buttons
+  Buttons,
+  Text
 };

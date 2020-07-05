@@ -3,10 +3,9 @@ export { isValidNumberOrPercentageValidator, rowSizeRangeValidator } from "./val
 export {
   normalizeSwatches,
   equalizeSwatchLength,
-  converRGBToHex,
-  buildSwatchPalette,
+  convertRGBToHex,
   mapSwatchPaletteToArray,
   getHexInfo
 } from "./swatch.util";
-export { errorHandler, setGlobalHandler } from "./errors.util";
+export { setGlobalHandler } from "./errors.util";
 export { toggleRowSize } from "./gallery.util";

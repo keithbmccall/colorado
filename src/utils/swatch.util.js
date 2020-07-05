@@ -25,7 +25,7 @@ export const equalizeSwatchLength = swatches => {
  * @param blue
  * @returns {{alpha: number, hex: String}|{alpha: number, hex: string}}
  */
-export const converRGBToHex = ({ red, green, blue }) => rgb2hex(`rgb(${red},${green},${blue})`);
+export const convertRGBToHex = ({ red, green, blue }) => rgb2hex(`rgb(${red},${green},${blue})`);
 
 /**
  *
@@ -35,7 +35,7 @@ export const converRGBToHex = ({ red, green, blue }) => rgb2hex(`rgb(${red},${gr
 export const normalizeSwatches = swatches =>
   equalizeSwatchLength(swatches).reduce((acc, { r: red, g: green, b: blue }, i) => {
     // should return { a: "#000000", b: "#000000" } etc...
-    const { hex = null } = converRGBToHex({ red, green, blue });
+    const { hex = null } = convertRGBToHex({ red, green, blue });
     const key = swatchDictionaryEnum[`${i}`];
 
     if (hex) {

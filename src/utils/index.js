@@ -9,3 +9,4 @@ export {
 } from "./swatch.util";
 export { setGlobalHandler } from "./errors.util";
 export { toggleRowSize } from "./gallery.util";
+export { getImageHeightOnContain } from "./image.util";

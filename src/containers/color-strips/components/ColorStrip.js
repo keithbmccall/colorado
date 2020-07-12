@@ -28,7 +28,9 @@ const renderSwatches = props => {
 
 const ColorStrip = props => {
   const { style } = props;
-  return <View style={style}>{renderSwatches(props)}</View>;
+  return (
+    <View style={{ ...defaultStyle.colorStripWrapper, ...style }}>{renderSwatches(props)}</View>
+  );
 };
 
 ColorStrip.propTypes = {
@@ -40,7 +42,7 @@ ColorStrip.propTypes = {
 };
 
 ColorStrip.defaultProps = {
-  style: defaultStyle.colorStripWrapper,
+  style: {},
   onPress: null,
   onLongPress: null,
   isStudio: false

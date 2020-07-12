@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
-import { colors } from "#styles";
+import { colors, globalStyle } from "#styles";
 
 export default StyleSheet.create({
   loadingView: {
-    position: "absolute",
+    ...globalStyle.absolute,
     bottom: 0,
     left: 0,
     right: 0,

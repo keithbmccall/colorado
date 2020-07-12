@@ -6,7 +6,6 @@ import { normalizeSwatches } from "#utils";
 import LoadingView from "../loading/LoadingView";
 import { studioActions } from "#store/actions";
 import { connect } from "react-redux";
-import defaultStyle from "./styles";
 
 const ColorStripContainer = props => {
   const {
@@ -16,7 +15,8 @@ const ColorStripContainer = props => {
     image,
     onReady,
     setSwatchesOnImage,
-    setSwatchesOnStudioImage
+    setSwatchesOnStudioImage,
+    style
   } = props;
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -50,7 +50,13 @@ const ColorStripContainer = props => {
   }, [image, isStudio, onReady, setSwatchesOnImage, setSwatchesOnStudioImage]);
 
   return isLoaded ? (
-    <ColorStrip swatches={image.swatches} onPress={onPress} onLongPress={onLongPress} isStudio />
+    <ColorStrip
+      swatches={image.swatches}
+      onPress={onPress}
+      onLongPress={onLongPress}
+      style={style}
+      isStudio
+    />
   ) : (
     <LoadingView blank />
   );
@@ -64,11 +70,12 @@ ColorStripContainer.propTypes = {
   onPress: PropTypes.func,
   onReady: PropTypes.func,
   isStudio: PropTypes.bool,
-  onLongPress: PropTypes.func
+  onLongPress: PropTypes.func,
+  style: PropTypes.object
 };
 
 ColorStripContainer.defaultProps = {
-  style: defaultStyle.containerDefaultWrapper,
+  style: {},
   quality: "medium",
   isStudio: false,
   onReady: null,

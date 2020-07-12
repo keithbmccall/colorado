@@ -73,10 +73,7 @@ const CameraRollScreen = props => {
         animation={sliderOptions}
         shouldLaunch={shouldConfirmMenuOpen}
       >
-        <Buttons.FullWidthButton
-          pressMethod={confirmSelectedImages}
-          innerText={renderButtonText(images)}
-        />
+        <Buttons.Full pressMethod={confirmSelectedImages} innerText={renderButtonText(images)} />
       </AnimatedView>
     </View>
   );

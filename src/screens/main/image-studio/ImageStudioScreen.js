@@ -2,22 +2,17 @@ import React, { useState, memo, useCallback } from "react";
 import { View } from "react-native";
 import { connect } from "react-redux";
 import ImageStudio from "./components/ImageStudio";
-import {
-  // Buttons,
-  Text,
-  Layout
-} from "#containers";
+import { Text, Layout } from "#containers";
 import { studioActions } from "#store/actions";
 import style from "./styles";
 import { ImageGallery } from "#containers";
 import { ROW_DIMENSIONS } from "#enum";
 import { studioSelectors } from "#selectors";
 import PropTypes from "prop-types";
-import { navigateTo, CAMERA_ROLL, INSPECT, fromImageStudioScreen } from "#navigation";
+import { navigateTo, CHOOSER, INSPECT, fromImageStudioScreen } from "#navigation";
 
 const initialState = {
   galleryOptions: ROW_DIMENSIONS.rowSize3,
-  editMode: false,
   sliderOptions: {
     starting: style.directionsWrapperPosition.bottom,
     ending: style.directionsWrapperPosition.top,
@@ -28,35 +23,18 @@ const initialState = {
 const ImageStudioScreen = props => {
   const { studioImage, studioImages, setImageStudioImage, navigation } = props;
 
-  const [
-    galleryOptions
-    // setGalleryOptions
-  ] = useState(initialState.galleryOptions);
-  const [editMode, setEditMode] = useState(initialState.editMode);
-  // const [sliderOptions] = useState(initialState.sliderOptions);
-
-  // const toggleGalleryOptions = useCallback(() => {
-  //   setGalleryOptions(toggleRowSize(galleryOptions.rowSize));
-  // }, [galleryOptions.rowSize]);
-
-  const toggleEditMode = useCallback(() => {
-    setEditMode(!editMode);
-  }, [editMode]);
+  const [galleryOptions] = useState(initialState.galleryOptions);
 
   const inspectColorSwatch = useCallback(
     (color, colorIndex) => {
-      navigateTo(
-        navigation,
-        CAMERA_ROLL,
-        fromImageStudioScreen({ color, colorIndex, type: INSPECT })
-      );
+      navigateTo(navigation, INSPECT, fromImageStudioScreen({ color, colorIndex }));
     },
     [navigation]
   );
 
-  const updateColorSwatch = useCallback((color, colorIndex) => {
-    console.log("updating", color, colorIndex);
-  }, []);
+  const launchChooserScreen = useCallback(() => {
+    navigateTo(navigation, CHOOSER, fromImageStudioScreen({ studioImage }));
+  }, [navigation, studioImage]);
 
   const _setImageStudioImage = useCallback(image => setImageStudioImage(image), [
     setImageStudioImage
@@ -69,10 +47,8 @@ const ImageStudioScreen = props => {
       </View>
       <ImageStudio
         image={studioImage}
-        editMode={editMode}
-        toggleEditMode={toggleEditMode}
         onPress={inspectColorSwatch}
-        onLongPress={updateColorSwatch}
+        onEditPress={launchChooserScreen}
       />
       <ImageGallery
         images={studioImages}
@@ -81,13 +57,6 @@ const ImageStudioScreen = props => {
         style={style.imageStudioGalleryWrapper}
         isStudio
       />
-      {/*<Buttons.BottomButtonBar*/}
-      {/*  label={SWITCH_COLUMNS}*/}
-      {/*  onPress={toggleGalleryOptions}*/}
-      {/*  style={style.buttonBarWrapper}*/}
-      {/*  labelStyle={style.buttonBarLabel}*/}
-      {/*/>*/}
-      {/*<StudioInstructions editMode={editMode} sliderOptions={sliderOptions} />*/}
     </Layout>
   );
 };

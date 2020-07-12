@@ -1,6 +1,6 @@
 import CameraRoll from "@react-native-community/cameraroll";
 import { defaultCameraRollOptionsEnum } from "#enum";
-import { keyGenerator } from "../../utils";
+import { keyGenerator } from "#utils";
 
 export const buildImageObject = (edge, i) => {
   const {

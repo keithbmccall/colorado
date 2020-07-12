@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { DEVICE_HEIGHT, colors } from "#styles";
+import { DEVICE_HEIGHT, colors, globalStyle } from "#styles";
 //
 
 export default StyleSheet.create({
@@ -7,7 +7,7 @@ export default StyleSheet.create({
     flex: 1
   },
   animatedViewSlider: {
-    position: "absolute",
+    ...globalStyle.absolute,
     width: "100%",
     height: 50,
     borderTopColor: colors.modalViewBackground,

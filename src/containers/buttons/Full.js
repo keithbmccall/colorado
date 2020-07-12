@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import { Text } from "#containers";
 
-const FullWidthButton = props => (
+const Full = props => (
   <TouchableOpacity
     onPress={props.pressMethod}
     style={{ ...props.style, justifyContent: "center", alignItems: "center", flex: 1 }}
@@ -13,4 +13,4 @@ const FullWidthButton = props => (
   </TouchableOpacity>
 );
 
-export default FullWidthButton;
+export default Full;

@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
+import { globalStyle } from "#styles";
 
 export default StyleSheet.create({
   colorStripWrapper: {
-    position: "absolute",
+    ...globalStyle.absolute,
     left: 0,
     bottom: 0,
     height: "15%",

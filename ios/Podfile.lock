@@ -249,6 +249,8 @@ PODS:
     - React
   - react-native-flipper (0.49.0):
     - React
+  - react-native-pixel-color (0.0.2):
+    - React
   - react-native-safe-area-context (2.0.3):
     - React
   - react-native-spinkit (1.4.1):
@@ -371,6 +373,7 @@ DEPENDENCIES:
   - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
   - react-native-color-lens (from `../node_modules/react-native-color-lens`)
   - react-native-flipper (from `../node_modules/react-native-flipper`)
+  - react-native-pixel-color (from `../node_modules/react-native-pixel-color`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-spinkit (from `../node_modules/react-native-spinkit`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -447,6 +450,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-color-lens"
   react-native-flipper:
     :path: "../node_modules/react-native-flipper"
+  react-native-pixel-color:
+    :path: "../node_modules/react-native-pixel-color"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-spinkit:
@@ -519,6 +524,7 @@ SPEC CHECKSUMS:
   react-native-cameraroll: e2917a5e62da9f10c3d525e157e25e694d2d6dfa
   react-native-color-lens: 299c0c4200eaf6407df25d1f4bbd3f628cd6564e
   react-native-flipper: 1dde244c24b0a16b8b8866cee522e390ec97ea74
+  react-native-pixel-color: b9ce5ec3d52d981ddf546436a7f768bfd7814cbd
   react-native-safe-area-context: 14c793e8b0bfe51e74dcdbe75dd14ee7498b88b8
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c

@@ -3,15 +3,18 @@ import { get } from "lodash";
 import { Layout } from "#containers";
 import { colors } from "#styles";
 import CameraRollScreen from "./camera-roll/CameraRollScreen";
-import Inspector from "./inspect/Inspector";
-import { INSPECT, ROUTE_PARAMS_PATH, CAMERA_ROLL } from "#navigation";
+import InspectorScreen from "./inspect/InspectorScreen";
+import ChooserScreen from "./chooser/ChooserScreen";
+import { INSPECT, ROUTE_PARAMS_PATH, CAMERA_ROLL, CHOOSER } from "#navigation";
 
 const modalRouter = modalType => {
   switch (modalType) {
     case INSPECT:
-      return Inspector;
+      return InspectorScreen;
     case CAMERA_ROLL:
       return CameraRollScreen;
+    case CHOOSER:
+      return ChooserScreen;
     default:
       return CameraRollScreen;
   }

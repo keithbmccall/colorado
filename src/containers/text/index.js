@@ -19,7 +19,6 @@ BaseText.defaultProps = {
 };
 
 export const Title = ({ style, children }) => {
-  console.log({ style });
   return <BaseText style={{ ...defaultStyle.title, ...style }}>{children} </BaseText>;
 };
 

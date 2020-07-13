@@ -43,5 +43,9 @@ export const globalStyle = {
   },
   absolute: {
     position: "absolute"
+  },
+  wh100: {
+    width: "100%",
+    height: "100%"
   }
 };

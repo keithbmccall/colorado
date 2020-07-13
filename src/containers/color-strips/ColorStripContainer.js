@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { getPalette } from "react-native-color-lens";
+import React, { useState, useEffect, memo } from "react";
+import API from "#api";
 import ColorStrip from "./components/ColorStrip";
 import PropTypes from "prop-types";
 import { normalizeSwatches } from "#utils";
@@ -31,7 +31,7 @@ const ColorStripContainer = props => {
         onReady();
       }
     } else {
-      getPalette(uri, (error, newSwatches) => {
+      API.getPalette(uri, (error, newSwatches) => {
         const imageSwatches = {
           swatches: normalizeSwatches(newSwatches),
           image
@@ -88,4 +88,4 @@ const mapDispatchToProps = dispatch => ({
   setSwatchesOnImage: swatches => dispatch(studioActions.setSwatchesOnImage(swatches))
 });
 
-export default connect(null, mapDispatchToProps)(ColorStripContainer);
+export default connect(null, mapDispatchToProps)(memo(ColorStripContainer));

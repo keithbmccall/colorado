@@ -10,6 +10,7 @@ System.config({
     "#store/reducers": "./src/store/reducers/*",
     // helpers
     "#helpers": "./src/helpers/*",
+    "#api": "./src/helpers/api/*",
     "#utils": "./src/utils/*",
     "#enum": "./src/enum/*",
     "#selectors": "./src/selectors/*",

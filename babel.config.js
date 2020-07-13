@@ -10,7 +10,7 @@ module.exports = {
           "#containers": "./src/containers",
           "#constants": "./src/constants",
           "#store": "./src/store",
-          "#helpers": "./src/helpers",
+          "#api": "./src/helpers/api",
           "#utils": "./src/utils",
           "#enum": "./src/enum",
           "#selectors": "./src/selectors",

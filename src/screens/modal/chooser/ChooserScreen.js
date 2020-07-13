@@ -5,7 +5,7 @@ import { Text } from "#containers";
 import { layoutGrid } from "#styles";
 import { getImageHeightOnContain } from "#utils";
 import style from "./styles";
-import { findColor } from "./methods";
+import API from "#api";
 import { ColorStripContainer } from "#containers";
 
 const initialState = {
@@ -18,8 +18,6 @@ const ChooserScreen = props => {
     params: { studioImage }
   } = props;
   const { uri } = studioImage;
-  console.log(studioImage);
-
   const [color, setColor] = useState(initialState.color);
   const [editMode, setEditMode] = useState(initialState.editMode);
 
@@ -36,7 +34,7 @@ const ChooserScreen = props => {
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderRelease: e => {
-        findColor({ e, uri, imageDimensions }, setColor, err =>
+        API.getPixel({ e, uri, imageDimensions }, setColor, err =>
           console.log("error in chooserscreen.findcolor", err)
         );
       }

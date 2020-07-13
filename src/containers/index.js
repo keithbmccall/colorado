@@ -8,6 +8,7 @@ import ScrollableList from "./lists/ScrollableList";
 import ResponsiveImage from "./image-containers/ResponsiveImage";
 import * as Buttons from "./buttons";
 import * as Text from "./text";
+import Inspector from "./inspector/Inspector";
 
 export {
   ColorStripContainer,
@@ -19,5 +20,6 @@ export {
   ScrollableList,
   ResponsiveImage,
   Buttons,
-  Text
+  Text,
+  Inspector
 };

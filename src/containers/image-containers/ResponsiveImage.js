@@ -3,6 +3,7 @@ import { Image } from "react-native";
 import PropTypes from "prop-types";
 import LoadingView from "../loading/LoadingView";
 import { isValidNumberOrPercentageValidator } from "#utils";
+import { globalStyle } from "#styles";
 
 const ResponsiveImage = props => {
   const {
@@ -53,7 +54,7 @@ ResponsiveImage.propTypes = {
 
 ResponsiveImage.defaultProps = {
   resizeMode: "cover",
-  style: { width: "100%", height: "100%" },
+  style: globalStyle.wh100,
   onReady: null
 };
 

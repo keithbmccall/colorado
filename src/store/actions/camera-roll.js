@@ -1,4 +1,4 @@
-import API from "#api";
+import API from "#helpers/api";
 
 export const FETCH_CAMERA_IMAGES = "FETCH_CAMERA_IMAGES";
 export const SAVE_IMAGE_STATE = "SAVE_IMAGE_STATE";

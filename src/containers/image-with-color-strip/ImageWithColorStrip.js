@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect, memo, useCallback } from "react";
 import { View, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
-import LoadingView from "../../containers/loading/LoadingView";
-import ColorStripContainer from "../../containers/color-strips/ColorStripContainer";
-import ResponsiveImage from "../image-containers/ResponsiveImage";
+import LoadingView from "#containers/loading/LoadingView";
+import ColorStripContainer from "#containers/color-strips/ColorStripContainer";
+import ResponsiveImage from "#containers/image-containers/ResponsiveImage";
 import { usePrevious } from "#hooks";
 
 const ImageWithColorStrip = props => {

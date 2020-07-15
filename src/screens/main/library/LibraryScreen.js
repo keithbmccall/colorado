@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
-import { Layout, Text } from "#containers";
+import Text from "#containers/text";
+import Layout from "#containers/layouts/Layout";
 
 export default class LibraryScreen extends PureComponent {
   render() {

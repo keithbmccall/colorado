@@ -1,15 +1,17 @@
 import React, { useRef, useState, useMemo, useCallback } from "react";
 import { View, PanResponder, Image } from "react-native";
 import PropTypes from "prop-types";
-import { Text } from "#containers";
-import { layoutGrid } from "#styles";
-import { getImageHeightOnContain } from "#utils";
+import Text from "#containers/text";
+import Inspector from "#containers/inspector/Inspector";
+import { globalStyle, layoutGrid } from "#styles";
+import { getImageHeightOnContain } from "#utils/image.util";
 import style from "./styles";
-import API from "#api";
-import { ColorStripContainer } from "#containers";
+import API from "#helpers/api";
+import ColorStripContainer from "#containers/color-strips/ColorStripContainer";
+import { fallbackSwatch } from "#enum/colors.enum";
 
 const initialState = {
-  color: "pink",
+  color: fallbackSwatch.hex,
   editMode: false
 };
 
@@ -20,6 +22,8 @@ const ChooserScreen = props => {
   const { uri } = studioImage;
   const [color, setColor] = useState(initialState.color);
   const [editMode, setEditMode] = useState(initialState.editMode);
+
+  const swatch = useMemo(() => ({ hex: color }), [color]);
 
   const imageDimensions = useMemo(() => {
     const { width } = style.imageContainer;
@@ -65,7 +69,7 @@ const ChooserScreen = props => {
           }}
           resizeMethod={"resize"}
         />
-        <View style={layoutGrid.halfQuarter}>
+        <View style={globalStyle.flex1}>
           <ColorStripContainer
             image={studioImage}
             isStudio={true}
@@ -75,6 +79,7 @@ const ChooserScreen = props => {
           />
         </View>
       </View>
+      <Inspector wrapperStyle={{ ...layoutGrid.half }} swatch={swatch} />
     </View>
   );
 };

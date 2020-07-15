@@ -1,4 +1,4 @@
-import { ROW_DIMENSIONS } from "../enum";
+import { ROW_DIMENSIONS } from "#enum/row-dimensions";
 
 export const toggleRowSize = rowSize => {
   if (rowSize === 2) {

@@ -1,7 +1,6 @@
-import rgb2hex from "rgb2hex";
-import { swatchDictionaryEnum } from "#enum";
-import colorHelper from "color-to-name";
-import pantone from "nearest-pantone";
+import { swatchDictionaryEnum } from "#enum/swatch-dictionary.enum";
+import API from "#helpers/api";
+import { fallbackSwatch } from "#enum/colors.enum";
 
 /**
  *
@@ -20,32 +19,30 @@ export const equalizeSwatchLength = swatches => {
 
 /**
  *
- * @param red
- * @param green
- * @param blue
- * @returns {{alpha: number, hex: String}|{alpha: number, hex: string}}
- */
-export const convertRGBToHex = ({ red, green, blue }) => rgb2hex(`rgb(${red},${green},${blue})`);
-
-/**
- *
  * @param swatches
  * @returns {object}
  */
 export const normalizeSwatches = swatches =>
   equalizeSwatchLength(swatches).reduce((acc, { r: red, g: green, b: blue }, i) => {
     // should return { a: "#000000", b: "#000000" } etc...
-    const { hex = null } = convertRGBToHex({ red, green, blue });
+    const hex = API.getHexFromRGB({ red, green, blue }) || null;
     const key = swatchDictionaryEnum[`${i}`];
 
     if (hex) {
-      acc[key] = hex;
+      acc[key] = {
+        hex,
+        ...getHexInfo(hex)
+      };
+
       return acc;
     }
 
     console.log(`Error in normalizeSwatches. Hex returned null at key: ${i}`);
 
-    acc[key] = "#000000";
+    acc[key] = {
+      hex: fallbackSwatch.hex,
+      ...getHexInfo(fallbackSwatch.hex)
+    };
     return acc;
   }, {});
 
@@ -64,11 +61,15 @@ export const mapSwatchPaletteToArray = swatches => {
  * @returns {{name: string, pantone: string, rgb: string}}
  */
 export const getHexInfo = hex => {
-  const { name, pantone: _pantone } = pantone.getClosestColor(hex);
-  const { r, g, b } = colorHelper.hexToRGB(hex);
+  const {
+    name,
+    pantone: _pantone,
+    rgb: { R, G, B }
+  } = API.getPantone(hex);
+  console.log("name", { name });
   return {
     name: name.toUpperCase(),
     pantone: `PANTONE® ${_pantone}`,
-    rgb: `R: ${r} G: ${g} B: ${b}`
+    rgb: `R: ${R} G: ${G} B: ${B}`
   };
 };

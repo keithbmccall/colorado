@@ -2,7 +2,7 @@ import {
   FETCH_CAMERA_IMAGES,
   SAVE_IMAGE_STATE,
   UNSELECT_ALL_IMAGES
-} from "../../actions/camera-roll";
+} from "#store/actions/camera-roll";
 import { unselectCameraImages } from "./util";
 
 const initialState = {

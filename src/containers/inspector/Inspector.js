@@ -1,28 +1,44 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import PropTypes from "prop-types";
 import { View } from "react-native";
-import { getHexInfo } from "#utils";
-import { Text } from "#containers";
+import { getHexInfo } from "#utils/swatch.util";
+import Text from "#containers/text";
 import defaultStyle from "./styles";
+import invert from "invert-color";
+import { fallbackSwatch } from "#enum/colors.enum";
 
 const Inspector = props => {
-  const { color, textStyle, wrapperStyle, titleStyle } = props;
+  const { swatch, textStyle, wrapperStyle, titleStyle } = props;
 
-  const pantoneDetails = getHexInfo(color);
-  const { name, pantone, rgb } = pantoneDetails;
+  const colorDetails = useMemo(() => {
+    if (swatch.pantone) {
+      return swatch;
+    }
 
-  const swatchDetails = [pantone, color, rgb].map((color, i) => {
+    return {
+      ...getHexInfo(swatch.hex),
+      inverted: { color: invert(swatch.hex) }
+    };
+  }, [swatch]);
+
+  const { name, pantone, rgb, inverted } = colorDetails;
+
+  const swatchDetails = [pantone, swatch.hex, rgb].map((_color, i) => {
     return (
-      <Text.SubTitle style={{ ...defaultStyle.inspectorText, ...textStyle }} key={i}>
-        {color.toUpperCase()}
+      <Text.SubTitle style={{ ...defaultStyle.inspectorText, ...textStyle, ...inverted }} key={i}>
+        {_color.toUpperCase()}
       </Text.SubTitle>
     );
   });
 
   return (
-    <View style={{ ...defaultStyle.inspectorWrapper, backgroundColor: color, ...wrapperStyle }}>
+    <View
+      style={{ ...defaultStyle.inspectorWrapper, backgroundColor: swatch.hex, ...wrapperStyle }}
+    >
       <View style={defaultStyle.inspectorTextWrapper}>
-        <Text.Title style={{ ...defaultStyle.inspectorTextName, ...titleStyle }}>{name}</Text.Title>
+        <Text.Title style={{ ...defaultStyle.inspectorTextName, ...titleStyle, ...inverted }}>
+          {name}
+        </Text.Title>
         <View style={defaultStyle.inspectorDetailsWrapper}>{swatchDetails}</View>
       </View>
     </View>
@@ -30,14 +46,14 @@ const Inspector = props => {
 };
 
 Inspector.defaultProps = {
-  color: "#aaaaaa",
+  swatch: fallbackSwatch,
   textStyle: {},
   wrapperStyle: {},
   titleStyle: {}
 };
 
 Inspector.propTypes = {
-  color: PropTypes.string.isRequired,
+  swatch: PropTypes.object.isRequired,
   textStyle: PropTypes.object,
   wrapperStyle: PropTypes.object,
   titleStyle: PropTypes.object

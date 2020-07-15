@@ -1,4 +1,4 @@
-import { defaultCameraRollOptionsEnum } from "#enum";
+import { defaultCameraRollOptionsEnum } from "#enum/camera-roll.enum";
 
 /**
  *

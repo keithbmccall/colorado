@@ -1,11 +1,9 @@
 import { StyleSheet } from "react-native";
-import { colors } from "#styles";
+import { globalStyle } from "#styles";
 
 export default StyleSheet.create({
-  bottomButtonBar: {
-    backgroundColor: colors.layoutBackground,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-evenly"
+  full: {
+    ...globalStyle.flexCenter,
+    ...globalStyle.flex1
   }
 });

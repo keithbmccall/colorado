@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { get } from "lodash";
-import { Layout } from "#containers";
+import Layout from "#containers/layouts/Layout";
 import { colors } from "#styles";
 import CameraRollScreen from "./camera-roll/CameraRollScreen";
 import InspectorScreen from "./inspect/InspectorScreen";

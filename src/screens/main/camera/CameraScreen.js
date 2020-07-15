@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { RNCamera } from "react-native-camera";
 import CameraOptions from "./components/CameraOptions";
-import { Layout } from "#containers";
+import Layout from "#containers/loading/LoadingView";
 import style from "./styles";
 //
 

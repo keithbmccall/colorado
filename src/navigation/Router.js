@@ -30,7 +30,7 @@ const TabStack = tab => {
   );
 };
 
-export const Router = nav => {
+export default nav => {
   console.log("nav", { nav });
   return (
     <NavigationContainer>

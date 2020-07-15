@@ -3,9 +3,12 @@ import { View } from "react-native";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCameraRollOptions, renderButtonText, selectOrUnselectImage } from "./methods";
-import { ImageGallery, AnimatedView, Buttons, Text } from "#containers";
+import ImageGallery from "#containers/image-gallery/ImageGallery";
+import Buttons from "#containers/buttons";
+import AnimatedView from "#containers/animations/AnimatedView";
+import Text from "#containers/text";
 import { cameraRollActions, studioActions } from "#store/actions";
-import { ROW_DIMENSIONS } from "#enum";
+import { ROW_DIMENSIONS } from "#enum/row-dimensions";
 import style from "./styles";
 import { cameraRollSelectors } from "#selectors";
 import { navigateTo, STUDIO, fromCameraRollScreen } from "#navigation";
@@ -73,7 +76,7 @@ const CameraRollScreen = props => {
         animation={sliderOptions}
         shouldLaunch={shouldConfirmMenuOpen}
       >
-        <Buttons.Full pressMethod={confirmSelectedImages} innerText={renderButtonText(images)} />
+        <Buttons.Full onPress={confirmSelectedImages} label={renderButtonText(images)} />
       </AnimatedView>
     </View>
   );

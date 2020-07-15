@@ -1,11 +1,11 @@
 import React, { memo } from "react";
-import { Inspector } from "#containers";
+import Inspector from "#containers/inspector/Inspector";
 import PropTypes from "prop-types";
 
 const InspectorScreen = props => {
-  const { params: { color = "#aaaaaa" } = {} } = props;
+  const { params: { swatch = { hex: "#aaaaaa" } } = {} } = props;
 
-  return <Inspector color={color} />;
+  return <Inspector swatch={swatch} />;
 };
 
 InspectorScreen.propTypes = {

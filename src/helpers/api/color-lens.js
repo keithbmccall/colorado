@@ -1,4 +1,9 @@
-import { getPixel, getPalette } from "react-native-color-lens";
+import {
+  getPixel as _getPixel,
+  getPalette,
+  getPantone,
+  getHexFromRGB
+} from "react-native-color-lens";
 
 /**
  *
@@ -9,22 +14,22 @@ import { getPixel, getPalette } from "react-native-color-lens";
  * @param err
  * @return {Promise<void>}
  */
-const _getPixel = async ({ e, uri, imageDimensions }, cb, err) => {
+const getPixel = async ({ e, uri, imageDimensions }, cb, err) => {
   const { locationX: x, locationY: y } = e.nativeEvent;
 
-  const getHexOptions = {
+  const options = {
     x,
     y,
     ...imageDimensions
   };
 
   try {
-    const _color = await getPixel(uri, getHexOptions);
-    cb(_color);
+    const hex = await _getPixel(uri, options);
+    cb(hex);
   } catch (error) {
     console.log("error in chooserscreen.findcolor", error);
     err(error);
   }
 };
 
-export { _getPixel, getPalette };
+export { getPixel, getPalette, getPantone, getHexFromRGB };

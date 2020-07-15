@@ -1,3 +1,7 @@
-export Full from "./Full";
-export Icon from "./Icon";
-export BottomButtonBar from "./BottomButtonBar";
+import Full from "./Full";
+import Icon from "./Icon";
+
+export default {
+  Full,
+  Icon
+};

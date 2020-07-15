@@ -5,7 +5,7 @@ import {
   SET_STUDIO_IMAGE,
   SET_SWATCHES_ON_IMAGE,
   SET_SWATCHES_ON_STUDIO_IMAGE
-} from "../../actions/studio";
+} from "#store/actions/studio";
 
 const initialState = {
   studioImages: [],

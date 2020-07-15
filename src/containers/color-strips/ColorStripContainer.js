@@ -1,9 +1,9 @@
 import React, { useState, useEffect, memo } from "react";
-import API from "#api";
-import ColorStrip from "./components/ColorStrip";
+import API from "#helpers/api";
+import ColorStrip from "#containers/color-strips/components/ColorStrip";
 import PropTypes from "prop-types";
-import { normalizeSwatches } from "#utils";
-import LoadingView from "../loading/LoadingView";
+import { normalizeSwatches } from "#utils/swatch.util";
+import LoadingView from "#containers/loading/LoadingView";
 import { studioActions } from "#store/actions";
 import { connect } from "react-redux";
 
@@ -37,7 +37,7 @@ const ColorStripContainer = props => {
           image
         };
         if (error) {
-          console.log("error in ColorStripContainer.getDominantSwatches", error);
+          console.log("error in ColorStripContainer.API.getPalette", error);
           return;
         }
         if (isStudio) {

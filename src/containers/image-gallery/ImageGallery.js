@@ -1,13 +1,14 @@
 import React, { useEffect, memo, useCallback, useMemo } from "react";
 import { TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
-import ResponsiveImage from "../image-containers/ResponsiveImage";
+import ResponsiveImage from "#containers/image-containers/ResponsiveImage";
 import ScrollableList from "../lists/ScrollableList";
 import ConditionalWrapper from "../tools/ConditionalWrapper";
-import { conditionalListReverse, rowSizeRangeValidator } from "#utils";
-import { ImageWithColorStrip } from "#containers";
+import { rowSizeRangeValidator } from "#utils/validators.util";
+import { conditionalListReverse } from "#utils/general.util";
+import ImageWithColorStrip from "#containers/image-with-color-strip/ImageWithColorStrip";
 import defaultStyle from "./styles";
-import { ROW_DIMENSIONS } from "#enum";
+import { ROW_DIMENSIONS } from "#enum/row-dimensions";
 
 const renderStudioGallery = props => {
   const { images, onPress, cellSize } = props;

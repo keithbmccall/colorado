@@ -32,6 +32,10 @@ export const globalStyle = {
   alignCenter: {
     alignItems: "center"
   },
+  flexCenter: {
+    alignItems: "center",
+    justifyContent: "center"
+  },
   textAlignCenter: {
     textAlign: "center"
   },

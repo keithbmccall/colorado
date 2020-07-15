@@ -235,6 +235,8 @@ PODS:
     - React-cxxreact (= 0.62.2)
     - React-jsi (= 0.62.2)
   - React-jsinspector (0.62.2)
+  - react-native-bg-thread (1.1.9):
+    - React
   - react-native-camera (3.31.0):
     - React
     - react-native-camera/RCT (= 3.31.0)
@@ -245,7 +247,7 @@ PODS:
     - React
   - react-native-cameraroll (1.8.1):
     - React
-  - react-native-color-lens (2.0.2):
+  - react-native-color-lens (2.2.4):
     - React
   - react-native-flipper (0.49.0):
     - React
@@ -367,6 +369,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - react-native-bg-thread (from `../node_modules/react-native-bg-thread`)
   - react-native-camera (from `../node_modules/react-native-camera`)
   - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
   - react-native-color-lens (from `../node_modules/react-native-color-lens`)
@@ -439,6 +442,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-bg-thread:
+    :path: "../node_modules/react-native-bg-thread"
   react-native-camera:
     :path: "../node_modules/react-native-camera"
   react-native-cameraroll:
@@ -515,9 +520,10 @@ SPEC CHECKSUMS:
   React-jsi: b6dc94a6a12ff98e8877287a0b7620d365201161
   React-jsiexecutor: 1540d1c01bb493ae3124ed83351b1b6a155db7da
   React-jsinspector: 512e560d0e985d0e8c479a54a4e5c147a9c83493
+  react-native-bg-thread: b5daa49e9084baa6de4503b815953bdf4c1d6c4a
   react-native-camera: b5c8c7a71feecfdd5b39f0dbbf6b64b957ed55f2
   react-native-cameraroll: e2917a5e62da9f10c3d525e157e25e694d2d6dfa
-  react-native-color-lens: bf0b8d9b364c4fef74e42664ab0bd9ece22ee36f
+  react-native-color-lens: 98794be9a6987c9d70c771aa7cd6cf133bda23d8
   react-native-flipper: 1dde244c24b0a16b8b8866cee522e390ec97ea74
   react-native-safe-area-context: 14c793e8b0bfe51e74dcdbe75dd14ee7498b88b8
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db

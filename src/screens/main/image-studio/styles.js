@@ -49,8 +49,7 @@ export default StyleSheet.create({
     height: 90,
     width: DEVICE_WIDTH / 1.2,
     backgroundColor: colors.white,
-    justifyContent: "center",
-    alignItems: "center",
+    ...globalStyle.flexCenter,
     borderRadius: 15
   },
   directionsLabel: {

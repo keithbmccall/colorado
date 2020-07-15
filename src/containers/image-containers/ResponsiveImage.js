@@ -1,8 +1,8 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Image } from "react-native";
 import PropTypes from "prop-types";
-import LoadingView from "../loading/LoadingView";
-import { isValidNumberOrPercentageValidator } from "#utils";
+import LoadingView from "#containers/loading/LoadingView";
+import { isValidNumberOrPercentageValidator } from "#utils/validators.util";
 import { globalStyle } from "#styles";
 
 const ResponsiveImage = props => {

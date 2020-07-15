@@ -2,11 +2,12 @@ import React, { useState, memo, useCallback } from "react";
 import { View } from "react-native";
 import { connect } from "react-redux";
 import ImageStudio from "./components/ImageStudio";
-import { Text, Layout } from "#containers";
+import Text from "#containers/text";
+import Layout from "#containers/layouts/Layout";
 import { studioActions } from "#store/actions";
 import style from "./styles";
-import { ImageGallery } from "#containers";
-import { ROW_DIMENSIONS } from "#enum";
+import ImageGallery from "#containers/image-gallery/ImageGallery";
+import { ROW_DIMENSIONS } from "#enum/row-dimensions";
 import { studioSelectors } from "#selectors";
 import PropTypes from "prop-types";
 import { navigateTo, CHOOSER, INSPECT, fromImageStudioScreen } from "#navigation";
@@ -26,8 +27,8 @@ const ImageStudioScreen = props => {
   const [galleryOptions] = useState(initialState.galleryOptions);
 
   const inspectColorSwatch = useCallback(
-    (color, colorIndex) => {
-      navigateTo(navigation, INSPECT, fromImageStudioScreen({ color, colorIndex }));
+    (swatch, swatchIndex) => {
+      navigateTo(navigation, INSPECT, fromImageStudioScreen({ swatch, swatchIndex }));
     },
     [navigation]
   );

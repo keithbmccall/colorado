@@ -1,6 +1,6 @@
 import CameraRoll from "@react-native-community/cameraroll";
-import { defaultCameraRollOptionsEnum } from "#enum";
-import { keyGenerator } from "#utils";
+import { defaultCameraRollOptionsEnum } from "#enum/camera-roll.enum";
+import { keyGenerator } from "#utils/general.util";
 
 export const buildImageObject = (edge, i) => {
   const {
@@ -17,8 +17,7 @@ export const buildImageObject = (edge, i) => {
 };
 
 export const getCameraRollImages = async (options = defaultCameraRollOptionsEnum) => {
-  const images = (await CameraRoll.getPhotos(options)) || [];
-  const { edges: imageEdges, page_info } = images;
+  const { edges: imageEdges, page_info } = (await CameraRoll.getPhotos(options)) || [];
 
   return {
     pageInfo: page_info,

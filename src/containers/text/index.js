@@ -34,4 +34,9 @@ export const Small = ({ style, children }) => {
   return <BaseText style={{ ...defaultStyle.small, ...style }}>{children}</BaseText>;
 };
 
-export default Sentence;
+export default {
+  Title,
+  SubTitle,
+  Sentence,
+  Small
+};

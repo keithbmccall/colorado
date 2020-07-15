@@ -1,4 +1,4 @@
-import { DEVICE_WIDTH } from "../styles-global";
+import { DEVICE_WIDTH } from "#styles";
 
 /**
  *

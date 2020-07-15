@@ -10,8 +10,7 @@ export default StyleSheet.create({
     top: 0,
     height: "100%",
     width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
+    ...globalStyle.flexCenter,
     backgroundColor: "#fff",
     zIndex: 10
   },

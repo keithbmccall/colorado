@@ -1,4 +1,4 @@
-import { BEGIN_LOADING, END_LOADING } from "../../actions/app";
+import { BEGIN_LOADING, END_LOADING } from "#store/actions/app";
 
 const initialState = {
   isLoading: false

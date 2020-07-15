@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Router from "#navigation";
-import { setGlobalHandler } from "#utils";
+import Router from "#navigation/Router";
+import { setGlobalHandler } from "#utils/errors.util";
 
 console.disableYellowBox = true;
 

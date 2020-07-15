@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { globalStyle } from "../../../styles-global";
 
 export default StyleSheet.create({
   cameraView: {
@@ -7,8 +8,7 @@ export default StyleSheet.create({
   optionsContainer: {
     height: 100,
     backgroundColor: "#fff",
-    justifyContent: "center",
-    alignItems: "center"
+    ...globalStyle.flexCenter
   },
   optionsTrigger: {
     borderColor: "#91268d",

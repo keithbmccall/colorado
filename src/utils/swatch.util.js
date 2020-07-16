@@ -66,7 +66,7 @@ export const getHexInfo = hex => {
     pantone: _pantone,
     rgb: { R, G, B }
   } = API.getPantone(hex);
-  console.log("name", { name });
+
   return {
     name: name.toUpperCase(),
     pantone: `PANTONE® ${_pantone}`,

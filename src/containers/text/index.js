@@ -1,11 +1,11 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text as _Text } from "react-native";
 import PropTypes from "prop-types";
 import defaultStyle from "./styles";
 
 export const BaseText = ({ style, children, centered }) => {
   const _centered = centered ? defaultStyle.centered : {};
-  return <Text style={{ ...style, ..._centered }}>{children} </Text>;
+  return <_Text style={{ ...style, ..._centered }}>{children} </_Text>;
 };
 
 BaseText.propTypes = {
@@ -34,9 +34,10 @@ export const Small = ({ style, children }) => {
   return <BaseText style={{ ...defaultStyle.small, ...style }}>{children}</BaseText>;
 };
 
-export default {
+const Text = {
   Title,
   SubTitle,
   Sentence,
   Small
 };
+export default Text;

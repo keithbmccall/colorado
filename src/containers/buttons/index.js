@@ -1,7 +1,8 @@
 import Full from "./Full";
 import Icon from "./Icon";
 
-export default {
+const Button = {
   Full,
   Icon
 };
+export default Button;

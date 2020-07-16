@@ -4,6 +4,9 @@ export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get("wi
 
 export const layoutGrid = {
   // height split on grid
+  halfEight: {
+    height: DEVICE_HEIGHT * 0.06125
+  },
   halfQuarter: {
     height: DEVICE_HEIGHT * 0.125
   },
@@ -26,6 +29,12 @@ export const globalStyle = {
   flex1: {
     flex: 1
   },
+  flexRow: {
+    flexDirection: "row"
+  },
+  flexColumn: {
+    flexDirection: "column"
+  },
   justifyCenter: {
     justifyContent: "center"
   },
@@ -35,6 +44,9 @@ export const globalStyle = {
   flexCenter: {
     alignItems: "center",
     justifyContent: "center"
+  },
+  justifySpaced: {
+    justifyContent: "space-evenly"
   },
   textAlignCenter: {
     textAlign: "center"

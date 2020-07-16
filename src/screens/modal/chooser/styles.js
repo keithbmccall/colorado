@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { DEVICE_WIDTH } from "#styles";
+import { DEVICE_WIDTH, globalStyle, layoutGrid } from "#styles";
 //
 
 export default StyleSheet.create({
@@ -7,7 +7,16 @@ export default StyleSheet.create({
     width: DEVICE_WIDTH,
     resizeMode: "contain"
   },
-  colorStripWrapper: {
+  colorStripContainer: {
     height: "100%"
+  },
+  colorStripWrapper: {
+    ...globalStyle.flex1
+  },
+  chooserWrapper: {
+    ...layoutGrid.half
+  },
+  inspectorWrapper: {
+    ...layoutGrid.half
   }
 });

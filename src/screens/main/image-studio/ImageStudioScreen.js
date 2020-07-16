@@ -10,7 +10,8 @@ import ImageGallery from "#containers/image-gallery/ImageGallery";
 import { ROW_DIMENSIONS } from "#enum/row-dimensions";
 import { studioSelectors } from "#selectors";
 import PropTypes from "prop-types";
-import { navigateTo, CHOOSER, INSPECT, fromImageStudioScreen } from "#navigation";
+import { CHOOSER, INSPECT, navigateTo } from "#navigation/navigators";
+import { fromImageStudioScreen } from "#navigation/from";
 
 const initialState = {
   galleryOptions: ROW_DIMENSIONS.rowSize3,

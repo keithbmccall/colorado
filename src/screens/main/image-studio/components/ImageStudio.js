@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import PropTypes from "prop-types";
-import Buttons from "#containers/buttons";
+import Button from "#containers/buttons";
 import ImageWithColorStrip from "#containers/image-with-color-strip/ImageWithColorStrip";
 import style from "../styles";
 
@@ -17,9 +17,9 @@ const ImageStudio = props => {
         onStripLongPress={onPress}
         isStudio
       />
-      <Buttons.Icon
+      <Button.Icon
         style={style.imageStudioEditButton}
-        name="pencil-box-outline"
+        name={Button.Icon.enum.edit}
         onPress={onEditPress}
         size={35}
       />

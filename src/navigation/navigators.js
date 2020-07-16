@@ -1,20 +1,25 @@
+export const MODAL = "modal";
+export const TAB = "tab";
+//
 export const STUDIO = "studio";
 export const INSPECT = "inspect";
 export const CAMERA_ROLL = "camera roll";
 export const CHOOSER = "chooser";
+export const CAMERA = "camera";
+export const LIBRARY = "library";
 
 const getStack = screenTo => {
   switch (screenTo) {
     case STUDIO:
-    case "camera":
-    case "library":
-      return "tab";
+    case CAMERA:
+    case LIBRARY:
+      return TAB;
     case INSPECT:
     case CAMERA_ROLL:
     case CHOOSER:
-      return "modal";
+      return MODAL;
     default:
-      return "library";
+      return LIBRARY;
   }
 };
 

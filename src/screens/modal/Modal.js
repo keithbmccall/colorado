@@ -5,7 +5,8 @@ import { colors } from "#styles";
 import CameraRollScreen from "./camera-roll/CameraRollScreen";
 import InspectorScreen from "./inspect/InspectorScreen";
 import ChooserScreen from "./chooser/ChooserScreen";
-import { INSPECT, ROUTE_PARAMS_PATH, CAMERA_ROLL, CHOOSER } from "#navigation";
+import ModalNavigator from "./navigator/ModalNavigator";
+import { CAMERA_ROLL, CHOOSER, INSPECT, ROUTE_PARAMS_PATH } from "#navigation/navigators";
 
 const modalRouter = modalType => {
   switch (modalType) {
@@ -27,6 +28,7 @@ export const Modal = memo(props => {
 
   return (
     <Layout style={{ backgroundColor: colors.modalViewBackground }}>
+      <ModalNavigator {...props} params={modalParams} />
       <Container {...props} params={modalParams} />
     </Layout>
   );

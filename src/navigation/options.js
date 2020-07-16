@@ -1,5 +1,8 @@
-const rootInitialRouteName = "modal";
-const tabInitialRouteName = "studio";
+import { CAMERA_ROLL, MODAL, STUDIO } from "#navigation/navigators";
+
+const rootInitialRouteName = MODAL;
+const tabInitialRouteName = STUDIO;
+const modalInitialRouteName = CAMERA_ROLL;
 
 const tabOptions = {
   tabInitialRouteName,
@@ -7,6 +10,13 @@ const tabOptions = {
     style: {
       display: "none"
     }
+  }
+};
+
+const modalOptions = {
+  modalInitialRouteName,
+  modalBarOptions: {
+    style: {}
   }
 };
 
@@ -21,5 +31,6 @@ const rootOptions = {
 
 export const navigatorOptions = {
   ...tabOptions,
-  ...rootOptions
+  ...rootOptions,
+  ...modalOptions
 };

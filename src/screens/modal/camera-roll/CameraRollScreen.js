@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCameraRollOptions, renderButtonText, selectOrUnselectImage } from "./methods";
 import ImageGallery from "#containers/image-gallery/ImageGallery";
-import Buttons from "#containers/buttons";
+import Button from "#containers/buttons";
 import AnimatedView from "#containers/animations/AnimatedView";
-import Text from "#containers/text";
 import { cameraRollActions, studioActions } from "#store/actions";
 import { ROW_DIMENSIONS } from "#enum/row-dimensions";
 import style from "./styles";
 import { cameraRollSelectors } from "#selectors";
-import { navigateTo, STUDIO, fromCameraRollScreen } from "#navigation";
+import { navigateTo, STUDIO } from "#navigation/navigators";
+import { fromCameraRollScreen } from "#navigation/from";
 
 const initialState = {
   sliderOptions: {
@@ -69,14 +69,13 @@ const CameraRollScreen = props => {
 
   return (
     <View style={style.cameraRollScreenWrapper}>
-      <Text.Title>CameraRoll</Text.Title>
       <ImageGallery images={images} galleryOptions={galleryOptions} onPress={selectImage} />
       <AnimatedView
         style={style.animatedViewSlider}
         animation={sliderOptions}
         shouldLaunch={shouldConfirmMenuOpen}
       >
-        <Buttons.Full onPress={confirmSelectedImages} label={renderButtonText(images)} />
+        <Button.Full onPress={confirmSelectedImages} label={renderButtonText(images)} />
       </AnimatedView>
     </View>
   );
@@ -88,7 +87,6 @@ CameraRollScreen.defaultProps = {
 
 CameraRollScreen.propTypes = {
   navigation: PropTypes.object,
-  // redux
   images: PropTypes.array.isRequired,
   selectedImages: PropTypes.array.isRequired,
   fetchCameraRollImages: PropTypes.func.isRequired,

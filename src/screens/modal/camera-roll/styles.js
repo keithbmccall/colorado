@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { DEVICE_HEIGHT, colors, globalStyle } from "#styles";
+import { DEVICE_HEIGHT, colors, globalStyle, layoutGrid } from "#styles";
 //
 
 export default StyleSheet.create({
@@ -17,6 +17,6 @@ export default StyleSheet.create({
   },
   animatedViewPosition: {
     bottom: DEVICE_HEIGHT,
-    top: DEVICE_HEIGHT * 0.85
+    top: layoutGrid.threeFourth.height
   }
 });

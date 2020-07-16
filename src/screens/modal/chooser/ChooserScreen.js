@@ -1,14 +1,13 @@
 import React, { useRef, useState, useMemo, useCallback } from "react";
 import { View, PanResponder, Image } from "react-native";
 import PropTypes from "prop-types";
-import Text from "#containers/text";
 import Inspector from "#containers/inspector/Inspector";
-import { globalStyle, layoutGrid } from "#styles";
 import { getImageHeightOnContain } from "#utils/image.util";
 import style from "./styles";
 import API from "#helpers/api";
 import ColorStripContainer from "#containers/color-strips/ColorStripContainer";
 import { fallbackSwatch } from "#enum/colors.enum";
+import { defaultParams } from "#navigation/enum";
 
 const initialState = {
   color: fallbackSwatch.hex,
@@ -56,8 +55,7 @@ const ChooserScreen = props => {
 
   return (
     <View>
-      <Text.Title style={{ color }}>Chooser</Text.Title>
-      <View style={layoutGrid.half}>
+      <View style={style.chooserWrapper}>
         <Image
           {...panHandlers}
           style={{
@@ -69,25 +67,23 @@ const ChooserScreen = props => {
           }}
           resizeMethod={"resize"}
         />
-        <View style={globalStyle.flex1}>
+        <View style={style.colorStripWrapper}>
           <ColorStripContainer
             image={studioImage}
             isStudio={true}
-            style={style.colorStripWrapper}
+            style={style.colorStripContainer}
             onPress={onPress}
             onLongPress={onLongPress}
           />
         </View>
       </View>
-      <Inspector wrapperStyle={{ ...layoutGrid.half }} swatch={swatch} />
+      <Inspector wrapperStyle={style.inspectorWrapper} swatch={swatch} />
     </View>
   );
 };
 
 ChooserScreen.defaultProps = {
-  params: {
-    studioImage: {}
-  }
+  params: defaultParams
 };
 
 ChooserScreen.propTypes = {

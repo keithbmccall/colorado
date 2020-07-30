@@ -4,6 +4,7 @@ System.config({
     "#navigation/*": "./src/navigation/*",
     "#containers/*": "./src/containers/*",
     "#constants/*": "./src/constants/*",
+    "#screens/*": ".src/screens/*",
     // store
     "#store/*": "./src/store/*",
     // helpers

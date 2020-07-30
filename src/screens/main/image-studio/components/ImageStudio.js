@@ -38,4 +38,5 @@ ImageStudio.defaultProps = {
   onEditPress: null,
   image: {}
 };
+
 export default ImageStudio;

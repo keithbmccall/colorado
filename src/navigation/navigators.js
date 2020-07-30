@@ -7,6 +7,8 @@ export const CAMERA_ROLL = "camera roll";
 export const CHOOSER = "chooser";
 export const CAMERA = "camera";
 export const LIBRARY = "library";
+//
+export const ROUTE_PARAMS_PATH = "route.params.params";
 
 const getStack = screenTo => {
   switch (screenTo) {
@@ -33,5 +35,3 @@ export const navigateTo = ({ navigate }, screenTo, params) => {
   // navigate(navigator stack, { screen: screen to go to, paramas: extra props })
   navigate(getStack(screenTo), { screen: screenTo, params: { ...params, type: screenTo } });
 };
-
-export const ROUTE_PARAMS_PATH = "route.params.params";

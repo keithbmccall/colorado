@@ -6,11 +6,16 @@ import ColorStripContainer from "#containers/color-strips/ColorStripContainer";
 import ResponsiveImage from "#containers/image-containers/ResponsiveImage";
 import { usePrevious } from "#hooks";
 
+const initialState = {
+  isImageReady: false,
+  isColorsReady: false
+};
+
 const ImageWithColorStrip = props => {
   const { onPress, onStripPress, onStripLongPress, style, isStudio, image } = props;
 
-  const [isImageReady, setIsImageReady] = useState(false);
-  const [isColorsReady, setIsColorsReady] = useState(false);
+  const [isImageReady, setIsImageReady] = useState(initialState.isImageReady);
+  const [isColorsReady, setIsColorsReady] = useState(initialState.isColorsReady);
 
   const prevImage = usePrevious(image);
 

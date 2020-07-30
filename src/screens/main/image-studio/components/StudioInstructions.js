@@ -34,4 +34,5 @@ StudioInstructions.propTypes = {
 StudioInstructions.defaultProps = {
   editMode: false
 };
+
 export default StudioInstructions;

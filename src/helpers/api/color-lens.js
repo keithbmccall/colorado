@@ -1,5 +1,5 @@
 import {
-  getPixel as _getPixel,
+  getPixel as colorLensGetPixel,
   getPalette,
   getPantone,
   getHexFromRGB
@@ -24,7 +24,7 @@ const getPixel = async ({ e, uri, imageDimensions }, cb, err) => {
   };
 
   try {
-    const hex = await _getPixel(uri, options);
+    const hex = await colorLensGetPixel(uri, options);
     cb(hex);
   } catch (error) {
     console.log("error in chooserscreen.findcolor", error);

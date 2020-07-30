@@ -7,6 +7,10 @@ import LoadingView from "#containers/loading/LoadingView";
 import { studioActions } from "#store/actions";
 import { connect } from "react-redux";
 
+const initialState = {
+  isLoaded: false
+};
+
 const ColorStripContainer = props => {
   const {
     isStudio,
@@ -19,7 +23,7 @@ const ColorStripContainer = props => {
     style
   } = props;
 
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(initialState.isLoaded);
 
   useEffect(() => {
     const { swatches: hasSwatches = false, uri } = image;

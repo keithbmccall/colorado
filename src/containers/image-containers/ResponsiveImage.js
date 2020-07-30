@@ -5,6 +5,10 @@ import LoadingView from "#containers/loading/LoadingView";
 import { isValidNumberOrPercentageValidator } from "#utils/validators.util";
 import { globalStyle } from "#styles";
 
+const initialState = {
+  isLoaded: false
+};
+
 const ResponsiveImage = props => {
   const {
     style,
@@ -13,7 +17,7 @@ const ResponsiveImage = props => {
     onReady
   } = props;
 
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(initialState.isLoaded);
 
   useEffect(() => {
     if (style) {

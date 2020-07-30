@@ -1,12 +1,12 @@
 import React, { memo, useMemo } from "react";
 import { get } from "lodash";
 import Layout from "#containers/layouts/Layout";
-import { colors } from "#styles";
 import CameraRollScreen from "./camera-roll/CameraRollScreen";
 import InspectorScreen from "./inspect/InspectorScreen";
 import ChooserScreen from "./chooser/ChooserScreen";
 import ModalNavigator from "./navigator/ModalNavigator";
 import { CAMERA_ROLL, CHOOSER, INSPECT, ROUTE_PARAMS_PATH } from "#navigation/navigators";
+import { colors } from "#styles";
 
 const modalRouter = modalType => {
   switch (modalType) {

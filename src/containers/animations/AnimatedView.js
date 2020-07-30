@@ -21,9 +21,9 @@ export default class AnimatedView extends Component {
       shouldLaunch,
       animation: { starting, ending }
     } = this.props;
-    const { shouldLaunch: prevLaunch } = prevProps;
+    const { shouldLaunch: prevShouldLaunch } = prevProps;
 
-    if (shouldLaunch !== prevLaunch) {
+    if (shouldLaunch !== prevShouldLaunch) {
       if (shouldLaunch) {
         this.startAnimation({ toValue: ending });
       } else {

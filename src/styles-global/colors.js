@@ -13,7 +13,6 @@ export const colors = {
   semiTransparent: primaryColors.semiTransparent,
   white: primaryColors.white,
   selectedBorder: primaryColors.purple,
-
   //
   modalViewBackground: primaryColors.white,
   //

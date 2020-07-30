@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import { View } from "react-native";
 import Text from "#containers/text";
 import style from "./styles";
@@ -10,10 +10,7 @@ import PropTypes from "prop-types";
 const ModalNavigator = props => {
   const { navigation, params } = props;
 
-  const { type: screen = defaultParams.type, prevScreen = defaultParams.prevScreen } = useMemo(
-    () => params,
-    [params]
-  );
+  const { type: screen = defaultParams.type, prevScreen = defaultParams.prevScreen } = params;
 
   const onBackPress = useCallback(() => {
     navigateTo(navigation, prevScreen, fromModalNavigator({ screen, ...params }));

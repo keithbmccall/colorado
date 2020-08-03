@@ -243,7 +243,7 @@ PODS:
     - React
   - react-native-camera/RN (3.35.0):
     - React
-  - react-native-cameraroll (1.8.1):
+  - react-native-cameraroll (4.0.0):
     - React
   - react-native-color-lens (2.2.4):
     - React
@@ -521,7 +521,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 1540d1c01bb493ae3124ed83351b1b6a155db7da
   React-jsinspector: 512e560d0e985d0e8c479a54a4e5c147a9c83493
   react-native-camera: d9e7b66e40420dcef111f3265a00f01eea54c52c
-  react-native-cameraroll: e2917a5e62da9f10c3d525e157e25e694d2d6dfa
+  react-native-cameraroll: ae0a7c0cc8462508855707ff623b1e789b692865
   react-native-color-lens: 98794be9a6987c9d70c771aa7cd6cf133bda23d8
   react-native-flipper: 1dde244c24b0a16b8b8866cee522e390ec97ea74
   react-native-safe-area-context: 14c793e8b0bfe51e74dcdbe75dd14ee7498b88b8

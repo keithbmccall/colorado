@@ -44,12 +44,12 @@ const ChooserScreen = props => {
     })
   ).current;
 
-  const onPress = useCallback(color => {
-    console.log("press", { color });
+  const onStripPress = useCallback(color => {
+    setColor(color.hex);
   });
 
-  const onLongPress = useCallback(color => {
-    console.log("longPress", { color });
+  const onStripLongPress = useCallback(color => {
+    console.log("longPress:editModeSet!", { color });
     setEditMode(!editMode);
   });
 
@@ -72,8 +72,8 @@ const ChooserScreen = props => {
             image={studioImage}
             isStudio={true}
             style={style.colorStripContainer}
-            onPress={onPress}
-            onLongPress={onLongPress}
+            onPress={onStripPress}
+            onLongPress={onStripLongPress}
           />
         </View>
       </View>

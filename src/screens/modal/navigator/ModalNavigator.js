@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { View } from "react-native";
 import Text from "#containers/text";
 import style from "./styles";
@@ -12,9 +12,7 @@ const ModalNavigator = props => {
 
   const { type: screen = defaultParams.type, prevScreen = defaultParams.prevScreen } = params;
 
-  const onBackPress = useCallback(() => {
-    navigateTo(navigation, prevScreen, fromModalNavigator({ screen, ...params }));
-  }, [navigation, params, prevScreen, screen]);
+  const onBackPress = navigateTo(navigation, prevScreen, fromModalNavigator({ screen, ...params }));
 
   return (
     <View style={style.navigatorWrapper}>

@@ -27,16 +27,11 @@ const ImageStudioScreen = props => {
 
   const [galleryOptions] = useState(initialState.galleryOptions);
 
-  const inspectColorSwatch = useCallback(
-    (swatch, swatchIndex) => {
-      navigateTo(navigation, INSPECT, fromImageStudioScreen({ swatch, swatchIndex }));
-    },
-    [navigation]
-  );
+  const inspectColorSwatch = (swatch, swatchIndex) =>
+    navigateTo(navigation, INSPECT, fromImageStudioScreen({ swatch, swatchIndex }));
 
-  const launchChooserScreen = useCallback(() => {
+  const launchChooserScreen = () =>
     navigateTo(navigation, CHOOSER, fromImageStudioScreen({ studioImage }));
-  }, [navigation, studioImage]);
 
   const _setImageStudioImage = useCallback(image => setImageStudioImage(image), [
     setImageStudioImage

@@ -1,4 +1,4 @@
-import React, { useEffect, memo, useCallback, useMemo } from "react";
+import React, { useEffect, memo, useMemo } from "react";
 import { TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 import ResponsiveImage from "#containers/image-containers/ResponsiveImage";
@@ -58,25 +58,25 @@ const ImageGallery = props => {
     [rowHeight, rowSize]
   );
 
+  const imageList = useMemo(
+    () =>
+      isStudio
+        ? renderStudioGallery({ ...props, cellSize })
+        : renderImageGallery({ ...props, cellSize }),
+    [cellSize, isStudio, props]
+  );
+
   useEffect(() => {
     rowSizeRangeValidator(rowSize);
   }, [rowSize]);
 
-  const renderContent = useCallback(() => {
-    const imageList = isStudio
-      ? renderStudioGallery({ ...props, cellSize })
-      : renderImageGallery({ ...props, cellSize });
-
-    return conditionalListReverse({
-      list: imageList,
-      test: isStudio
-    });
-  }, [cellSize, isStudio, props]);
-
   return (
     <ConditionalWrapper enable={isStudio} style={style}>
       <ScrollableList isLazy columns={rowSize}>
-        {renderContent()}
+        {conditionalListReverse({
+          list: imageList,
+          test: isStudio
+        })}
       </ScrollableList>
     </ConditionalWrapper>
   );

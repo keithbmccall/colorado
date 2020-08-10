@@ -10,8 +10,9 @@ import ImageGallery from "#containers/image-gallery/ImageGallery";
 import { ROW_DIMENSIONS } from "#enum/row-dimensions";
 import { studioSelectors } from "#selectors";
 import PropTypes from "prop-types";
-import { CHOOSER, INSPECT, navigateTo } from "#navigation/navigators";
+import { CAMERA_ROLL, CHOOSER, INSPECT, navigateTo } from "#navigation/navigators";
 import { fromImageStudioScreen } from "#navigation/from";
+import EmptyImageStudio from "./components/EmptyImageStudio";
 
 const initialState = {
   galleryOptions: ROW_DIMENSIONS.rowSize3,
@@ -37,16 +38,25 @@ const ImageStudioScreen = props => {
     setImageStudioImage
   ]);
 
+  const launchCameraRoll = () => navigateTo(navigation, CAMERA_ROLL, fromImageStudioScreen({}));
+
   return (
     <Layout style={style.imageStudioWrapper}>
       <View style={style.imageStudioHeadingWrapper}>
         <Text.Title style={style.imageStudioHeading}>Studio</Text.Title>
       </View>
-      <ImageStudio
-        image={studioImage}
-        onPress={inspectColorSwatch}
-        onEditPress={launchChooserScreen}
-      />
+      <View style={style.imageStudioWrapper}>
+        {studioImage ? (
+          <ImageStudio
+            image={studioImage}
+            onPress={inspectColorSwatch}
+            onEditPress={launchChooserScreen}
+          />
+        ) : (
+          <EmptyImageStudio launchCameraRoll={launchCameraRoll} />
+        )}
+      </View>
+
       <ImageGallery
         images={studioImages}
         galleryOptions={galleryOptions}
@@ -61,7 +71,7 @@ const ImageStudioScreen = props => {
 ImageStudioScreen.propTypes = {
   // redux
   studioImages: PropTypes.array.isRequired,
-  studioImage: PropTypes.object.isRequired,
+  studioImage: PropTypes.object,
   setImageStudioImage: PropTypes.func.isRequired
 };
 

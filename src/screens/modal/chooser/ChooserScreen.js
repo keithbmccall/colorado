@@ -22,7 +22,7 @@ const ChooserScreen = props => {
   const [color, setColor] = useState(initialState.color);
   const [editMode, setEditMode] = useState(initialState.editMode);
 
-  const swatch = useMemo(() => ({ hex: color }), [color]);
+  const swatch = { hex: color };
 
   const imageDimensions = useMemo(() => {
     const { width } = style.imageContainer;
@@ -37,9 +37,10 @@ const ChooserScreen = props => {
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderRelease: e => {
-        API.getPixel({ e, uri, imageDimensions }, setColor, err =>
-          console.log("error in chooserscreen.findcolor", err)
-        );
+        API.getPixel({ e, uri, imageDimensions }, setColor, err => {
+          // add error
+          console.log("error in chooserscreen.findcolor", err);
+        });
       }
     })
   ).current;

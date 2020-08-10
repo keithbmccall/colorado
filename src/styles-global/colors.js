@@ -4,12 +4,14 @@ const primaryColors = {
   darkGrey: "rgba(112,111,129,0.9)",
   white: "#ffffff",
   //
-  semiTransparent: "rgba(255,255,255,0.7)"
+  semiTransparent: "rgba(255,255,255,0.7)",
+  transparent: "transparent"
 };
 
 export const colors = {
   primary: primaryColors.purple,
   secondary: primaryColors.darkGrey,
+  transparent: primaryColors.transparent,
   semiTransparent: primaryColors.semiTransparent,
   white: primaryColors.white,
   selectedBorder: primaryColors.purple,

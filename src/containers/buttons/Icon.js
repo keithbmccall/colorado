@@ -25,8 +25,9 @@ Icon.defaultProps = {
 };
 
 Icon.enum = {
-  backArrow: "arrow-left-bold",
-  edit: "pencil-box-outline"
+  backArrow: "chevron-left",
+  edit: "pencil-box-outline",
+  cameraRoll: "camera-image"
 };
 
 export default Icon;

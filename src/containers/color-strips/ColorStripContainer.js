@@ -29,27 +29,30 @@ const ColorStripContainer = props => {
     const { swatches: hasSwatches = false, uri } = image;
     //    checks to see if image has swatches already,
     //    if not then it runs code to find the dominant colors
+
+    const getSwatches = (error, newSwatches) => {
+      const imageSwatches = {
+        swatches: normalizeSwatches(newSwatches),
+        image
+      };
+      if (error) {
+        console.log("error in ColorStripContainer.API.getPalette", error);
+        return;
+      }
+      if (isStudio) {
+        setSwatchesOnStudioImage(imageSwatches);
+      } else {
+        setSwatchesOnImage(imageSwatches);
+      }
+    };
+
     if (hasSwatches) {
       setIsLoaded(true);
       if (onReady) {
         onReady();
       }
     } else {
-      API.getPalette(uri, (error, newSwatches) => {
-        const imageSwatches = {
-          swatches: normalizeSwatches(newSwatches),
-          image
-        };
-        if (error) {
-          console.log("error in ColorStripContainer.API.getPalette", error);
-          return;
-        }
-        if (isStudio) {
-          setSwatchesOnStudioImage(imageSwatches);
-        } else {
-          setSwatchesOnImage(imageSwatches);
-        }
-      });
+      API.getPalette(uri, getSwatches);
     }
   }, [image, isStudio, onReady, setSwatchesOnImage, setSwatchesOnStudioImage]);
 

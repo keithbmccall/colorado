@@ -3,6 +3,7 @@ System.config({
   paths: {
     "#navigation/*": "./src/navigation/*",
     "#containers/*": "./src/containers/*",
+    "#branding/*": "./src/branding/*",
     "#constants/*": "./src/constants/*",
     "#screens/*": ".src/screens/*",
     // store

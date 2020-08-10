@@ -1,5 +1,4 @@
-import React from "react";
-import { View } from "react-native";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import Button from "#containers/buttons";
 import ImageWithColorStrip from "#containers/image-with-color-strip/ImageWithColorStrip";
@@ -9,7 +8,7 @@ const ImageStudio = props => {
   const { onEditPress, onPress, image } = props;
 
   return (
-    <View style={style.imageStudioWrapper}>
+    <Fragment>
       <ImageWithColorStrip
         image={image}
         style={style.imageStudioWrapper}
@@ -23,7 +22,7 @@ const ImageStudio = props => {
         onPress={onEditPress}
         size={35}
       />
-    </View>
+    </Fragment>
   );
 };
 

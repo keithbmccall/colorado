@@ -32,6 +32,6 @@ const getStack = screenTo => {
  * @param params - params to send to navigator/component
  */
 export const navigateTo = ({ navigate }, screenTo, params) => {
-  // navigate(navigator stack, { screen: screen to go to, paramas: extra props })
+  // navigate(navigator stack, { screen: screen to go to, params: extra props })
   navigate(getStack(screenTo), { screen: screenTo, params: { ...params, type: screenTo } });
 };

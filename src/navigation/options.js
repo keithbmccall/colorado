@@ -1,6 +1,6 @@
-import { CAMERA_ROLL, MODAL, STUDIO } from "#navigation/navigators";
+import { CAMERA_ROLL, STUDIO } from "#navigation/navigators";
 
-const rootInitialRouteName = MODAL;
+const rootInitialRouteName = STUDIO;
 const tabInitialRouteName = STUDIO;
 const modalInitialRouteName = CAMERA_ROLL;
 

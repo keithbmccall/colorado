@@ -23,6 +23,10 @@ export default StyleSheet.create({
     ...layoutGrid.half,
     position: "relative"
   },
+  imageStudioEmptyWrapper: {
+    ...globalStyle.flexCenter,
+    ...globalStyle.flex1
+  },
   imageStudioEditButton: {
     ...globalStyle.absolute,
     top: 10,

@@ -27,8 +27,8 @@ const TabStack = tab => {
   console.log("tabStack", { tab });
   return (
     <Tab.Navigator initialRouteName={tabInitialRouteName} tabBarOptions={tabBarOptions}>
-      <Tab.Screen name={STUDIO} component={ImageStudioScreen} />
       <Tab.Screen name={CAMERA} component={CameraScreen} />
+      <Tab.Screen name={STUDIO} component={ImageStudioScreen} />
       <Tab.Screen name={LIBRARY} component={LibraryScreen} />
     </Tab.Navigator>
   );

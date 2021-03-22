@@ -50,6 +50,7 @@ const ImageGallery = props => {
     galleryOptions: { rowSize, rowHeight },
     style
   } = props;
+
   const cellSize = useMemo(
     () => ({
       width: `${100 / rowSize}%`,

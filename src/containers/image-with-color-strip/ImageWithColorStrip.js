@@ -20,7 +20,7 @@ const ImageWithColorStrip = props => {
   const prevImage = usePrevious(image);
 
   useEffect(() => {
-    if (prevImage && prevImage.id !== image.id) {
+    if (prevImage?.id !== image.id) {
       setIsImageReady(false);
     }
   }, [image, prevImage]);

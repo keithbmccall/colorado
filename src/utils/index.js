@@ -3,7 +3,6 @@ export { isValidNumberOrPercentageValidator, rowSizeRangeValidator } from "./val
 export {
   normalizeSwatches,
   equalizeSwatchLength,
-  convertRGBToHex,
   mapSwatchPaletteToArray,
   getHexInfo
 } from "./swatch.util";
